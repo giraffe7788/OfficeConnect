@@ -1,0 +1,225 @@
+@charset "utf-8";
+
+/*----------------------로그인페이지---------------------*/
+body {
+/*     background-image: linear-gradient(135deg, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%); */
+    background-image: linear-gradient(135deg, #7fbfe9 0%, #99d5ef 100%);
+    height: 100vh;
+    overflow: auto;
+    min-height: 960px;
+}
+
+#wrap {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 790px;
+    border-radius: 45px;
+    box-shadow: 5px 5px 25px #7ba9e1;
+    margin: auto 0;
+    overflow: hidden;
+}
+#wrap>div {
+    float: left;
+    height: 100%;
+}
+#loginLeft {
+    width: 50%;
+}
+#loginLeft>img {
+    position: absolute;
+    bottom: 0;
+    left: 6%;
+    width: 66%;
+}
+
+#loginRight {
+    width: 50%;
+    background: white;
+    text-align: center;
+    padding-top: 6em;
+}
+#loginRight>img {
+    width: 15em;
+    z-index: 1;
+}
+#loginRight form {
+    margin-top: 2.5em;
+}
+#loginRight .loginBox {
+    width: 57%;
+    margin: auto;
+    height: 62px;
+    border-radius: 30px;
+    box-shadow: 2px 3px 12px #e2e2e2;
+    margin-bottom: 12px;
+    line-height: 62px;
+    text-align: left;
+    padding-left: 2em;
+}
+#loginRight .fas {
+    color: #898989;
+    font-size: 1.4em;
+    pointer-events: none;
+}
+#loginRight .loginBox input {
+    border: none;
+    font-weight: 500;
+    font-size: 15px;
+    display: inline-block;
+    height: 80%;
+    margin-left: 13px;
+    width: 80%;
+}
+#loginRight #loginBox2 {
+    padding-top: 10px;
+    width: 54%;
+    margin: auto;
+}
+#loginRight #loginBox2 input {
+    float: left;
+    margin-right: 5px;
+    margin-top: 2px;
+    cursor: pointer;
+    z-index: 100;
+    position: relative;
+}
+#loginRight #loginBox2 span {
+    float: left;
+    font-size: 0.9em;
+}
+#loginRight .purple {
+    color : #7474ac;
+}
+#loginRight #forgotPass {
+    border: none;
+    background: none;
+    font-size: 0.9em;
+    font-family: 'Gmarket Sans', 'Nanum Gothic', sans-serif;
+    float: right;
+}
+#loginRight #signIn, #loginRight #demo {
+    margin-top: 18px;
+    padding: 3.1%;
+}
+#loginLogo {
+	width: 60%!important;
+}
+.purBtn {
+    background: #0997ff;
+    border-radius: 30px;
+    border: none;
+    box-shadow: 0px 3px 5px #c9bcd0;
+    width: 57%;
+    font-family: 'Gmarket Sans', 'Nanum Gothic', sans-serif;
+    font-size: 1em;
+    font-weight: 600;
+    color: white;
+}
+
+#joinBox {
+    margin-top: 12%;
+    color: #b7b7b7;
+}
+#joinBox p {
+    margin-bottom: 8px;
+}
+#joinBox a {
+    font-size: 1.05em;
+    color: #7474ac;
+    font-weight: 600;
+}
+
+#copy {
+    color : #b7b7b7;
+    font-family: 'Nanum Gothic', sans-serif;
+    position: relative;
+    top : 23%;
+}
+
+/*---------------------------모달------------------------*/
+#modal {
+    position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0,0,0,0.5);
+    display: none;
+}
+
+#modalBody {
+	width: 750px;
+	height: 465px;
+	background-color: white;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	border-radius: 35px;
+    text-align: center;
+    margin-top: 300px;
+}
+
+#closeBox {
+    width: 100%;
+    padding: 2%;
+}
+#closeBox #close {
+    border: none;
+    background: none;
+    float: right;
+    padding: 2% 4%;
+}
+#closeBox #close .fas {
+    font-size: 2em;
+}
+
+#modalCont {
+    clear: both;
+    padding-top: 1.6%;
+}
+#modalCont .fa-unlock-alt {
+    font-size: 3em;
+    color : #a0a0cf;
+    display: inline-block;
+}
+#modalCont>p {
+    font-weight: bold;
+    font-family : 'Nanum Gothic', sans-serif;
+    margin-top: 2%;
+    margin-bottom: 5%;
+}
+
+#find p, #find input, #find button {
+    width: 50%;
+    margin: auto;
+    display: block;
+    text-align: left;
+    margin-bottom : 3px;
+}
+#find #msg {
+    display: inline-block;
+    padding-left: 10px;
+    font-size: 0.95em;
+    margin-bottom: 10px;
+}
+#find input {
+    font-size: 15px;
+    padding: 14px 20px;
+    border: 1px solid #e7e7e7;
+    border-radius: 35px;
+}
+#find #passBtn {
+    margin-top: 12px;
+    padding: 14px;
+    text-align: center;
+    font-family : 'Nanum Gothic', sans-serif;
+    font-weight: bold;
+}
+
+#modalBody>p {
+    font-size: 0.8em;
+    margin-top: 20px;
+}
