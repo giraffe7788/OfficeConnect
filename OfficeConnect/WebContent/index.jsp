@@ -37,7 +37,7 @@
                     <button type="button" class="purple" id="forgotPass">관리자 로그인</button>
                 </div>
                 
-                <button type="submit" id="signIn" class="purBtn">회원가입</button>
+                <button type="submit" id="signIn" class="purBtn">로그인</button>
             </form>
             
             <div id="joinBox">
