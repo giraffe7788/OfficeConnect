@@ -1,0 +1,61 @@
+@charset "UTF-8";
+
+body {
+	background-color: #edf1f3;
+}
+
+#meetingroom {
+	left: 500px;
+	top: 100px;
+}
+
+.btn {
+	border: 1px solid black;
+	background-color: lightblue;
+	margin-top: 10px;
+}
+
+#mtrh {
+	color: black;
+	font-weight: bold;
+	margin-bottom: 100px; 
+}
+
+
+#room {
+	left: 200px;
+	position: absolute;
+	height: 500px;
+	width: 100px;
+	text-align: center;
+	background-color: white;
+	
+}
+
+#mtrh2 {
+	margin-bottom: 30px;
+	font-weight: bold;
+}
+
+textarea {
+    width: 100%;
+    height: 6.25em;
+    resize: none;
+  }
+  
+#modal {
+	text-align: justify;
+}
+
+#reservation {
+	background-color: white;
+	height: 500px;
+	width: 500px;
+	margin-left: 500px;
+	text-align: center;
+}
+
+#res {
+	border: 1px solid black;
+	background-color: lightblue;
+}
