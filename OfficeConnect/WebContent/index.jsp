@@ -37,15 +37,12 @@
 				</div>
 
 				<div id="loginBox2">
-					<input type="checkbox" id="idchk" name="auto" value="remember" /><span
-						class="purple">내 정보 기억하기</span>
-						<div class="loginBox">
-					<button type="button" class="purple" id="forgotPass">관리자
-						로그인</button>
-						</div>
+					<input type="checkbox" id="idchk" name="auto" value="remember" /><span>내
+						정보 기억하기</span> <a href="#" id=adminLogin>관리자 로그인</a>
 				</div>
 
 				<button type="submit" id="signIn" class="purBtn">로그인</button>
+
 			</form>
 
 			<div id="joinBox">

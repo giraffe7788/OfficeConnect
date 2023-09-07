@@ -1,167 +1,167 @@
 @charset "utf-8";
 
 body {
-   background-image: linear-gradient(135deg, #7fbfe9 0%, #99d5ef 100%);
-   height: 100vh;
-   overflow: auto;
-   min-height: 960px;
+	background-image: linear-gradient(135deg, #7fbfe9 0%, #99d5ef 100%);
+	height: 100vh;
+	overflow: auto;
+	min-height: 960px;
 }
 
 #wrap {
-   position: relative;
-   top: 50%;
-   left: 30%;
-   transform: translate(-50%, -50%);
-   height: 790px;
-   border-radius: 45px;
-   box-shadow: 5px 5px 25px #7ba9e1;
-   margin: auto 0;
-   overflow: hidden;
-   width: 100%;
-   max-width: 1200px;
-   margin: auto;
+	position: relative;
+	top: 50%;
+	left: 30%;
+	transform: translate(-50%, -50%);
+	height: 790px;
+	border-radius: 45px;
+	box-shadow: 5px 5px 25px #7ba9e1;
+	margin: auto 0;
+	overflow: hidden;
+	width: 100%;
+	max-width: 1200px;
+	margin: auto;
 }
 
 #wrap>div {
-   float: left;
-   height: 100%;
+	float: left;
+	height: 100%;
 }
 
 #loginLeft {
-   width: 50%;
+	width: 50%;
 }
 
 #loginLeft>img {
-   position: absolute;
-   bottom: 0;
-   left: 6%;
-   width: 66%;
+	position: absolute;
+	bottom: 0;
+	left: 6%;
+	width: 66%;
 }
 
 #loginRight {
-/*    display: flex; */
-   margin: auto;
-/*    align-items: center; */
+/* 	display: flex; */
+	margin: auto;
+/* 	align-items: center; */
 /*     justify-content: center; */
-   width: 50%;
-   background: white;
-   text-align: center;
-   padding-top: 6em;
+	width: 50%;
+	background: white;
+	text-align: center;
+	padding-top: 6em;
 }
 
 #loginRight>img {
-   width: 15em;
-   z-index: 1;
+	width: 15em;
+	z-index: 1;
 }
 
 #loginRight form {
-   margin-top: 4em;
+	margin-top: 4em;
 }
 
 #loginRight .loginBox {
-   width: 57%;
-   margin: auto;
-   height: 62px;
-   border-radius: 30px;
-   box-shadow: 2px 3px 12px #e2e2e2;
-   margin-bottom: 12px;
-   line-height: 62px;
-   text-align: left;
-   padding-left: 2em;
+	width: 57%;
+	margin: auto;
+	height: 62px;
+	border-radius: 30px;
+	box-shadow: 2px 3px 12px #e2e2e2;
+	margin-bottom: 12px;
+	line-height: 62px;
+	text-align: left;
+	padding-left: 2em;
 }
 
 #loginRight .fas {
-   color: #898989;
-   font-size: 1.4em;
-   pointer-events: none;
+	color: #898989;
+	font-size: 1.4em;
+	pointer-events: none;
 }
 
 #loginRight .loginBox input {
-   border: none;
-   font-weight: 500;
-   font-size: 15px;
-   display: inline-block;
-   height: 80%;
-   margin-left: 13px;
-   width: 80%;
+	border: none;
+	font-weight: 500;
+	font-size: 15px;
+	display: inline-block;
+	height: 80%;
+	margin-left: 13px;
+	width: 80%;
 }
 
 #loginRight #loginBox2 {
-   padding-top: 10px;
-   width: 54%;
-   margin: auto;
+	padding-top: 10px;
+	width: 54%;
+	margin: auto;
 }
 
 #loginRight #loginBox2 input {
-   float: left;
-   margin-right: 5px;
-   margin-top: 2px;
-   cursor: pointer;
-   z-index: 100;
-   position: relative;
+	float: left;
+	margin-right: 5px;
+	margin-top: 2px;
+	cursor: pointer;
+	z-index: 100;
+	position: relative;
 }
 
 #loginRight #loginBox2 span {
-   float: left;
-   font-size: 0.9em;
+	float: left;
+	font-size: 0.9em;
 }
 
 #loginRight #forgotPass {
-   border: none;
-   background: none;
-   font-size: 0.9em;
-   font-family: 'Gmarket Sans', 'Nanum Gothic', sans-serif;
-   float: right;
+	border: none;
+	background: none;
+	font-size: 0.9em;
+	font-family: 'Gmarket Sans', 'Nanum Gothic', sans-serif;
+	float: right;
 }
 
 #loginRight #signIn {
-   margin-top: 18px;
-   padding: 3.1%;
+	margin-top: 18px;
+	padding: 3.1%;
 }
 
 #loginRight #adminLogin {
-   position: relative;
-   left: 40px;
+	position: relative;
+	left: 40px;
     font-size: 0.9em;
 }
 
 #loginLogo {
-   width: 60% !important;
+	width: 60% !important;
 }
 
 .purBtn {
-   /* margin: auto; */
-   background: #4ec9ff;
-   border-radius: 30px;
-   border: none;
-   box-shadow: 0px 3px 5px #c9bcd0;
-   width: 57%;
-   font-family: 'Gmarket Sans', 'Nanum Gothic', sans-serif;
-   font-size: 1em;
-   font-weight: 600;
-   color: white;
-   top: 50px;
-   margin-left: 22%;
-   margin-bottom: 3%;
-   display:block;
+	/* margin: auto; */
+	background: #4ec9ff;
+	border-radius: 30px;
+	border: none;
+	box-shadow: 0px 3px 5px #c9bcd0;
+	width: 57%;
+	font-family: 'Gmarket Sans', 'Nanum Gothic', sans-serif;
+	font-size: 1em;
+	font-weight: 600;
+	color: white;
+	top: 50px;
+	margin-left: 22%;
+	margin-bottom: 3%;
+	display:block;
 
-/*    height: 62px; */
-/*    margin-bottom: 12px; */
-/*    line-height: 62px; */
-/*    text-align: left; */
-/*    padding-left: 2em; */
+/* 	height: 62px; */
+/* 	margin-bottom: 12px; */
+/* 	line-height: 62px; */
+/* 	text-align: left; */
+/* 	padding-left: 2em; */
 }
 
 #joinBox {
-   color: #b7b7b7;
+	color: #b7b7b7;
 }
 
 #joinBox p {
-   margin-bottom: 8px;
+	margin-bottom: 8px;
 }
 
 #joinBox a {
-   font-size: 1.05em;
-   color: #7474ac;
-   font-weight: 600;
+	font-size: 1.05em;
+	color: #7474ac;
+	font-weight: 600;
 }
