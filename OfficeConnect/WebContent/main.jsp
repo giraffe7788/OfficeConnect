@@ -15,7 +15,7 @@
 	<article id="content">
 		<div id="inner">
 			<div id="imgbox" class="conbox">
-				<h4>회사이미지박스</h4>
+				<h4>테스트</h4>
 			</div>
 			<div id="cal" class="conbox">
 				<h4 class="h4_cal">
