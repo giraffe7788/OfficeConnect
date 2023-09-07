@@ -1,5 +1,7 @@
 package emp.dao;
 
+import java.sql.SQLException;
+
 import org.apache.ibatis.exceptions.PersistenceException;
 import org.apache.ibatis.session.SqlSession;
 
@@ -45,4 +47,30 @@ public class EmpDaoImpl implements IEmpDao {
 		
 		return loginCheck;
 	}
+	
+	@Override
+	public int joinEmployee(EmpVO empVO) {
+		
+		SqlSession session = MyBatisUtil.getInstance();
+		
+		int cnt = 0;
+		
+		try {
+			cnt = session.insert("employee.joinEmployee", empVO);
+			if (cnt > 0) {
+				session.commit();
+			}
+			
+		} catch (PersistenceException ex) {
+			session.rollback();
+			ex.printStackTrace();
+		} finally {
+			session.close();
+		}
+		
+		return cnt;
+
+	}
+	
+	
 }
