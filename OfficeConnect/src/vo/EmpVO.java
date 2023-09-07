@@ -1,17 +1,17 @@
-package emp.vo;
+package vo;
 
 public class EmpVO {
 
-	String empNo;		// 사번
-	String empPw;		// 비밀번호
-	String empAddr;		// 주소
-	String empTel;		// 전화번호
-	String empEmail;	// 이메일
-	String empName;		// 이름
-	String empPosit;	// 직급
-	int empState;		// 상태코드(부재중, 업무중 등..)
-	int adminCode;		// 관리자여부코드(0이면 일반사원, 1이면 관리자)
-	int deptCode;		// 부서코드
+	private String empNo;		// 사번
+	private String empPw;		// 비밀번호
+	private String empAddr;		// 주소
+	private String empTel;		// 전화번호
+	private String empEmail;	// 이메일
+	private String empName;		// 이름
+	private String empPosit;	// 직급
+	private int empState;		// 상태코드(부재중, 업무중 등..)
+	private int adminCode;		// 관리자여부코드(0이면 일반사원, 1이면 관리자)
+	private int deptCode;		// 부서코드
 	
 	public EmpVO() {};
 	public EmpVO(String empPw, String empAddr, String empTel, String empEmail, String empName,

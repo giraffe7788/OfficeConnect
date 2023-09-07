@@ -1,4 +1,4 @@
-package emp.login.main;
+package emp.controller;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -15,9 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
-import emp.login.service.ILoginService;
-import emp.login.service.LoginServiceImpl;
-import emp.vo.EmpVO;
+import emp.service.IEmpService;
+import vo.EmpVO;
+import emp.service.EmpServiceImpl;
 
 @WebServlet("/login.do")
 public class login extends HttpServlet {
@@ -33,9 +33,7 @@ public class login extends HttpServlet {
 		String empNo = req.getParameter("emp_no");
 		String empPw = req.getParameter("emp_pw");
 
-		System.out.println("잘옴? " + empNo + " | " + empPw);
-
-		ILoginService loginService = LoginServiceImpl.getInstance();
+		IEmpService loginService = EmpServiceImpl.getInstance();
 		EmpVO empVO = new EmpVO();
 		empVO.setEmpNo(empNo);
 		empVO.setEmpPw(empPw);

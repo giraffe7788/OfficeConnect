@@ -1,22 +1,28 @@
-package emp.login.dao;
+package emp.dao;
 
 import org.apache.ibatis.exceptions.PersistenceException;
 import org.apache.ibatis.session.SqlSession;
 
-import emp.vo.EmpVO;
 import util.MyBatisUtil;
+import vo.EmpVO;
 
-public class LoginDaoImpl implements ILoginDao {
+public class EmpDaoImpl implements IEmpDao {
 
 	// 싱글톤패턴
-	public static ILoginDao instance = null;
-	private LoginDaoImpl() {}
-	public static ILoginDao getInstance() {
-		if(instance == null) instance = new LoginDaoImpl();
+	public static IEmpDao instance = null;
+	private EmpDaoImpl() {}
+	public static IEmpDao getInstance() {
+		if(instance == null) instance = new EmpDaoImpl();
 		return instance;
 	}
 	
+	
 	@Override
+	/**
+	 * 로그인 체크를 위한 메서드
+	 * @param empvo
+	 * @return 로그인 성공여부
+	 */
 	public boolean loginCheck(EmpVO empVO) {
 		
 		boolean loginCheck = false;
