@@ -45,4 +45,15 @@ public class EmpDaoImpl implements IEmpDao {
 		
 		return loginCheck;
 	}
+	
+	
+	@Override
+	/**
+	 * 회원가입 시켜주는 메서드
+	 * @param empVO
+	 * @return 성공여부
+	 */
+	public int joinEmployee(EmpVO empVO) {
+		return 0;
+	}
 }

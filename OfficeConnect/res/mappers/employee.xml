@@ -18,7 +18,7 @@
 			못가져옴 -->
 	</select>
 
-	<resultMap type="emp.vo.EmpVO" id="empMap">
+	<resultMap type="vo.EmpVO" id="empMap">
 		<result column="emp_no" property="empNo" />
 		<result column="emp_pw" property="empPw" />
 		<result column="emp_addr" property="empAddr" />
