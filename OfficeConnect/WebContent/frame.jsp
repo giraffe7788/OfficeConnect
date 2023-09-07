@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="css/reset.css">
-<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/frame.css">
 <title>오피스커넥트 사이트 프레임</title>
 </head>
 <body>
