@@ -14,7 +14,7 @@
         <nav id="topmenu">
             <ul>
                 <li class="navli"><a href="#">협 업</a>
-                    <hr>
+                    <hr class=hr_hdline>
                     <div class="sub">
                         <a href="#">Office mail</a>
                         <a href="#">전자결재</a>
@@ -23,7 +23,7 @@
                 </li>
                 <!-- <li>|</li> -->
                 <li class="navli"><a href="#">소통</a>
-                    <hr>
+                    <hr class=hr_hdline>
                     <div class="sub">
                         <a href="#">회사연혁</a>
                         <a href="#">공지사항</a>
@@ -32,7 +32,7 @@
                 </li>
                 <!-- <li>|</li> -->
                 <li class="navli"><a href="#">업무지원</a>
-                    <hr>
+                    <hr class=hr_hdline>
                     <div class="sub">
                         <a href="#">회의실예약</a>
                         <a href="#">차량예약</a>
@@ -40,7 +40,7 @@
                     </div>
                 </li>
                 <li class="navli"><a href="#">비지니스</a>
-                    <hr>
+                    <hr class=hr_hdline>
                     <div class="sub">
                         <a href="#">마이페이지</a>
                         <a href="#">관리자설정</a>

@@ -18,25 +18,39 @@
 				<h4>회사이미지박스</h4>
 			</div>
 			<div id="cal" class="conbox">
-				<h4 class="h4_cal">일정</h4>
+				<h4 class="h4_cal">
+					<span class="white">일정</span>
+				</h4>
 			</div>
 			<div id="addr" class="conbox">
-				<h4 class="h4_addr">전자결재</h4>
+				<h4 class="h4_addr">
+					<span class="white">전자결재</span>
+				</h4>
 			</div>
 			<div id="allboard" class="conbox">
-				<h4 class="h4_board">공지사항</h4>
+				<h4 class="h4_board">
+					<span class="white">공지사항</span>
+				</h4>
 			</div>
 			<div id="freeboard" class="conbox">
-				<h4 class="h4_board">자유게시판</h4>
+				<h4 class="h4_board">
+					<span class="white">자유게시판</span>
+				</h4>
 			</div>
 			<div id="meetingRoom" class="conbox">
-				<h4 class="h4_meetRoom">회의실예약</h4>
+				<h4 class="h4_meetRoom">
+					<span class="white">회의실예약</span>
+				</h4>
 			</div>
 			<div id="mail" class="conbox">
-				<h4 class="h4_mail">메일함</h4>
+				<h4 class="h4_mail">
+					<span class="white">메일함</span>
+				</h4>
 			</div>
 			<div id="car" class="conbox">
-				<h4 class="h4_car">차량배차</h4>
+				<h4 class="h4_car">
+					<span class="white">차량배차</span>
+				</h4>
 			</div>
 		</div>
 	</article>
