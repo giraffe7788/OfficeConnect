@@ -3,6 +3,7 @@ package emp.controller;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,8 +14,9 @@ import emp.service.EmpServiceImpl;
 import emp.service.IEmpService;
 import vo.EmpVO;
 
+@MultipartConfig
 @WebServlet("/join.do")
-public class join extends HttpServlet {
+public class JoinController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -34,6 +36,7 @@ public class join extends HttpServlet {
 		String empName = req.getParameter("empName");
 		String empPosit = req.getParameter("empPosit");
 		int adminCode = Integer.parseInt(req.getParameter("adminCode"));
+		int empState =Integer.parseInt(req.getParameter("empState"));
 		int deptCode = Integer.parseInt(req.getParameter("deptCode"));
 		
 		IEmpService empService = EmpServiceImpl.getInstance();
@@ -46,6 +49,7 @@ public class join extends HttpServlet {
 		empVO.setEmpName(empName);
 		empVO.setEmpPosit(empPosit);
 		empVO.setAdminCode(adminCode);
+		empVO.setEmpState(empState);
 		empVO.setDeptCode(deptCode);
 		
 		int cnt = empService.registEmployee(empVO);
@@ -61,7 +65,7 @@ public class join extends HttpServlet {
 		HttpSession session = req.getSession();
 		session.setAttribute("msg", msg);
 		
-		resp.sendRedirect(req.getContextPath() + "/employee/list.do");
+		resp.sendRedirect(req.getContextPath() + "/list.do");
 		resp.setCharacterEncoding("UTF-8");
 
 	}

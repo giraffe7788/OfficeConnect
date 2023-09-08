@@ -120,8 +120,8 @@ public class EmpDaoImpl implements IEmpDao {
 		int cnt = 0;
 		
 		SqlSession session = MyBatisUtil.getInstance(true);
-		//★☆★☆삭제하는 부분이라 여기 오토커밋 true로 넣을지 
-		//try안에 commit으로 넣는게 똑같은건가?? 암튼 물어보기★☆★☆
+		//★☆★☆삭제 오토커밋 true로 넣나 
+		//try안에 commit으로 넣나 똑같은건가??★☆★☆
 		
 		try {
 			cnt = session.delete("employee.deleteEmployee", empNo);

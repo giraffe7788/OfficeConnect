@@ -8,10 +8,10 @@
 		  and emp_pw = #{empPw}
 	</select>
 	
-	<insert id="joinEmployee" parameterType="empvo">
+	<insert id="joinEmployee" parameterType="vo.EmpVO">
 		insert into employee(emp_no, emp_pw, emp_addr, emp_tel, emp_email, emp_name, 
 							 emp_posit, emp_state, admin_code, dept_code)
-        values (#{empNo}, #{empPw}, #{empAddr}, #{empTel}, #{empEmail},
+        values (EMP_NO_SEQ.nextval, #{empPw}, #{empAddr}, #{empTel}, #{empEmail},
         		#{empName}, #{empPosit}, #{empState}, #{adminCode}, 1)
 	</insert>
 

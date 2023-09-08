@@ -22,8 +22,12 @@
 			<td><%=ev.getEmpNo() %></td>
 		</tr>
 		<tr>
-			<td>주소</td>
-			<td><%=ev.getEmpAddr() %></td>
+			<td>이름</td>
+			<td><%=ev.getEmpName() %></td>
+		</tr>
+		<tr>
+			<td>직급</td>
+			<td><%=ev.getEmpPosit() %></td>
 		</tr>
 		<tr>
 			<td>전화번호</td>
@@ -34,12 +38,8 @@
 			<td><%=ev.getEmpEmail() %></td>
 		</tr>
 		<tr>
-			<td>이름</td>
-			<td><%=ev.getEmpName() %></td>
-		</tr>
-		<tr>
-			<td>직급</td>
-			<td><%=ev.getEmpPosit() %></td>
+			<td>주소</td>
+			<td><%=ev.getEmpAddr() %></td>
 		</tr>
 		<tr>
 			<td>상태코드</td>

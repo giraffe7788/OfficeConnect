@@ -20,15 +20,16 @@
 <meta charset="UTF-8">
 <title>사원 목록</title>
 </head>
+<h3>사원 조회</h3>
 <body>
 	<table border="1">
 		<tr>
 			<th>사번</th>
-			<th>주소</th>
-			<th>전화번호</th>
-			<th>이메일</th>
 			<th>이름</th>
 			<th>직급</th>
+			<th>전화번호</th>
+			<th>이메일</th>
+			<th>주소</th>
 			<th>상태코드</th>
 			<th>관리자여부코드</th>
 			<th>부서코드</th>
@@ -45,11 +46,10 @@
 	<tr>
 		<td><%=ev.getEmpNo() %></td>
 		<td><a href="detail.do?EmpNo=<%=ev.getEmpNo() %>"><%=ev.getEmpName() %></a></td>
-		<td><%=ev.getEmpAddr() %></td>
+		<td><%=ev.getEmpPosit() %></td>
 		<td><%=ev.getEmpTel() %></td>
 		<td><%=ev.getEmpEmail() %></td>
-		<td><%=ev.getEmpName() %></td>
-		<td><%=ev.getEmpPosit() %></td>
+		<td><%=ev.getEmpAddr() %></td>
 		<td><%=ev.getEmpState() %></td>
 		<td><%=ev.getAdminCode() %></td>
 		<td><%=ev.getDeptCode() %></td>
@@ -59,7 +59,7 @@
 	}
 %>
 	<tr align="center">
-		<td colspan="5"><a href=./join.do">새 사용자 등록</a></td>
+		<td colspan="10"><a href=./join.do>새 사용자 등록</a></td>
 	</tr>
 	</table>
 <%
