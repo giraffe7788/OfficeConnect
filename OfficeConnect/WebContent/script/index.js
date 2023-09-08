@@ -11,13 +11,13 @@ function loginCheck(){
 	}
 	
 	$.ajax({
-		url : 'http://localhost:8888/OfficeConnect/login.do',
+		url : 'login.do',
 		type : 'post',
 		data : { 'emp_no': idValue,
 				 'emp_pw' : pwValue },
 		success : function(res){
 			
-			if( res == 'fail' ){
+			if( res.isSuccess == 'fail' ){
 				alert("아이디나 비밀번호를 확인해주세요.");
 			}else{
 				alert("로그인성공");
@@ -32,7 +32,3 @@ function loginCheck(){
 		dataType : 'json'
 	})
 }
-
-	function getContextPath() {
-		return "<%=request.getContextPath()%>";
-	}

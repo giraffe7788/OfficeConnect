@@ -28,7 +28,7 @@
  
  	<select id="selectAll" resultType="vo.MeetingVO" resultMap="mtrMap">
 	 	select * from mtrbook
- 	</select>
+	</select>
 
 	<resultMap type="vo.MeetingVO" id="mtrMap">
 		<result column="mtrbook_no" property="mtrbookNo"/>
@@ -39,5 +39,9 @@
 		<result column="mtrbook_per" property="mtrbookPer"/>
 		<result column="mtrbook_cont" property="mtrbookCont"/>
 	</resultMap>
+
+
+	<insert id="bookMtr">
+	</insert>
 
 </mapper>
