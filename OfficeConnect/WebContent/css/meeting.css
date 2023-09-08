@@ -13,6 +13,8 @@ body {
 	border: 1px solid black;
 	background-color: lightblue;
 	margin-top: 10px;
+	width: 180px;
+	height: 90px;
 }
 
 #mtrh {
@@ -23,17 +25,17 @@ body {
 
 
 #room {
-	left: 200px;
+	left: 300px;
 	position: absolute;
-	height: 500px;
-	width: 100px;
+	height: 800px;
+	width: 200px;
 	text-align: center;
 	background-color: white;
 	
 }
 
 #mtrh2 {
-	margin-bottom: 30px;
+	margin-bottom:150px;
 	font-weight: bold;
 }
 
@@ -49,13 +51,29 @@ textarea {
 
 #reservation {
 	background-color: white;
-	height: 500px;
-	width: 500px;
-	margin-left: 500px;
+	height: 800px;
+	width: 1000px;
+	margin-left: 600px;
 	text-align: center;
 }
 
 #res {
 	border: 1px solid black;
 	background-color: lightblue;
+}
+
+#mtrh3 {
+	margin-bottom: 150px;
+}
+
+table {
+	border: 2px solid black;
+	height: 500px;
+}
+
+td {
+	width: 100px;
+	height: 50px;
+	text-align: center;
+	border-bottom: 1px solid gray;
 }

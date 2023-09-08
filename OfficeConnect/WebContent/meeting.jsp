@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="css/reset.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/frame.css">
-<!-- <link rel="stylesheet" href="css/meeting.css"> -->
+<link rel="stylesheet" href="css/meeting.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
@@ -76,8 +76,67 @@
 		</div>
 		
 		<div id="reservation">
-			<h3>예약현황</h3>
+			<h3 id="mtrh3">예약현황</h3>
 			<button type="button" id="res">나의 예약</button>
+			
+			<div id="tbl">
+				<table border="1">
+					<tr id="time">
+						<td colspan = "2">9</td>
+						<td colspan = "2">10</td>
+						<td colspan = "2">11</td>
+						<td colspan = "2">12</td>
+						<td colspan = "2">13</td>
+						<td colspan = "2">14</td>
+						<td colspan = "2">15</td>
+						<td colspan = "2">16</td>
+						<td colspan = "2">17</td>
+						
+					</tr>
+					
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
+			</div>
 		</div>
 	</div>
 
