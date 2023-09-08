@@ -75,5 +75,4 @@ public class MeetingDaoImpl implements IMeetingDao{
 		
 		return bookCheck;
 	}
-
 }

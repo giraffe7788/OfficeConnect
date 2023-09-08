@@ -45,6 +45,4 @@ public class MeetingServiceImpl implements IMeetingService {
 	public boolean registMtr(MeetingVO meetingVO) {
 		return dao.bookMtr(meetingVO);
 	}
-	
-
 }

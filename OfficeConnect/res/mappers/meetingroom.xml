@@ -25,7 +25,6 @@
 	4) resultMap : 결과 레코드 컬럼명과 VO객체의 property명이 다를 경우에 적절한 매핑을 위해 사용한다
 	
  -->
- 
  	<select id="selectAll" resultType="vo.MeetingVO" resultMap="mtrMap">
 	 	select * from mtrbook
 	</select>
@@ -39,7 +38,6 @@
 		<result column="mtrbook_per" property="mtrbookPer"/>
 		<result column="mtrbook_cont" property="mtrbookCont"/>
 	</resultMap>
-
 
 	<insert id="bookMtr">
 	</insert>

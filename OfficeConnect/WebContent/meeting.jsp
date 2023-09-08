@@ -1,9 +1,7 @@
-
-<%-- <%@page import="vo.MtrVO"%> --%>
 <%@page import="vo.MeetingVO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page contentType="text/html; charset=UTF-8"%>
+<%-- <%@ page contentType="text/html; charset=UTF-8"%> --%>
 <%@ include file="./frame.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -16,9 +14,9 @@
 <link rel="stylesheet" href="css/meeting.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-	
+
 	<%
- 		List<MeetingVO> list = (List<MeetingVO>)request.getAttribute("list");
+ 		List<MeetingVO> mtrList = (List<MeetingVO>)request.getAttribute("mtrList");
 	%>
 	
 </head>
@@ -40,8 +38,8 @@
 	        	    <button type="button" class="close" data-dismiss="modal">&times;</button>
 	        		<h4 class="modal-title">회의실 예약</h4>
 	      		  </div>
-	        		
-	      		<div class="modal-body"> 
+	      		
+	      		<div class="modal-body">
 	        		<div>
 	        			<label class="control-label">회의실</label>
 	        		</div>
@@ -119,8 +117,20 @@
 					</tr>
 					
 					<tr>
+<%
+	if(mtrList.size() == 0) {
+%>
 						<td></td>
-						<td></td>
+<%
+	}else {
+		
+		for(MeetingVO mv : mtrList) {
+%>
+						<td><%=mv.getEmpNo() %></td>
+<%
+		}
+	}
+%>
 						<td></td>
 						<td></td>
 						<td></td>
@@ -141,6 +151,8 @@
 						<td></td>
 						<td></td>
 						<td></td>
+						<td></td>
+						<td></td>
 					</tr>
 				</table>
 			</div>
@@ -151,7 +163,8 @@
 let rmNm = "";
 /*
 	나의예약 클릭 시 모달창 팝업-배경색 설정
-*/
+ */	
+
 $('.btn').on('click', function(){
 	rmNm = $(this).val();
 	$('#modal').modal({
@@ -169,7 +182,7 @@ $('.btn_book_out').on('click', function(){
 	$.ajax({
 		url: bookUrl + ".json",
 		type: "GET",
-		contentType: 'application/json; charset=utf=8',
+		contentType: 'application/json; charset=utf-8',
 		dataType: 'json',
 		success: function(res){
 			showList(res);
