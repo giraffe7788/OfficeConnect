@@ -18,52 +18,50 @@
 <body>
 <h3>사원 정보 변경</h3>
 	<form action="update.do" method="post" enctype="multipart/form-data">
-		<!-- 히든으로 회원 아이디 숨겨놓음 -->
+		    <!-- 히든으로 회원 아이디 숨겨놓음 -->
 		<input type="hidden" name="empNo" value="<%=ev.getEmpNo() %>">
 		<table>
 			<tr>
-				<td>사번 :</td>
-				<td><%=ev.getEmpNo() %></td>
+				<td>접속중인 사번 : <%=ev.getEmpNo() %></td>
 			</tr>
 			<tr>
 				<td>비밀번호 :</td>
-				<td><%=ev.getEmpPw() %></td>
+				<td><input type="text" name="empPw" value="<%=ev.getEmpPw() %>"></td>
 			</tr>
 			<tr>
 				<td>이름 :</td>
-				<td><%=ev.getEmpName() %></td>
+				<td><input type="text" name="empName" value="<%=ev.getEmpName() %>"></td>
 			</tr>
 			<tr>
 				<td>직급 :</td>
-				<td><%=ev.getEmpPosit() %></td>
+				<td><input type="text" name="empPosit" value="<%=ev.getEmpPosit() %>"></td>
 			</tr>
 			<tr>
 				<td>전화번호 :</td>
-				<td><%=ev.getEmpTel() %></td>
+				<td><input type="text" name="empTel" value="<%=ev.getEmpTel() %>"></td>
 			</tr>
 			<tr>
 				<td>이메일 :</td>
-				<td><%=ev.getEmpEmail() %></td>
+				<td><input type="text" name="empEmail" value="<%=ev.getEmpEmail() %>"></td>
 			</tr>
 			<tr>
 				<td>주소 :</td>				
-				<td><textarea name="empAddr" ><%=ev.getEmpAddr() %></textarea></td>
+				<td><input type="text" name="empAddr" value="<%=ev.getEmpAddr() %>"></td>
 			</tr>
 			<tr>
 				<td>상태코드 :</td>
-				<td><%=ev.getEmpState() %></td>
+				<td><input type="number" name="empState" value="<%=ev.getEmpState() %>"></td>
 			</tr>
 			<tr>
 				<td>관리자여부코드 :</td>
-				<td><%=ev.getAdminCode() %></td>
+				<td><input type="number" name="adminCode" value="<%=ev.getAdminCode() %>"></td>
 			</tr>
 			<tr>
 				<td>부서코드 :</td>
-				<td><%=ev.getDeptCode() %></td>
+				<td><input type="number" name="deptCode" value="<%=ev.getDeptCode() %>"></td>
 			</tr>
 		</table>
-		<input type="submit" value="사원정보 수정">
-
+		<input type="submit">
 	</form>
 </body>
 </html>

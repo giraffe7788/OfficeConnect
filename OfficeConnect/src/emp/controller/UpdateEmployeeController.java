@@ -14,6 +14,7 @@ import emp.service.EmpServiceImpl;
 import emp.service.IEmpService;
 import vo.EmpVO;
 
+@MultipartConfig
 @WebServlet("/update.do")
 public class UpdateEmployeeController extends HttpServlet {
 	
@@ -29,36 +30,30 @@ public class UpdateEmployeeController extends HttpServlet {
 		req.setAttribute("ev", ev);
 		
 		req.getRequestDispatcher("/views/employee/updateForm.jsp").forward(req, resp);
-			
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		req.setCharacterEncoding("UTF-8");
+		String empNo = req.getParameter("empNo");
 		String empPw = req.getParameter("empPw");
-		String empAddr = req.getParameter("empAddr");
-		String empTel = req.getParameter("empTel");
-		String empEmail = req.getParameter("empEmail");
 		String empName = req.getParameter("empName");
 		String empPosit = req.getParameter("empPosit");
+		String empTel = req.getParameter("empTel");
+		String empEmail = req.getParameter("empEmail");
+		String empAddr = req.getParameter("empAddr");
+		int empState = Integer.parseInt(req.getParameter("empState"));
 		int adminCode = Integer.parseInt(req.getParameter("adminCode"));
 		int deptCode = Integer.parseInt(req.getParameter("deptCode"));
-		
+
 		IEmpService empService = EmpServiceImpl.getInstance();
-		
-		EmpVO empVO = new EmpVO();
-		empVO.setEmpPw(empPw);
-		empVO.setEmpAddr(empAddr);
-		empVO.setEmpTel(empTel);
-		empVO.setEmpEmail(empEmail);
-		empVO.setEmpName(empName);
-		empVO.setEmpPosit(empPosit);
-		empVO.setAdminCode(adminCode);
-		empVO.setDeptCode(deptCode);
+
+		EmpVO empVO = new EmpVO(empPw, empAddr, empTel, empEmail, empName, empPosit, adminCode, deptCode);
+		empVO.setEmpState(empState);
+		empVO.setEmpNo(empNo);
 		
 		int cnt = empService.modifyEmployee(empVO);
-		
 		String msg = "";
 		
 		if(cnt > 0) {
@@ -70,8 +65,8 @@ public class UpdateEmployeeController extends HttpServlet {
 		HttpSession session = req.getSession();
 		session.setAttribute("msg", msg);
 		
-		resp.sendRedirect(req.getContextPath() + "/employee/list.do");
 		resp.setCharacterEncoding("UTF-8");
+		resp.sendRedirect(req.getContextPath() + "/list.do");
 	}
 
 }

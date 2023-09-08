@@ -24,10 +24,10 @@
 	<!-- 폼 태그 -->
 	<form action="join.do" method="post" onsubmit="JoinForm_submit(this); return false;" enctype="multipart/form-data">
 		<table>
-			<tr>
-				<td>사번 :</td>
-				<td><input type="text" name="empNo" value=""></td>
-			</tr>
+<!-- 			<tr> -->
+<!-- 				<td>사번 :</td> -->
+<!-- 				<td><input type="text" name="empNo" value=""></td> -->
+<!-- 			</tr> -->
 			<tr>
 				<td>비밀번호 :</td>
 				<td><input type="text" name="empPw" value=""></td>
@@ -62,7 +62,10 @@
 			</tr>
 			<tr>
 				<td>관리자여부코드 :</td>
-				<td><input type="text" name="adminCode" value=""></td>
+				<td>
+				<input type="radio" name="adminCode" value="1">관리자
+				<input type="radio" name="adminCode" value="0">사원
+				</td>
 			</tr>
 			<tr>
 				<td>부서코드 :</td>

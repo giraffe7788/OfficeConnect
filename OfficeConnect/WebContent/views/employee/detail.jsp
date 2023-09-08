@@ -6,8 +6,6 @@
     
 <%
 	EmpVO ev = (EmpVO) request.getAttribute("ev");
-
-	List<EmpVO> empList = (List<EmpVO>)request.getAttribute("empList");
 %>
 <!DOCTYPE html>
 <html>
@@ -56,8 +54,8 @@
 		<tr>
 			<td colspan="2">
 			<a href="list.do">[목록]</a>
-			<a href="./update.do?EmpNo=<%=ev.getEmpNo() %>">[사원정보 수정]</a>
-			<a href="./delete.do?EmpNo=<%=ev.getEmpNo() %>">[사원정보 삭제]</a>
+			<a href="update.do?empNo=<%=ev.getEmpNo() %>">[사원정보 수정]</a>
+			<a href="delete.do?empNo=<%=ev.getEmpNo() %>">[사원정보 삭제]</a>
 			</td>
 		</tr>
 	</table>

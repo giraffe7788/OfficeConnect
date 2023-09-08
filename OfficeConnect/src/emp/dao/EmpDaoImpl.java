@@ -93,10 +93,13 @@ public class EmpDaoImpl implements IEmpDao {
 		SqlSession session = MyBatisUtil.getInstance();
 		
 		try {
+			
 			cnt = session.update("employee.updateEmployee", empVO);
 			
 			if(cnt > 0) {
 				session.commit();
+			} else {
+				session.rollback();
 			}
 			
 		} catch(PersistenceException ex) {
@@ -118,18 +121,20 @@ public class EmpDaoImpl implements IEmpDao {
 	@Override
 	public int deleteEmployee(String empNo) {
 		int cnt = 0;
-		
-		SqlSession session = MyBatisUtil.getInstance(true);
-		//★☆★☆삭제 오토커밋 true로 넣나 
-		//try안에 commit으로 넣나 똑같은건가??★☆★☆
-		
+
+		SqlSession session = MyBatisUtil.getInstance();
+
 		try {
 			cnt = session.delete("employee.deleteEmployee", empNo);
-		
+
+			if (cnt > 0) {
+				session.commit();
+			}
+
 		} catch (PersistenceException ex) {
 			ex.printStackTrace();
 			session.rollback();
-			
+
 		} finally {
 			session.close();
 		}
@@ -175,18 +180,20 @@ public class EmpDaoImpl implements IEmpDao {
 	@Override
 	public EmpVO getEmployee(String empNo) {
 		
-		SqlSession session = MyBatisUtil.getInstance(true);
+		SqlSession session = MyBatisUtil.getInstance();
 
 		EmpVO ev = null;
-		
 		try {
-			 ev = session.selectOne("employee.getEmployee", empNo);
+			ev = session.selectOne("employee.getEmployee", empNo);
+			if(ev!=null) {
+				 session.commit();
+			 }
 		} catch (PersistenceException ex) {
+			session.rollback();
 			ex.printStackTrace();
 		} finally {
 			session.close();
 		}
-		
 		return ev;
 	}
 	

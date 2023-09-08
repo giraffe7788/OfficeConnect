@@ -45,7 +45,7 @@
 %>
 	<tr>
 		<td><%=ev.getEmpNo() %></td>
-		<td><a href="detail.do?EmpNo=<%=ev.getEmpNo() %>"><%=ev.getEmpName() %></a></td>
+		<td><a href="detail.do?empNo=<%=ev.getEmpNo() %>"><%=ev.getEmpName() %></a></td>
 		<td><%=ev.getEmpPosit() %></td>
 		<td><%=ev.getEmpTel() %></td>
 		<td><%=ev.getEmpEmail() %></td>
@@ -59,7 +59,8 @@
 	}
 %>
 	<tr align="center">
-		<td colspan="10"><a href=./join.do>새 사용자 등록</a></td>
+		<td colspan="10"><a href=./join.do>새 사용자 등록</a>
+		</td>
 	</tr>
 	</table>
 <%

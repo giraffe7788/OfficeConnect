@@ -65,8 +65,8 @@ public class JoinController extends HttpServlet {
 		HttpSession session = req.getSession();
 		session.setAttribute("msg", msg);
 		
-		resp.sendRedirect(req.getContextPath() + "/list.do");
 		resp.setCharacterEncoding("UTF-8");
+		resp.sendRedirect(req.getContextPath() + "/list.do");
 
 	}
 }
