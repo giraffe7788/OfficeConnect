@@ -26,9 +26,18 @@
 	
  -->
  
- 	<select id="selectAll" resultType="vo.meetingVO">
- 	
+ 	<select id="selectAll" resultType="vo.MeetingVO" resultMap="mtrMap">
+	 	select * from mtrbook
  	</select>
 
+	<resultMap type="vo.MeetingVO" id="mtrMap">
+		<result column="mtrbook_no" property="mtrbookNo"/>
+		<result column="mtr_no" property="mtrNo"/>
+		<result column="emp_no" property="empNo"/>
+		<result column="mtrbook_rent" property="mtrbookRent"/>
+		<result column="mtrbook_return" property="mtrbookRtn"/>
+		<result column="mtrbook_per" property="mtrbookPer"/>
+		<result column="mtrbook_cont" property="mtrbookCont"/>
+	</resultMap>
 
 </mapper>

@@ -2,7 +2,7 @@ package vo;
 
 import java.util.Date;
 
-public class meetingVO {
+public class MeetingVO {
 	
 	private int mtrbookNo;
 	private int mtrNo;
@@ -12,7 +12,8 @@ public class meetingVO {
 	private int mtrbookPer;
 	private String mtrbookCont;
 	
-	public meetingVO(int mtrbookNo, int mtrNo, String empNo, Date mtrbookRent, Date mtrbookRtn, int mtrbookPer,
+	public MeetingVO() {}
+	public MeetingVO(int mtrbookNo, int mtrNo, String empNo, Date mtrbookRent, Date mtrbookRtn, int mtrbookPer,
 			String mtrbookCont) {
 		super();
 		this.mtrbookNo = mtrbookNo;
