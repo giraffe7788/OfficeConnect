@@ -10,8 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import meeting.service.IMeetingService;
-book.java
-
 import meeting.service.MeetingServiceImpl;
 
 @WebServlet("/list.do")
