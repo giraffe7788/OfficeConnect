@@ -1,7 +1,7 @@
-<%-- <%@page import="vo.MtrVO"%> --%>
 <%@page import="vo.MeetingVO"%>
 <%@page import="java.util.List"%>
-<%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%-- <%@ page contentType="text/html; charset=UTF-8"%> --%>
 <%@ include file="./frame.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -16,7 +16,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 	<%
- 		List<MeetingVO> list = (List<MeetingVO>)request.getAttribute("list");
+ 		List<MeetingVO> mtrList = (List<MeetingVO>)request.getAttribute("mtrList");
 	%>
 	
 </head>
@@ -39,7 +39,7 @@
 	        		<h4 class="modal-title">회의실 예약</h4>
 	      		  </div>
 	      		
-	      		<div class="modal-body"> 
+	      		<div class="modal-body">
 	        		<div>
 	        			<label class="control-label">회의실</label>
 	        		</div>
@@ -104,21 +104,33 @@
 			<div id="tbl">
 				<table border="1">
 					<tr id="time">
-						<td colspan = "2">9</td>
-						<td colspan = "2">10</td>
-						<td colspan = "2">11</td>
-						<td colspan = "2">12</td>
-						<td colspan = "2">13</td>
-						<td colspan = "2">14</td>
-						<td colspan = "2">15</td>
-						<td colspan = "2">16</td>
-						<td colspan = "2">17</td>
+						<td>9</td>
+						<td>10</td>
+						<td>11</td>
+						<td>12</td>
+						<td>13</td>
+						<td>14</td>
+						<td>15</td>
+						<td>16</td>
+						<td>17</td>
 						
 					</tr>
 					
 					<tr>
+<%
+	if(mtrList.size() == 0) {
+%>
 						<td></td>
-						<td></td>
+<%
+	}else {
+		
+		for(MeetingVO mv : mtrList) {
+%>
+						<td><%=mv.getEmpNo() %></td>
+<%
+		}
+	}
+%>
 						<td></td>
 						<td></td>
 						<td></td>
@@ -128,7 +140,7 @@
 						<td></td>
 						<td></td>
 					</tr>
-					
+
 					<tr>
 						<td></td>
 						<td></td>
@@ -150,7 +162,8 @@
 let rmNm = "";
 /*
 	나의예약 클릭 시 모달창 팝업-배경색 설정
-*/
+ */	
+
 $('.btn').on('click', function(){
 	rmNm = $(this).val();
 	$('#modal').modal({
@@ -168,7 +181,7 @@ $('.btn_book_out').on('click', function(){
 	$.ajax({
 		url: bookUrl + ".json",
 		type: "GET",
-		contentType: 'application/json; charset=utf=8',
+		contentType: 'application/json; charset=utf-8',
 		dataType: 'json',
 		success: function(res){
 			showList(res);
