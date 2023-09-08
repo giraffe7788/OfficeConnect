@@ -3,6 +3,7 @@ package emp.controller;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,19 +14,27 @@ import emp.service.EmpServiceImpl;
 import emp.service.IEmpService;
 import vo.EmpVO;
 
-@WebServlet("/join.do")
-public class join extends HttpServlet {
-
+@WebServlet("/update.do")
+public class UpdateEmployeeController extends HttpServlet {
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		req.getRequestDispatcher("/views/employee/insertForm.jsp").forward(req, resp);
-
+	
+		String empNo = req.getParameter("empNo");
+		
+		IEmpService empService = EmpServiceImpl.getInstance();
+		
+		EmpVO ev = empService.getEmployee(empNo);
+		
+		req.setAttribute("ev", ev);
+		
+		req.getRequestDispatcher("/views/employee/updateForm.jsp").forward(req, resp);
+			
 	}
-
+	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+		
 		req.setCharacterEncoding("UTF-8");
 		String empPw = req.getParameter("empPw");
 		String empAddr = req.getParameter("empAddr");
@@ -48,13 +57,13 @@ public class join extends HttpServlet {
 		empVO.setAdminCode(adminCode);
 		empVO.setDeptCode(deptCode);
 		
-		int cnt = empService.registEmployee(empVO);
+		int cnt = empService.modifyEmployee(empVO);
 		
-		String msg ="";
+		String msg = "";
 		
 		if(cnt > 0) {
 			msg = "성공";
-		} else {
+		}else {
 			msg = "실패";
 		}
 		
@@ -63,6 +72,6 @@ public class join extends HttpServlet {
 		
 		resp.sendRedirect(req.getContextPath() + "/employee/list.do");
 		resp.setCharacterEncoding("UTF-8");
-
 	}
+
 }
