@@ -39,10 +39,7 @@ body {
 }
 
 #loginRight {
-/* 	display: flex; */
 	margin: auto;
-/* 	align-items: center; */
-/*     justify-content: center; */
 	width: 50%;
 	background: white;
 	text-align: center;
@@ -130,7 +127,6 @@ body {
 }
 
 .purBtn {
-	/* margin: auto; */
 	background: #4ec9ff;
 	border-radius: 30px;
 	border: none;
@@ -144,12 +140,6 @@ body {
 	margin-left: 22%;
 	margin-bottom: 3%;
 	display:block;
-
-/* 	height: 62px; */
-/* 	margin-bottom: 12px; */
-/* 	line-height: 62px; */
-/* 	text-align: left; */
-/* 	padding-left: 2em; */
 }
 
 #joinBox {
