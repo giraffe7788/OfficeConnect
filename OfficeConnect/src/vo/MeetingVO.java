@@ -4,7 +4,6 @@ import java.util.Date;
 
 public class MeetingVO {
 	
-	private int mtrbookNo;
 	private int mtrNo;
 	private String empNo;
 	private Date mtrbookRent;
@@ -12,24 +11,16 @@ public class MeetingVO {
 	private int mtrbookPer;
 	private String mtrbookCont;
 	
-	public MeetingVO(int mtrbookNo, int mtrNo, String empNo, Date mtrbookRent, Date mtrbookRtn, int mtrbookPer,
+	public MeetingVO() {}
+	public MeetingVO( int mtrNo, String empNo, Date mtrbookRent, Date mtrbookRtn, int mtrbookPer,
 			String mtrbookCont) {
 		super();
-		this.mtrbookNo = mtrbookNo;
 		this.mtrNo = mtrNo;
 		this.empNo = empNo;
 		this.mtrbookRent = mtrbookRent;
 		this.mtrbookRtn = mtrbookRtn;
 		this.mtrbookPer = mtrbookPer;
 		this.mtrbookCont = mtrbookCont;
-	}
-
-	public int getMtrbookNo() {
-		return mtrbookNo;
-	}
-
-	public void setMtrbookNo(int mtrbookNo) {
-		this.mtrbookNo = mtrbookNo;
 	}
 
 	public int getMtrNo() {

@@ -26,9 +26,11 @@
 	
  -->
  
- 	<select id="selectAll" resultType="vo.meetingVO">
+ 	<select id="selectAll" parameterType="meetingvo">
  	
  	</select>
 
+	<insert id="bookMtr">
+	</insert>
 
 </mapper>

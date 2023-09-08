@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
+
 import emp.service.IEmpService;
 import vo.EmpVO;
 import emp.service.EmpServiceImpl;
@@ -33,14 +36,20 @@ public class login extends HttpServlet {
 
 		if (loginService.loginCheck(empVO)) {
 			System.out.println("로그인성공");
-			String resultJson = new Gson().toJson("ok");
+			
+			JsonObject jsonObject = new JsonObject();
+			jsonObject.addProperty("isSuccess", "ok");
+			String jsonStr = new Gson().toJson(jsonObject);
 			resp.setContentType("application/json");
-			resp.getWriter().write(resultJson);
+			resp.getWriter().write(jsonStr);
 		} else {
 			System.out.println("로그인실패");
-			String resultJson = new Gson().toJson("fail");
+			
+			JsonObject jsonObject = new JsonObject();
+			jsonObject.addProperty("isSuccess", "fail");
+			String jsonStr = new Gson().toJson(jsonObject);
 			resp.setContentType("application/json");
-			resp.getWriter().write(resultJson);
+			resp.getWriter().write(jsonStr);
 		}
 	}
 }
