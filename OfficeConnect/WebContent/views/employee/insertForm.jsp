@@ -9,7 +9,7 @@
 <body>
 <h3>사원 등록</h3>
 	<!-- 폼 태그 -->
-	<form action="join.do" method="post" onsubmit="JoinForm_submit(this); return false;" enctype="multipart/form-data">
+	<form action="join.do" method="post" enctype="multipart/form-data">
 		<table>
 <!-- 			<tr> -->
 <!-- 				<td>사번 :</td> -->
@@ -43,10 +43,6 @@
 					<span id="temp_pw_display"></span>
 				</td>
 			</tr>
-<!-- 			<tr> -->
-<!-- 				<td>임시 비밀번호 확인 :</td> -->
-<!-- 				<td><input type="text" name="empPwConfirm" value=""></td> -->
-<!-- 			</tr> -->
 			<tr>
 				<td>관리자여부코드 :</td>
 				<td>
@@ -69,7 +65,7 @@
 		</button>
 	</form>
 	
-	<!-- 임시 비밀번호 생성 -->
+	<!-- 임시 비밀번호 생성 --> 
 	<script>
 	function temp_pw_issuance() {
 		let ranValue1 = ['1','2','3','4','5','6','7','8','9','0'];
@@ -92,18 +88,6 @@
 		var empPwInput = document.getElementById("empPw");
 	    empPwInput.value = temp_pw;
 	}
-	
-	
-// 	<!-- 비밀번호 일치여부 체크 -->
-// 	function JoinForm_submit(form) {
-// 		if (form.empPw.value != form.empPwConfirm.value) {
-// 			alert('비밀번호가 일치하지 않습니다.');
-// 			form.empPwConfirm.focus();
-// 			return;
-// 		}
-// 		form.submit();
-// 	}
-
 	</script>
 </body>
 </html>

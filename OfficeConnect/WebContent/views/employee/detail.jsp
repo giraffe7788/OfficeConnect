@@ -54,6 +54,7 @@
 		<tr>
 			<td colspan="2">
 			<a href="list.do">[목록]</a>
+			<a href="pwsend.do">[임시비번 발송]</a>
 			<a href="update.do?empNo=<%=ev.getEmpNo() %>">[사원정보 수정]</a>
 			<a href="delete.do?empNo=<%=ev.getEmpNo() %>">[사원정보 삭제]</a>
 			</td>
