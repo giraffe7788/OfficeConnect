@@ -26,10 +26,15 @@
 	
  -->
 
- 	<select id="selectAll" resultType="vo.MeetingVO" resultMap="mtrMap">
+ 	<select id="selectAll" resultType="mtvo" resultMap="mtrMap">
 	 	select * from mtrbook
  	</select>
 	
+	<insert id="insertBook" parameterType = "mtvo">
+		insert into mtrbook (mtrbook_no, mtr_no, emp_no, mtrbook_rent, mtrbook_return, mtrbook_per, mtrbook_cont)
+		values(mtr_book.nextval, #{mtrNo}, #{empNo}, #{mtrbookRent}, #{mtrbookRtn}, #{mtrbookPer}, #{mtrbookCont})
+	</insert>
+
 	<resultMap type="vo.MeetingVO" id="mtrMap">
 		<result column="mtrbook_no" property="mtrbookNo"/>
 		<result column="mtr_no" property="mtrNo"/>
@@ -39,10 +44,4 @@
 		<result column="mtrbook_per" property="mtrbookPer"/>
 		<result column="mtrbook_cont" property="mtrbookCont"/>
 	</resultMap>
-	
-	<insert id="bookMtr">
-		insert into mtrbook(mtrbook_no, mtr_no, emp_no, mtrbook_rent, mtrbook_return, mtrbook_per, mtrbook_cont)
-		values(#{mtrbookNo}, #{mtrNo}, #{empNo}, #{mtrbookRent}, #{mtrbookRtn}, #{mtrbookPer}, #{mtrbookCont})
-	</insert>
-
 </mapper>

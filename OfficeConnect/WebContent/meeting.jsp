@@ -25,11 +25,11 @@
 		<h6 id="mtrh">회의실 예약</h6>
 		<div id="room">
 			<h3 id="mtrh2">회의실</h3>
-			<button type="button" class="btn" value="105">회의실1</button>
-			<button type="button" class="btn" value="106">회의실2</button>
+			<button type="button" class="btn" value="101">회의실1</button>
+			<button type="button" class="btn" value="105">회의실2</button>
 			<button type="button" class="btn" value="201">회의실3</button>
-			<button type="button" class="btn" value="203">회의실4</button>
-			<button type="button" class="btn" value="304">회의실5</button>
+			<button type="button" class="btn" value="301">회의실4</button>
+			<button type="button" class="btn" value="401">회의실5</button>
 			
 			<div id="modal" class="modal fade" role="dialog">
 	  		  <div class="modal-dialog">
@@ -40,19 +40,19 @@
 	      		  </div>
 	      		
 	      		<div class="modal-body">
-	        		<div>
+	        		<div class="mtrNO">
 	        			<label class="control-label">회의실</label>
 	        		</div>
 	        		
 	        		<form class="reservation">
 	        			<div class="form-group">
 					      <label class="control-label">회의 내용</label>
-					        <textarea name="mtrB_Cont" rows="5" cols="50"></textarea>
+					        <textarea name="mtrbookCont" rows="5" cols="50"></textarea>
 					    </div>
 					    
 					    <div class="form-group">
 					      <label class="control-label">예약 시간</label>
-					        <select name="mtrB_Rent1">
+					        <select name="mtrbookRent">
 						        <option value="9">9
 						        <option value="10">10
 						        <option value="11">11
@@ -64,8 +64,7 @@
 						        <option value="17">17
 							</select>
 							<span>: 00 ~ </span>
-							<select name="mtrB_Rent2">
-						        <option value="1">9
+							<select name="mtrbookRtn">
 						        <option value="10">10
 						        <option value="11">11
 						        <option value="12">12
@@ -74,13 +73,14 @@
 						        <option value="15">15
 						        <option value="16">16
 						        <option value="17">17
+						        <option value="18">18
 							</select>
 							<span>: 00</span>
 					    </div>
 
 					    <div class="form-group">
 					      <label class="control-label">회의 인원</label>
-					        <select name="mtrB_Per">
+					        <select name="mtrbookPer">
 						        <option value="1">1
 						        <option value="2">2
 						        <option value="3">3
@@ -145,16 +145,33 @@
 	</div>
 
 <script>
-let rmNm = "";
+let mtrNo = "";
 /*
-	나의예약 클릭 시 모달창 팝업-배경색 설정
+	나의예약 클릭 시 모달창 팝업-배경색 설정, 회의실 번호 뜨게
  */	
 
 $('.btn').on('click', function(){
-	rmNm = $(this).val();
+	mtrNo = $(this).val();
+	let mtrNoT = "<span>";
+	mtrNoT += mtrNo;
+	mtrNoT += "</span>";
+	
+	$('.mtrNO').append(mtrNoT);
+		
 	$('#modal').modal({
 		backdrop : 'static'
 	});
+});
+
+/* 
+	모달창-X 버튼 클릭 시 
+	: 회의실 번호 초기화
+*/
+$('.close').on('click', function(){
+	mtrNoT = "<span></span>";
+	$('.mtrNO').append(mtrNoT);
+	//$('.mtrNO').remove(mtrNoT);
+		
 });
 
 /* 
@@ -162,35 +179,41 @@ $('.btn').on('click', function(){
  	: 입력한 회의실 정보 예약창으로 보내기
 */
 $('.btn_book_out').on('click', function(){
-	bookUrl = $(this).val();
-	console.log($(this).val());
-	/* $.ajax({
-		url: bookUrl + ".json",
-		type: "GET",
-		contentType: 'application/json; charset=utf-8',
-		dataType: 'json',
-		success: function(res){
-			showList(res);
+	
+	// 시간 이상하면 ㄴ
+	// 회의 내용 입력 안되면 ㄴ
+	
+	let mtrbookCont = $('[name="mtrbookCont"]').val();
+	let mtrbookRent = $('[name="mtrbookRent"]').val();
+	let mtrbookRtn = $('[name="mtrbookRtn"]').val();
+	let mtrbookPer = $('[name="mtrbookPer"]').val();
+	
+	$.ajax({
+		url: "book.do",
+		type: "post",
+		data: { 'mtrNo': mtrNo,
+			    'mtrbookPer' : mtrbookPer,
+			    'mtrbookRent' : mtrbookRent, 
+			    'mtrbookRtn' : mtrbookRtn, 
+			    'mtrbookCont' : mtrbookCont},
+			    
+		success: function(res){		
+			
+			console.log(res.isSuccess);
+			
+			if(res.isSuccess == "ok"){
+				alert("회의실 예약이 완료되었습니다");
+			} else {
+				alert("회의실 예약이 실패하였습니다")
+			}
+			location.href = "/OfficeConnect/list.do";
 		},
 		error: function(xhr, status, msg){
 			console.log("상태값: " + status + " Http 에러 메시지: " + msg);
 		}
-	}) */;	
+	});	
 	
 });
-/* 	function showList(data){
-		let timeList = '';
-		$('#modal').empty();
-		let head = '<span>' + bookUrl + '</sapn>';
-		$('modal-body').append(head);
-		$.each(data, function(idx, item){
-			timeList = '<tr>';
-			timeList += '<td>' + item.idx + '</td>';
-			timeList += '<td>' + item.time + '</td>';
-			timeList += '</tr>';
-			$(".modal-body").append(timeList);
-		})
-	} */
 
 </script>
 </body>

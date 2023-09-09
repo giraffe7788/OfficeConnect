@@ -52,20 +52,17 @@ public class MeetingDaoImpl implements IMeetingDao{
 	 * @param meetingVO
 	 * @return 성공여부
 	 */
-	public boolean bookMtr(MeetingVO meetingVO) {
+	public int bookMtr(MeetingVO meetingVO) {
 
 		int cnt = 0;
-		boolean bookCheck = false;
 		SqlSession session = MyBatisUtil.getInstance();
 		
 		try {
-			cnt = session.insert("meetingroom.bookMtr", meetingVO);
+			cnt = session.insert("meetingroom.insertBook", meetingVO);
 			if(cnt > 0) {
 				session.commit();
-				bookCheck = true;
-				
 			} else {
-				bookCheck = false;
+				session.rollback();
 			}
 			
 		} catch (PersistenceException ex) {
@@ -75,6 +72,6 @@ public class MeetingDaoImpl implements IMeetingDao{
 			session.close();
 		}
 		
-		return bookCheck;
+		return cnt;
 	}
 }

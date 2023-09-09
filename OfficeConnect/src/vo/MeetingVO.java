@@ -1,22 +1,19 @@
 package vo;
 
-import java.util.Date;
-
 public class MeetingVO {
 
 	private int mtrbookNo;
 	private int mtrNo;
 	private String empNo;
-	private Date mtrbookRent;
-	private Date mtrbookRtn;
+	private int mtrbookRent;
+	private int mtrbookRtn;
 	private int mtrbookPer;
 	private String mtrbookCont;
 	
 	public MeetingVO() {}
-	public MeetingVO(int mtrbookNo, int mtrNo, String empNo, Date mtrbookRent, Date mtrbookRtn, int mtrbookPer,
+	public MeetingVO(int mtrNo, String empNo, int mtrbookRent, int mtrbookRtn, int mtrbookPer,
 			String mtrbookCont) {
 		super();
-		this.mtrbookNo = mtrbookNo;
 		this.mtrNo = mtrNo;
 		this.empNo = empNo;
 		this.mtrbookRent = mtrbookRent;
@@ -49,22 +46,18 @@ public class MeetingVO {
 		this.empNo = empNo;
 	}
 
-	public Date getMtrbookRent() {
+	public int getMtrbookRent() {
 		return mtrbookRent;
 	}
-
-	public void setMtrbookRent(Date mtrbookRent) {
+	public void setMtrbookRent(int mtrbookRent) {
 		this.mtrbookRent = mtrbookRent;
 	}
-
-	public Date getMtrbookRtn() {
+	public int getMtrbookRtn() {
 		return mtrbookRtn;
 	}
-
-	public void setMtrbookRtn(Date mtrbookRtn) {
+	public void setMtrbookRtn(int mtrbookRtn) {
 		this.mtrbookRtn = mtrbookRtn;
 	}
-
 	public int getMtrbookPer() {
 		return mtrbookPer;
 	}

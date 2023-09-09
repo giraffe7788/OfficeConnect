@@ -18,6 +18,6 @@ public interface IMeetingDao {
 	 * @param MeetingVO
 	 * @return 성공여부
 	 */
-	public boolean bookMtr(MeetingVO meetingVO);
+	public int bookMtr(MeetingVO meetingVO);
 
 }

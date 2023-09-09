@@ -22,18 +22,23 @@ public class Book extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		int mtrNo = Integer.parseInt(req.getParameter("mtr_No"));
-		int mtrbookPer = Integer.parseInt(req.getParameter("mtrB_Per"));
+	
+		int mtrNo = Integer.parseInt(req.getParameter("mtrNo"));
+		int mtrbookPer = Integer.parseInt(req.getParameter("mtrbookPer"));
+		int mtrbookRent = Integer.parseInt(req.getParameter("mtrbookRent"));
+		int mtrbookRtn = Integer.parseInt(req.getParameter("mtrbookRtn"));
+		String mtrbookCont = req.getParameter("mtrbookCont");
 		
 		IMeetingService mtrService = MeetingServiceImpl.getInstance();
-		MeetingVO mtVO = new MeetingVO();
-		mtVO.setMtrNo(mtrNo);
-		mtVO.setMtrbookPer(mtrbookPer);
+		String empNo = (String)req.getSession().getAttribute("empNo");
+
+		MeetingVO mtVO = new MeetingVO(mtrNo, empNo, mtrbookRent, mtrbookRtn, mtrbookPer, mtrbookCont);
 		
-		if(mtrService.registMtr(mtVO)) {
+		System.out.println(mtrNo + "|" + mtrbookPer + "|" + mtrbookRent + "|" + mtrbookRtn + "|" + mtrbookCont + "|" + empNo);
+		
+		if(mtrService.registMtr(mtVO) > 0) {
 			System.out.println("예약 성공");
-			
+
 			JsonObject jsonObject = new JsonObject();
 			jsonObject.addProperty("isSuccess", "ok");
 			String jsonsStr = new Gson().toJson(jsonObject);
@@ -48,9 +53,6 @@ public class Book extends HttpServlet {
 			resp.setContentType("application/json");
 			resp.getWriter().write(jsonsStr);
 		}
-		
-		RequestDispatcher disp = req.getRequestDispatcher("/meeting.jsp");
-		disp.forward(req, resp);
 	}
 	
 	@Override
