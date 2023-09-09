@@ -11,14 +11,13 @@ public class CommentVO {
 	private int brdNo;
 	private Date commDate;
 	private Date commMod;
-	private int commDeleteYn;
+
 	
 	public CommentVO() {}
 
 	public CommentVO(String commCont, int brdNo, int commDeleteYn) {
 		this.commCont = commCont;
 		this.brdNo = brdNo;
-		this.commDeleteYn = commDeleteYn;
 	}
 
 	public int getCommNo() {
@@ -76,19 +75,13 @@ public class CommentVO {
 		this.commMod = commMod;
 	}
 
-	public int getCommDeleteYn() {
-		return commDeleteYn;
-	}
-
-	public void setCommDeleteYn(int commDeleteYn) {
-		this.commDeleteYn = commDeleteYn;
-	}
-
 	@Override
 	public String toString() {
 		return "CommentVO [commNo=" + commNo + ", empNo=" + empNo + ", commCont=" + commCont + ", brdNo=" + brdNo
-				+ ", commDate=" + commDate + ", commMod=" + commMod + ", commDeleteYn=" + commDeleteYn + "]";
+				+ ", commDate=" + commDate + ", commMod=" + commMod + "]";
 	}
+
+
 	
 
 	

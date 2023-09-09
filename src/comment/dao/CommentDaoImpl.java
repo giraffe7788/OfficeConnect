@@ -90,14 +90,14 @@ public class CommentDaoImpl implements ICommentDao {
 	}
 
 	@Override
-	public List<CommentVO> seletAll(String empNo) {
+	public List<CommentVO> selectAll(int brdNo) {
 		
 		List<CommentVO> commentList = new ArrayList<>();
 		
 		SqlSession session = MyBatisUtil.getInstance();
 		
 		try {
-			commentList = session.selectList("", empNo);
+			commentList = session.selectList("", brdNo);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

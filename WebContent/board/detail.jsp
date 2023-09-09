@@ -44,7 +44,14 @@
 
 <div>
 <h5>댓글</h5>
-<input type="text" name="">
+<form action="" method="post">
+<div>
+<input type="text" name="commCont"><br>
+</div>
+<input type="button" value="등록" onclick="location.href=''">
+
+</form>
+
 </div>
 </body>
 </html>

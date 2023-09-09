@@ -20,7 +20,7 @@ public interface ICommentDao {
 	
 	
 	//본인이 작성한 댓글 리스트 확인 
-	public List<CommentVO> seletAll(String empNo);
+	public List<CommentVO> selectAll(int brdNo);
 
 	
 	//댓글 선택

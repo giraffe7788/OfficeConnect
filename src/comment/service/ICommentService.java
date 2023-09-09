@@ -21,11 +21,16 @@ public interface ICommentService {
 	
 	
 	// 댓글 리스트 출력
-	public List<CommentVO> seletAll(String empNo);
+	public List<CommentVO> selectAll(int brdNo);
 
 	
 	//댓글 선택
 	public CommentVO detailComment(CommentVO cv);
+
+
+
+
+
 	
 	
 }
