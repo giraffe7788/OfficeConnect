@@ -4,8 +4,12 @@
   "https://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<properties resource="db.properties" />
+	<settings>
+		<setting value="true" name="mapUnderscoreToCamelCase" />
+	</settings>
 	<typeAliases>
 		<typeAlias type="vo.EmpVO" alias="empvo" />
+		<typeAlias alias="boardvo" type="board.vo.BoardVO"/>
 	</typeAliases>
 	<environments default="dev">
 		<environment id="dev">
@@ -22,5 +26,6 @@
 	</environments>
 	<mappers>
 		<mapper resource="mappers/employee.xml" />
+		<mapper resource="mappers/board.xml"/>
 	</mappers>
 </configuration>
