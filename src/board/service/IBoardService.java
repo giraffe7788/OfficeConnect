@@ -50,7 +50,7 @@ public interface IBoardService {
 	 * @param bv 검색할 게시판정보를 담은 BoardVO객체
 	 * @return 검색된 게시판정보를 담은 List객체
 	 */
-	public List<BoardVO> selectBoard(BoardVO bv);
+
 	
 	
 }

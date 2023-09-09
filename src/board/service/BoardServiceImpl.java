@@ -49,12 +49,7 @@ public class BoardServiceImpl implements IBoardService {
 		return cnt;
 	}
 
-//	@Override
-//	public boolean checkBoard(String empNo) {
-//		// TODO Auto-generated method stub
-//		boolean isExist = BoardDao.checkBoard(empNo);
-//		return isExist;
-//	}
+
 
 	@Override
 	public List<BoardVO> selectAll() {
@@ -75,11 +70,7 @@ public class BoardServiceImpl implements IBoardService {
 		return cnt;
 	}
 
-	@Override
-	public List<BoardVO> selectBoard(BoardVO bv) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 
 	

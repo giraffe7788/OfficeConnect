@@ -30,8 +30,8 @@ public class InsertBoardController extends HttpServlet {
 
 		req.setCharacterEncoding("UTF-8");
 		
-		String brdTitle = req.getParameter("title");
-		String brdCont = req.getParameter("comment");
+		String brdTitle = req.getParameter("brdTitle");
+		String brdCont = req.getParameter("brdCont");
 		
 
 		IBoardService boardService = BoardServiceImpl.GetInstance();

@@ -2,9 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ page import="board.vo.*" %>    
 <%@ page import="java.util.*" %>
+
 <
 <%
      ArrayList<BoardVO> list=(ArrayList<BoardVO>)request.getAttribute("boardList");
+
 %>    
  
 <!DOCTYPE html>
@@ -35,11 +37,12 @@
  
   </tr>
   <% for(BoardVO vo : list) { %>
+
     	  <tr>
     	    <td><%=vo.getBrdNo()%></td>
     	    <td><a href="<%=request.getContextPath()%>/board/detail.do?brdNo=<%=vo.getBrdNo()%>"><%=vo.getBrdTitle()%></a></td>
     	    <td><%=vo.getEmpNo()%></td>
-    	    <td><%=vo.getBrdDate()%></td>
+    	    <td><%=vo.getBrdDateDisplay()%></td>
     	    <td><%=vo.getBrdViews()%></td>    	 	
     	  </tr>    	
     	  
