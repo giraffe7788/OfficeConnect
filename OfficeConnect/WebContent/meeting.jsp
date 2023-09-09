@@ -115,10 +115,10 @@
 						<td>17</td>
 						
 					</tr>
-					
+
 					<tr>
 <%
-	if(mtrList.size() == 0) {
+	if(mtrList == null || mtrList.size() == 0) {
 %>
 						<td></td>
 <%
@@ -142,8 +142,6 @@
 					</tr>
 
 					<tr>
-						<td></td>
-						<td></td>
 						<td></td>
 						<td></td>
 						<td></td>
