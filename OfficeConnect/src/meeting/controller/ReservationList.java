@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import meeting.service.IMeetingService;
 import meeting.service.MeetingServiceImpl;
 import vo.MeetingVO;
-
+/*
 @WebServlet("/list.do")
 public class ReservationList extends HttpServlet{
 	
@@ -36,3 +36,4 @@ public class ReservationList extends HttpServlet{
 	}
 
 }
+*/

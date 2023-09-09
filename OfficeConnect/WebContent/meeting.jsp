@@ -117,8 +117,8 @@
 					</tr>
 					
 					<tr>
-<%
-	if(mtrList.size() == 0) {
+<%-- <%
+	if(mtrList.size() == 0) {0
 %>
 						<td></td>
 <%
@@ -130,7 +130,7 @@
 <%
 		}
 	}
-%>
+%> --%>
 						<td></td>
 						<td></td>
 						<td></td>

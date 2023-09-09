@@ -11,7 +11,7 @@ public interface IMeetingDao {
 	 * @param MeetingVO
 	 * @return 
 	 */
-	public List<MeetingVO> selectAll();
+	//public List<MeetingVO> selectAll();
 
 	/**
 	 * 회의실 예약시키는 메서드

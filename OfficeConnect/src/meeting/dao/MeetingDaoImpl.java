@@ -19,12 +19,13 @@ public class MeetingDaoImpl implements IMeetingDao{
 		return dao;
 	}
 	
-	@Override
+	
 	/**
 	 * 회의실 리스트 가져오는 메서드
 	 * @param MeetingVO
 	 * @return 
 	 */
+	/*@Override
 	public List<MeetingVO> selectAll() {
 
 		List<MeetingVO> mtrList = new ArrayList<MeetingVO>();
@@ -43,6 +44,7 @@ public class MeetingDaoImpl implements IMeetingDao{
 
 		return mtrList;
 	}
+	*/
 	
 	@Override
 	/**
