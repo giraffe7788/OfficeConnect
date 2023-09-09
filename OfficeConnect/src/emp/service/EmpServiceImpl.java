@@ -17,7 +17,7 @@ public class EmpServiceImpl implements IEmpService{
 		return instance;
 	}
 	
-	IEmpDao loginDao = EmpDaoImpl.getInstance();
+	IEmpDao empDao = EmpDaoImpl.getInstance();
 	
 	
 	/**
@@ -27,7 +27,7 @@ public class EmpServiceImpl implements IEmpService{
 	 */
 	@Override
 	public boolean loginCheck(EmpVO empVO) {
-		return loginDao.loginCheck(empVO);
+		return empDao.loginCheck(empVO);
 	}
 	
 	
@@ -38,7 +38,7 @@ public class EmpServiceImpl implements IEmpService{
 	 */
 	@Override
 	public int registEmployee(EmpVO empVO) {
-		return loginDao.joinEmployee(empVO);
+		return empDao.joinEmployee(empVO);
 	}
 	
 	
@@ -49,7 +49,7 @@ public class EmpServiceImpl implements IEmpService{
 	 */
 	@Override
 	public int modifyEmployee(EmpVO empVO) {
-		return loginDao.updateEmployee(empVO);
+		return empDao.updateEmployee(empVO);
 	}
 	
 	
@@ -60,7 +60,7 @@ public class EmpServiceImpl implements IEmpService{
 	 */
 	@Override
 	public int removeEmployee(String empNo) {
-		return loginDao.deleteEmployee(empNo);
+		return empDao.deleteEmployee(empNo);
 	}
 	
 	
@@ -71,7 +71,7 @@ public class EmpServiceImpl implements IEmpService{
 	 */
 	@Override
 	public boolean checkEmployee(String empNo) {
-		return loginDao.checkEmployee(empNo);
+		return empDao.checkEmployee(empNo);
 	}
 	
 	
@@ -82,7 +82,7 @@ public class EmpServiceImpl implements IEmpService{
 	 */
 	@Override
 	public EmpVO getEmployee(String empNo) {
-		return loginDao.getEmployee(empNo);
+		return empDao.getEmployee(empNo);
 	}
 	
 	
@@ -91,7 +91,7 @@ public class EmpServiceImpl implements IEmpService{
 	 */
 	@Override
 	public List<EmpVO> selectAll() {
-		List<EmpVO> empList = loginDao.selectAll();
+		List<EmpVO> empList = empDao.selectAll();
 		return empList;
 	}
 	
@@ -103,7 +103,7 @@ public class EmpServiceImpl implements IEmpService{
 	 */
 	@Override
 	public List<EmpVO> searchEmployee(EmpVO ev) {
-		List<EmpVO> empList = loginDao.searchEmployee(ev);
+		List<EmpVO> empList = empDao.searchEmployee(ev);
 		return empList;
 	}
 }

@@ -37,24 +37,23 @@
 		where emp_no = #{empNo}
 	</delete>
 
-	<select id="selectAll" resultMap="empMap">
-		select * from EMPLOYEE
-		order by emp_no ${desc}
+	<select id="checkEmployee" parameterType="String" resultType="int">
+		select count(*) as cnt
+		from EMPLOYEE
+		where emp_no = #{empNo}
 	</select>
-
+	
 	<select id="getEmployee" resultMap="empMap">
 		select * from employee
 		where emp_no = #{empNo}
 	</select>
 
-	<select id="checkEmployee" parameterType="String"
-		resultType="int">
-		select count(*) as cnt
-		from EMPLOYEE
-		where emp_no = #{empNo}
+	<select id="selectAll" resultMap="empMap">
+		select * from EMPLOYEE
+		order by emp_no ${desc}
 	</select>
 
-	<!-- 동적쿼리 -->
+	<!-- 동적쿼리 이거 왜 필요한거지..?-->
 	<select id="searchEmployee" resultMap="empMap">
 		select *
 		from EMPLOYEE
@@ -91,6 +90,7 @@
 		</if>
 	</select>
 
+	<!-- 컬럼명과 속성을 컴퓨터에게 인지시키면 설정한 id로 사용가능 -->
 	<resultMap type="vo.EmpVO" id="empMap">
 		<result column="emp_no" property="empNo" />
 		<result column="emp_pw" property="empPw" />

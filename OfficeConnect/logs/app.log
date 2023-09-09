@@ -508,3 +508,422 @@
 2023-09-09 16:41:08.434 [http-nio-80-exec-3] DEBUG employee.selectAll - <==      Total: 15
 2023-09-09 16:41:08.434 [http-nio-80-exec-3] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Closing JDBC Connection [oracle.jdbc.driver.T4CConnection@49151d89]
 2023-09-09 16:41:08.434 [http-nio-80-exec-3] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 1226120585 to pool.
+2023-09-09 16:52:23.500 [http-nio-80-exec-2] DEBUG org.apache.ibatis.logging.LogFactory - Logging initialized using 'class org.apache.ibatis.logging.log4j2.Log4j2Impl' adapter.
+2023-09-09 16:52:23.580 [http-nio-80-exec-2] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - PooledDataSource forcefully closed/removed all connections.
+2023-09-09 16:52:23.580 [http-nio-80-exec-2] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - PooledDataSource forcefully closed/removed all connections.
+2023-09-09 16:52:23.580 [http-nio-80-exec-2] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - PooledDataSource forcefully closed/removed all connections.
+2023-09-09 16:52:23.580 [http-nio-80-exec-2] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - PooledDataSource forcefully closed/removed all connections.
+2023-09-09 16:52:23.580 [http-nio-80-exec-2] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - PooledDataSource forcefully closed/removed all connections.
+2023-09-09 16:52:23.580 [http-nio-80-exec-2] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - PooledDataSource forcefully closed/removed all connections.
+2023-09-09 16:52:23.670 [http-nio-80-exec-2] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Opening JDBC Connection
+2023-09-09 16:52:23.881 [http-nio-80-exec-2] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Created connection 22139726.
+2023-09-09 16:52:23.882 [http-nio-80-exec-2] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Setting autocommit to false on JDBC Connection [oracle.jdbc.driver.T4CConnection@151d34e]
+2023-09-09 16:52:23.886 [http-nio-80-exec-2] DEBUG employee.getEmployee - ==>  Preparing: select * from employee where emp_no = ? 
+2023-09-09 16:52:23.986 [http-nio-80-exec-2] DEBUG employee.getEmployee - ==> Parameters: 15(String)
+2023-09-09 16:52:24.013 [http-nio-80-exec-2] TRACE employee.getEmployee - <==    Columns: EMP_NO, EMP_PW, EMP_ADDR, EMP_TEL, EMP_EMAIL, EMP_NAME, EMP_POSIT, EMP_STATE, ADMIN_CODE, DEPT_CODE
+2023-09-09 16:52:24.016 [http-nio-80-exec-2] TRACE employee.getEmployee - <==        Row: 15, 3Sa(8Bh&, 불광동, 010-6669-6969, quddh@naver.com, 병다섯개, 인턴, 1, 1, 1
+2023-09-09 16:52:24.017 [http-nio-80-exec-2] DEBUG employee.getEmployee - <==      Total: 1
+2023-09-09 16:52:24.017 [http-nio-80-exec-2] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Resetting autocommit to true on JDBC Connection [oracle.jdbc.driver.T4CConnection@151d34e]
+2023-09-09 16:52:24.017 [http-nio-80-exec-2] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Closing JDBC Connection [oracle.jdbc.driver.T4CConnection@151d34e]
+2023-09-09 16:52:24.018 [http-nio-80-exec-2] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 22139726 to pool.
+2023-09-09 16:52:25.075 [http-nio-80-exec-1] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Opening JDBC Connection
+2023-09-09 16:52:25.075 [http-nio-80-exec-1] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Checked out connection 22139726 from pool.
+2023-09-09 16:52:25.075 [http-nio-80-exec-1] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Setting autocommit to false on JDBC Connection [oracle.jdbc.driver.T4CConnection@151d34e]
+2023-09-09 16:52:25.075 [http-nio-80-exec-1] DEBUG employee.getEmployee - ==>  Preparing: select * from employee where emp_no = ? 
+2023-09-09 16:52:25.075 [http-nio-80-exec-1] DEBUG employee.getEmployee - ==> Parameters: 15(String)
+2023-09-09 16:52:25.080 [http-nio-80-exec-1] TRACE employee.getEmployee - <==    Columns: EMP_NO, EMP_PW, EMP_ADDR, EMP_TEL, EMP_EMAIL, EMP_NAME, EMP_POSIT, EMP_STATE, ADMIN_CODE, DEPT_CODE
+2023-09-09 16:52:25.080 [http-nio-80-exec-1] TRACE employee.getEmployee - <==        Row: 15, 3Sa(8Bh&, 불광동, 010-6669-6969, quddh@naver.com, 병다섯개, 인턴, 1, 1, 1
+2023-09-09 16:52:25.080 [http-nio-80-exec-1] DEBUG employee.getEmployee - <==      Total: 1
+2023-09-09 16:52:25.080 [http-nio-80-exec-1] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Resetting autocommit to true on JDBC Connection [oracle.jdbc.driver.T4CConnection@151d34e]
+2023-09-09 16:52:25.080 [http-nio-80-exec-1] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Closing JDBC Connection [oracle.jdbc.driver.T4CConnection@151d34e]
+2023-09-09 16:52:25.080 [http-nio-80-exec-1] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 22139726 to pool.
+2023-09-09 16:52:25.080 [http-nio-80-exec-1] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Opening JDBC Connection
+2023-09-09 16:52:25.080 [http-nio-80-exec-1] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Checked out connection 22139726 from pool.
+2023-09-09 16:52:25.080 [http-nio-80-exec-1] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Setting autocommit to false on JDBC Connection [oracle.jdbc.driver.T4CConnection@151d34e]
+2023-09-09 16:52:25.081 [http-nio-80-exec-1] DEBUG employee.deleteEmployee - ==>  Preparing: delete from EMPLOYEE where emp_no = ? 
+2023-09-09 16:52:25.081 [http-nio-80-exec-1] DEBUG employee.deleteEmployee - ==> Parameters: 15(String)
+2023-09-09 16:52:37.581 [http-nio-80-exec-11] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Opening JDBC Connection
+2023-09-09 16:52:37.621 [http-nio-80-exec-11] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Created connection 121916371.
+2023-09-09 16:52:37.621 [http-nio-80-exec-11] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Setting autocommit to false on JDBC Connection [oracle.jdbc.driver.T4CConnection@7444bd3]
+2023-09-09 16:52:37.621 [http-nio-80-exec-11] DEBUG employee.getEmployee - ==>  Preparing: select * from employee where emp_no = ? 
+2023-09-09 16:52:37.621 [http-nio-80-exec-11] DEBUG employee.getEmployee - ==> Parameters: 15(String)
+2023-09-09 16:52:37.624 [http-nio-80-exec-11] TRACE employee.getEmployee - <==    Columns: EMP_NO, EMP_PW, EMP_ADDR, EMP_TEL, EMP_EMAIL, EMP_NAME, EMP_POSIT, EMP_STATE, ADMIN_CODE, DEPT_CODE
+2023-09-09 16:52:37.624 [http-nio-80-exec-11] TRACE employee.getEmployee - <==        Row: 15, 3Sa(8Bh&, 불광동, 010-6669-6969, quddh@naver.com, 병다섯개, 인턴, 1, 1, 1
+2023-09-09 16:52:37.624 [http-nio-80-exec-11] DEBUG employee.getEmployee - <==      Total: 1
+2023-09-09 16:52:37.624 [http-nio-80-exec-11] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Resetting autocommit to true on JDBC Connection [oracle.jdbc.driver.T4CConnection@7444bd3]
+2023-09-09 16:52:37.624 [http-nio-80-exec-11] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Closing JDBC Connection [oracle.jdbc.driver.T4CConnection@7444bd3]
+2023-09-09 16:52:37.624 [http-nio-80-exec-11] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 121916371 to pool.
+2023-09-09 16:52:37.624 [http-nio-80-exec-11] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Opening JDBC Connection
+2023-09-09 16:52:37.624 [http-nio-80-exec-11] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Checked out connection 121916371 from pool.
+2023-09-09 16:52:37.625 [http-nio-80-exec-11] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Setting autocommit to false on JDBC Connection [oracle.jdbc.driver.T4CConnection@7444bd3]
+2023-09-09 16:52:37.625 [http-nio-80-exec-11] DEBUG employee.deleteEmployee - ==>  Preparing: delete from EMPLOYEE where emp_no = ? 
+2023-09-09 16:52:37.625 [http-nio-80-exec-11] DEBUG employee.deleteEmployee - ==> Parameters: 15(String)
+2023-09-09 16:52:39.032 [http-nio-80-exec-12] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Opening JDBC Connection
+2023-09-09 16:52:39.032 [http-nio-80-exec-12] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Waiting as long as 20000 milliseconds for connection.
+2023-09-09 16:52:39.192 [http-nio-80-exec-8] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Opening JDBC Connection
+2023-09-09 16:52:39.192 [http-nio-80-exec-8] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Waiting as long as 20000 milliseconds for connection.
+2023-09-09 16:52:40.021 [http-nio-80-exec-5] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Opening JDBC Connection
+2023-09-09 16:52:40.021 [http-nio-80-exec-5] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Waiting as long as 20000 milliseconds for connection.
+2023-09-09 16:53:47.533 [http-nio-80-exec-13] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Opening JDBC Connection
+2023-09-09 16:53:49.360 [http-nio-80-exec-14] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Opening JDBC Connection
+2023-09-09 17:30:24.828 [http-nio-80-exec-1] DEBUG org.apache.ibatis.logging.LogFactory - Logging initialized using 'class org.apache.ibatis.logging.log4j2.Log4j2Impl' adapter.
+2023-09-09 17:30:24.927 [http-nio-80-exec-1] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - PooledDataSource forcefully closed/removed all connections.
+2023-09-09 17:30:24.927 [http-nio-80-exec-1] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - PooledDataSource forcefully closed/removed all connections.
+2023-09-09 17:30:24.927 [http-nio-80-exec-1] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - PooledDataSource forcefully closed/removed all connections.
+2023-09-09 17:30:24.928 [http-nio-80-exec-1] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - PooledDataSource forcefully closed/removed all connections.
+2023-09-09 17:30:24.928 [http-nio-80-exec-1] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - PooledDataSource forcefully closed/removed all connections.
+2023-09-09 17:30:24.928 [http-nio-80-exec-1] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - PooledDataSource forcefully closed/removed all connections.
+2023-09-09 17:30:25.046 [http-nio-80-exec-1] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Opening JDBC Connection
+2023-09-09 17:30:25.369 [http-nio-80-exec-1] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Created connection 2072294847.
+2023-09-09 17:30:25.371 [http-nio-80-exec-1] DEBUG employee.selectAll - ==>  Preparing: select * from EMPLOYEE order by emp_no 
+2023-09-09 17:30:25.478 [http-nio-80-exec-1] DEBUG employee.selectAll - ==> Parameters: 
+2023-09-09 17:30:25.510 [http-nio-80-exec-1] TRACE employee.selectAll - <==    Columns: EMP_NO, EMP_PW, EMP_ADDR, EMP_TEL, EMP_EMAIL, EMP_NAME, EMP_POSIT, EMP_STATE, ADMIN_CODE, DEPT_CODE
+2023-09-09 17:30:25.514 [http-nio-80-exec-1] TRACE employee.selectAll - <==        Row: 1, 2, 2, 2, 2, 왜 너만 안지워져, 3, 2, 1, 1
+2023-09-09 17:30:25.515 [http-nio-80-exec-1] TRACE employee.selectAll - <==        Row: 10, 2, 자동채번, 010-134-134, kim@nvaer.com, tkqjs, 자동, 1, 1, 1
+2023-09-09 17:30:25.515 [http-nio-80-exec-1] TRACE employee.selectAll - <==        Row: 11, 123, 으아아앜!!!!!!!, 010-2552-2453, 으앜, 흐아, 으아, 1, 1, 1
+2023-09-09 17:30:25.516 [http-nio-80-exec-1] TRACE employee.selectAll - <==        Row: 12, 123123, 되나???어??, 010-1234-1340, 되나?, 어?, 되나?, 1, 0, 1
+2023-09-09 17:30:25.516 [http-nio-80-exec-1] TRACE employee.selectAll - <==        Row: 13, 111, 아, 아, 아, 아, 아, 1, 1, 1
+2023-09-09 17:30:25.516 [http-nio-80-exec-1] TRACE employee.selectAll - <==        Row: 14, 5Oa)6Ul@, ㄹ, ㅇ, ㄹ, ㅇ, ㅇ, 1, 1, 1
+2023-09-09 17:30:25.516 [http-nio-80-exec-1] TRACE employee.selectAll - <==        Row: 15, 3Sa(8Bh&, 불광동, 010-6669-6969, quddh@naver.com, 병다섯개, 인턴, 1, 1, 1
+2023-09-09 17:30:25.517 [http-nio-80-exec-1] TRACE employee.selectAll - <==        Row: 17, 4Ef&9Ab#, ㄴㅁㅇ, ㅇ, ㅇ, 테스트, 테테, 1, 1, 1
+2023-09-09 17:30:25.517 [http-nio-80-exec-1] TRACE employee.selectAll - <==        Row: 18, 2Sq@0Bd^, 123, 010-5555-5555, test@test.test, 테스트, 테스트, 1, 1, 1
+2023-09-09 17:30:25.517 [http-nio-80-exec-1] TRACE employee.selectAll - <==        Row: 19, 5Tg)5Qx*, 한강뷰 아파트, 010-6669-6969, kimgudals91@naver.com, 김형민, 이사, 1, 1, 1
+2023-09-09 17:30:25.521 [http-nio-80-exec-1] TRACE employee.selectAll - <==        Row: 20, 7Xh$4Xh!, 키야 이게되네, 010-2345-9590, kimgudals91@naver.com, 김태현, 상무, 1, 1, 1
+2023-09-09 17:30:25.522 [http-nio-80-exec-1] TRACE employee.selectAll - <==        Row: 21, 1Tq)4Qk*, 미쳐버렸어, 미쳤다고, kimgudals91@naver.com, 개신기함, 개신기하다고, 1, 1, 1
+2023-09-09 17:30:25.522 [http-nio-80-exec-1] TRACE employee.selectAll - <==        Row: 22, 6Ml^1Th#, 돼돼돼됃, 되나, kimgudals91@naver.com, 이러면되나, 되려나, 1, 1, 1
+2023-09-09 17:30:25.522 [http-nio-80-exec-1] TRACE employee.selectAll - <==        Row: 23, 8Ax!6Ad@, 북치기밪ㄱ치기, 010-8282-8282, kimgudals91@naver.com, 김영남, 래퍼, 1, 1, 1
+2023-09-09 17:30:25.522 [http-nio-80-exec-1] TRACE employee.selectAll - <==        Row: 24, 9Ia%4Yg), ㅇ, ㅇ, kimgudals91@naver.com, ㅇ, ㅇ, 1, 1, 1
+2023-09-09 17:30:25.523 [http-nio-80-exec-1] DEBUG employee.selectAll - <==      Total: 15
+2023-09-09 17:30:25.523 [http-nio-80-exec-1] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Closing JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:25.523 [http-nio-80-exec-1] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 2072294847 to pool.
+2023-09-09 17:30:32.230 [http-nio-80-exec-3] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Opening JDBC Connection
+2023-09-09 17:30:32.231 [http-nio-80-exec-3] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Checked out connection 2072294847 from pool.
+2023-09-09 17:30:32.231 [http-nio-80-exec-3] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Setting autocommit to false on JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:32.231 [http-nio-80-exec-3] DEBUG employee.getEmployee - ==>  Preparing: select * from employee where emp_no = ? 
+2023-09-09 17:30:32.231 [http-nio-80-exec-3] DEBUG employee.getEmployee - ==> Parameters: 15(String)
+2023-09-09 17:30:32.235 [http-nio-80-exec-3] TRACE employee.getEmployee - <==    Columns: EMP_NO, EMP_PW, EMP_ADDR, EMP_TEL, EMP_EMAIL, EMP_NAME, EMP_POSIT, EMP_STATE, ADMIN_CODE, DEPT_CODE
+2023-09-09 17:30:32.235 [http-nio-80-exec-3] TRACE employee.getEmployee - <==        Row: 15, 3Sa(8Bh&, 불광동, 010-6669-6969, quddh@naver.com, 병다섯개, 인턴, 1, 1, 1
+2023-09-09 17:30:32.237 [http-nio-80-exec-3] DEBUG employee.getEmployee - <==      Total: 1
+2023-09-09 17:30:32.237 [http-nio-80-exec-3] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Resetting autocommit to true on JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:32.237 [http-nio-80-exec-3] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Closing JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:32.237 [http-nio-80-exec-3] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 2072294847 to pool.
+2023-09-09 17:30:33.262 [http-nio-80-exec-4] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Opening JDBC Connection
+2023-09-09 17:30:33.262 [http-nio-80-exec-4] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Checked out connection 2072294847 from pool.
+2023-09-09 17:30:33.262 [http-nio-80-exec-4] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Setting autocommit to false on JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:33.262 [http-nio-80-exec-4] DEBUG employee.getEmployee - ==>  Preparing: select * from employee where emp_no = ? 
+2023-09-09 17:30:33.262 [http-nio-80-exec-4] DEBUG employee.getEmployee - ==> Parameters: 15(String)
+2023-09-09 17:30:33.267 [http-nio-80-exec-4] TRACE employee.getEmployee - <==    Columns: EMP_NO, EMP_PW, EMP_ADDR, EMP_TEL, EMP_EMAIL, EMP_NAME, EMP_POSIT, EMP_STATE, ADMIN_CODE, DEPT_CODE
+2023-09-09 17:30:33.267 [http-nio-80-exec-4] TRACE employee.getEmployee - <==        Row: 15, 3Sa(8Bh&, 불광동, 010-6669-6969, quddh@naver.com, 병다섯개, 인턴, 1, 1, 1
+2023-09-09 17:30:33.268 [http-nio-80-exec-4] DEBUG employee.getEmployee - <==      Total: 1
+2023-09-09 17:30:33.268 [http-nio-80-exec-4] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Resetting autocommit to true on JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:33.268 [http-nio-80-exec-4] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Closing JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:33.268 [http-nio-80-exec-4] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 2072294847 to pool.
+2023-09-09 17:30:33.268 [http-nio-80-exec-4] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Opening JDBC Connection
+2023-09-09 17:30:33.268 [http-nio-80-exec-4] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Checked out connection 2072294847 from pool.
+2023-09-09 17:30:33.268 [http-nio-80-exec-4] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Setting autocommit to false on JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:33.268 [http-nio-80-exec-4] DEBUG employee.deleteEmployee - ==>  Preparing: delete from EMPLOYEE where emp_no = ? 
+2023-09-09 17:30:33.268 [http-nio-80-exec-4] DEBUG employee.deleteEmployee - ==> Parameters: 15(String)
+2023-09-09 17:30:33.279 [http-nio-80-exec-4] DEBUG employee.deleteEmployee - <==    Updates: 1
+2023-09-09 17:30:33.279 [http-nio-80-exec-4] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Committing JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:33.284 [http-nio-80-exec-4] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Resetting autocommit to true on JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:33.284 [http-nio-80-exec-4] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Closing JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:33.285 [http-nio-80-exec-4] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 2072294847 to pool.
+2023-09-09 17:30:33.288 [http-nio-80-exec-5] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Opening JDBC Connection
+2023-09-09 17:30:33.288 [http-nio-80-exec-5] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Checked out connection 2072294847 from pool.
+2023-09-09 17:30:33.288 [http-nio-80-exec-5] DEBUG employee.selectAll - ==>  Preparing: select * from EMPLOYEE order by emp_no 
+2023-09-09 17:30:33.288 [http-nio-80-exec-5] DEBUG employee.selectAll - ==> Parameters: 
+2023-09-09 17:30:33.291 [http-nio-80-exec-5] TRACE employee.selectAll - <==    Columns: EMP_NO, EMP_PW, EMP_ADDR, EMP_TEL, EMP_EMAIL, EMP_NAME, EMP_POSIT, EMP_STATE, ADMIN_CODE, DEPT_CODE
+2023-09-09 17:30:33.292 [http-nio-80-exec-5] TRACE employee.selectAll - <==        Row: 1, 2, 2, 2, 2, 왜 너만 안지워져, 3, 2, 1, 1
+2023-09-09 17:30:33.292 [http-nio-80-exec-5] TRACE employee.selectAll - <==        Row: 10, 2, 자동채번, 010-134-134, kim@nvaer.com, tkqjs, 자동, 1, 1, 1
+2023-09-09 17:30:33.292 [http-nio-80-exec-5] TRACE employee.selectAll - <==        Row: 11, 123, 으아아앜!!!!!!!, 010-2552-2453, 으앜, 흐아, 으아, 1, 1, 1
+2023-09-09 17:30:33.292 [http-nio-80-exec-5] TRACE employee.selectAll - <==        Row: 12, 123123, 되나???어??, 010-1234-1340, 되나?, 어?, 되나?, 1, 0, 1
+2023-09-09 17:30:33.292 [http-nio-80-exec-5] TRACE employee.selectAll - <==        Row: 13, 111, 아, 아, 아, 아, 아, 1, 1, 1
+2023-09-09 17:30:33.292 [http-nio-80-exec-5] TRACE employee.selectAll - <==        Row: 14, 5Oa)6Ul@, ㄹ, ㅇ, ㄹ, ㅇ, ㅇ, 1, 1, 1
+2023-09-09 17:30:33.292 [http-nio-80-exec-5] TRACE employee.selectAll - <==        Row: 17, 4Ef&9Ab#, ㄴㅁㅇ, ㅇ, ㅇ, 테스트, 테테, 1, 1, 1
+2023-09-09 17:30:33.293 [http-nio-80-exec-5] TRACE employee.selectAll - <==        Row: 18, 2Sq@0Bd^, 123, 010-5555-5555, test@test.test, 테스트, 테스트, 1, 1, 1
+2023-09-09 17:30:33.293 [http-nio-80-exec-5] TRACE employee.selectAll - <==        Row: 19, 5Tg)5Qx*, 한강뷰 아파트, 010-6669-6969, kimgudals91@naver.com, 김형민, 이사, 1, 1, 1
+2023-09-09 17:30:33.293 [http-nio-80-exec-5] TRACE employee.selectAll - <==        Row: 20, 7Xh$4Xh!, 키야 이게되네, 010-2345-9590, kimgudals91@naver.com, 김태현, 상무, 1, 1, 1
+2023-09-09 17:30:33.296 [http-nio-80-exec-5] TRACE employee.selectAll - <==        Row: 21, 1Tq)4Qk*, 미쳐버렸어, 미쳤다고, kimgudals91@naver.com, 개신기함, 개신기하다고, 1, 1, 1
+2023-09-09 17:30:33.296 [http-nio-80-exec-5] TRACE employee.selectAll - <==        Row: 22, 6Ml^1Th#, 돼돼돼됃, 되나, kimgudals91@naver.com, 이러면되나, 되려나, 1, 1, 1
+2023-09-09 17:30:33.297 [http-nio-80-exec-5] TRACE employee.selectAll - <==        Row: 23, 8Ax!6Ad@, 북치기밪ㄱ치기, 010-8282-8282, kimgudals91@naver.com, 김영남, 래퍼, 1, 1, 1
+2023-09-09 17:30:33.297 [http-nio-80-exec-5] TRACE employee.selectAll - <==        Row: 24, 9Ia%4Yg), ㅇ, ㅇ, kimgudals91@naver.com, ㅇ, ㅇ, 1, 1, 1
+2023-09-09 17:30:33.297 [http-nio-80-exec-5] DEBUG employee.selectAll - <==      Total: 14
+2023-09-09 17:30:33.297 [http-nio-80-exec-5] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Closing JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:33.297 [http-nio-80-exec-5] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 2072294847 to pool.
+2023-09-09 17:30:35.423 [http-nio-80-exec-6] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Opening JDBC Connection
+2023-09-09 17:30:35.423 [http-nio-80-exec-6] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Checked out connection 2072294847 from pool.
+2023-09-09 17:30:35.423 [http-nio-80-exec-6] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Setting autocommit to false on JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:35.423 [http-nio-80-exec-6] DEBUG employee.getEmployee - ==>  Preparing: select * from employee where emp_no = ? 
+2023-09-09 17:30:35.423 [http-nio-80-exec-6] DEBUG employee.getEmployee - ==> Parameters: 24(String)
+2023-09-09 17:30:35.427 [http-nio-80-exec-6] TRACE employee.getEmployee - <==    Columns: EMP_NO, EMP_PW, EMP_ADDR, EMP_TEL, EMP_EMAIL, EMP_NAME, EMP_POSIT, EMP_STATE, ADMIN_CODE, DEPT_CODE
+2023-09-09 17:30:35.427 [http-nio-80-exec-6] TRACE employee.getEmployee - <==        Row: 24, 9Ia%4Yg), ㅇ, ㅇ, kimgudals91@naver.com, ㅇ, ㅇ, 1, 1, 1
+2023-09-09 17:30:35.427 [http-nio-80-exec-6] DEBUG employee.getEmployee - <==      Total: 1
+2023-09-09 17:30:35.427 [http-nio-80-exec-6] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Resetting autocommit to true on JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:35.427 [http-nio-80-exec-6] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Closing JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:35.427 [http-nio-80-exec-6] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 2072294847 to pool.
+2023-09-09 17:30:36.150 [http-nio-80-exec-7] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Opening JDBC Connection
+2023-09-09 17:30:36.150 [http-nio-80-exec-7] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Checked out connection 2072294847 from pool.
+2023-09-09 17:30:36.150 [http-nio-80-exec-7] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Setting autocommit to false on JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:36.150 [http-nio-80-exec-7] DEBUG employee.getEmployee - ==>  Preparing: select * from employee where emp_no = ? 
+2023-09-09 17:30:36.151 [http-nio-80-exec-7] DEBUG employee.getEmployee - ==> Parameters: 24(String)
+2023-09-09 17:30:36.155 [http-nio-80-exec-7] TRACE employee.getEmployee - <==    Columns: EMP_NO, EMP_PW, EMP_ADDR, EMP_TEL, EMP_EMAIL, EMP_NAME, EMP_POSIT, EMP_STATE, ADMIN_CODE, DEPT_CODE
+2023-09-09 17:30:36.155 [http-nio-80-exec-7] TRACE employee.getEmployee - <==        Row: 24, 9Ia%4Yg), ㅇ, ㅇ, kimgudals91@naver.com, ㅇ, ㅇ, 1, 1, 1
+2023-09-09 17:30:36.156 [http-nio-80-exec-7] DEBUG employee.getEmployee - <==      Total: 1
+2023-09-09 17:30:36.156 [http-nio-80-exec-7] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Resetting autocommit to true on JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:36.156 [http-nio-80-exec-7] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Closing JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:36.156 [http-nio-80-exec-7] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 2072294847 to pool.
+2023-09-09 17:30:36.156 [http-nio-80-exec-7] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Opening JDBC Connection
+2023-09-09 17:30:36.156 [http-nio-80-exec-7] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Checked out connection 2072294847 from pool.
+2023-09-09 17:30:36.156 [http-nio-80-exec-7] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Setting autocommit to false on JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:36.156 [http-nio-80-exec-7] DEBUG employee.deleteEmployee - ==>  Preparing: delete from EMPLOYEE where emp_no = ? 
+2023-09-09 17:30:36.157 [http-nio-80-exec-7] DEBUG employee.deleteEmployee - ==> Parameters: 24(String)
+2023-09-09 17:30:36.160 [http-nio-80-exec-7] DEBUG employee.deleteEmployee - <==    Updates: 1
+2023-09-09 17:30:36.160 [http-nio-80-exec-7] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Committing JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:36.163 [http-nio-80-exec-7] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Resetting autocommit to true on JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:36.164 [http-nio-80-exec-7] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Closing JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:36.164 [http-nio-80-exec-7] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 2072294847 to pool.
+2023-09-09 17:30:36.166 [http-nio-80-exec-8] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Opening JDBC Connection
+2023-09-09 17:30:36.166 [http-nio-80-exec-8] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Checked out connection 2072294847 from pool.
+2023-09-09 17:30:36.166 [http-nio-80-exec-8] DEBUG employee.selectAll - ==>  Preparing: select * from EMPLOYEE order by emp_no 
+2023-09-09 17:30:36.166 [http-nio-80-exec-8] DEBUG employee.selectAll - ==> Parameters: 
+2023-09-09 17:30:36.171 [http-nio-80-exec-8] TRACE employee.selectAll - <==    Columns: EMP_NO, EMP_PW, EMP_ADDR, EMP_TEL, EMP_EMAIL, EMP_NAME, EMP_POSIT, EMP_STATE, ADMIN_CODE, DEPT_CODE
+2023-09-09 17:30:36.171 [http-nio-80-exec-8] TRACE employee.selectAll - <==        Row: 1, 2, 2, 2, 2, 왜 너만 안지워져, 3, 2, 1, 1
+2023-09-09 17:30:36.171 [http-nio-80-exec-8] TRACE employee.selectAll - <==        Row: 10, 2, 자동채번, 010-134-134, kim@nvaer.com, tkqjs, 자동, 1, 1, 1
+2023-09-09 17:30:36.171 [http-nio-80-exec-8] TRACE employee.selectAll - <==        Row: 11, 123, 으아아앜!!!!!!!, 010-2552-2453, 으앜, 흐아, 으아, 1, 1, 1
+2023-09-09 17:30:36.171 [http-nio-80-exec-8] TRACE employee.selectAll - <==        Row: 12, 123123, 되나???어??, 010-1234-1340, 되나?, 어?, 되나?, 1, 0, 1
+2023-09-09 17:30:36.171 [http-nio-80-exec-8] TRACE employee.selectAll - <==        Row: 13, 111, 아, 아, 아, 아, 아, 1, 1, 1
+2023-09-09 17:30:36.171 [http-nio-80-exec-8] TRACE employee.selectAll - <==        Row: 14, 5Oa)6Ul@, ㄹ, ㅇ, ㄹ, ㅇ, ㅇ, 1, 1, 1
+2023-09-09 17:30:36.172 [http-nio-80-exec-8] TRACE employee.selectAll - <==        Row: 17, 4Ef&9Ab#, ㄴㅁㅇ, ㅇ, ㅇ, 테스트, 테테, 1, 1, 1
+2023-09-09 17:30:36.172 [http-nio-80-exec-8] TRACE employee.selectAll - <==        Row: 18, 2Sq@0Bd^, 123, 010-5555-5555, test@test.test, 테스트, 테스트, 1, 1, 1
+2023-09-09 17:30:36.172 [http-nio-80-exec-8] TRACE employee.selectAll - <==        Row: 19, 5Tg)5Qx*, 한강뷰 아파트, 010-6669-6969, kimgudals91@naver.com, 김형민, 이사, 1, 1, 1
+2023-09-09 17:30:36.172 [http-nio-80-exec-8] TRACE employee.selectAll - <==        Row: 20, 7Xh$4Xh!, 키야 이게되네, 010-2345-9590, kimgudals91@naver.com, 김태현, 상무, 1, 1, 1
+2023-09-09 17:30:36.176 [http-nio-80-exec-8] TRACE employee.selectAll - <==        Row: 21, 1Tq)4Qk*, 미쳐버렸어, 미쳤다고, kimgudals91@naver.com, 개신기함, 개신기하다고, 1, 1, 1
+2023-09-09 17:30:36.177 [http-nio-80-exec-8] TRACE employee.selectAll - <==        Row: 22, 6Ml^1Th#, 돼돼돼됃, 되나, kimgudals91@naver.com, 이러면되나, 되려나, 1, 1, 1
+2023-09-09 17:30:36.177 [http-nio-80-exec-8] TRACE employee.selectAll - <==        Row: 23, 8Ax!6Ad@, 북치기밪ㄱ치기, 010-8282-8282, kimgudals91@naver.com, 김영남, 래퍼, 1, 1, 1
+2023-09-09 17:30:36.177 [http-nio-80-exec-8] DEBUG employee.selectAll - <==      Total: 13
+2023-09-09 17:30:36.177 [http-nio-80-exec-8] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Closing JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:36.177 [http-nio-80-exec-8] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 2072294847 to pool.
+2023-09-09 17:30:37.862 [http-nio-80-exec-9] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Opening JDBC Connection
+2023-09-09 17:30:37.863 [http-nio-80-exec-9] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Checked out connection 2072294847 from pool.
+2023-09-09 17:30:37.863 [http-nio-80-exec-9] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Setting autocommit to false on JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:37.863 [http-nio-80-exec-9] DEBUG employee.getEmployee - ==>  Preparing: select * from employee where emp_no = ? 
+2023-09-09 17:30:37.863 [http-nio-80-exec-9] DEBUG employee.getEmployee - ==> Parameters: 14(String)
+2023-09-09 17:30:37.865 [http-nio-80-exec-9] TRACE employee.getEmployee - <==    Columns: EMP_NO, EMP_PW, EMP_ADDR, EMP_TEL, EMP_EMAIL, EMP_NAME, EMP_POSIT, EMP_STATE, ADMIN_CODE, DEPT_CODE
+2023-09-09 17:30:37.866 [http-nio-80-exec-9] TRACE employee.getEmployee - <==        Row: 14, 5Oa)6Ul@, ㄹ, ㅇ, ㄹ, ㅇ, ㅇ, 1, 1, 1
+2023-09-09 17:30:37.866 [http-nio-80-exec-9] DEBUG employee.getEmployee - <==      Total: 1
+2023-09-09 17:30:37.866 [http-nio-80-exec-9] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Resetting autocommit to true on JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:37.866 [http-nio-80-exec-9] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Closing JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:37.866 [http-nio-80-exec-9] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 2072294847 to pool.
+2023-09-09 17:30:38.534 [http-nio-80-exec-10] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Opening JDBC Connection
+2023-09-09 17:30:38.534 [http-nio-80-exec-10] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Checked out connection 2072294847 from pool.
+2023-09-09 17:30:38.534 [http-nio-80-exec-10] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Setting autocommit to false on JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:38.535 [http-nio-80-exec-10] DEBUG employee.getEmployee - ==>  Preparing: select * from employee where emp_no = ? 
+2023-09-09 17:30:38.535 [http-nio-80-exec-10] DEBUG employee.getEmployee - ==> Parameters: 14(String)
+2023-09-09 17:30:38.538 [http-nio-80-exec-10] TRACE employee.getEmployee - <==    Columns: EMP_NO, EMP_PW, EMP_ADDR, EMP_TEL, EMP_EMAIL, EMP_NAME, EMP_POSIT, EMP_STATE, ADMIN_CODE, DEPT_CODE
+2023-09-09 17:30:38.538 [http-nio-80-exec-10] TRACE employee.getEmployee - <==        Row: 14, 5Oa)6Ul@, ㄹ, ㅇ, ㄹ, ㅇ, ㅇ, 1, 1, 1
+2023-09-09 17:30:38.539 [http-nio-80-exec-10] DEBUG employee.getEmployee - <==      Total: 1
+2023-09-09 17:30:38.539 [http-nio-80-exec-10] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Resetting autocommit to true on JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:38.539 [http-nio-80-exec-10] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Closing JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:38.539 [http-nio-80-exec-10] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 2072294847 to pool.
+2023-09-09 17:30:38.539 [http-nio-80-exec-10] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Opening JDBC Connection
+2023-09-09 17:30:38.539 [http-nio-80-exec-10] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Checked out connection 2072294847 from pool.
+2023-09-09 17:30:38.539 [http-nio-80-exec-10] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Setting autocommit to false on JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:38.539 [http-nio-80-exec-10] DEBUG employee.deleteEmployee - ==>  Preparing: delete from EMPLOYEE where emp_no = ? 
+2023-09-09 17:30:38.540 [http-nio-80-exec-10] DEBUG employee.deleteEmployee - ==> Parameters: 14(String)
+2023-09-09 17:30:38.545 [http-nio-80-exec-10] DEBUG employee.deleteEmployee - <==    Updates: 1
+2023-09-09 17:30:38.545 [http-nio-80-exec-10] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Committing JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:38.548 [http-nio-80-exec-10] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Resetting autocommit to true on JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:38.548 [http-nio-80-exec-10] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Closing JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:38.548 [http-nio-80-exec-10] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 2072294847 to pool.
+2023-09-09 17:30:38.551 [http-nio-80-exec-2] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Opening JDBC Connection
+2023-09-09 17:30:38.551 [http-nio-80-exec-2] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Checked out connection 2072294847 from pool.
+2023-09-09 17:30:38.551 [http-nio-80-exec-2] DEBUG employee.selectAll - ==>  Preparing: select * from EMPLOYEE order by emp_no 
+2023-09-09 17:30:38.551 [http-nio-80-exec-2] DEBUG employee.selectAll - ==> Parameters: 
+2023-09-09 17:30:38.555 [http-nio-80-exec-2] TRACE employee.selectAll - <==    Columns: EMP_NO, EMP_PW, EMP_ADDR, EMP_TEL, EMP_EMAIL, EMP_NAME, EMP_POSIT, EMP_STATE, ADMIN_CODE, DEPT_CODE
+2023-09-09 17:30:38.556 [http-nio-80-exec-2] TRACE employee.selectAll - <==        Row: 1, 2, 2, 2, 2, 왜 너만 안지워져, 3, 2, 1, 1
+2023-09-09 17:30:38.556 [http-nio-80-exec-2] TRACE employee.selectAll - <==        Row: 10, 2, 자동채번, 010-134-134, kim@nvaer.com, tkqjs, 자동, 1, 1, 1
+2023-09-09 17:30:38.556 [http-nio-80-exec-2] TRACE employee.selectAll - <==        Row: 11, 123, 으아아앜!!!!!!!, 010-2552-2453, 으앜, 흐아, 으아, 1, 1, 1
+2023-09-09 17:30:38.556 [http-nio-80-exec-2] TRACE employee.selectAll - <==        Row: 12, 123123, 되나???어??, 010-1234-1340, 되나?, 어?, 되나?, 1, 0, 1
+2023-09-09 17:30:38.556 [http-nio-80-exec-2] TRACE employee.selectAll - <==        Row: 13, 111, 아, 아, 아, 아, 아, 1, 1, 1
+2023-09-09 17:30:38.556 [http-nio-80-exec-2] TRACE employee.selectAll - <==        Row: 17, 4Ef&9Ab#, ㄴㅁㅇ, ㅇ, ㅇ, 테스트, 테테, 1, 1, 1
+2023-09-09 17:30:38.556 [http-nio-80-exec-2] TRACE employee.selectAll - <==        Row: 18, 2Sq@0Bd^, 123, 010-5555-5555, test@test.test, 테스트, 테스트, 1, 1, 1
+2023-09-09 17:30:38.556 [http-nio-80-exec-2] TRACE employee.selectAll - <==        Row: 19, 5Tg)5Qx*, 한강뷰 아파트, 010-6669-6969, kimgudals91@naver.com, 김형민, 이사, 1, 1, 1
+2023-09-09 17:30:38.556 [http-nio-80-exec-2] TRACE employee.selectAll - <==        Row: 20, 7Xh$4Xh!, 키야 이게되네, 010-2345-9590, kimgudals91@naver.com, 김태현, 상무, 1, 1, 1
+2023-09-09 17:30:38.557 [http-nio-80-exec-2] TRACE employee.selectAll - <==        Row: 21, 1Tq)4Qk*, 미쳐버렸어, 미쳤다고, kimgudals91@naver.com, 개신기함, 개신기하다고, 1, 1, 1
+2023-09-09 17:30:38.561 [http-nio-80-exec-2] TRACE employee.selectAll - <==        Row: 22, 6Ml^1Th#, 돼돼돼됃, 되나, kimgudals91@naver.com, 이러면되나, 되려나, 1, 1, 1
+2023-09-09 17:30:38.561 [http-nio-80-exec-2] TRACE employee.selectAll - <==        Row: 23, 8Ax!6Ad@, 북치기밪ㄱ치기, 010-8282-8282, kimgudals91@naver.com, 김영남, 래퍼, 1, 1, 1
+2023-09-09 17:30:38.561 [http-nio-80-exec-2] DEBUG employee.selectAll - <==      Total: 12
+2023-09-09 17:30:38.561 [http-nio-80-exec-2] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Closing JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:38.561 [http-nio-80-exec-2] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 2072294847 to pool.
+2023-09-09 17:30:40.038 [http-nio-80-exec-1] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Opening JDBC Connection
+2023-09-09 17:30:40.038 [http-nio-80-exec-1] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Checked out connection 2072294847 from pool.
+2023-09-09 17:30:40.039 [http-nio-80-exec-1] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Setting autocommit to false on JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:40.039 [http-nio-80-exec-1] DEBUG employee.getEmployee - ==>  Preparing: select * from employee where emp_no = ? 
+2023-09-09 17:30:40.039 [http-nio-80-exec-1] DEBUG employee.getEmployee - ==> Parameters: 1(String)
+2023-09-09 17:30:40.043 [http-nio-80-exec-1] TRACE employee.getEmployee - <==    Columns: EMP_NO, EMP_PW, EMP_ADDR, EMP_TEL, EMP_EMAIL, EMP_NAME, EMP_POSIT, EMP_STATE, ADMIN_CODE, DEPT_CODE
+2023-09-09 17:30:40.043 [http-nio-80-exec-1] TRACE employee.getEmployee - <==        Row: 1, 2, 2, 2, 2, 왜 너만 안지워져, 3, 2, 1, 1
+2023-09-09 17:30:40.043 [http-nio-80-exec-1] DEBUG employee.getEmployee - <==      Total: 1
+2023-09-09 17:30:40.044 [http-nio-80-exec-1] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Resetting autocommit to true on JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:40.044 [http-nio-80-exec-1] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Closing JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:40.044 [http-nio-80-exec-1] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 2072294847 to pool.
+2023-09-09 17:30:40.701 [http-nio-80-exec-3] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Opening JDBC Connection
+2023-09-09 17:30:40.701 [http-nio-80-exec-3] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Checked out connection 2072294847 from pool.
+2023-09-09 17:30:40.701 [http-nio-80-exec-3] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Setting autocommit to false on JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:40.701 [http-nio-80-exec-3] DEBUG employee.getEmployee - ==>  Preparing: select * from employee where emp_no = ? 
+2023-09-09 17:30:40.702 [http-nio-80-exec-3] DEBUG employee.getEmployee - ==> Parameters: 1(String)
+2023-09-09 17:30:40.706 [http-nio-80-exec-3] TRACE employee.getEmployee - <==    Columns: EMP_NO, EMP_PW, EMP_ADDR, EMP_TEL, EMP_EMAIL, EMP_NAME, EMP_POSIT, EMP_STATE, ADMIN_CODE, DEPT_CODE
+2023-09-09 17:30:40.706 [http-nio-80-exec-3] TRACE employee.getEmployee - <==        Row: 1, 2, 2, 2, 2, 왜 너만 안지워져, 3, 2, 1, 1
+2023-09-09 17:30:40.706 [http-nio-80-exec-3] DEBUG employee.getEmployee - <==      Total: 1
+2023-09-09 17:30:40.706 [http-nio-80-exec-3] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Resetting autocommit to true on JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:40.706 [http-nio-80-exec-3] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Closing JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:40.706 [http-nio-80-exec-3] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 2072294847 to pool.
+2023-09-09 17:30:40.706 [http-nio-80-exec-3] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Opening JDBC Connection
+2023-09-09 17:30:40.706 [http-nio-80-exec-3] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Checked out connection 2072294847 from pool.
+2023-09-09 17:30:40.706 [http-nio-80-exec-3] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Setting autocommit to false on JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:40.706 [http-nio-80-exec-3] DEBUG employee.deleteEmployee - ==>  Preparing: delete from EMPLOYEE where emp_no = ? 
+2023-09-09 17:30:40.706 [http-nio-80-exec-3] DEBUG employee.deleteEmployee - ==> Parameters: 1(String)
+2023-09-09 17:30:40.723 [http-nio-80-exec-3] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Rolling back JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:40.726 [http-nio-80-exec-3] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Resetting autocommit to true on JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:40.727 [http-nio-80-exec-3] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Closing JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:40.727 [http-nio-80-exec-3] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 2072294847 to pool.
+2023-09-09 17:30:40.730 [http-nio-80-exec-4] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Opening JDBC Connection
+2023-09-09 17:30:40.730 [http-nio-80-exec-4] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Checked out connection 2072294847 from pool.
+2023-09-09 17:30:40.730 [http-nio-80-exec-4] DEBUG employee.selectAll - ==>  Preparing: select * from EMPLOYEE order by emp_no 
+2023-09-09 17:30:40.730 [http-nio-80-exec-4] DEBUG employee.selectAll - ==> Parameters: 
+2023-09-09 17:30:40.734 [http-nio-80-exec-4] TRACE employee.selectAll - <==    Columns: EMP_NO, EMP_PW, EMP_ADDR, EMP_TEL, EMP_EMAIL, EMP_NAME, EMP_POSIT, EMP_STATE, ADMIN_CODE, DEPT_CODE
+2023-09-09 17:30:40.734 [http-nio-80-exec-4] TRACE employee.selectAll - <==        Row: 1, 2, 2, 2, 2, 왜 너만 안지워져, 3, 2, 1, 1
+2023-09-09 17:30:40.734 [http-nio-80-exec-4] TRACE employee.selectAll - <==        Row: 10, 2, 자동채번, 010-134-134, kim@nvaer.com, tkqjs, 자동, 1, 1, 1
+2023-09-09 17:30:40.734 [http-nio-80-exec-4] TRACE employee.selectAll - <==        Row: 11, 123, 으아아앜!!!!!!!, 010-2552-2453, 으앜, 흐아, 으아, 1, 1, 1
+2023-09-09 17:30:40.734 [http-nio-80-exec-4] TRACE employee.selectAll - <==        Row: 12, 123123, 되나???어??, 010-1234-1340, 되나?, 어?, 되나?, 1, 0, 1
+2023-09-09 17:30:40.734 [http-nio-80-exec-4] TRACE employee.selectAll - <==        Row: 13, 111, 아, 아, 아, 아, 아, 1, 1, 1
+2023-09-09 17:30:40.734 [http-nio-80-exec-4] TRACE employee.selectAll - <==        Row: 17, 4Ef&9Ab#, ㄴㅁㅇ, ㅇ, ㅇ, 테스트, 테테, 1, 1, 1
+2023-09-09 17:30:40.734 [http-nio-80-exec-4] TRACE employee.selectAll - <==        Row: 18, 2Sq@0Bd^, 123, 010-5555-5555, test@test.test, 테스트, 테스트, 1, 1, 1
+2023-09-09 17:30:40.734 [http-nio-80-exec-4] TRACE employee.selectAll - <==        Row: 19, 5Tg)5Qx*, 한강뷰 아파트, 010-6669-6969, kimgudals91@naver.com, 김형민, 이사, 1, 1, 1
+2023-09-09 17:30:40.735 [http-nio-80-exec-4] TRACE employee.selectAll - <==        Row: 20, 7Xh$4Xh!, 키야 이게되네, 010-2345-9590, kimgudals91@naver.com, 김태현, 상무, 1, 1, 1
+2023-09-09 17:30:40.735 [http-nio-80-exec-4] TRACE employee.selectAll - <==        Row: 21, 1Tq)4Qk*, 미쳐버렸어, 미쳤다고, kimgudals91@naver.com, 개신기함, 개신기하다고, 1, 1, 1
+2023-09-09 17:30:40.738 [http-nio-80-exec-4] TRACE employee.selectAll - <==        Row: 22, 6Ml^1Th#, 돼돼돼됃, 되나, kimgudals91@naver.com, 이러면되나, 되려나, 1, 1, 1
+2023-09-09 17:30:40.738 [http-nio-80-exec-4] TRACE employee.selectAll - <==        Row: 23, 8Ax!6Ad@, 북치기밪ㄱ치기, 010-8282-8282, kimgudals91@naver.com, 김영남, 래퍼, 1, 1, 1
+2023-09-09 17:30:40.738 [http-nio-80-exec-4] DEBUG employee.selectAll - <==      Total: 12
+2023-09-09 17:30:40.738 [http-nio-80-exec-4] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Closing JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:40.738 [http-nio-80-exec-4] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 2072294847 to pool.
+2023-09-09 17:30:42.470 [http-nio-80-exec-5] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Opening JDBC Connection
+2023-09-09 17:30:42.470 [http-nio-80-exec-5] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Checked out connection 2072294847 from pool.
+2023-09-09 17:30:42.470 [http-nio-80-exec-5] DEBUG employee.selectAll - ==>  Preparing: select * from EMPLOYEE order by emp_no 
+2023-09-09 17:30:42.470 [http-nio-80-exec-5] DEBUG employee.selectAll - ==> Parameters: 
+2023-09-09 17:30:42.474 [http-nio-80-exec-5] TRACE employee.selectAll - <==    Columns: EMP_NO, EMP_PW, EMP_ADDR, EMP_TEL, EMP_EMAIL, EMP_NAME, EMP_POSIT, EMP_STATE, ADMIN_CODE, DEPT_CODE
+2023-09-09 17:30:42.474 [http-nio-80-exec-5] TRACE employee.selectAll - <==        Row: 1, 2, 2, 2, 2, 왜 너만 안지워져, 3, 2, 1, 1
+2023-09-09 17:30:42.474 [http-nio-80-exec-5] TRACE employee.selectAll - <==        Row: 10, 2, 자동채번, 010-134-134, kim@nvaer.com, tkqjs, 자동, 1, 1, 1
+2023-09-09 17:30:42.474 [http-nio-80-exec-5] TRACE employee.selectAll - <==        Row: 11, 123, 으아아앜!!!!!!!, 010-2552-2453, 으앜, 흐아, 으아, 1, 1, 1
+2023-09-09 17:30:42.474 [http-nio-80-exec-5] TRACE employee.selectAll - <==        Row: 12, 123123, 되나???어??, 010-1234-1340, 되나?, 어?, 되나?, 1, 0, 1
+2023-09-09 17:30:42.475 [http-nio-80-exec-5] TRACE employee.selectAll - <==        Row: 13, 111, 아, 아, 아, 아, 아, 1, 1, 1
+2023-09-09 17:30:42.475 [http-nio-80-exec-5] TRACE employee.selectAll - <==        Row: 17, 4Ef&9Ab#, ㄴㅁㅇ, ㅇ, ㅇ, 테스트, 테테, 1, 1, 1
+2023-09-09 17:30:42.475 [http-nio-80-exec-5] TRACE employee.selectAll - <==        Row: 18, 2Sq@0Bd^, 123, 010-5555-5555, test@test.test, 테스트, 테스트, 1, 1, 1
+2023-09-09 17:30:42.475 [http-nio-80-exec-5] TRACE employee.selectAll - <==        Row: 19, 5Tg)5Qx*, 한강뷰 아파트, 010-6669-6969, kimgudals91@naver.com, 김형민, 이사, 1, 1, 1
+2023-09-09 17:30:42.475 [http-nio-80-exec-5] TRACE employee.selectAll - <==        Row: 20, 7Xh$4Xh!, 키야 이게되네, 010-2345-9590, kimgudals91@naver.com, 김태현, 상무, 1, 1, 1
+2023-09-09 17:30:42.475 [http-nio-80-exec-5] TRACE employee.selectAll - <==        Row: 21, 1Tq)4Qk*, 미쳐버렸어, 미쳤다고, kimgudals91@naver.com, 개신기함, 개신기하다고, 1, 1, 1
+2023-09-09 17:30:42.479 [http-nio-80-exec-5] TRACE employee.selectAll - <==        Row: 22, 6Ml^1Th#, 돼돼돼됃, 되나, kimgudals91@naver.com, 이러면되나, 되려나, 1, 1, 1
+2023-09-09 17:30:42.479 [http-nio-80-exec-5] TRACE employee.selectAll - <==        Row: 23, 8Ax!6Ad@, 북치기밪ㄱ치기, 010-8282-8282, kimgudals91@naver.com, 김영남, 래퍼, 1, 1, 1
+2023-09-09 17:30:42.479 [http-nio-80-exec-5] DEBUG employee.selectAll - <==      Total: 12
+2023-09-09 17:30:42.479 [http-nio-80-exec-5] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Closing JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:42.479 [http-nio-80-exec-5] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 2072294847 to pool.
+2023-09-09 17:30:48.301 [http-nio-80-exec-9] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Opening JDBC Connection
+2023-09-09 17:30:48.302 [http-nio-80-exec-9] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Checked out connection 2072294847 from pool.
+2023-09-09 17:30:48.302 [http-nio-80-exec-9] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Setting autocommit to false on JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:48.302 [http-nio-80-exec-9] DEBUG employee.getEmployee - ==>  Preparing: select * from employee where emp_no = ? 
+2023-09-09 17:30:48.302 [http-nio-80-exec-9] DEBUG employee.getEmployee - ==> Parameters: 13(String)
+2023-09-09 17:30:48.305 [http-nio-80-exec-9] TRACE employee.getEmployee - <==    Columns: EMP_NO, EMP_PW, EMP_ADDR, EMP_TEL, EMP_EMAIL, EMP_NAME, EMP_POSIT, EMP_STATE, ADMIN_CODE, DEPT_CODE
+2023-09-09 17:30:48.305 [http-nio-80-exec-9] TRACE employee.getEmployee - <==        Row: 13, 111, 아, 아, 아, 아, 아, 1, 1, 1
+2023-09-09 17:30:48.305 [http-nio-80-exec-9] DEBUG employee.getEmployee - <==      Total: 1
+2023-09-09 17:30:48.306 [http-nio-80-exec-9] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Resetting autocommit to true on JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:48.306 [http-nio-80-exec-9] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Closing JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:48.306 [http-nio-80-exec-9] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 2072294847 to pool.
+2023-09-09 17:30:48.998 [http-nio-80-exec-10] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Opening JDBC Connection
+2023-09-09 17:30:48.998 [http-nio-80-exec-10] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Checked out connection 2072294847 from pool.
+2023-09-09 17:30:48.998 [http-nio-80-exec-10] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Setting autocommit to false on JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:48.998 [http-nio-80-exec-10] DEBUG employee.getEmployee - ==>  Preparing: select * from employee where emp_no = ? 
+2023-09-09 17:30:48.998 [http-nio-80-exec-10] DEBUG employee.getEmployee - ==> Parameters: 13(String)
+2023-09-09 17:30:49.004 [http-nio-80-exec-10] TRACE employee.getEmployee - <==    Columns: EMP_NO, EMP_PW, EMP_ADDR, EMP_TEL, EMP_EMAIL, EMP_NAME, EMP_POSIT, EMP_STATE, ADMIN_CODE, DEPT_CODE
+2023-09-09 17:30:49.005 [http-nio-80-exec-10] TRACE employee.getEmployee - <==        Row: 13, 111, 아, 아, 아, 아, 아, 1, 1, 1
+2023-09-09 17:30:49.005 [http-nio-80-exec-10] DEBUG employee.getEmployee - <==      Total: 1
+2023-09-09 17:30:49.005 [http-nio-80-exec-10] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Resetting autocommit to true on JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:49.005 [http-nio-80-exec-10] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Closing JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:49.005 [http-nio-80-exec-10] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 2072294847 to pool.
+2023-09-09 17:30:49.005 [http-nio-80-exec-10] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Opening JDBC Connection
+2023-09-09 17:30:49.005 [http-nio-80-exec-10] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Checked out connection 2072294847 from pool.
+2023-09-09 17:30:49.005 [http-nio-80-exec-10] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Setting autocommit to false on JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:49.005 [http-nio-80-exec-10] DEBUG employee.deleteEmployee - ==>  Preparing: delete from EMPLOYEE where emp_no = ? 
+2023-09-09 17:30:49.005 [http-nio-80-exec-10] DEBUG employee.deleteEmployee - ==> Parameters: 13(String)
+2023-09-09 17:30:49.008 [http-nio-80-exec-10] DEBUG employee.deleteEmployee - <==    Updates: 1
+2023-09-09 17:30:49.008 [http-nio-80-exec-10] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Committing JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:49.012 [http-nio-80-exec-10] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Resetting autocommit to true on JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:49.012 [http-nio-80-exec-10] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Closing JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:49.012 [http-nio-80-exec-10] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 2072294847 to pool.
+2023-09-09 17:30:49.014 [http-nio-80-exec-2] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Opening JDBC Connection
+2023-09-09 17:30:49.014 [http-nio-80-exec-2] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Checked out connection 2072294847 from pool.
+2023-09-09 17:30:49.014 [http-nio-80-exec-2] DEBUG employee.selectAll - ==>  Preparing: select * from EMPLOYEE order by emp_no 
+2023-09-09 17:30:49.014 [http-nio-80-exec-2] DEBUG employee.selectAll - ==> Parameters: 
+2023-09-09 17:30:49.019 [http-nio-80-exec-2] TRACE employee.selectAll - <==    Columns: EMP_NO, EMP_PW, EMP_ADDR, EMP_TEL, EMP_EMAIL, EMP_NAME, EMP_POSIT, EMP_STATE, ADMIN_CODE, DEPT_CODE
+2023-09-09 17:30:49.019 [http-nio-80-exec-2] TRACE employee.selectAll - <==        Row: 1, 2, 2, 2, 2, 왜 너만 안지워져, 3, 2, 1, 1
+2023-09-09 17:30:49.019 [http-nio-80-exec-2] TRACE employee.selectAll - <==        Row: 10, 2, 자동채번, 010-134-134, kim@nvaer.com, tkqjs, 자동, 1, 1, 1
+2023-09-09 17:30:49.019 [http-nio-80-exec-2] TRACE employee.selectAll - <==        Row: 11, 123, 으아아앜!!!!!!!, 010-2552-2453, 으앜, 흐아, 으아, 1, 1, 1
+2023-09-09 17:30:49.020 [http-nio-80-exec-2] TRACE employee.selectAll - <==        Row: 12, 123123, 되나???어??, 010-1234-1340, 되나?, 어?, 되나?, 1, 0, 1
+2023-09-09 17:30:49.020 [http-nio-80-exec-2] TRACE employee.selectAll - <==        Row: 17, 4Ef&9Ab#, ㄴㅁㅇ, ㅇ, ㅇ, 테스트, 테테, 1, 1, 1
+2023-09-09 17:30:49.020 [http-nio-80-exec-2] TRACE employee.selectAll - <==        Row: 18, 2Sq@0Bd^, 123, 010-5555-5555, test@test.test, 테스트, 테스트, 1, 1, 1
+2023-09-09 17:30:49.020 [http-nio-80-exec-2] TRACE employee.selectAll - <==        Row: 19, 5Tg)5Qx*, 한강뷰 아파트, 010-6669-6969, kimgudals91@naver.com, 김형민, 이사, 1, 1, 1
+2023-09-09 17:30:49.020 [http-nio-80-exec-2] TRACE employee.selectAll - <==        Row: 20, 7Xh$4Xh!, 키야 이게되네, 010-2345-9590, kimgudals91@naver.com, 김태현, 상무, 1, 1, 1
+2023-09-09 17:30:49.020 [http-nio-80-exec-2] TRACE employee.selectAll - <==        Row: 21, 1Tq)4Qk*, 미쳐버렸어, 미쳤다고, kimgudals91@naver.com, 개신기함, 개신기하다고, 1, 1, 1
+2023-09-09 17:30:49.020 [http-nio-80-exec-2] TRACE employee.selectAll - <==        Row: 22, 6Ml^1Th#, 돼돼돼됃, 되나, kimgudals91@naver.com, 이러면되나, 되려나, 1, 1, 1
+2023-09-09 17:30:49.024 [http-nio-80-exec-2] TRACE employee.selectAll - <==        Row: 23, 8Ax!6Ad@, 북치기밪ㄱ치기, 010-8282-8282, kimgudals91@naver.com, 김영남, 래퍼, 1, 1, 1
+2023-09-09 17:30:49.024 [http-nio-80-exec-2] DEBUG employee.selectAll - <==      Total: 11
+2023-09-09 17:30:49.025 [http-nio-80-exec-2] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Closing JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:30:49.025 [http-nio-80-exec-2] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 2072294847 to pool.
+2023-09-09 17:31:06.374 [http-nio-80-exec-1] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Opening JDBC Connection
+2023-09-09 17:31:06.374 [http-nio-80-exec-1] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Checked out connection 2072294847 from pool.
+2023-09-09 17:31:06.374 [http-nio-80-exec-1] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Setting autocommit to false on JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:31:06.374 [http-nio-80-exec-1] DEBUG employee.getEmployee - ==>  Preparing: select * from employee where emp_no = ? 
+2023-09-09 17:31:06.375 [http-nio-80-exec-1] DEBUG employee.getEmployee - ==> Parameters: 17(String)
+2023-09-09 17:31:06.378 [http-nio-80-exec-1] TRACE employee.getEmployee - <==    Columns: EMP_NO, EMP_PW, EMP_ADDR, EMP_TEL, EMP_EMAIL, EMP_NAME, EMP_POSIT, EMP_STATE, ADMIN_CODE, DEPT_CODE
+2023-09-09 17:31:06.378 [http-nio-80-exec-1] TRACE employee.getEmployee - <==        Row: 17, 4Ef&9Ab#, ㄴㅁㅇ, ㅇ, ㅇ, 테스트, 테테, 1, 1, 1
+2023-09-09 17:31:06.378 [http-nio-80-exec-1] DEBUG employee.getEmployee - <==      Total: 1
+2023-09-09 17:31:06.378 [http-nio-80-exec-1] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Resetting autocommit to true on JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:31:06.378 [http-nio-80-exec-1] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Closing JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:31:06.378 [http-nio-80-exec-1] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 2072294847 to pool.
+2023-09-09 17:31:07.221 [http-nio-80-exec-3] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Opening JDBC Connection
+2023-09-09 17:31:07.222 [http-nio-80-exec-3] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Checked out connection 2072294847 from pool.
+2023-09-09 17:31:07.222 [http-nio-80-exec-3] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Setting autocommit to false on JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:31:07.222 [http-nio-80-exec-3] DEBUG employee.getEmployee - ==>  Preparing: select * from employee where emp_no = ? 
+2023-09-09 17:31:07.222 [http-nio-80-exec-3] DEBUG employee.getEmployee - ==> Parameters: 17(String)
+2023-09-09 17:31:07.225 [http-nio-80-exec-3] TRACE employee.getEmployee - <==    Columns: EMP_NO, EMP_PW, EMP_ADDR, EMP_TEL, EMP_EMAIL, EMP_NAME, EMP_POSIT, EMP_STATE, ADMIN_CODE, DEPT_CODE
+2023-09-09 17:31:07.225 [http-nio-80-exec-3] TRACE employee.getEmployee - <==        Row: 17, 4Ef&9Ab#, ㄴㅁㅇ, ㅇ, ㅇ, 테스트, 테테, 1, 1, 1
+2023-09-09 17:31:07.225 [http-nio-80-exec-3] DEBUG employee.getEmployee - <==      Total: 1
+2023-09-09 17:31:07.225 [http-nio-80-exec-3] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Resetting autocommit to true on JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:31:07.225 [http-nio-80-exec-3] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Closing JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:31:07.225 [http-nio-80-exec-3] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 2072294847 to pool.
+2023-09-09 17:31:07.225 [http-nio-80-exec-3] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Opening JDBC Connection
+2023-09-09 17:31:07.225 [http-nio-80-exec-3] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Checked out connection 2072294847 from pool.
+2023-09-09 17:31:07.225 [http-nio-80-exec-3] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Setting autocommit to false on JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:31:07.225 [http-nio-80-exec-3] DEBUG employee.deleteEmployee - ==>  Preparing: delete from EMPLOYEE where emp_no = ? 
+2023-09-09 17:31:07.226 [http-nio-80-exec-3] DEBUG employee.deleteEmployee - ==> Parameters: 17(String)
+2023-09-09 17:31:07.231 [http-nio-80-exec-3] DEBUG employee.deleteEmployee - <==    Updates: 1
+2023-09-09 17:31:07.231 [http-nio-80-exec-3] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Committing JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:31:07.235 [http-nio-80-exec-3] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Resetting autocommit to true on JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:31:07.235 [http-nio-80-exec-3] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Closing JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:31:07.236 [http-nio-80-exec-3] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 2072294847 to pool.
+2023-09-09 17:31:07.238 [http-nio-80-exec-4] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Opening JDBC Connection
+2023-09-09 17:31:07.238 [http-nio-80-exec-4] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Checked out connection 2072294847 from pool.
+2023-09-09 17:31:07.238 [http-nio-80-exec-4] DEBUG employee.selectAll - ==>  Preparing: select * from EMPLOYEE order by emp_no 
+2023-09-09 17:31:07.238 [http-nio-80-exec-4] DEBUG employee.selectAll - ==> Parameters: 
+2023-09-09 17:31:07.242 [http-nio-80-exec-4] TRACE employee.selectAll - <==    Columns: EMP_NO, EMP_PW, EMP_ADDR, EMP_TEL, EMP_EMAIL, EMP_NAME, EMP_POSIT, EMP_STATE, ADMIN_CODE, DEPT_CODE
+2023-09-09 17:31:07.242 [http-nio-80-exec-4] TRACE employee.selectAll - <==        Row: 1, 2, 2, 2, 2, 왜 너만 안지워져, 3, 2, 1, 1
+2023-09-09 17:31:07.242 [http-nio-80-exec-4] TRACE employee.selectAll - <==        Row: 10, 2, 자동채번, 010-134-134, kim@nvaer.com, tkqjs, 자동, 1, 1, 1
+2023-09-09 17:31:07.243 [http-nio-80-exec-4] TRACE employee.selectAll - <==        Row: 11, 123, 으아아앜!!!!!!!, 010-2552-2453, 으앜, 흐아, 으아, 1, 1, 1
+2023-09-09 17:31:07.243 [http-nio-80-exec-4] TRACE employee.selectAll - <==        Row: 12, 123123, 되나???어??, 010-1234-1340, 되나?, 어?, 되나?, 1, 0, 1
+2023-09-09 17:31:07.243 [http-nio-80-exec-4] TRACE employee.selectAll - <==        Row: 18, 2Sq@0Bd^, 123, 010-5555-5555, test@test.test, 테스트, 테스트, 1, 1, 1
+2023-09-09 17:31:07.243 [http-nio-80-exec-4] TRACE employee.selectAll - <==        Row: 19, 5Tg)5Qx*, 한강뷰 아파트, 010-6669-6969, kimgudals91@naver.com, 김형민, 이사, 1, 1, 1
+2023-09-09 17:31:07.243 [http-nio-80-exec-4] TRACE employee.selectAll - <==        Row: 20, 7Xh$4Xh!, 키야 이게되네, 010-2345-9590, kimgudals91@naver.com, 김태현, 상무, 1, 1, 1
+2023-09-09 17:31:07.243 [http-nio-80-exec-4] TRACE employee.selectAll - <==        Row: 21, 1Tq)4Qk*, 미쳐버렸어, 미쳤다고, kimgudals91@naver.com, 개신기함, 개신기하다고, 1, 1, 1
+2023-09-09 17:31:07.243 [http-nio-80-exec-4] TRACE employee.selectAll - <==        Row: 22, 6Ml^1Th#, 돼돼돼됃, 되나, kimgudals91@naver.com, 이러면되나, 되려나, 1, 1, 1
+2023-09-09 17:31:07.243 [http-nio-80-exec-4] TRACE employee.selectAll - <==        Row: 23, 8Ax!6Ad@, 북치기밪ㄱ치기, 010-8282-8282, kimgudals91@naver.com, 김영남, 래퍼, 1, 1, 1
+2023-09-09 17:31:07.247 [http-nio-80-exec-4] DEBUG employee.selectAll - <==      Total: 10
+2023-09-09 17:31:07.247 [http-nio-80-exec-4] DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Closing JDBC Connection [oracle.jdbc.driver.T4CConnection@7b84b5bf]
+2023-09-09 17:31:07.247 [http-nio-80-exec-4] DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 2072294847 to pool.
