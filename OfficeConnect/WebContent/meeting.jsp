@@ -117,20 +117,6 @@
 					</tr>
 					
 					<tr>
-<%-- <%
-	if(mtrList.size() == 0) {0
-%>
-						<td></td>
-<%
-	}else {
-		
-		for(MeetingVO mv : mtrList) {
-%>
-						<td><%=mv.getEmpNo() %></td>
-<%
-		}
-	}
-%> --%>
 						<td></td>
 						<td></td>
 						<td></td>
@@ -172,13 +158,13 @@ $('.btn').on('click', function(){
 });
 
 /* 
-	모달창-X버튼 클릭 시 
+	모달창-예약 버튼 클릭 시 
  	: 입력한 회의실 정보 예약창으로 보내기
 */
 $('.btn_book_out').on('click', function(){
 	bookUrl = $(this).val();
-	//console.log(bookUrl);
-	$.ajax({
+	console.log($(this).val());
+	/* $.ajax({
 		url: bookUrl + ".json",
 		type: "GET",
 		contentType: 'application/json; charset=utf-8',
@@ -189,9 +175,10 @@ $('.btn_book_out').on('click', function(){
 		error: function(xhr, status, msg){
 			console.log("상태값: " + status + " Http 에러 메시지: " + msg);
 		}
-	});	
+	}) */;	
 	
-	function showList(data){
+});
+/* 	function showList(data){
 		let timeList = '';
 		$('#modal').empty();
 		let head = '<span>' + bookUrl + '</sapn>';
@@ -203,8 +190,7 @@ $('.btn_book_out').on('click', function(){
 			timeList += '</tr>';
 			$(".modal-body").append(timeList);
 		})
-	}
-});
+	} */
 
 </script>
 </body>

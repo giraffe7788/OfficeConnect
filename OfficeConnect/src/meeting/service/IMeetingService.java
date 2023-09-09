@@ -11,7 +11,7 @@ public interface IMeetingService {
 	 * @param MeetingVO
 	 * @return 
 	 */
-	//public List<MeetingVO> selectAll();
+	public List<MeetingVO> selectAll();
 	
 	/**
 	 * 회의실 예약을 위한 메서드

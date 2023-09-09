@@ -17,7 +17,7 @@ import meeting.service.IMeetingService;
 import meeting.service.MeetingServiceImpl;
 import vo.MeetingVO;
 
-@WebServlet("/list.do")
+@WebServlet("/book.do")
 public class Book extends HttpServlet {
 	
 	@Override
@@ -48,5 +48,13 @@ public class Book extends HttpServlet {
 			resp.setContentType("application/json");
 			resp.getWriter().write(jsonsStr);
 		}
+		
+		RequestDispatcher disp = req.getRequestDispatcher("/meeting.jsp");
+		disp.forward(req, resp);
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doGet(req, resp);
 	}
 }

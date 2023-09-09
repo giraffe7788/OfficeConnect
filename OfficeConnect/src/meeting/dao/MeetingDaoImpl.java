@@ -25,7 +25,7 @@ public class MeetingDaoImpl implements IMeetingDao{
 	 * @param MeetingVO
 	 * @return 
 	 */
-	/*@Override
+	@Override
 	public List<MeetingVO> selectAll() {
 
 		List<MeetingVO> mtrList = new ArrayList<MeetingVO>();
@@ -44,7 +44,7 @@ public class MeetingDaoImpl implements IMeetingDao{
 
 		return mtrList;
 	}
-	*/
+	
 	
 	@Override
 	/**

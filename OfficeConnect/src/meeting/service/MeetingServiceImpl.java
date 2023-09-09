@@ -30,13 +30,12 @@ public class MeetingServiceImpl implements IMeetingService {
 	 * @param MeetingVO
 	 * @return 
 	 */
-	/*
 	@Override
 	public List<MeetingVO> selectAll() {
 		List<MeetingVO> mtrList = dao.selectAll();
 		return null;
 	}
-	*/
+	
 	
 	@Override
 	/**

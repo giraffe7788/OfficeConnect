@@ -41,6 +41,8 @@
 	</resultMap>
 	
 	<insert id="bookMtr">
+		insert into mtrbook(mtrbook_no, mtr_no, emp_no, mtrbook_rent, mtrbook_return, mtrbook_per, mtrbook_cont)
+		values(#{mtrbookNo}, #{mtrNo}, #{empNo}, #{mtrbookRent}, #{mtrbookRtn}, #{mtrbookPer}, #{mtrbookCont})
 	</insert>
 
 </mapper>
