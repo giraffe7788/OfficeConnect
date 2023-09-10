@@ -17,6 +17,8 @@
 
 	<%
  		List<MeetingVO> mtrList = (List<MeetingVO>)request.getAttribute("mtrList");
+		//Map<> roomMap = ()request.getAttribute("roomMap");
+		String currentEmpNo = (String)request.getAttribute("empNo");
 	%>
 	
 </head>
@@ -65,25 +67,36 @@
 							</select>
 							<span>: 00 ~ </span>
 							<select name="mtrbookRtn">
-						        <option value="10">10
-						        <option value="11">11
-						        <option value="12">12
-						        <option value="13">13
-						        <option value="14">14
-						        <option value="15">15
-						        <option value="16">16
-						        <option value="17">17
-						        <option value="18">18
+						        <option class="time" value="10">10
+						        <option class="time" value="11">11
+						        <option class="time" value="12">12
+						        <option class="time" value="13">13
+						        <option class="time" value="14">14
+						        <option class="time" value="15">15
+						        <option class="time" value="16">16
+						        <option class="time" value="17">17
+						        <option class="time" value="18">18
 							</select>
-							<span>: 00</span>
+							<span>: 00</span>							
 					    </div>
 
 					    <div class="form-group">
 					      <label class="control-label">회의 인원</label>
 					        <select name="mtrbookPer">
-						        <option value="1">1
-						        <option value="2">2
-						        <option value="3">3
+					        	<option value="1">1
+					        	<option value="2">2
+					        	<option value="3">3
+					        	<option value="4">4
+					        	<option value="5">5
+					        	<option value="6">6
+					        	
+					        <%-- <%
+					        	for(int i = 0; i < roomMap.get("회의실번호"); i++){
+					        %>
+					        		<option value="<%=i%>"><%=i%>
+					        <%
+					        	}
+					        %> --%>
 							</select>
 					    </div>
 					    
@@ -145,43 +158,66 @@
 	</div>
 
 <script>
-let mtrNo = "";
 /*
-	나의예약 클릭 시 모달창 팝업-배경색 설정, 회의실 번호 뜨게
+	회의실 클릭 시 모달창 팝업
  */	
-
+let mtrNo = "";
 $('.btn').on('click', function(){
+	// 해당 회의실 번호 적용
 	mtrNo = $(this).val();
 	let mtrNoT = "<span>";
 	mtrNoT += mtrNo;
 	mtrNoT += "</span>";
-	
 	$('.mtrNO').append(mtrNoT);
 		
+	// 배경색 설정
 	$('#modal').modal({
 		backdrop : 'static'
 	});
+
+	// 해당 회의실 제한 인원 적용
+	// 서버에서 데이터를 가져옵니다. 여기에서는 AJAX를 사용합니다.
+    /* $.ajax({
+      url: '/book.do', // 데이터를 가져올 서버 측 스크립트 URL
+      method: 'GET',
+      dataType: 'json',
+      success: function(data) {
+        // 데이터를 성공적으로 가져왔을 때 처리
+        if (data.length > 0) {
+          // 옵션 항목을 동적으로 생성합니다.
+          var select = $('#selectOptions');
+          select.empty(); // 기존 옵션 항목 삭제
+
+          $.each(data, function(index, item) {
+            var option = $('<option>');
+            option.val(item.value);
+            option.text(item.label);
+            option.appendTo(select);
+          });
+        } else {
+          // 데이터가 없을 경우 처리
+          $('#selectOptions').html('<option value="">데이터가 없습니다.</option>');
+        }
+      },
+      error: function() {
+        // 오류가 발생했을 경우 처리
+        $('#selectOptions').html('<option value="">데이터를 가져오는 중 오류가 발생했습니다.</option>');
+      }
+    }); */
 });
 
 /* 
-	모달창-X 버튼 클릭 시 
-	: 회의실 번호 초기화
+	모달창-'X' 버튼 클릭
 */
 $('.close').on('click', function(){
-	mtrNoT = "<span></span>";
-	$('.mtrNO').append(mtrNoT);
-	//$('.mtrNO').remove(mtrNoT);
-		
+	// 회의실 번호 초기화
+	$('.mtrNO span').empty();
 });
 
 /* 
-	모달창-예약 버튼 클릭 시 
- 	: 입력한 회의실 정보 예약창으로 보내기
+	모달창-'예약' 버튼 클릭
 */
 $('.btn_book_out').on('click', function(){
-	
-	// 시간 이상하면 ㄴ
-	// 회의 내용 입력 안되면 ㄴ
 	
 	let mtrbookCont = $('[name="mtrbookCont"]').val();
 	let mtrbookRent = $('[name="mtrbookRent"]').val();
@@ -199,7 +235,40 @@ $('.btn_book_out').on('click', function(){
 			    
 		success: function(res){		
 			
-			console.log(res.isSuccess);
+			// 9시 이상 예약 가능하게
+			if(parseInt(mtrbookRtn, 10) < parseInt(mtrbookRent, 10)){
+				alert("시작 이전 시간은 예약 불가능합니다.");
+				return;
+			}
+			
+			// 회원당 예약은 한번만
+			<%
+			for(MeetingVO mvo : mtrList){
+				System.out.println(mvo.getEmpNo()+ "==" +currentEmpNo);
+			%>
+				if(<%=mvo.getEmpNo()%> == <%=currentEmpNo%>){
+			
+					alert("회의실은 인당 1번만 예약 가능합니다");
+					return;
+				}
+			<%
+			}
+			%>
+			
+			// 예약된 시간엔 예약 안되게
+			<%
+			for(MeetingVO mvo : mtrList){
+			%>
+				if( <%=mvo.getMtrNo() %> == mtrNo ){
+					if( <%=mvo.getMtrbookRent() %> == mtrbookRent
+						&& <%=mvo.getMtrbookRtn() %> == mtrbookRtn){
+						alert("이미 예약된 시간입니다.");
+						return;
+					}
+				}
+			<%
+			}
+			%>
 			
 			if(res.isSuccess == "ok"){
 				alert("회의실 예약이 완료되었습니다");
@@ -214,6 +283,7 @@ $('.btn_book_out').on('click', function(){
 	});	
 	
 });
+
 
 </script>
 </body>

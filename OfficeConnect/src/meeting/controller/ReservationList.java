@@ -23,7 +23,10 @@ public class ReservationList extends HttpServlet{
 		IMeetingService mtrService = MeetingServiceImpl.getInstance();
 		List<MeetingVO> mtrList = mtrService.selectAll();
 		
+		req.setAttribute("empNo", req.getSession().getAttribute("empNo"));
+		
 		req.setAttribute("mtrList", mtrList);
+		System.out.println("empNo : " + req.getSession().getAttribute("empNo") + "  mtrList : " + mtrList);
 		
 		RequestDispatcher disp = req.getRequestDispatcher("/meeting.jsp");
 		disp.forward(req, resp);
