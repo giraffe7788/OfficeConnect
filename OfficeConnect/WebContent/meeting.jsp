@@ -135,25 +135,27 @@ document.addEventListener('DOMContentLoaded', function() {
 	      right: 'timeGridWeek,timeGridDay'
 	    },
 	    hiddenDays: [0, 6],
-	    slotDuration: '01:00',
+	    slotDuration: '00:30',
+	    slotMinTime: '09:00',
+	    slotMaxTime: '18:00',
 // 	    events: '/api/demo-feeds/events.json'
 		  events: [
-		    {
-		      title  : '회의1',
-		      start  : '2023-09-14T09:00:00',
-		      end  	 : '2023-09-14T11:00:00'
-		    },
-		    {
-		      title  : '회의2',
-		      start  : '2023-09-11T13:00:00',
-		      end    : '2023-09-11T14:00:00'
-		    },
-		    {
-		      title  : '회의3',
-		      start  : '2023-09-15T12:00:00',
-		      end    : '2023-09-15T14:00:00'
-// 		      allDay : false // will make the time show
-		    }
+// 		    {
+// 		      title  : '회의1',
+// 		      start  : '2023-09-14T09:00:00',
+// 		      end  	 : '2023-09-14T11:00:00'
+// 		    },
+// 		    {
+// 		      title  : '회의2',
+// 		      start  : '2023-09-11T13:00:00',
+// 		      end    : '2023-09-11T14:00:00'
+// 		    },
+// 		    {
+// 		      title  : '회의3',
+// 		      start  : '2023-09-15T12:00:00',
+// 		      end    : '2023-09-15T14:00:00'
+// // 		      allDay : false // will make the time show
+// 		    }
 		  ]
 	  });
 
