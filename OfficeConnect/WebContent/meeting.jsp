@@ -113,47 +113,7 @@
 		<div id="reservation">
 			<h3 id="mtrh3">예약현황</h3>
 			<button class="btn_book_in" type="button" id="res">나의 예약</button>
-			
-			<div id="tbl">
-				<table border="1">
-					<tr id="time">
-						<td>9</td>
-						<td>10</td>
-						<td>11</td>
-						<td>12</td>
-						<td>13</td>
-						<td>14</td>
-						<td>15</td>
-						<td>16</td>
-						<td>17</td>
-						
-					</tr>
-					
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
 
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-				</table>
-			</div>
 		</div>
 	</div>
 
@@ -244,7 +204,7 @@ $('.btn_book_out').on('click', function(){
 			// 회원당 예약은 한번만
 			<%
 			for(MeetingVO mvo : mtrList){
-				System.out.println(mvo.getEmpNo()+ "==" +currentEmpNo);
+				//System.out.println(mvo.getEmpNo()+ "==" +currentEmpNo);
 			%>
 				if(<%=mvo.getEmpNo()%> == <%=currentEmpNo%>){
 			
