@@ -14,6 +14,7 @@ public class EmpVO {
 	private int deptCode;		// 부서코드
 	
 	public EmpVO() {};
+	
 	public EmpVO(String empPw, String empAddr, String empTel, String empEmail, String empName,
 			String empPosit, int adminCode, int deptCode) {
 		super();

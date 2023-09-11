@@ -1,6 +1,7 @@
 body {
     background-color: #edf1f3;
     position: relative;
+    overflow: hidden;
 }
 
 #header {

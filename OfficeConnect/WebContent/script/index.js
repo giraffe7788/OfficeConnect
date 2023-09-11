@@ -6,7 +6,7 @@ function loginCheck(){
 	let pwValue = $('#pwCheck').val();
 	
 	if(idValue.length <= 0 || pwValue.length <= 0){
-		alert("아이디또는 비밀번호를 입력해주세요");
+		alert("아이디 또는 비밀번호를 입력해주세요");
 		return;
 	}
 	
@@ -17,13 +17,13 @@ function loginCheck(){
 				 'emp_pw' : pwValue },
 		success : function(res){
 			
-			if( res == 'fail' ){
-				alert("아이디나 비밀번호를 확인해주세요.");
+			if( res.isSuccess == 'fail' ){
+				alert("아이디 또는 비밀번호를 확인해주세요.");
 			}else{
 				alert("로그인성공");
 				//쿠키에 접속자 아이디 저장 후 main.jsp로 보낸다.
 //				setCookie("user_id", idValue, 1);
-				location.href="./main.jsp";
+				location.href="./views/main.jsp";
 			}
 		},
 		error : function(xhr){
