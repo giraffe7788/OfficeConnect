@@ -12,6 +12,7 @@ public class EmpVO {
 	private int empState;		// 상태코드(부재중, 업무중 등..)
 	private int adminCode;		// 관리자여부코드(0이면 일반사원, 1이면 관리자)
 	private int deptCode;		// 부서코드
+	private String imgExtin; 
 	
 	public EmpVO() {};
 	public EmpVO(String empPw, String empAddr, String empTel, String empEmail, String empName,
@@ -87,4 +88,15 @@ public class EmpVO {
 	public void setDeptCode(int deptCode) {
 		this.deptCode = deptCode;
 	}
+	
+	public String getImgExtin() {
+		return imgExtin;
+	}
+	public void setImgExtin(String imgExtin) {
+		this.imgExtin = imgExtin;
+	}
+	public String getProfileFileName() {
+		return imgExtin;
+	}
+		
 }

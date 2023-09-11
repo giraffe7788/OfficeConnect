@@ -1,3 +1,4 @@
+<%@page import="emp.comm.vo.AtchFileVO"%>
 <%@page import="vo.EmpVO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -6,6 +7,8 @@
 <%
 
 	List<EmpVO> empList = (List<EmpVO>)request.getAttribute("empList");
+
+	List<AtchFileVO> fileList = (List<AtchFileVO>) request.getAttribute("fileList");
 
 	String msg = (String)session.getAttribute("msg");
 	
@@ -22,6 +25,11 @@
 </head>
 <h3>사원 조회</h3>
 <body>
+<script>
+function fnImg(path,no){
+	location.href=path+"/download.do?empNo="+no;
+}
+</script>
 	<table border="1">
 		<tr>
 			<th>사번</th>
@@ -33,11 +41,12 @@
 			<th>상태코드</th>
 			<th>관리자여부코드</th>
 			<th>부서코드</th>
+			<th>프로필 사진</th>
 		</tr>
 <%
 	if(empList.size() == 0){
 %>
-	<tr><td colspan="4">데이터가 존재하지 않습니다.</td></tr>
+	<tr><td colspan="10">데이터가 존재하지 않습니다.</td></tr>
 <%
 	}else{
 		
@@ -53,13 +62,18 @@
 		<td><%=ev.getEmpState() %></td>
 		<td><%=ev.getAdminCode() %></td>
 		<td><%=ev.getDeptCode() %></td>
+		<td><button onclick="fnImg('<%= request.getContextPath()%>','<%=  ev.getEmpNo()%>')">
+		    <img src="<%= request.getContextPath() + "/download.do?empNo=" + ev.getEmpNo() %>" alt="프로필 사진" width="100" height="100">
+		</button>		
+		</td>
 	</tr>
 <% 
 		}
 	}
 %>
-	<tr align="center">
+		<tr align="center">
 		<td colspan="10"><a href=./join.do>새 사용자 등록</a>
+		<a href='http://localhost:8888/OfficeConnect'>돌아가기</a>
 		</td>
 	</tr>
 	</table>

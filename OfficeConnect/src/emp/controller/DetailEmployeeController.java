@@ -1,14 +1,17 @@
 package emp.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+import emp.comm.service.AtchFileServiceImpl;
+import emp.comm.service.IAtchFileService;
+import emp.comm.vo.AtchFileVO;
 import emp.service.EmpServiceImpl;
 import emp.service.IEmpService;
 import vo.EmpVO;
@@ -26,6 +29,19 @@ public class DetailEmployeeController extends HttpServlet {
 		EmpVO ev = empService.getEmployee(empNo); // 4. db에서 값 가져오는거
 		
 		req.setAttribute("ev", ev); // 5. db에서 가져온 값 세팅
+		
+		if(empNo != null && !empNo.isEmpty()) {
+			IAtchFileService fileService =
+					AtchFileServiceImpl.getInstance();
+			
+			AtchFileVO atchFileVO = new AtchFileVO();
+			atchFileVO.setEmpNo(ev.getEmpNo());
+			
+			List<AtchFileVO> fileList =
+					fileService.getAtchFileList(atchFileVO);
+			
+			req.setAttribute("fileList", fileList);
+		}
 		
 		req.getRequestDispatcher("/views/employee/detail.jsp").forward(req, resp); // 6. ev에 있는 값 포워드 전달해주기 jsp는 일하는놈 do는 보여지는놈
 				

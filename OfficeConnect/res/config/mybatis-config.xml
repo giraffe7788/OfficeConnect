@@ -4,9 +4,17 @@
   "https://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<properties resource="db.properties" />
+	
+	<settings>
+	<setting name="mapUnderscoreToCamelCase" value="true"/>
+	<setting name="jdbcTypeForNull" value="NULL"/>
+	</settings>
+	
 	<typeAliases>
 		<typeAlias type="vo.EmpVO" alias="empvo" />
+		<typeAlias type="emp.comm.vo.AtchFileVO" alias="fileVO"/>
 	</typeAliases>
+	
 	<environments default="dev">
 		<environment id="dev">
 			<transactionManager type="JDBC" />
@@ -16,11 +24,13 @@
 				<property name="username" value="${username}" />
 				<property name="password" value="${password}" />
 				<property name="poolMaximumActiveConnections" value="2" /><!-- 활성화된 최대 커넥션 수 -->
-				<property name="poolMaximumIdleConnections" value="2" /><!-- 유휴상태에서 최대 커넥션 수 -->
+				<property name="poolMaximumIdleConnections" value="2" /><!-- 유휴상태에서 최대 커넥션 수 --> 
 			</dataSource>
 		</environment>
 	</environments>
+	
 	<mappers>
 		<mapper resource="mappers/employee.xml" />
+		<mapper resource="mappers/atchFile.xml"/>
 	</mappers>
 </configuration>

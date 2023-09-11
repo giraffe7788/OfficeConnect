@@ -1,6 +1,7 @@
 package emp.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -10,6 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import emp.comm.service.AtchFileServiceImpl;
+import emp.comm.service.IAtchFileService;
+import emp.comm.vo.AtchFileVO;
 import emp.service.EmpServiceImpl;
 import emp.service.IEmpService;
 import vo.EmpVO;
@@ -17,7 +21,7 @@ import vo.EmpVO;
 @MultipartConfig
 @WebServlet("/update.do")
 public class UpdateEmployeeController extends HttpServlet {
-	
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
@@ -28,6 +32,19 @@ public class UpdateEmployeeController extends HttpServlet {
 		EmpVO ev = empService.getEmployee(empNo);
 		
 		req.setAttribute("ev", ev);
+		
+		if(empNo != null && !empNo.isEmpty()) {
+			IAtchFileService fileService =
+					AtchFileServiceImpl.getInstance();
+			
+			AtchFileVO atchFileVO = new AtchFileVO();
+			atchFileVO.setEmpNo(ev.getEmpNo());
+			
+			List<AtchFileVO> fileList =
+					fileService.getAtchFileList(atchFileVO);
+			
+			req.setAttribute("fileList", fileList);
+		}
 		
 		req.getRequestDispatcher("/views/employee/updateForm.jsp").forward(req, resp);
 	}
@@ -46,14 +63,37 @@ public class UpdateEmployeeController extends HttpServlet {
 		int empState = Integer.parseInt(req.getParameter("empState"));
 		int adminCode = Integer.parseInt(req.getParameter("adminCode"));
 		int deptCode = Integer.parseInt(req.getParameter("deptCode"));
+		
+		
+		IAtchFileService fileService = AtchFileServiceImpl.getInstance();
+
+		AtchFileVO atchFileVO = null;
+		
+		try {
+			atchFileVO = fileService.saveAtchFileList(req.getParts());
+			
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
 
 		IEmpService empService = EmpServiceImpl.getInstance();
-
 		EmpVO empVO = new EmpVO(empPw, empAddr, empTel, empEmail, empName, empPosit, adminCode, deptCode);
 		empVO.setEmpState(empState);
 		empVO.setEmpNo(empNo);
 		
-		int cnt = empService.modifyEmployee(empVO);
+		if(atchFileVO == null) {
+			empVO.setEmpNo((empNo));
+		}else {
+			empVO.setEmpNo(atchFileVO.getEmpNo());
+		    empVO.setImgExtin(atchFileVO.getImgExtin()); // 파일명 저장
+
+		}
+		
+		int cnt = empService.modifyEmployee(empVO); 
+		if(atchFileVO != null) {
+			atchFileVO.setEmpNo(empVO.getEmpNo());
+			int fileResult = empService.updateFile(atchFileVO);
+		}
 		String msg = "";
 		
 		if(cnt > 0) {

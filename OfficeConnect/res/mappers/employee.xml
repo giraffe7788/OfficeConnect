@@ -8,8 +8,8 @@
 		where emp_no = #{empNo}
 		and emp_pw = #{empPw}
 	</select>
-
-	<insert id="joinEmployee" parameterType="empvo">
+	
+	<insert id="joinEmployee" parameterType="empvo" useGeneratedKeys="true" keyProperty="empNo" keyColumn="EMP_NO" >
 		insert into
 		employee(emp_no, emp_pw, emp_addr, emp_tel, emp_email, emp_name,
 		emp_posit, emp_state, admin_code, dept_code)
@@ -17,7 +17,23 @@
 		(EMP_NO_SEQ.nextval, #{empPw}, #{empAddr}, #{empTel}, #{empEmail},
 		#{empName}, #{empPosit}, #{empState}, #{adminCode}, #{deptCode})
 	</insert>
-
+	
+	<insert id="insertFile" parameterType="fileVO">
+		insert into
+		image(EMP_NO,IMG_PATH,IMG_EXTIN,ORIGN_FILE_NAME)
+		values
+		(#{empNo},#{imgPath},#{imgExtin},#{orignFileName})
+	</insert>
+	
+	<insert id="updateFile" parameterType="fileVO">
+		update image
+		set emp_no = #{empNo},
+			img_path = #{imgPath},
+			img_extin = #{imgExtin},
+			orign_file_name = #{orignFileName}
+			where emp_no = #{empNo}
+	</insert>
+	
 	<update id="updateEmployee" parameterType="empvo">
 		update employee
 		set emp_pw = #{empPw},

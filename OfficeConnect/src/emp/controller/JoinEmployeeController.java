@@ -10,14 +10,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import emp.common.MailUtil;
+import emp.comm.MailUtil;
+import emp.comm.service.AtchFileServiceImpl;
+import emp.comm.service.IAtchFileService;
+import emp.comm.vo.AtchFileVO;
 import emp.service.EmpServiceImpl;
 import emp.service.IEmpService;
 import vo.EmpVO;
 
 @MultipartConfig
 @WebServlet("/join.do")
-public class JoinController extends HttpServlet {
+public class JoinEmployeeController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -28,7 +31,7 @@ public class JoinController extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+		IEmpService empService = EmpServiceImpl.getInstance();
 		req.setCharacterEncoding("UTF-8");
 		String empPw = req.getParameter("empPw");
 		String empAddr = req.getParameter("empAddr");
@@ -40,8 +43,18 @@ public class JoinController extends HttpServlet {
 		int empState =Integer.parseInt(req.getParameter("empState"));
 		int deptCode = Integer.parseInt(req.getParameter("deptCode"));
 		
-		IEmpService empService = EmpServiceImpl.getInstance();
+		IAtchFileService fileService = AtchFileServiceImpl.getInstance();
+		AtchFileVO atchFileVO = null;
+
+		try {
+			atchFileVO = fileService.saveAtchFileList(req.getParts());
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
+		
+
 		EmpVO empVO = new EmpVO();
 		empVO.setEmpPw(empPw);
 		empVO.setEmpAddr(empAddr);
@@ -53,8 +66,16 @@ public class JoinController extends HttpServlet {
 		empVO.setEmpState(empState);
 		empVO.setDeptCode(deptCode);
 		
-		int cnt = empService.registEmployee(empVO);
+		if(atchFileVO != null) {
+			empVO.setEmpNo(atchFileVO.getEmpNo());
+		    empVO.setImgExtin(atchFileVO.getImgExtin()); // 이미지 확장자 저장
+		}
 		
+		int cnt = empService.registEmployee(empVO);
+		if(atchFileVO != null) {
+			atchFileVO.setEmpNo(empVO.getEmpNo());
+			int fileResult = empService.insertFile(atchFileVO);
+		}
 		String msg ="";
 		
 		if(cnt > 0) {

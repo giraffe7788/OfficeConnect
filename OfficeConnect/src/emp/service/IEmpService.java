@@ -2,6 +2,7 @@ package emp.service;
 
 import java.util.List;
 
+import emp.comm.vo.AtchFileVO;
 import vo.EmpVO;
 
 public interface IEmpService {
@@ -20,7 +21,6 @@ public interface IEmpService {
 	 * @return 사원 등록에 성공하면 1이상의 값 반환, 실패하면 0 반환
 	 */
 	public int registEmployee(EmpVO empVO);
-	
 	
 	/**
 	 * 사원정보 수정을 위한 메서드
@@ -67,6 +67,10 @@ public interface IEmpService {
 	 */
 	public List<EmpVO> searchEmployee(EmpVO ev);
 	
+	
+	public int insertFile(AtchFileVO atchFileVO);
+	
+	public int updateFile(AtchFileVO atchFileVO);
 	
 	
 }

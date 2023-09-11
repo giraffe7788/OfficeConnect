@@ -11,10 +11,10 @@
 	<!-- 폼 태그 -->
 	<form action="join.do" method="post" enctype="multipart/form-data">
 		<table>
-<!-- 			<tr> -->
+			<tr>
 <!-- 				<td>사번 :</td> -->
-<!-- 				<td><input type="text" name="empNo" value=""></td> -->
-<!-- 			</tr> -->
+				<td><input type="hidden" name="empNo" value=""></td>
+			</tr>
 			<tr>
 				<td>이름 :</td>
 				<td><input type="text" name="empName" value=""></td>
@@ -58,10 +58,14 @@
 				<td>부서코드 :</td>
 				<td><input type="text" name="deptCode" value=""></td>
 			</tr>
+			<tr>
+				<td>첨부파일 :</td>
+				<td><input type="file" name="atchFile" multiple="multiple"></td>
+			</tr>
 		</table>
 		<button type="submit">저장</button>
 		<button>
-			<a href='http://localhost/OfficeConnect'>돌아가기</a>
+			<a href='http://localhost:8888/OfficeConnect'>돌아가기</a>
 		</button>
 	</form>
 	

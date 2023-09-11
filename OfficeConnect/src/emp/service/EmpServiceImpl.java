@@ -5,6 +5,7 @@ import vo.EmpVO;
 
 import java.util.List;
 
+import emp.comm.vo.AtchFileVO;
 import emp.dao.EmpDaoImpl;
 
 public class EmpServiceImpl implements IEmpService{
@@ -106,4 +107,16 @@ public class EmpServiceImpl implements IEmpService{
 		List<EmpVO> empList = empDao.searchEmployee(ev);
 		return empList;
 	}
+	
+	
+	@Override
+	public int insertFile(AtchFileVO atchFileVO) {
+		return empDao.insertFile(atchFileVO);
+	}
+	@Override
+	public int updateFile(AtchFileVO atchFileVO) {
+		return empDao.updateFile(atchFileVO);
+	}
+	
+	
 }

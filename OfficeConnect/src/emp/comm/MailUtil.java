@@ -1,4 +1,4 @@
-package emp.common;
+package emp.comm;
 
 import java.util.Date;
 import java.util.Properties;

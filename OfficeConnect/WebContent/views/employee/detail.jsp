@@ -1,3 +1,4 @@
+<%@page import="emp.comm.vo.AtchFileVO"%>
 <%@page import="java.util.List"%>
 <%@page import="vo.EmpVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -6,6 +7,9 @@
     
 <%
 	EmpVO ev = (EmpVO) request.getAttribute("ev");
+
+	List<AtchFileVO> fileList = (List<AtchFileVO>) request.getAttribute("fileList");
+
 %>
 <!DOCTYPE html>
 <html>
@@ -50,6 +54,22 @@
 		<tr>
 			<td>부서코드</td>
 			<td><%=ev.getDeptCode() %></td>
+		</tr>
+		<tr>
+			<td>첨부파일</td>
+			<td>
+			<%
+				if(fileList != null) {
+					for(AtchFileVO fileVO : fileList){
+			%>
+				<div>
+					<a href="<%=request.getContextPath() %>/download.do?empNo=<%=fileVO.getEmpNo() %>"><%=fileVO.getOrignFileName() %></a>
+				</div>			
+			<%
+					}
+				}
+			%>
+			</td>
 		</tr>
 		<tr>
 			<td colspan="2">

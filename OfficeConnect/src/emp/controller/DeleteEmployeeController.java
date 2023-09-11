@@ -24,8 +24,6 @@ public class DeleteEmployeeController extends HttpServlet {
 		
 		IEmpService empService = EmpServiceImpl.getInstance();
 		
-		EmpVO ev = empService.getEmployee(empNo);
-		
 		int cnt = empService.removeEmployee(empNo);
 		
 		String msg = "";

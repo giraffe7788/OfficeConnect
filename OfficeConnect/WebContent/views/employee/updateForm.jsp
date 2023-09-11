@@ -1,3 +1,4 @@
+<%@page import="emp.comm.vo.AtchFileVO"%>
 <%@page import="java.util.List"%>
 <%@page import="vo.EmpVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -7,6 +8,9 @@
 	EmpVO ev = (EmpVO) request.getAttribute("ev");
 
 	List<EmpVO> empList = (List<EmpVO>)request.getAttribute("empList");
+	
+	List<AtchFileVO> fileList = (List<AtchFileVO>)request.getAttribute("fileList");
+
 %>
 
 <!DOCTYPE html>
@@ -60,8 +64,40 @@
 				<td>부서코드 :</td>
 				<td><input type="number" name="deptCode" value="<%=ev.getDeptCode() %>"></td>
 			</tr>
+			<tr>
+				<td>기존 첨부파일 :</td>
+				<td>
+				<%
+					if(fileList != null) {
+						for(AtchFileVO fileVO : fileList){
+				%>
+					<div>
+					<a href="<%=request.getContextPath() %>/download.do?empNo=<%=fileVO.getEmpNo()%>"><%=fileVO.getOrignFileName() %></a>
+					</div>			
+				<%
+						}
+					}
+				%>
+
+				</td>
+			</tr>
+			<tr>
+				<td>새로고침 첨부파일 :</td>
+				<td><input type="file" name="atchFile" multiple="multiple"></td>
+				<%
+					if(fileList != null) {
+						for(AtchFileVO fileVO : fileList){
+				%>
+					<div>
+					<a href="<%=request.getContextPath() %>/download.do?empNo=<%=fileVO.getEmpNo()%>"><%=fileVO.getOrignFileName() %></a>
+					</div>			
+				<%
+						}
+					}
+				%>
+			</tr>
 		</table>
-		<input type="submit">
+		<input type="submit" value="수정완료">
 	</form>
 </body>
 </html>

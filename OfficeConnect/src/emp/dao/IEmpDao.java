@@ -2,6 +2,7 @@ package emp.dao;
 
 import java.util.List;
 
+import emp.comm.vo.AtchFileVO;
 import vo.EmpVO;
 
 public interface IEmpDao {
@@ -20,7 +21,7 @@ public interface IEmpDao {
 	 * @return 성공여부
 	 */
 	public int joinEmployee(EmpVO empVO);
-	
+
 	
 	/**
 	 * 사원정보 수정을 위한 메서드
@@ -66,6 +67,12 @@ public interface IEmpDao {
 	 * @return 검색한 사원의 정보를 담은 ev를 return
 	 */
 	public List<EmpVO> searchEmployee(EmpVO ev);
+	
+	
+	public int insertFile(AtchFileVO atchFileVO);
+	
+	public int updateFile(AtchFileVO atchFileVO);
+
 
 
 }
