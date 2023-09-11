@@ -128,12 +128,12 @@ document.addEventListener('DOMContentLoaded', function() {
 		locale: 'ko',
         lang: 'ko',
 	    timeZone: 'UTC',
-	    initialView: 'timeGridWeek',
-	    headerToolbar: {
-	      left: 'prev,next today',
-	      center: 'title',
-	      right: 'timeGridWeek,timeGridDay'
-	    },
+	    initialView: 'timeGridDay',
+// 	    headerToolbar: {
+// 	      left: 'prev,next today',
+// 	      center: 'title',
+// 	      right: 'timeGridWeek,timeGridDay'
+// 	    },
 	    hiddenDays: [0, 6],
 	    slotDuration: '00:30',
 	    slotMinTime: '09:00',
