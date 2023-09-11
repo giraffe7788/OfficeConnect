@@ -82,13 +82,13 @@
 
 					    <div class="form-group">
 					      <label class="control-label">회의 인원</label>
-					        <select name="mtrbookPer">
+					       <select id="mtrbookPer">
 					        	<option value="1">1
 					        	<option value="2">2
 					        	<option value="3">3
 					        	<option value="4">4
 					        	<option value="5">5
-					        	<option value="6">6
+					        	<option value="6">6				  
 					        	
 					        <%-- <%
 					        	for(int i = 0; i < roomMap.get("회의실번호"); i++){
@@ -113,7 +113,47 @@
 		<div id="reservation">
 			<h3 id="mtrh3">예약현황</h3>
 			<button class="btn_book_in" type="button" id="res">나의 예약</button>
+			
+			<div id="tbl">
+				<table border="1">
+					<tr id="time">
+						<td>9</td>
+						<td>10</td>
+						<td>11</td>
+						<td>12</td>
+						<td>13</td>
+						<td>14</td>
+						<td>15</td>
+						<td>16</td>
+						<td>17</td>
+						
+					</tr>
+					
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
 
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
+			</div>
 		</div>
 	</div>
 
@@ -134,37 +174,41 @@ $('.btn').on('click', function(){
 	$('#modal').modal({
 		backdrop : 'static'
 	});
+	
 
-	// 해당 회의실 제한 인원 적용
-	// 서버에서 데이터를 가져옵니다. 여기에서는 AJAX를 사용합니다.
-    /* $.ajax({
-      url: '/book.do', // 데이터를 가져올 서버 측 스크립트 URL
-      method: 'GET',
-      dataType: 'json',
-      success: function(data) {
-        // 데이터를 성공적으로 가져왔을 때 처리
-        if (data.length > 0) {
-          // 옵션 항목을 동적으로 생성합니다.
-          var select = $('#selectOptions');
-          select.empty(); // 기존 옵션 항목 삭제
 
-          $.each(data, function(index, item) {
-            var option = $('<option>');
-            option.val(item.value);
-            option.text(item.label);
-            option.appendTo(select);
-          });
-        } else {
-          // 데이터가 없을 경우 처리
-          $('#selectOptions').html('<option value="">데이터가 없습니다.</option>');
-        }
-      },
-      error: function() {
-        // 오류가 발생했을 경우 처리
-        $('#selectOptions').html('<option value="">데이터를 가져오는 중 오류가 발생했습니다.</option>');
-      }
-    }); */
+	// 해당 회의실 제한 인원 적용	
+	$.ajax({
+		url: "book.do",
+		type: "post",
+		data: { 'mtrNo': mtrNo,
+			    'mtrbookPer' : mtrbookPer,
+			    'mtrbookRent' : mtrbookRent, 
+			    'mtrbookRtn' : mtrbookRtn, 
+			    'mtrbookCont' : mtrbookCont},
+			    
+		success: function(res){		
+						
+			<%
+				for(MeetingVO mvo : mtrList){
+			%>
+					if(<%=mvo.getMtrNo()%> == mtrNo){
+						for(let i = 1; i <= <%=mvo.getMtrbookPer()%>; i++){
+					        let option = `<option value="${i}">${i}`;
+					        $('#control-label').append(option);
+						}	
+					}
+			<%
+			}
+			%>
+			
+		},
+		error: function(xhr, status, msg){
+			console.log("상태값: " + status + " Http 에러 메시지: " + msg);
+		}
+	});	
 });
+
 
 /* 
 	모달창-'X' 버튼 클릭
@@ -179,10 +223,11 @@ $('.close').on('click', function(){
 */
 $('.btn_book_out').on('click', function(){
 	
-	let mtrbookCont = $('[name="mtrbookCont"]').val();
 	let mtrbookRent = $('[name="mtrbookRent"]').val();
 	let mtrbookRtn = $('[name="mtrbookRtn"]').val();
 	let mtrbookPer = $('[name="mtrbookPer"]').val();
+	let mtrbookCont = $('[name="mtrbookCont"]').val();
+		 
 	
 	$.ajax({
 		url: "book.do",
@@ -193,7 +238,8 @@ $('.btn_book_out').on('click', function(){
 			    'mtrbookRtn' : mtrbookRtn, 
 			    'mtrbookCont' : mtrbookCont},
 			    
-		success: function(res){		
+		success: function(res){	
+			// 시간표 반영
 			
 			// 9시 이상 예약 가능하게
 			if(parseInt(mtrbookRtn, 10) < parseInt(mtrbookRent, 10)){
@@ -201,13 +247,12 @@ $('.btn_book_out').on('click', function(){
 				return;
 			}
 			
-			// 회원당 예약은 한번만
+			// 회원당 예약  한번만
 			<%
 			for(MeetingVO mvo : mtrList){
-				//System.out.println(mvo.getEmpNo()+ "==" +currentEmpNo);
+				System.out.println(mvo.getEmpNo()+ "==" +currentEmpNo);
 			%>
 				if(<%=mvo.getEmpNo()%> == <%=currentEmpNo%>){
-			
 					alert("회의실은 인당 1번만 예약 가능합니다");
 					return;
 				}
@@ -219,10 +264,19 @@ $('.btn_book_out').on('click', function(){
 			<%
 			for(MeetingVO mvo : mtrList){
 			%>
+			// 같은 회의실이면 시작끝 시간 겹쳐도 안되고 시작 시간 겹쳐도 안되고 끝시간 겹쳐도 안되고 그 사이 시간도 겹치면 안됨
 				if( <%=mvo.getMtrNo() %> == mtrNo ){
-					if( <%=mvo.getMtrbookRent() %> == mtrbookRent
-						&& <%=mvo.getMtrbookRtn() %> == mtrbookRtn){
+					if( <%=mvo.getMtrbookRent() %> == mtrbookRent && <%=mvo.getMtrbookRtn() %> == mtrbookRtn){
 						alert("이미 예약된 시간입니다.");
+						return;
+					}else if(<%=mvo.getMtrbookRent()%> < mtrbookRent && <%=mvo.getMtrbookRtn() %> > mtrbookRtn ){
+						alert("이미 예약된 시간입니다.");
+						return;
+					}else if(<%=mvo.getMtrbookRent() %> == mtrbookRent){
+						alert("이미 예약된 시작시간입니다.");
+						return;
+					}else if(<%=mvo.getMtrbookRtn() %> == mtrbookRtn){
+						alert("이미 예약된 종료시간입니다.");
 						return;
 					}
 				}
