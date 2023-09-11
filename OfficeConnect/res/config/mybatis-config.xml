@@ -6,7 +6,7 @@
 	<properties resource="db.properties" />
 	<typeAliases>
 		<typeAlias type="vo.EmpVO" alias="empvo" />
-		<typeAlias type="vo.MeetingVO" alias="meetingVO" />
+		<typeAlias type="vo.MeetingBookVO" alias="mtvo" />
 	</typeAliases>
 	<environments default="dev">
 		<environment id="dev">

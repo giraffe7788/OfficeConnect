@@ -1,13 +1,16 @@
 package meeting.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.exceptions.PersistenceException;
 import org.apache.ibatis.session.SqlSession;
 
 import util.MyBatisUtil;
-import vo.MeetingVO;
+import vo.MeetingBookVO;
+import vo.MeetingRoomVO;
 
 public class MeetingDaoImpl implements IMeetingDao{
 
@@ -19,20 +22,21 @@ public class MeetingDaoImpl implements IMeetingDao{
 		return dao;
 	}
 	
-	@Override
+	
 	/**
 	 * 회의실 리스트 가져오는 메서드
-	 * @param MeetingVO
+	 * @param MeetingBookVO
 	 * @return 
 	 */
-	public List<MeetingVO> selectAll() {
+	@Override
+	public List<MeetingBookVO> selectAll() {
 
-		List<MeetingVO> mtrList = new ArrayList<MeetingVO>();
+		List<MeetingBookVO> mtrList = new ArrayList<MeetingBookVO>();
 		
 		SqlSession session = MyBatisUtil.getInstance();
 		
 		try {
-			session.selectList("meetingroom.selectAll");
+			mtrList = session.selectList("meetingroom.selectAll");
 		} catch (PersistenceException ex) {
 			session.rollback();
 			ex.printStackTrace();
@@ -44,26 +48,24 @@ public class MeetingDaoImpl implements IMeetingDao{
 		return mtrList;
 	}
 	
+	
 	@Override
 	/**
 	 * 회의실 예약시키는 메서드
 	 * @param meetingVO
 	 * @return 성공여부
 	 */
-	public boolean bookMtr(MeetingVO meetingVO) {
+	public int bookMtr(MeetingBookVO meetingVO) {
 
 		int cnt = 0;
-		boolean bookCheck = false;
 		SqlSession session = MyBatisUtil.getInstance();
 		
 		try {
-			cnt = session.insert("meetingroom.bookMtr", meetingVO);
+			cnt = session.insert("meetingroom.insertBook", meetingVO);
 			if(cnt > 0) {
 				session.commit();
-				bookCheck = true;
-				
 			} else {
-				bookCheck = false;
+				session.rollback();
 			}
 			
 		} catch (PersistenceException ex) {
@@ -73,6 +75,22 @@ public class MeetingDaoImpl implements IMeetingDao{
 			session.close();
 		}
 		
-		return bookCheck;
+		return cnt;
+	}
+	
+	@Override
+	/**
+	 * 회의실의 이름과 인원을 가져와서 Map타입으로 만들어주고 반환
+	 * @return
+	 */
+	public List<MeetingRoomVO> getRoomList() {
+		
+		List<MeetingRoomVO> mbVO = new ArrayList<>();
+		
+		SqlSession session = MyBatisUtil.getInstance();
+		
+		mbVO = session.selectList("meetingroom.selectMeetingRoom");
+		System.out.println("roomMap : " + mbVO);
+		return mbVO;
 	}
 }

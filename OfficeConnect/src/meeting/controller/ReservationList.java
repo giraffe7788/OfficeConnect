@@ -2,6 +2,7 @@ package meeting.controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,9 +11,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import vo.MeetingRoomVO;
 import meeting.service.IMeetingService;
 import meeting.service.MeetingServiceImpl;
-import vo.MeetingVO;
+import vo.MeetingBookVO;
 
 @WebServlet("/list.do")
 public class ReservationList extends HttpServlet{
@@ -20,14 +22,20 @@ public class ReservationList extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		IMeetingService mtrService = MeetingServiceImpl.getInstance();
-		List<MeetingVO> mtrList = mtrService.selectAll();
+		IMeetingService service = MeetingServiceImpl.getInstance();
+		List<MeetingBookVO> mtrList = service.selectAll();
+		
+		req.setAttribute("empNo", req.getSession().getAttribute("empNo"));
 		
 		req.setAttribute("mtrList", mtrList);
+		System.out.println("empNo : " + req.getSession().getAttribute("empNo") + "  mtrList : " + mtrList);
 		
+		// 회의실 이름과 수용인원을 가져와서 Map에 저장
+		List<vo.MeetingRoomVO> roomList = service.getRoomList();
+		req.setAttribute("roomList", roomList);
+
 		RequestDispatcher disp = req.getRequestDispatcher("/meeting.jsp");
 		disp.forward(req, resp);
-		
 	}
 	
 	@Override
@@ -36,3 +44,4 @@ public class ReservationList extends HttpServlet{
 	}
 
 }
+

@@ -1,10 +1,13 @@
 package meeting.service;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.List;
 
 import meeting.dao.IMeetingDao;
 import meeting.dao.MeetingDaoImpl;
-import vo.MeetingVO;
+import vo.MeetingBookVO;
+import vo.MeetingRoomVO;
 
 public class MeetingServiceImpl implements IMeetingService {
 
@@ -25,16 +28,16 @@ public class MeetingServiceImpl implements IMeetingService {
 	
 	//IMeetingDao bookDao = MeetingDaoImpl.getInstance();
 	
-	@Override
 	/**
 	 * 회의실 리스트 가져오는 메서드
-	 * @param MeetingVO
+	 * @param MeetingBookVO
 	 * @return 
 	 */
-	public List<MeetingVO> selectAll() {
-		List<MeetingVO> mtrList = dao.selectAll();
-		return mtrList;
+	@Override
+	public List<MeetingBookVO> selectAll() {
+		return dao.selectAll();
 	}
+	
 	
 	@Override
 	/**
@@ -42,7 +45,16 @@ public class MeetingServiceImpl implements IMeetingService {
 	 * @param MeetingVO 등록할 데이터가 담겨진 meetingVO객체
 	 * @return 회의실 예약이 성공하면 1이상의 값이 반환되고, 실패하면 0이 반환됨.
 	 */
-	public boolean registMtr(MeetingVO meetingVO) {
+	public int registMtr(MeetingBookVO meetingVO) {
 		return dao.bookMtr(meetingVO);
+	}
+	
+	@Override
+	/**
+	 * 회의실의 이름과 인원을 가져와서 Map타입으로 만들어주고 반환
+	 * @return
+	 */
+	public List<MeetingRoomVO> getRoomList() {
+		return dao.getRoomList();
 	}
 }

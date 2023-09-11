@@ -2,6 +2,7 @@ package meeting.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,7 +16,7 @@ import com.google.gson.JsonObject;
 
 import meeting.service.IMeetingService;
 import meeting.service.MeetingServiceImpl;
-import vo.MeetingVO;
+import vo.MeetingBookVO;
 
 @WebServlet("/book.do")
 public class Book extends HttpServlet {
@@ -23,24 +24,33 @@ public class Book extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		int mtrNo = Integer.parseInt(req.getParameter("mtr_No"));
-		int mtrbookPer = Integer.parseInt(req.getParameter("mtrB_Per"));
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		int mtrNo = Integer.parseInt(req.getParameter("mtrNo"));
+		int mtrbookPer = Integer.parseInt(req.getParameter("mtrbookPer"));
+		String mtrbookRent = req.getParameter("mtrbookRent");
+		String mtrbookRtn = req.getParameter("mtrbookRtn");
+		String mtrbookCont = req.getParameter("mtrbookCont");
 		
-		IMeetingService mtrService = MeetingServiceImpl.getInstance();
-		MeetingVO mtVO = new MeetingVO();
-		mtVO.setMtrNo(mtrNo);
-		mtVO.setMtrbookPer(mtrbookPer);
+		// MeetingVO를 만들어서 db에 전달
+		IMeetingService service = MeetingServiceImpl.getInstance();
+		String empNo = (String)req.getSession().getAttribute("empNo");
+		MeetingBookVO mtVO = new MeetingBookVO(mtrNo, empNo, mtrbookRent, mtrbookRtn, mtrbookPer, mtrbookCont);
 		
-		if(mtrService.registMtr(mtVO)) {
-			System.out.println("예약 성공");
+		if(service.registMtr(mtVO) > 0) {
 			
+			System.out.println("예약 성공 :D");
+
 			JsonObject jsonObject = new JsonObject();
 			jsonObject.addProperty("isSuccess", "ok");
 			String jsonsStr = new Gson().toJson(jsonObject);
 			resp.setContentType("application/json");
 			resp.getWriter().write(jsonsStr);
+			
 		} else {
-			System.out.println("예약 실패");
+			System.out.println("예약 실패 :(");
 			
 			JsonObject jsonObject = new JsonObject();
 			jsonObject.addProperty("isSuccess", "fail");
