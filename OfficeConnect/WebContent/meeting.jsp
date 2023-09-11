@@ -127,18 +127,14 @@ document.addEventListener('DOMContentLoaded', function() {
 		locale: 'ko',
 	    timeZone: 'UTC',
 	    initialView: 'timeGridDay',
-// 	    headerToolbar: {
-// 	      left: 'prev,next today',
-// 	      center: 'title',
-// 	      right: 'timeGridWeek,timeGridDay'
-// 	    },
+	    headerToolbar: false,
 		allDaySlot: false,
 	    hiddenDays: [0, 6],
 	    slotDuration: '00:30',
 	    slotMinTime: '09:00',
 	    slotMaxTime: '18:00',
 		  events: [
-				  <%if (mtrList != null || mtrList.size() != 0) {
+				  <%if (mtrList.size() != 0) {
 				  		for (MeetingBookVO mv : mtrList) { %>
 						  {
 							title: '<%=mv.getEmpNo()%>',
@@ -147,12 +143,18 @@ document.addEventListener('DOMContentLoaded', function() {
 						  }
 				  <%
 					    }
+				    }else{
+				   %>
+				    	{
+				 		      title  : '개짜증',
+				 		      start  : '2023-09-11T09:00:00',
+				 		      end    : '2023-09-11T11:00:00'
+				 		}
+				    <%
 				    }
 				  %>
 // 		    {
 // 		      title  : '회의1',
-// 		      start  : '2023-09-14T09:00:00',
-// 		      end  	 : '2023-09-14T11:00:00'
 // 		    },
 // 		    {
 // 		      title  : '회의2',
