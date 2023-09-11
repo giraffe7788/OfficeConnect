@@ -1,13 +1,16 @@
 package meeting.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.exceptions.PersistenceException;
 import org.apache.ibatis.session.SqlSession;
 
 import util.MyBatisUtil;
-import vo.MeetingVO;
+import vo.MeetingBookVO;
+import vo.MeetingRoomVO;
 
 public class MeetingDaoImpl implements IMeetingDao{
 
@@ -22,13 +25,13 @@ public class MeetingDaoImpl implements IMeetingDao{
 	
 	/**
 	 * 회의실 리스트 가져오는 메서드
-	 * @param MeetingVO
+	 * @param MeetingBookVO
 	 * @return 
 	 */
 	@Override
-	public List<MeetingVO> selectAll() {
+	public List<MeetingBookVO> selectAll() {
 
-		List<MeetingVO> mtrList = new ArrayList<MeetingVO>();
+		List<MeetingBookVO> mtrList = new ArrayList<MeetingBookVO>();
 		
 		SqlSession session = MyBatisUtil.getInstance();
 		
@@ -52,7 +55,7 @@ public class MeetingDaoImpl implements IMeetingDao{
 	 * @param meetingVO
 	 * @return 성공여부
 	 */
-	public int bookMtr(MeetingVO meetingVO) {
+	public int bookMtr(MeetingBookVO meetingVO) {
 
 		int cnt = 0;
 		SqlSession session = MyBatisUtil.getInstance();
@@ -73,5 +76,21 @@ public class MeetingDaoImpl implements IMeetingDao{
 		}
 		
 		return cnt;
+	}
+	
+	@Override
+	/**
+	 * 회의실의 이름과 인원을 가져와서 Map타입으로 만들어주고 반환
+	 * @return
+	 */
+	public List<MeetingRoomVO> getRoomList() {
+		
+		List<MeetingRoomVO> mbVO = new ArrayList<>();
+		
+		SqlSession session = MyBatisUtil.getInstance();
+		
+		mbVO = session.selectList("meetingroom.selectMeetingRoom");
+		System.out.println("roomMap : " + mbVO);
+		return mbVO;
 	}
 }

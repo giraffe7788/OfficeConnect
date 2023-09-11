@@ -2,6 +2,7 @@ package meeting.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,28 +16,30 @@ import com.google.gson.JsonObject;
 
 import meeting.service.IMeetingService;
 import meeting.service.MeetingServiceImpl;
-import vo.MeetingVO;
+import vo.MeetingBookVO;
 
 @WebServlet("/book.do")
 public class Book extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+	}
 	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		int mtrNo = Integer.parseInt(req.getParameter("mtrNo"));
 		int mtrbookPer = Integer.parseInt(req.getParameter("mtrbookPer"));
 		int mtrbookRent = Integer.parseInt(req.getParameter("mtrbookRent"));
 		int mtrbookRtn = Integer.parseInt(req.getParameter("mtrbookRtn"));
 		String mtrbookCont = req.getParameter("mtrbookCont");
 		
-		IMeetingService mtrService = MeetingServiceImpl.getInstance();
+		// MeetingVO를 만들어서 db에 전달
+		IMeetingService service = MeetingServiceImpl.getInstance();
 		String empNo = (String)req.getSession().getAttribute("empNo");
-
-		MeetingVO mtVO = new MeetingVO(mtrNo, empNo, mtrbookRent, mtrbookRtn, mtrbookPer, mtrbookCont);
+		MeetingBookVO mtVO = new MeetingBookVO(mtrNo, empNo, mtrbookRent, mtrbookRtn, mtrbookPer, mtrbookCont);
 		
-		System.out.println(mtrNo + "|" + mtrbookPer + "|" + mtrbookRent + "|" + mtrbookRtn + "|" + mtrbookCont + "|" + empNo);
-		
-		if(mtrService.registMtr(mtVO) > 0) {
+		if(service.registMtr(mtVO) > 0) {
 			
 			System.out.println("예약 성공 :D");
 
@@ -58,10 +61,5 @@ public class Book extends HttpServlet {
 		
 		RequestDispatcher disp = req.getRequestDispatcher("/meeting.jsp");
 		disp.forward(req, resp);
-	}
-	
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		doGet(req, resp);
 	}
 }

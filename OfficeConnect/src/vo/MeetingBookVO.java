@@ -1,6 +1,6 @@
 package vo;
 
-public class MeetingVO {
+public class MeetingBookVO {
 
 	private int mtrbookNo;
 	private int mtrNo;
@@ -10,8 +10,8 @@ public class MeetingVO {
 	private int mtrbookPer;
 	private String mtrbookCont;
 
-	public MeetingVO() {}
-	public MeetingVO(int mtrNo, String empNo, int mtrbookRent, int mtrbookRtn, int mtrbookPer,
+	public MeetingBookVO() {}
+	public MeetingBookVO(int mtrNo, String empNo, int mtrbookRent, int mtrbookRtn, int mtrbookPer,
 			String mtrbookCont) {
 		super();
 		this.mtrNo = mtrNo;

@@ -1,23 +1,31 @@
 package meeting.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import vo.MeetingVO;
+import vo.MeetingBookVO;
+import vo.MeetingRoomVO;
 
 public interface IMeetingDao {
 	
 	/**
 	 * 회의실 리스트 가져오는 메서드
-	 * @param MeetingVO
+	 * @param MeetingBookVO
 	 * @return 
 	 */
-	public List<MeetingVO> selectAll();
+	public List<MeetingBookVO> selectAll();
 
 	/**
 	 * 회의실 예약시키는 메서드
-	 * @param MeetingVO
+	 * @param MeetingBookVO
 	 * @return 성공여부
 	 */
-	public int bookMtr(MeetingVO meetingVO);
+	public int bookMtr(MeetingBookVO meetingVO);
 
+	/**
+	 * 회의실의 이름과 인원을 가져와서 Map타입으로 만들어주고 반환
+	 * @return
+	 */
+	public List<MeetingRoomVO> getRoomList();
 }

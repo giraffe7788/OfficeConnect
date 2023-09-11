@@ -13,7 +13,7 @@ import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
 
 import emp.service.IEmpService;
 import vo.EmpVO;
-import vo.MeetingVO;
+import vo.MeetingBookVO;
 import emp.service.EmpServiceImpl;
 
 @WebServlet("/login.do")

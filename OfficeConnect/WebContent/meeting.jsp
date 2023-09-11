@@ -1,5 +1,7 @@
-<%@page import="vo.MeetingVO"%>
+<%@page import="vo.MeetingRoomVO"%>
+<%@page import="vo.MeetingBookVO"%>
 <%@page import="java.util.List"%>
+<%@page import="java.util.Map"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%-- <%@ page contentType="text/html; charset=UTF-8"%> --%>
 <%@ include file="./frame.jsp"%>
@@ -21,9 +23,9 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 	<%
- 		List<MeetingVO> mtrList = (List<MeetingVO>)request.getAttribute("mtrList");
-		//Map<> roomMap = ()request.getAttribute("roomMap");
-		String currentEmpNo = (String)request.getAttribute("empNo");
+		List<MeetingBookVO> mtrList = (List<MeetingBookVO>)request.getAttribute("mtrList");
+		List<MeetingRoomVO> roomList = (List<MeetingRoomVO>)request.getAttribute("roomList");
+			String currentEmpNo = (String)request.getAttribute("empNo");
 	%>
 	
 </head>
@@ -32,11 +34,11 @@
 		<h6 id="mtrh">회의실 예약</h6>
 		<div id="room">
 			<h3 id="mtrh2">회의실</h3>
-			<button type="button" class="btn" value="101">회의실1</button>
-			<button type="button" class="btn" value="105">회의실2</button>
-			<button type="button" class="btn" value="201">회의실3</button>
-			<button type="button" class="btn" value="301">회의실4</button>
-			<button type="button" class="btn" value="401">회의실5</button>
+			<button type="button" class="btn" value="1">회의실1</button>
+			<button type="button" class="btn" value="2">회의실2</button>
+			<button type="button" class="btn" value="3">회의실3</button>
+			<button type="button" class="btn" value="4">회의실4</button>
+			<button type="button" class="btn" value="5">회의실5</button>
 			
 			<div id="modal" class="modal fade" role="dialog">
 	  		  <div class="modal-dialog">
@@ -88,20 +90,6 @@
 					    <div class="form-group">
 					      <label class="control-label">회의 인원</label>
 					       <select id="mtrbookPer">
-					        	<option value="1">1
-					        	<option value="2">2
-					        	<option value="3">3
-					        	<option value="4">4
-					        	<option value="5">5
-					        	<option value="6">6				  
-					        	
-					        <%-- <%
-					        	for(int i = 0; i < roomMap.get("회의실번호"); i++){
-					        %>
-					        		<option value="<%=i%>"><%=i%>
-					        <%
-					        	}
-					        %> --%>
 							</select>
 					    </div>
 					    
@@ -191,38 +179,39 @@ $('.btn').on('click', function(){
 		backdrop : 'static'
 	});
 	
-
-
+	
+	// select 엘리먼트에 대한 참조를 가져옵니다.
+	var selectElement = document.getElementById("mtrbookPer");
+	while (selectElement.options.length > 0) {
+	    selectElement.remove(0);
+	}
+	
+	let index = 0;
+	if(mtrNo == 1){
+		index = <%=roomList.get(0).getMtrPer()%>;
+	} else if(mtrNo == 2){
+		index = <%=roomList.get(1).getMtrPer()%>;
+	} else if(mtrNo == 3){
+		index = <%=roomList.get(2).getMtrPer()%>;
+	} else if(mtrNo == 4){
+		index = <%=roomList.get(3).getMtrPer()%>;
+	} else if(mtrNo == 5){
+		index = <%=roomList.get(4).getMtrPer()%>;
+	}
+	
 	// 해당 회의실 제한 인원 적용	
-	$.ajax({
-		url: "book.do",
-		type: "post",
-		data: { 'mtrNo': mtrNo,
-			    'mtrbookPer' : mtrbookPer,
-			    'mtrbookRent' : mtrbookRent, 
-			    'mtrbookRtn' : mtrbookRtn, 
-			    'mtrbookCont' : mtrbookCont},
-			    
-		success: function(res){		
-						
-			<%
-				for(MeetingVO mvo : mtrList){
-			%>
-					if(<%=mvo.getMtrNo()%> == mtrNo){
-						for(let i = 1; i <= <%=mvo.getMtrbookPer()%>; i++){
-					        let option = `<option value="${i}">${i}`;
-					        $('#control-label').append(option);
-						}	
-					}
-			<%
-			}
-			%>
+	for(let j = 1; j <= index; j++){
 			
-		},
-		error: function(xhr, status, msg){
-			console.log("상태값: " + status + " Http 에러 메시지: " + msg);
+			// 새로운 option 엘리먼트를 생성합니다.
+			var option = document.createElement("option");
+
+			// option 엘리먼트의 속성을 설정합니다.
+			option.value = j;
+			option.text = j;
+
+			// select 엘리먼트에 새 option 엘리먼트를 추가합니다.
+			selectElement.appendChild(option);
 		}
-	});	
 });
 
 
@@ -264,22 +253,16 @@ $('.btn_book_out').on('click', function(){
 			}
 			
 			// 회원당 예약  한번만
-			<%
-			for(MeetingVO mvo : mtrList){
-				System.out.println(mvo.getEmpNo()+ "==" +currentEmpNo);
-			%>
+			<%for(MeetingBookVO mvo : mtrList){
+				System.out.println(mvo.getEmpNo()+ "==" +currentEmpNo);%>
 				if(<%=mvo.getEmpNo()%> == <%=currentEmpNo%>){
 					alert("회의실은 인당 1번만 예약 가능합니다");
 					return;
 				}
-			<%
-			}
-			%>
+			<%}%>
 			
 			// 예약된 시간엔 예약 안되게
-			<%
-			for(MeetingVO mvo : mtrList){
-			%>
+			<%for(MeetingBookVO mvo : mtrList){%>
 			// 같은 회의실이면 시작끝 시간 겹쳐도 안되고 시작 시간 겹쳐도 안되고 끝시간 겹쳐도 안되고 그 사이 시간도 겹치면 안됨
 				if( <%=mvo.getMtrNo() %> == mtrNo ){
 					if( <%=mvo.getMtrbookRent() %> == mtrbookRent && <%=mvo.getMtrbookRtn() %> == mtrbookRtn){

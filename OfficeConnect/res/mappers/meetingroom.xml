@@ -35,9 +35,11 @@
 		values(mtr_book_seq.nextval, #{mtrNo}, #{empNo}, #{mtrbookRent}, #{mtrbookRtn}, #{mtrbookPer}, #{mtrbookCont})
 	</insert>
 	
-	
+	<select id="selectMeetingRoom" resultType="vo.MeetingRoomVO">
+		select mtr_no as mtrNo, mtr_per as mtrPer from meetingroom
+	</select>
 
-	<resultMap type="vo.MeetingVO" id="mtrMap">
+	<resultMap type="vo.MeetingBookVO" id="mtrMap">
 		<result column="mtrbook_no" property="mtrbookNo"/>
 		<result column="mtr_no" property="mtrNo"/>
 		<result column="emp_no" property="empNo"/>
