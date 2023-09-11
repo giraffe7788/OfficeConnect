@@ -33,7 +33,7 @@ public class MeetingDaoImpl implements IMeetingDao{
 		SqlSession session = MyBatisUtil.getInstance();
 		
 		try {
-			session.selectList("meetingroom.selectAll");
+			mtrList = session.selectList("meetingroom.selectAll");
 		} catch (PersistenceException ex) {
 			session.rollback();
 			ex.printStackTrace();

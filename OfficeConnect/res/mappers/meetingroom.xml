@@ -32,8 +32,10 @@
 	
 	<insert id="insertBook" parameterType = "mtvo">
 		insert into mtrbook (mtrbook_no, mtr_no, emp_no, mtrbook_rent, mtrbook_return, mtrbook_per, mtrbook_cont)
-		values(mtr_book.nextval, #{mtrNo}, #{empNo}, #{mtrbookRent}, #{mtrbookRtn}, #{mtrbookPer}, #{mtrbookCont})
+		values(mtr_book_seq.nextval, #{mtrNo}, #{empNo}, #{mtrbookRent}, #{mtrbookRtn}, #{mtrbookPer}, #{mtrbookCont})
 	</insert>
+	
+	
 
 	<resultMap type="vo.MeetingVO" id="mtrMap">
 		<result column="mtrbook_no" property="mtrbookNo"/>
