@@ -25,7 +25,7 @@
 	<%
 		List<MeetingBookVO> mtrList = (List<MeetingBookVO>)request.getAttribute("mtrList");
 		List<MeetingRoomVO> roomList = (List<MeetingRoomVO>)request.getAttribute("roomList");
-			String currentEmpNo = (String)request.getAttribute("empNo");
+		String currentEmpNo = (String)request.getAttribute("empNo");
 	%>
 	
 </head>
@@ -230,9 +230,8 @@ $('.btn_book_out').on('click', function(){
 	
 	let mtrbookRent = $('[name="mtrbookRent"]').val();
 	let mtrbookRtn = $('[name="mtrbookRtn"]').val();
-	let mtrbookPer = $('[name="mtrbookPer"]').val();
+	let mtrbookPer = $('[id="mtrbookPer"]').val();
 	let mtrbookCont = $('[name="mtrbookCont"]').val();
-		 
 	
 	$.ajax({
 		url: "book.do",

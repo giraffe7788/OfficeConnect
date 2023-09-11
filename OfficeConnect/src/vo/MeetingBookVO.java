@@ -2,16 +2,16 @@ package vo;
 
 public class MeetingBookVO {
 
-	private int mtrbookNo;
 	private int mtrNo;
 	private String empNo;
-	private int mtrbookRent;
-	private int mtrbookRtn;
+	private String mtrbookRent;
+	private String mtrbookRtn;
 	private int mtrbookPer;
 	private String mtrbookCont;
 
 	public MeetingBookVO() {}
-	public MeetingBookVO(int mtrNo, String empNo, int mtrbookRent, int mtrbookRtn, int mtrbookPer,
+
+	public MeetingBookVO(int mtrNo, String empNo, String mtrbookRent, String mtrbookRtn, int mtrbookPer,
 			String mtrbookCont) {
 		super();
 		this.mtrNo = mtrNo;
@@ -20,14 +20,6 @@ public class MeetingBookVO {
 		this.mtrbookRtn = mtrbookRtn;
 		this.mtrbookPer = mtrbookPer;
 		this.mtrbookCont = mtrbookCont;
-	}
-
-	public int getMtrbookNo() {
-		return mtrbookNo;
-	}
-
-	public void setMtrbookNo(int mtrbookNo) {
-		this.mtrbookNo = mtrbookNo;
 	}
 
 	public int getMtrNo() {
@@ -46,21 +38,22 @@ public class MeetingBookVO {
 		this.empNo = empNo;
 	}
 
-	public int getMtrbookRent() {
+	public String getMtrbookRent() {
 		return mtrbookRent;
 	}
-	
-	public void setMtrbookRent(int mtrbookRent) {
+
+	public void setMtrbookRent(String mtrbookRent) {
 		this.mtrbookRent = mtrbookRent;
 	}
 
-	public int getMtrbookRtn() {
+	public String getMtrbookRtn() {
 		return mtrbookRtn;
 	}
 
-	public void setMtrbookRtn(int mtrbookRtn) {
+	public void setMtrbookRtn(String mtrbookRtn) {
 		this.mtrbookRtn = mtrbookRtn;
 	}
+
 	public int getMtrbookPer() {
 		return mtrbookPer;
 	}
@@ -75,6 +68,7 @@ public class MeetingBookVO {
 
 	public void setMtrbookCont(String mtrbookCont) {
 		this.mtrbookCont = mtrbookCont;
-	}
+	}  
+	
 	
 }
