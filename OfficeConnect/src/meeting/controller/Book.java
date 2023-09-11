@@ -37,6 +37,7 @@ public class Book extends HttpServlet {
 		System.out.println(mtrNo + "|" + mtrbookPer + "|" + mtrbookRent + "|" + mtrbookRtn + "|" + mtrbookCont + "|" + empNo);
 		
 		if(mtrService.registMtr(mtVO) > 0) {
+			
 			System.out.println("예약 성공 :D");
 
 			JsonObject jsonObject = new JsonObject();
@@ -44,6 +45,7 @@ public class Book extends HttpServlet {
 			String jsonsStr = new Gson().toJson(jsonObject);
 			resp.setContentType("application/json");
 			resp.getWriter().write(jsonsStr);
+			
 		} else {
 			System.out.println("예약 실패 :(");
 			
