@@ -27,6 +27,7 @@
  -->
  	<select id="selectAll" resultType="vo.MeetingVO" resultMap="mtrMap">
 	 	select * from mtrbook
+		where substr(to_char(mtrbook_rent), 6, 5) = substr(to_char(sysdate), 6, 5)
 	</select>
 
 	<resultMap type="vo.MeetingVO" id="mtrMap">

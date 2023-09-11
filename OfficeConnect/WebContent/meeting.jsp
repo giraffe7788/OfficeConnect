@@ -138,8 +138,20 @@ document.addEventListener('DOMContentLoaded', function() {
 	    slotDuration: '00:30',
 	    slotMinTime: '09:00',
 	    slotMaxTime: '18:00',
+	    allDay: false,
 // 	    events: '/api/demo-feeds/events.json'
 		  events: [
+				  <%if (mtrList != null || mtrList.size() != 0) {
+				  		for (MeetingVO mv : mtrList) { %>
+						  {
+							title: '<%=mv.getEmpNo()%>',
+							start: '<%=mv.getMtrbookRent()%>',
+							end: '<%=mv.getMtrbookRtn()%>'
+						  }
+				  <%
+					    }
+				    }
+				  %>
 // 		    {
 // 		      title  : '회의1',
 // 		      start  : '2023-09-14T09:00:00',
@@ -158,7 +170,6 @@ document.addEventListener('DOMContentLoaded', function() {
 // 		    }
 		  ]
 	  });
-
 	  calendar.render();
 	});
 // 	$('#calendar').fullCalendar('render');
