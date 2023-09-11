@@ -29,13 +29,13 @@ public class MeetingServiceImpl implements IMeetingService {
 	//IMeetingDao bookDao = MeetingDaoImpl.getInstance();
 	
 	/**
-	 * 회의실 리스트 가져오는 메서드
+	 * 회의실 예약 리스트 가져오는 메서드
 	 * @param MeetingBookVO
 	 * @return 
 	 */
 	@Override
-	public List<MeetingBookVO> selectAll() {
-		return dao.selectAll();
+	public List<MeetingBookVO> selectAllBook() {
+		return dao.selectAllBook();
 	}
 	
 	

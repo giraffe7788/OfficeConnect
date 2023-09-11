@@ -29,14 +29,14 @@ public class MeetingDaoImpl implements IMeetingDao{
 	 * @return 
 	 */
 	@Override
-	public List<MeetingBookVO> selectAll() {
+	public List<MeetingBookVO> selectAllBook() {
 
 		List<MeetingBookVO> mtrList = new ArrayList<MeetingBookVO>();
 		
 		SqlSession session = MyBatisUtil.getInstance();
 		
 		try {
-			mtrList = session.selectList("meetingroom.selectAll");
+			mtrList = session.selectList("meetingroom.selectAllBook");
 		} catch (PersistenceException ex) {
 			session.rollback();
 			ex.printStackTrace();
@@ -44,7 +44,7 @@ public class MeetingDaoImpl implements IMeetingDao{
 			session.close();
 		}
 		
-
+		System.out.println("mtrListDAO : " + mtrList);
 		return mtrList;
 	}
 	
@@ -80,7 +80,7 @@ public class MeetingDaoImpl implements IMeetingDao{
 	
 	@Override
 	/**
-	 * 회의실의 이름과 인원을 가져와서 Map타입으로 만들어주고 반환
+	 * 회의실의 이름과 인원을 가져와서 List타입안에 vo들 넣어주고 반환
 	 * @return
 	 */
 	public List<MeetingRoomVO> getRoomList() {

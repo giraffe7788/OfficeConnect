@@ -8,11 +8,11 @@ import vo.MeetingRoomVO;
 public interface IMeetingDao {
 	
 	/**
-	 * 회의실 리스트 가져오는 메서드
+	 * 회의실 예약 리스트 가져오는 메서드
 	 * @param MeetingBookVO
 	 * @return 
 	 */
-	public List<MeetingBookVO> selectAll();
+	public List<MeetingBookVO> selectAllBook();
 
 	/**
 	 * 회의실 예약시키는 메서드

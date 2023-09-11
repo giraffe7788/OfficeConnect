@@ -30,8 +30,8 @@ public class Book extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		int mtrNo = Integer.parseInt(req.getParameter("mtrNo"));
 		int mtrbookPer = Integer.parseInt(req.getParameter("mtrbookPer"));
-		String mtrbookRent = (String)(req.getParameter("mtrbookRent"));
-		String mtrbookRtn = (String)(req.getParameter("mtrbookRtn"));
+		int mtrbookRent = Integer.parseInt(req.getParameter("mtrbookRent"));
+		int mtrbookRtn = Integer.parseInt(req.getParameter("mtrbookRtn"));
 		String mtrbookCont = req.getParameter("mtrbookCont");
 		
 		System.out.println("mtrNo : " + mtrNo + " mtrbookPer : " + mtrbookPer + " mtrbookRent : " + mtrbookRent + " mtrbookRtn : " + mtrbookRtn + " mtrbookCont : " + mtrbookCont);
