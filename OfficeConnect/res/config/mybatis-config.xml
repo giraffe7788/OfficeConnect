@@ -6,6 +6,7 @@
 	<properties resource="db.properties" />
 	<typeAliases>
 		<typeAlias type="vo.EmpVO" alias="empvo" />
+		<typeAlias type="vo.MeetingBookVO" alias="mtvo" />
 	</typeAliases>
 	<environments default="dev">
 		<environment id="dev">
@@ -22,5 +23,6 @@
 	</environments>
 	<mappers>
 		<mapper resource="mappers/employee.xml" />
+		<mapper resource="mappers/meetingroom.xml" />
 	</mappers>
 </configuration>
