@@ -132,9 +132,6 @@
 	</div>
 
 <script>
-<<<<<<< HEAD
-let mtrNo = "";
-
 document.addEventListener('DOMContentLoaded', function() {
 	  var calendarEl = document.getElementById('calendar');
 
