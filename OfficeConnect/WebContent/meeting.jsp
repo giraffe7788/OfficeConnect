@@ -12,6 +12,11 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/frame.css">
 <link rel="stylesheet" href="css/meeting.css">
+
+<link href='fullcalendar/main.css' rel='stylesheet' />
+<script src='fullcalendar/main.js'></script>
+    
+    
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
@@ -101,51 +106,66 @@
 			<h3 id="mtrh3">예약현황</h3>
 			<button class="btn_book_in" type="button" id="res">나의 예약</button>
 			
-			<div id="tbl">
-				<table border="1">
-					<tr id="time">
-						<td>9</td>
-						<td>10</td>
-						<td>11</td>
-						<td>12</td>
-						<td>13</td>
-						<td>14</td>
-						<td>15</td>
-						<td>16</td>
-						<td>17</td>
-						
-					</tr>
-					
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-				</table>
-			</div>
+<!--     <div id='calendar'></div> -->
+    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div id="calendar" class="app-fullcalendar"></div>
+                            </div>
+                        </div>
+                    </div>
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "dc4641f860664c6e824b093274f50291"}'></script>
 		</div>
 	</div>
 
 <script>
 let mtrNo = "";
+
+document.addEventListener('DOMContentLoaded', function() {
+	  var calendarEl = document.getElementById('calendar');
+
+	  var calendar = new FullCalendar.Calendar(calendarEl, {
+		locale: 'ko',
+        lang: 'ko',
+	    timeZone: 'UTC',
+	    initialView: 'timeGridDay',
+// 	    headerToolbar: {
+// 	      left: 'prev,next today',
+// 	      center: 'title',
+// 	      right: 'timeGridWeek,timeGridDay'
+// 	    },
+	    hiddenDays: [0, 6],
+	    slotDuration: '00:30',
+	    slotMinTime: '09:00',
+	    slotMaxTime: '18:00',
+// 	    events: '/api/demo-feeds/events.json'
+		  events: [
+// 		    {
+// 		      title  : '회의1',
+// 		      start  : '2023-09-14T09:00:00',
+// 		      end  	 : '2023-09-14T11:00:00'
+// 		    },
+// 		    {
+// 		      title  : '회의2',
+// 		      start  : '2023-09-11T13:00:00',
+// 		      end    : '2023-09-11T14:00:00'
+// 		    },
+// 		    {
+// 		      title  : '회의3',
+// 		      start  : '2023-09-15T12:00:00',
+// 		      end    : '2023-09-15T14:00:00'
+// // 		      allDay : false // will make the time show
+// 		    }
+		  ]
+	  });
+
+	  calendar.render();
+	});
+// 	$('#calendar').fullCalendar('render');
+
+/*  */
+
+let rmNm = "";
 /*
 	나의예약 클릭 시 모달창 팝업-배경색 설정, 회의실 번호 뜨게
  */	

@@ -33,7 +33,7 @@ public class MeetingServiceImpl implements IMeetingService {
 	@Override
 	public List<MeetingVO> selectAll() {
 		List<MeetingVO> mtrList = dao.selectAll();
-		return null;
+		return mtrList;
 	}
 	
 	

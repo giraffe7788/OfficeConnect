@@ -44,4 +44,8 @@
 		<result column="mtrbook_per" property="mtrbookPer"/>
 		<result column="mtrbook_cont" property="mtrbookCont"/>
 	</resultMap>
+
+	<insert id="bookMtr">
+	</insert>
+
 </mapper>

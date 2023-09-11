@@ -9,7 +9,7 @@ public class MeetingVO {
 	private int mtrbookRtn;
 	private int mtrbookPer;
 	private String mtrbookCont;
-	
+
 	public MeetingVO() {}
 	public MeetingVO(int mtrNo, String empNo, int mtrbookRent, int mtrbookRtn, int mtrbookPer,
 			String mtrbookCont) {
@@ -49,12 +49,15 @@ public class MeetingVO {
 	public int getMtrbookRent() {
 		return mtrbookRent;
 	}
+	
 	public void setMtrbookRent(int mtrbookRent) {
 		this.mtrbookRent = mtrbookRent;
 	}
+
 	public int getMtrbookRtn() {
 		return mtrbookRtn;
 	}
+
 	public void setMtrbookRtn(int mtrbookRtn) {
 		this.mtrbookRtn = mtrbookRtn;
 	}
