@@ -243,7 +243,7 @@ if (isEmpty == false) {%>
 		// 예약 취소 확정하기
 		$('#closeModal .confirm').on('click', function() {
 			// DB 회의실 예약 정보 삭제(취소? -> 확인)
-
+			
 		});
 	</script>
 	<%@ include file="./views/common.jsp"%>
