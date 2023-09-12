@@ -1,3 +1,6 @@
+<%@page import="vo.MeetingRoomVO"%>
+<%@page import="vo.MeetingBookVO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -22,6 +25,12 @@
 <script src="../vendor/jquery/jquery.min.js"></script>
 <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+<%
+	List<MeetingBookVO> mtrList = (List<MeetingBookVO>) request.getAttribute("mtrList");
+List<MeetingRoomVO> roomList = (List<MeetingRoomVO>) request.getAttribute("roomList");
+String currentEmpNo = (String) request.getAttribute("empNo");
+%>
+
 </head>
 
 <body id="page-top">
@@ -41,7 +50,7 @@
 				<!-- 헤더 include -->
 				<%@ include file="./header.jsp"%>
 
-								<!-- 페이지 Content 시작 -->
+				<!-- 페이지 Content 시작 -->
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
@@ -53,10 +62,9 @@
 					<div class="card shadow mb-4"
 						style="width: 70%; margin: auto; margin-top: 50px">
 						<div class="card-body">
-
 							<div class="row"
 								style="display: flex; justify-content: space-around; height: 420px; align-items: center;">
-								<div class="col-lg-2"
+								<!-- <div class="col-lg-2"
 									style="text-align: center; display: flex; flex-direction: column; margin: auto;">
 									<button type="button" class="btn btn-primary"
 										style="display: block;">회의1</button>
@@ -70,7 +78,7 @@
 										style="display: block;">회의3</button>
 									<br>
 
-								</div>
+								</div> -->
 
 								<div class="col-lg-9" style="height: 70%">
 
@@ -105,8 +113,8 @@
 									</div>
 								</div>
 							</div>
-							
-							<button type="button" class="btn btn-primary"
+
+							<button type="button" class="btn btn-primary btn-close"
 								style="display: block; width: 100px; margin-bottom: 18px; margin-left: 862px;">취소</button>
 						</div>
 
@@ -123,77 +131,104 @@
 		</div>
 		<!-- 페이지 Wrapper 끝 -->
 
-				</div>
-				<!-- 메인 Content 끝 -->
+	</div>
+	<!-- 메인 Content 끝 -->
 
+	</div>
+	<!-- Content Wrapper 끝 -->
+
+	</div>
+	<!-- 페이지 Wrapper 끝 -->
+
+	<div id="closeModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">회의실 취소</h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body">
+					<span>예약을 취소하시겠습니까?</span>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default">취소</button>
+					<button type="button" class="btn btn-default">확인</button>
+				</div>
 			</div>
-			<!-- Content Wrapper 끝 -->
 
 		</div>
-		<!-- 페이지 Wrapper 끝 -->
+	</div>
 
-		<!-- 공통속성 설정 include -->
-		<script>
-			//jquery방식으로 modal띄우기
-			$('#room1').on('click', function() {
-				$('#myModal').modal({
-					backdrop : 'static'
-				});
+	<!-- 공통속성 설정 include -->
+	<script>
+		//jquery방식으로 modal띄우기
+		/* $('#room1').on('click', function() {
+			$('#myModal').modal({
+				backdrop : 'static'
 			});
+		});
 
-			$('.modal-footer button').on('click', function() {
-				$('#myModal').modal('hide');
+		$('.modal-footer button').on('click', function() {
+			$('#myModal').modal('hide');
+		});
+
+		$('#room2').on('click', function() {
+			$('#myModal').modal({
+				backdrop : 'static'
 			});
+		});
 
-			$('#room2').on('click', function() {
-				$('#myModal').modal({
-					backdrop : 'static'
-				});
+		$('.modal-footer button').on('click', function() {
+			$('#myModal').modal('hide');
+		});
+
+		$('#room3').on('click', function() {
+			$('#myModal').modal({
+				backdrop : 'static'
 			});
+		});
 
-			$('.modal-footer button').on('click', function() {
-				$('#myModal').modal('hide');
+		$('.modal-footer button').on('click', function() {
+			$('#myModal').modal('hide');
+		});
+
+		$('#room4').on('click', function() {
+			$('#myModal').modal({
+				backdrop : 'static'
 			});
+		});
 
-			$('#room3').on('click', function() {
-				$('#myModal').modal({
-					backdrop : 'static'
-				});
+		$('.modal-footer button').on('click', function() {
+			$('#myModal').modal('hide');
+		});
+
+		$('#room5').on('click', function() {
+			$('#myModal').modal({
+				backdrop : 'static'
 			});
+		});
 
-			$('.modal-footer button').on('click', function() {
-				$('#myModal').modal('hide');
+		$('#myRoom').on('click', function() {
+			$('#myModal').modal({
+				backdrop : 'static'
 			});
+		});
 
-			$('#room4').on('click', function() {
-				$('#myModal').modal({
-					backdrop : 'static'
-				});
+		$('.modal-footer button').on('click', function() {
+			$('#myModal').modal('hide');
+		}); */
+
+		$('.btn-close').on('click', function() {
+			$('#closeModal').modal({
+				backdrop : 'static'
 			});
+		});
+	</script>
+	<%@ include file="./common.jsp"%>
 
-			$('.modal-footer button').on('click', function() {
-				$('#myModal').modal('hide');
-			});
-
-			$('#room5').on('click', function() {
-				$('#myModal').modal({
-					backdrop : 'static'
-				});
-			});
-
-			$('#myRoom').on('click', function() {
-				$('#myModal').modal({
-					backdrop : 'static'
-				});
-			});
-
-			$('.modal-footer button').on('click', function() {
-				$('#myModal').modal('hide');
-			});
-		</script>
-		<%@ include file="./common.jsp"%>
-
-		<!-- 페이지 검색/조회 플러그인 -->
+	<!-- 페이지 검색/조회 플러그인 -->
 </body>
 
 </html>

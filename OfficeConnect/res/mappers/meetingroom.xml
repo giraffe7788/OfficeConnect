@@ -30,14 +30,19 @@
        select * from mtrbook
     </select>
    
+   <select id="selectMeetingRoom" resultType="vo.MeetingRoomVO">
+      select mtr_no as mtrNo, mtr_per as mtrPer from meetingroom
+   </select>
+   
    <insert id="insertBook" parameterType = "mtvo">
       insert into mtrbook (mtrbook_no, mtr_no, emp_no, mtrbook_rent, mtrbook_return, mtrbook_per, mtrbook_cont)
       values(mtr_book_seq.nextval, #{mtrNo}, #{empNo}, #{mtrbookRent}, #{mtrbookRtn}, #{mtrbookPer}, #{mtrbookCont})
    </insert>
    
-   <select id="selectMeetingRoom" resultType="vo.MeetingRoomVO">
-      select mtr_no as mtrNo, mtr_per as mtrPer from meetingroom
-   </select>
+   <delete id="deleteBook" parameterType="String">
+	  delete from mtrbook where emp_no = #{empNo}
+   </delete>
+   
 
    <resultMap type="vo.MeetingBookVO" id="mtrMap">
       <result column="mtrbook_no" property="mtrbookNo"/>
@@ -49,7 +54,5 @@
       <result column="mtrbook_cont" property="mtrbookCont"/>
    </resultMap>
 
-   <insert id="bookMtr">
-   </insert>
 
 </mapper>
