@@ -13,7 +13,7 @@ import meeting.service.IMeetingService;
 import meeting.service.MeetingServiceImpl;
 
 @WebServlet("/deleteBook.do")
-public class deleteBook extends HttpServlet{
+public class DeleteBook extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
