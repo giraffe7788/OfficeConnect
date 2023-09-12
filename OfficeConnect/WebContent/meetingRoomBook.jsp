@@ -28,7 +28,7 @@
 
 <%
 	List<MeetingBookVO> mtrList = (List<MeetingBookVO>) request.getAttribute("mtrList");
-String currentEmpNo = (String) request.getAttribute("empNo");
+	String currentEmpNo = (String) request.getAttribute("empNo");
 %>
 
 </head>
@@ -164,15 +164,13 @@ String currentEmpNo = (String) request.getAttribute("empNo");
 	</div>
 
 	<script>
-		$(document)
-				.ready(
-						function() {
-	<%String msg = (String) request.getAttribute("msg");
-if (msg != null && msg == "ok") {%>
-		alert("예약이 취소되었습니다");
-	<%} else if (msg != null && msg == "fail") {%>
-		alert("예약 취소중 오류가 발생했습니다");
-	<%}
+$(document).ready(function() {
+		<%String msg = (String) request.getAttribute("msg");
+		if (msg != null && msg == "ok") {%>
+			alert("예약이 취소되었습니다");
+		<%} else if (msg != null && msg == "fail") {%>
+			alert("예약 취소중 오류가 발생했습니다");
+		<%}
 
 // 나의 회의실 예약 화면 들어오면 로그인 정보 따라서 예약한 회의실 정보
 boolean isEmpty = false;
@@ -243,6 +241,33 @@ if (isEmpty == false) {%>
 		// 예약 취소 확정하기
 		$('#closeModal .confirm').on('click', function() {
 			// DB 회의실 예약 정보 삭제(취소? -> 확인)
+			// 서버로 요청을 보낼 데이터를 생성합니다.
+	        var empNo = '값을 설정하세요'; // empNo 값을 설정해야 합니다.
+
+	        // Ajax 요청을 보냅니다.
+	        $.ajax({
+	            type: 'GET', // 요청 방식 설정 (GET 또는 POST)
+	            url: '/deleteBook.do', // 서블릿 URL 설정
+	            data: { empNo: empNo }, // empNo를 전달합니다.
+	            success: function(msg) {
+	                // 서버 응답을 처리합니다.
+	                if (msg === 'ok') {
+	                    // 삭제가 성공한 경우
+	                    alert('예약 취소 되었습니다.');
+	                    // 모달을 닫습니다.
+	                    $('#closeModal').modal('hide');
+	                    // 페이지를 새로고침하거나 필요한 작업을 수행하세요.
+	                    location.reload(); // 페이지 새로고침 예시
+	                } else {
+	                    // 삭제가 실패한 경우
+	                    alert('예약 취소에 실패했습니다.');
+	                }
+	            },
+	            error: function() {
+	                // 요청 실패 시 처리
+	                alert('요청 실패');
+	            }
+	        });
 
 		});
 	</script>
