@@ -1,3 +1,4 @@
+<%@page import="javax.swing.text.html.CSS"%>
 <%@page import="vo.MeetingRoomVO"%>
 <%@page import="vo.MeetingBookVO"%>
 <%@page import="java.util.List"%>
@@ -27,7 +28,7 @@
 
 <%
 	List<MeetingBookVO> mtrList = (List<MeetingBookVO>) request.getAttribute("mtrList");
-	String currentEmpNo = (String) request.getAttribute("empNo");
+String currentEmpNo = (String) request.getAttribute("empNo");
 %>
 
 </head>
@@ -83,6 +84,9 @@
 									<div class="table-responsive"
 										style="position: relative; display: flex;">
 										<div class="table-wrapper" style="width: 100%;">
+											<div id="emptyData"
+												style="display: none; text-align: center; margin-top: 18%; font-size: 2em">현재
+												예약중인 회의실이 없습니다</div>
 											<table class="table table-bordered" id="dataTable"
 												width="100%" cellspacing="0">
 												<tr>
@@ -90,15 +94,15 @@
 												</tr>
 												<tr>
 													<th style="text-align: center; width: 20%;">회의실</th>
-													<td id="thMtr">!!!!</td>
+													<td id="thMtr"></td>
 												</tr>
 												<tr>
 													<th style="text-align: center;">회의시간</th>
-													<td id="mtTime" >111111</td>
+													<td id="mtTime"></td>
 												</tr>
 												<tr>
 													<th style="text-align: center;">회의인원</th>
-													<td id="mtPer" >6</td>
+													<td id="mtPer"></td>
 												</tr>
 												<tr>
 													<th style="text-align: center;">회의내용</th>
@@ -159,116 +163,85 @@
 		</div>
 	</div>
 
-	<!-- 공통속성 설정 include -->
 	<script>
-		// 나의 회의실 예약 화면 들어오면 로그인 정보 따라서 예약한 회의실 정보
-		$(document).ready(function(){			
-		<%
-			// 로그인한 사원 확인
-			for(MeetingBookVO mvo : mtrList){
-         %>
-	            if(<%=mvo.getMtrNo()%> == <%=currentEmpNo%>){
-	               // 예약한 회의실 번호 출력
-	            	$('#thMtr').empty();			
-	    			let cont1 = "";
-	    			cont1 += <%=mvo.getMtrNo()%>;		
-	    			$('#thMtr').text(cont1);
-	    			
-	    			// 예약한 회의실 시간 출력
-	            	$('#mtTime').empty();			
-	    			let cont2 = "";
-	    			cont2 += <%=mvo.getMtrbookRent()%>;
-	    			cont2 += ":00 ~ ";
-	    			cont2 += <%=mvo.getMtrbookRtn()%>;
-	    			cont2 += ":00";
-	    			$('#mtTime').text(cont2);
-	    			
-	    			// 예약한 회의실 인원 출력
-	            	$('#mtPer').empty();			
-	    			let cont3 = "";
-	    			cont3 += <%=mvo.getMtrNo()%>;		
-	    			$('#mtPer').text(cont3);
-	    			
-	    			// 예약한 회의실 내용 출력
-	            	$('#mtCont').empty();			
-	    			let cont4 = "";
-	    			cont4 += <%=mvo.getMtrNo()%>;		
-	    			$('#mtCont').text(cont4);
-	            }
-         <%
-         	}
-	      %>
-		});
-	
-		//jquery방식으로 modal띄우기
-		/* $('#room1').on('click', function() {
-			$('#myModal').modal({
-				backdrop : 'static'
-			});
-		});
+		$(document)
+				.ready(
+						function() {
+	<%String msg = (String) request.getAttribute("msg");
+if (msg != null && msg=="ok") {%>alert("예약이 취소되었습니다");<%} else if (msg != null && msg=="fail") {%>
+			alert("예약 취소중 오류가 발생했습니다");
+	<%}
 
-		$('.modal-footer button').on('click', function() {
-			$('#myModal').modal('hide');
-		});
+	// 나의 회의실 예약 화면 들어오면 로그인 정보 따라서 예약한 회의실 정보
+	boolean isEmpty = false;
 
-		$('#room2').on('click', function() {
-			$('#myModal').modal({
-				backdrop : 'static'
-			});
-		});
+	for (MeetingBookVO mvo : mtrList) {%>
+		if (
+	<%=mvo.getMtrNo()%>
+		==
+	<%=currentEmpNo%>
+		) {
+	<%isEmpty = true;%>
+		// 예약한 회의실 번호 출력
+								$('#thMtr').empty();
+								let cont1 = "";
+								cont1 +=
+	<%=mvo.getMtrNo()%>
+		;
+								$('#thMtr').text(cont1);
 
-		$('.modal-footer button').on('click', function() {
-			$('#myModal').modal('hide');
-		});
+								// 예약한 회의실 시간 출력
+								$('#mtTime').empty();
+								let cont2 = "";
+								cont2 +=
+	<%=mvo.getMtrbookRent()%>
+		;
+								cont2 += ":00 ~ ";
+								cont2 +=
+	<%=mvo.getMtrbookRtn()%>
+		;
+								cont2 += ":00";
+								$('#mtTime').text(cont2);
 
-		$('#room3').on('click', function() {
-			$('#myModal').modal({
-				backdrop : 'static'
-			});
+								// 예약한 회의실 인원 출력
+								$('#mtPer').empty();
+								let cont3 = "";
+								cont3 +=
+	<%=mvo.getMtrNo()%>
+		;
+								$('#mtPer').text(cont3);
+
+								// 예약한 회의실 내용 출력
+								$('#mtCont').empty();
+								let cont4 = "";
+								cont4 +=
+	<%=mvo.getMtrNo()%>
+		;
+								$('#mtCont').text(cont4);
+							}
+	<%}
+if (isEmpty == false) {%>
+		$('#dataTable').css('display', 'none');
+							$('#emptyData').css('display', 'block');
+	<%}%>
 		});
 
-		$('.modal-footer button').on('click', function() {
-			$('#myModal').modal('hide');
-		});
-
-		$('#room4').on('click', function() {
-			$('#myModal').modal({
-				backdrop : 'static'
-			});
-		});
-
-		$('.modal-footer button').on('click', function() {
-			$('#myModal').modal('hide');
-		});
-
-		$('#room5').on('click', function() {
-			$('#myModal').modal({
-				backdrop : 'static'
-			});
-		});
-
-		$('#myRoom').on('click', function() {
-			$('#myModal').modal({
-				backdrop : 'static'
-			});
-		});
-
-		$('.modal-footer button').on('click', function() {
-			$('#myModal').modal('hide');
-		}); */
-
+		// 예약 취소 모달창
 		$('.btn-close').on('click', function() {
 			$('#closeModal').modal({
 				backdrop : 'static'
 			});
 		});
-		
-		$('#closeModal .cancel').on('click', function(){
+
+		// 예약 취소 모달창 닫기
+		$('#closeModal .cancel').on('click', function() {
 			$('#closeModal').modal('hide');
 		});
-		
-		$('#closeModal .confirm').on('click', function(){
+
+		// 예약 취소 확정하기
+		$('#closeModal .confirm').on('click', function() {
 			// DB 회의실 예약 정보 삭제(취소? -> 확인)
+
 		});
 	</script>
 	<%@ include file="./views/common.jsp"%>

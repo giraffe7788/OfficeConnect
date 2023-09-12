@@ -26,4 +26,11 @@ public interface IMeetingDao {
 	 * @return
 	 */
 	public List<MeetingRoomVO> getRoomList();
+
+	/**
+	 * 회의실 예약 취소를 위한 메서드
+	 * @param empNo
+	 * @return
+	 */
+	public int deleteBook(String empNo);
 }
