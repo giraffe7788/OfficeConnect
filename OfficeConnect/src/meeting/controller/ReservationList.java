@@ -34,7 +34,7 @@ public class ReservationList extends HttpServlet{
 		List<vo.MeetingRoomVO> roomList = service.getRoomList();
 		req.setAttribute("roomList", roomList);
 
-		RequestDispatcher disp = req.getRequestDispatcher("/meeting.jsp");
+		RequestDispatcher disp = req.getRequestDispatcher("/meetingRoom.jsp");
 		disp.forward(req, resp);
 	}
 	

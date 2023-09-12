@@ -27,15 +27,7 @@
  -->
 
     <select id="selectAllBook" resultMap="mtrMap">
-       select mtrbook_no as mtrbookNo,
-		   mtr_no as mtrNo,
-		   emp_no as empNo,
-		   (TO_DATE(mtrbook_rent, 'HH')) as mtrbookRent,
-		  (TO_DATE(mtrbook_return, 'HH')) as mtrbookRtn,
-		   mtrbook_per as mtrbookPer,
-		   mtrbook_cont as mtrbookCont
-		from mtrbook
-<!-- 			select * from mtrbook -->
+			select * from mtrbook
     </select>
    
    <insert id="insertBook" parameterType = "mtvo">

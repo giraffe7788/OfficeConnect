@@ -15,12 +15,12 @@
 <title>나의 회의실 예약</title>
 
 <!-- 아이콘 설정 -->
-<link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
+<link href="./vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
 	type="text/css">
 <!-- css 설정 -->
-<link href="../css/sb-admin-2.min.css" rel="stylesheet">
-<script src="../vendor/jquery/jquery.min.js"></script>
-<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<link href="./css/sb-admin-2.min.css" rel="stylesheet">
+<script src="./vendor/jquery/jquery.min.js"></script>
+<script src="./vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </head>
 
