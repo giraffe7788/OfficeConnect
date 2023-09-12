@@ -77,7 +77,7 @@
 									<button type="button" class="btn btn-primary" id="room5"
 										style="display: block;">회의실5</button>
 									<br>
-									<button type="button" class="btn btn-success" id="myRoom" onClick="window.location.href='meetingRoomBook.jsp'"
+									<button type="button" class="btn btn-success" id="myRoom" onClick="window.location.href='/MeetingRoom/MyBook.do'"
 										style="display: block;">나의 예약</button>
 									<br>
 

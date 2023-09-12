@@ -257,7 +257,9 @@ $('.btn_book_out').on('click', function(){
                alert("회의실은 인당 1번만 예약 가능합니다");
                return;
             }
-         <%}%>
+         <%
+         }
+         %>
          
          // 예약된 시간엔 예약 안되게
          <%for(MeetingBookVO mvo : mtrList){%>
