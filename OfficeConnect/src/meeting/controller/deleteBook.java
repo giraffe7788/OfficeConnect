@@ -30,7 +30,7 @@ public class deleteBook extends HttpServlet{
 		}
 		
 		req.setAttribute("msg", msg);
-		req.getRequestDispatcher(req.getContextPath() + "/MyBook.do").forward(req, resp);;
+		req.getRequestDispatcher(req.getContextPath() + "/MyBook.do").forward(req, resp);
 	}
 
 	@Override

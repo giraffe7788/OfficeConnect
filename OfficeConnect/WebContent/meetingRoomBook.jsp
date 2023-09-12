@@ -168,14 +168,16 @@ String currentEmpNo = (String) request.getAttribute("empNo");
 				.ready(
 						function() {
 	<%String msg = (String) request.getAttribute("msg");
-if (msg != null && msg=="ok") {%>alert("예약이 취소되었습니다");<%} else if (msg != null && msg=="fail") {%>
-			alert("예약 취소중 오류가 발생했습니다");
+if (msg != null && msg == "ok") {%>
+		alert("예약이 취소되었습니다");
+	<%} else if (msg != null && msg == "fail") {%>
+		alert("예약 취소중 오류가 발생했습니다");
 	<%}
 
-	// 나의 회의실 예약 화면 들어오면 로그인 정보 따라서 예약한 회의실 정보
-	boolean isEmpty = false;
+// 나의 회의실 예약 화면 들어오면 로그인 정보 따라서 예약한 회의실 정보
+boolean isEmpty = false;
 
-	for (MeetingBookVO mvo : mtrList) {%>
+for (MeetingBookVO mvo : mtrList) {%>
 		if (
 	<%=mvo.getMtrNo()%>
 		==
