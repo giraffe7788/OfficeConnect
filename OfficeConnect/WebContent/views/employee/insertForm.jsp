@@ -9,7 +9,7 @@
 <body>
 <h3>사원 등록</h3>
 	<!-- 폼 태그 -->
-	<form action="join.do" method="post" enctype="multipart/form-data">
+	<form action="../join/join.do" method="post" enctype="multipart/form-data">
 		<table>
 			<tr>
 <!-- 				<td>사번 :</td> -->

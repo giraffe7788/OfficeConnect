@@ -9,14 +9,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import emp.comm.service.AtchFileServiceImpl;
-import emp.comm.service.IAtchFileService;
-import emp.comm.vo.AtchFileVO;
 import emp.service.EmpServiceImpl;
 import emp.service.IEmpService;
+import img.service.AtchFileServiceImpl;
+import img.service.IAtchFileService;
+import img.vo.AtchFileVO;
 import vo.EmpVO;
 
-@WebServlet("/detail.do")// 1. 컨트롤러 시작 detail.do 호출
+@WebServlet("/join/detail.do")// 1. 컨트롤러 시작 detail.do 호출
 public class DetailEmployeeController extends HttpServlet {
 
 	@Override

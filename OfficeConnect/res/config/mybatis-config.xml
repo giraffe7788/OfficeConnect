@@ -13,6 +13,7 @@
 	<typeAliases>
 		<typeAlias type="vo.EmpVO" alias="empvo" />
 		<typeAlias type="emp.comm.vo.AtchFileVO" alias="fileVO"/>
+		<typeAlias type="vo.MeetingBookVO" alias="mtvo" />
 	</typeAliases>
 	
 	<environments default="dev">
@@ -32,5 +33,6 @@
 	<mappers>
 		<mapper resource="mappers/employee.xml" />
 		<mapper resource="mappers/atchFile.xml"/>
+		<mapper resource="mappers/meetingroom.xml" />
 	</mappers>
 </configuration>

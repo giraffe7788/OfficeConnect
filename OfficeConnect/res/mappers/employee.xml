@@ -25,14 +25,14 @@
 		(#{empNo},#{imgPath},#{imgExtin},#{orignFileName})
 	</insert>
 	
-	<insert id="updateFile" parameterType="fileVO">
+	<update id="updateFile" parameterType="fileVO">
 		update image
 		set emp_no = #{empNo},
 			img_path = #{imgPath},
 			img_extin = #{imgExtin},
 			orign_file_name = #{orignFileName}
 			where emp_no = #{empNo}
-	</insert>
+	</update>
 	
 	<update id="updateEmployee" parameterType="empvo">
 		update employee

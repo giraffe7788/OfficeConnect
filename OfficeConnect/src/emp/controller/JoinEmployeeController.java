@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import emp.comm.MailUtil;
-import emp.comm.service.AtchFileServiceImpl;
-import emp.comm.service.IAtchFileService;
-import emp.comm.vo.AtchFileVO;
 import emp.service.EmpServiceImpl;
 import emp.service.IEmpService;
+import img.service.AtchFileServiceImpl;
+import img.service.IAtchFileService;
+import img.vo.AtchFileVO;
+import util.MailUtil;
 import vo.EmpVO;
 
 @MultipartConfig
-@WebServlet("/join.do")
+@WebServlet("/join/join.do")
 public class JoinEmployeeController extends HttpServlet {
 
 	@Override
@@ -68,7 +68,7 @@ public class JoinEmployeeController extends HttpServlet {
 		
 		if(atchFileVO != null) {
 			empVO.setEmpNo(atchFileVO.getEmpNo());
-		    empVO.setImgExtin(atchFileVO.getImgExtin()); // 이미지 확장자 저장
+		    empVO.setImgExtin(atchFileVO.getImgExtin()); // 파일명 저장
 		}
 		
 		int cnt = empService.registEmployee(empVO);
@@ -82,14 +82,14 @@ public class JoinEmployeeController extends HttpServlet {
 			msg = "성공";
 
 			MailUtil sendMail = new MailUtil();
-			sendMail.sendMail("임시 비밀번호가 발급되었습니다", "임시비밀번호 : "+ empPw , empEmail);
+			sendMail.sendMail("임시 비밀번호가 발급되었습니다", "사번 : " + empVO.getEmpNo() + "<br>임시 비밀번호 : "+ empPw, empEmail);
 		} else {
 			msg = "실패";
 		}
 		HttpSession session = req.getSession();
 		session.setAttribute("msg", msg);
 		resp.setCharacterEncoding("UTF-8");
-		resp.sendRedirect(req.getContextPath() + "/list.do");
+		resp.sendRedirect(req.getContextPath() + "/join/list.do");
 
 	}
 }

@@ -2,7 +2,7 @@ package emp.dao;
 
 import java.util.List;
 
-import emp.comm.vo.AtchFileVO;
+import img.vo.AtchFileVO;
 import vo.EmpVO;
 
 public interface IEmpDao {
@@ -69,8 +69,19 @@ public interface IEmpDao {
 	public List<EmpVO> searchEmployee(EmpVO ev);
 	
 	
+	/**
+	 * 파일을 삽입하기 위한 메서드
+	 * @param 삽입할 파일 담은 atchFileVO 객체
+	 * @return 상비한 파일의 정보를 담은 atchFileVO를 return
+	 */
 	public int insertFile(AtchFileVO atchFileVO);
 	
+	
+	/**
+	 * 파일을 수정하기 위한 메서드
+	 * @param 수정할 파일 담은 atchFileVO 객체
+	 * @return 수정한 파일의 정보를 담은 atchFileVO를 return
+	 */
 	public int updateFile(AtchFileVO atchFileVO);
 
 

@@ -14,7 +14,7 @@ import emp.service.EmpServiceImpl;
 import emp.service.IEmpService;
 import vo.EmpVO;
 
-@WebServlet("/delete.do")
+@WebServlet("/join/delete.do")
 public class DeleteEmployeeController extends HttpServlet {
 	
 	@Override
@@ -38,7 +38,7 @@ public class DeleteEmployeeController extends HttpServlet {
 		session.setAttribute("msg", msg);
 		
 		resp.setCharacterEncoding("UTF-8");
-		resp.sendRedirect(req.getContextPath() + "/list.do");
+		resp.sendRedirect(req.getContextPath() + "/join/list.do");
 		
 		
 	}

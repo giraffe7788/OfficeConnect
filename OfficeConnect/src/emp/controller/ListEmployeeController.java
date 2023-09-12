@@ -14,7 +14,7 @@ import emp.service.EmpServiceImpl;
 import emp.service.IEmpService;
 import vo.EmpVO;
 
-@WebServlet("/list.do")
+@WebServlet("/join/list.do")
 public class ListEmployeeController extends HttpServlet{
 	
 	@Override

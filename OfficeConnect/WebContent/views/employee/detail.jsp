@@ -1,4 +1,4 @@
-<%@page import="emp.comm.vo.AtchFileVO"%>
+<%@page import="img.vo.AtchFileVO"%>
 <%@page import="java.util.List"%>
 <%@page import="vo.EmpVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -63,7 +63,7 @@
 					for(AtchFileVO fileVO : fileList){
 			%>
 				<div>
-					<a href="<%=request.getContextPath() %>/download.do?empNo=<%=fileVO.getEmpNo() %>"><%=fileVO.getOrignFileName() %></a>
+					<a href="<%=request.getContextPath() %>/join/download.do?empNo=<%=fileVO.getEmpNo() %>"><%=fileVO.getOrignFileName() %></a>
 				</div>			
 			<%
 					}
@@ -73,9 +73,9 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-			<a href="list.do">[목록]</a>
-			<a href="update.do?empNo=<%=ev.getEmpNo() %>">[사원정보 수정]</a>
-			<a href="delete.do?empNo=<%=ev.getEmpNo() %>">[사원정보 삭제]</a>
+			<a href="../join/list.do">[목록]</a>
+			<a href="../join/update.do?empNo=<%=ev.getEmpNo() %>">[사원정보 수정]</a>
+			<a href="../join/delete.do?empNo=<%=ev.getEmpNo() %>">[사원정보 삭제]</a>
 			</td>
 		</tr>
 	</table>

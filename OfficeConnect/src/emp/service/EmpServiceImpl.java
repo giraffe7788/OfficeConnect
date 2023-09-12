@@ -1,11 +1,11 @@
 package emp.service;
 
 import emp.dao.IEmpDao;
+import img.vo.AtchFileVO;
 import vo.EmpVO;
 
 import java.util.List;
 
-import emp.comm.vo.AtchFileVO;
 import emp.dao.EmpDaoImpl;
 
 public class EmpServiceImpl implements IEmpService{
@@ -50,7 +50,8 @@ public class EmpServiceImpl implements IEmpService{
 	 */
 	@Override
 	public int modifyEmployee(EmpVO empVO) {
-		return empDao.updateEmployee(empVO);
+		int cnt = empDao.updateEmployee(empVO);
+		return cnt;
 	}
 	
 	
@@ -109,10 +110,22 @@ public class EmpServiceImpl implements IEmpService{
 	}
 	
 	
+	/**
+	 * 파일을 삽입하기 위한 메서드
+	 * @param 삽입할 파일 담은 atchFileVO 객체
+	 * @return 상비한 파일의 정보를 담은 atchFileVO를 return
+	 */
 	@Override
 	public int insertFile(AtchFileVO atchFileVO) {
 		return empDao.insertFile(atchFileVO);
 	}
+	
+	
+	/**
+	 * 파일을 수정하기 위한 메서드
+	 * @param 수정할 파일 담은 atchFileVO 객체
+	 * @return 수정한 파일의 정보를 담은 atchFileVO를 return
+	 */
 	@Override
 	public int updateFile(AtchFileVO atchFileVO) {
 		return empDao.updateFile(atchFileVO);

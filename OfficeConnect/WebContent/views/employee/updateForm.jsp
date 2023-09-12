@@ -1,4 +1,4 @@
-<%@page import="emp.comm.vo.AtchFileVO"%>
+<%@page import="img.vo.AtchFileVO"%>
 <%@page import="java.util.List"%>
 <%@page import="vo.EmpVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -10,7 +10,6 @@
 	List<EmpVO> empList = (List<EmpVO>)request.getAttribute("empList");
 	
 	List<AtchFileVO> fileList = (List<AtchFileVO>)request.getAttribute("fileList");
-
 %>
 
 <!DOCTYPE html>
@@ -21,9 +20,9 @@
 </head>
 <body>
 <h3>사원 정보 변경</h3>
-	<form action="update.do" method="post" enctype="multipart/form-data">
+	<form action="../join/update.do" method="post" enctype="multipart/form-data">
 		    <!-- 히든으로 회원 아이디 숨겨놓음 -->
-		<input type="hidden" name="empNo" value="<%=ev.getEmpNo() %>">
+		<input type="hidden" name="empNo" value="<%=ev.getEmpNo()%>">
 		<table>
 			<tr>
 				<td>접속중인 사번 : <%=ev.getEmpNo() %></td>
@@ -72,7 +71,7 @@
 						for(AtchFileVO fileVO : fileList){
 				%>
 					<div>
-					<a href="<%=request.getContextPath() %>/download.do?empNo=<%=fileVO.getEmpNo()%>"><%=fileVO.getOrignFileName() %></a>
+					<a href="<%=request.getContextPath() %>/join/download.do?empNo=<%=fileVO.getEmpNo()%>"><%=fileVO.getOrignFileName() %></a>
 					</div>			
 				<%
 						}
@@ -84,17 +83,6 @@
 			<tr>
 				<td>새로고침 첨부파일 :</td>
 				<td><input type="file" name="atchFile" multiple="multiple"></td>
-				<%
-					if(fileList != null) {
-						for(AtchFileVO fileVO : fileList){
-				%>
-					<div>
-					<a href="<%=request.getContextPath() %>/download.do?empNo=<%=fileVO.getEmpNo()%>"><%=fileVO.getOrignFileName() %></a>
-					</div>			
-				<%
-						}
-					}
-				%>
 			</tr>
 		</table>
 		<input type="submit" value="수정완료">

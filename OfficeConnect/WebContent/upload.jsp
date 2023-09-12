@@ -10,7 +10,7 @@
 
 <body>
    <h3>아파치 자카르타 프로젝트의 fileupload 모듈을 이용한 파일업로드</h3>
-    <form method="post" action="<%=request.getContextPath() %>/upload.do" enctype="multipart/form-data">
+    <form method="post" action="<%=request.getContextPath() %>../join/upload.do" enctype="multipart/form-data">
         파일선택: <input type="file" name="uploadFile" multiple="multiple"/>
         전송자: <input type="text" name="sender">
         <input type="submit" value="Upload"/>

@@ -7,7 +7,7 @@ import java.util.List;
 import org.apache.ibatis.exceptions.PersistenceException;
 import org.apache.ibatis.session.SqlSession;
 
-import emp.comm.vo.AtchFileVO;
+import img.vo.AtchFileVO;
 import util.MyBatisUtil;
 import vo.EmpVO;
 
@@ -98,8 +98,8 @@ public class EmpDaoImpl implements IEmpDao {
 			
 			if(cnt > 0) {
 				session.commit();
-			} else {
-				session.rollback();
+//			} else {
+//				session.rollback();
 			}
 			
 		} catch(PersistenceException ex) {
@@ -242,6 +242,11 @@ public class EmpDaoImpl implements IEmpDao {
 	}
 	
 	
+	/**
+	 * 파일을 삽입하기 위한 메서드
+	 * @param 삽입할 파일 담은 atchFileVO 객체
+	 * @return 상비한 파일의 정보를 담은 atchFileVO를 return
+	 */
 	@Override
 	public int insertFile(AtchFileVO atchFileVO) {
 		SqlSession session = MyBatisUtil.getInstance();
@@ -264,6 +269,12 @@ public class EmpDaoImpl implements IEmpDao {
 		return cnt;
 	}
 	
+	
+	/**
+	 * 파일을 수정하기 위한 메서드
+	 * @param 수정할 파일 담은 atchFileVO 객체
+	 * @return 수정한 파일의 정보를 담은 atchFileVO를 return
+	 */
 	@Override
 	public int updateFile(AtchFileVO atchFileVO) {
 		SqlSession session = MyBatisUtil.getInstance();

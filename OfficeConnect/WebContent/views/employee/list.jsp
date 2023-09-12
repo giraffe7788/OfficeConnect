@@ -1,4 +1,4 @@
-<%@page import="emp.comm.vo.AtchFileVO"%>
+<%@page import="img.vo.AtchFileVO"%>
 <%@page import="vo.EmpVO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -27,7 +27,7 @@
 <body>
 <script>
 function fnImg(path,no){
-	location.href=path+"/download.do?empNo="+no;
+	location.href=path+"/join/download.do?empNo="+no;
 }
 </script>
 	<table border="1">
@@ -54,7 +54,7 @@ function fnImg(path,no){
 %>
 	<tr>
 		<td><%=ev.getEmpNo() %></td>
-		<td><a href="detail.do?empNo=<%=ev.getEmpNo() %>"><%=ev.getEmpName() %></a></td>
+		<td><a href="../join/detail.do?empNo=<%=ev.getEmpNo() %>"><%=ev.getEmpName() %></a></td>
 		<td><%=ev.getEmpPosit() %></td>
 		<td><%=ev.getEmpTel() %></td>
 		<td><%=ev.getEmpEmail() %></td>
@@ -63,7 +63,7 @@ function fnImg(path,no){
 		<td><%=ev.getAdminCode() %></td>
 		<td><%=ev.getDeptCode() %></td>
 		<td><button onclick="fnImg('<%= request.getContextPath()%>','<%=  ev.getEmpNo()%>')">
-		    <img src="<%= request.getContextPath() + "/download.do?empNo=" + ev.getEmpNo() %>" alt="프로필 사진" width="100" height="100">
+		    <img src="<%= request.getContextPath() + "/join/download.do?empNo=" + ev.getEmpNo() %>" alt="프로필 사진" width="100" height="100">
 		</button>		
 		</td>
 	</tr>
@@ -72,7 +72,7 @@ function fnImg(path,no){
 	}
 %>
 		<tr align="center">
-		<td colspan="10"><a href=./join.do>새 사용자 등록</a>
+		<td colspan="10"><a href=../join/join.do>새 사용자 등록</a>
 		<a href='http://localhost:8888/OfficeConnect'>돌아가기</a>
 		</td>
 	</tr>
