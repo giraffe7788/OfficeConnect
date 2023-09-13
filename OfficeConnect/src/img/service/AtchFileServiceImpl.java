@@ -70,7 +70,6 @@ public class AtchFileServiceImpl implements IAtchFileService{
 			atchFileVO.setImgPath(uploadPath);
 			atchFileVO.setImgName(saveFileName);
 			part.delete();
-		
 			}
 		}
 		
@@ -79,11 +78,6 @@ public class AtchFileServiceImpl implements IAtchFileService{
 	@Override
 	public List<AtchFileVO> getAtchFileList(AtchFileVO atchFileVO) {
 		return fileDao.getAtchFileList(atchFileVO);
-	}
-
-	@Override
-	public AtchFileVO getAtchFile(AtchFileVO atchFileVO) {
-		return fileDao.getAtchFile(atchFileVO);
 	}
 	
 	public static void main(String[] args) {

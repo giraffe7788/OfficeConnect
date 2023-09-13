@@ -61,23 +61,5 @@ public class AtchFileDaoImpl implements IAtchFileDao {
 		return atchFileList;
 	}
 
-	@Override
-	public AtchFileVO getAtchFile(AtchFileVO atchfileVO) {
-		SqlSession session = MyBatisUtil.getInstance();
-		
-		AtchFileVO fileVO = new AtchFileVO();
-		
-		try {
-			
-			fileVO = session.selectOne(
-					"atchFile.getAtchFile",atchfileVO);
-		
-		}catch(PersistenceException ex) {
-			ex.printStackTrace();
-		}finally {
-			session.close();
-		}
-		return fileVO;
-	}
 
 }

@@ -26,12 +26,5 @@ public interface IAtchFileService {
 	public List<AtchFileVO> getAtchFileList(AtchFileVO atchFileVO);
 
 	
-	/**
-	 * 첨부파일 정보 조회
-	 * @param atchFileVO
-	 * @return 첨부파일 정보
-	 */
-	public AtchFileVO getAtchFile(AtchFileVO atchFileVO);
-	
 }
 

@@ -20,13 +20,5 @@ public interface IAtchFileDao {
 		 * @return
 		 */
 		public List<AtchFileVO> getAtchFileList(AtchFileVO atchfileVO);
-		
-		
-		/**
-		 * 첨부파일 세부정보 조회하기
-		 * @param atchFileVO
-		 * @return
-		 */
-		public AtchFileVO getAtchFile(AtchFileVO atchfileVO);
 
 }	

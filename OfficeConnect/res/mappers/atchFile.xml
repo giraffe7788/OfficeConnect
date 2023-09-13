@@ -23,13 +23,6 @@
 		where emp_no = #{empNo}
 	
 	</select>
-	
-	<select id="getAtchFile" resultType="fileVO">
-	
-		select * from IMAGE
-		where emp_no = #{empNo}
-	
-	</select>
 
 	<delete id="deleteAtchFile">
 		delete from IMAGE

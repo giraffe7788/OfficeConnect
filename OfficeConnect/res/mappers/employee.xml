@@ -32,7 +32,6 @@
 			img_name = #{imgName}
 			where emp_no = #{empNo}
 	</update>
-	
 	<update id="updateEmployee" parameterType="empvo">
 		update employee
 		set emp_pw = #{empPw},
