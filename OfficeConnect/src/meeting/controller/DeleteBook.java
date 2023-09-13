@@ -1,4 +1,4 @@
-package emp.controller;
+package meeting.controller;
 
 import java.io.IOException;
 
@@ -7,39 +7,28 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
 
-import emp.service.IEmpService;
-import vo.EmpVO;
-import vo.MeetingBookVO;
-import emp.service.EmpServiceImpl;
+import meeting.service.IMeetingService;
+import meeting.service.MeetingServiceImpl;
 
-@WebServlet("/login.do")
-public class login extends HttpServlet {
-
+@WebServlet("/deleteBook.do")
+public class DeleteBook extends HttpServlet{
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// req.getRequestDispatcher("/insert.do").forward(req, resp);
-	}
 
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		String empNo = req.getParameter("emp_no");
-		String empPw = req.getParameter("emp_pw");
-		Boolean isAdminLogin = Boolean.parseBoolean(req.getParameter("adminLogin"));
-
-		IEmpService loginService = EmpServiceImpl.getInstance();
-		EmpVO empVO = new EmpVO();
-		empVO.setEmpNo(empNo);
-		empVO.setEmpPw(empPw);
-
-		boolean isSuccess = loginService.loginCheck(empVO, isAdminLogin);
+		IMeetingService service = MeetingServiceImpl.getInstance();
 		
-		if (isSuccess) {
-			System.out.println("로그인성공");
+		String empNo = req.getParameter("empNo"); // 회원정보 가져옴?
+		
+		int cnt = service.removeBook(empNo);
+		
+		if (cnt > 0) {
+			System.out.println("삭제성공");
 			
 			req.getSession().setAttribute("empNo", empNo); // 다른 데에 로그인한 사람 정보 줄라고
 						
@@ -49,7 +38,7 @@ public class login extends HttpServlet {
 			resp.setContentType("application/json");
 			resp.getWriter().write(jsonStr);
 		} else {
-			System.out.println("로그인실패");
+			System.out.println("삭제실패");
 			
 			JsonObject jsonObject = new JsonObject();
 			jsonObject.addProperty("isSuccess", "fail");
@@ -57,5 +46,10 @@ public class login extends HttpServlet {
 			resp.setContentType("application/json");
 			resp.getWriter().write(jsonStr);
 		}
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		super.doPost(req, resp);
 	}
 }
