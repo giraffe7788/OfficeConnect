@@ -19,7 +19,7 @@ import emp.service.EmpServiceImpl;
 import emp.service.IEmpService;
 import img.service.ImageServiceImpl;
 import util.TransEmpInfo;
-import img.service.ImageService;
+import img.service.IImageService;
 import vo.ImageVO;
 import vo.EmpVO;
 

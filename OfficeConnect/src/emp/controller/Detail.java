@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import emp.service.EmpServiceImpl;
 import emp.service.IEmpService;
 import img.service.ImageServiceImpl;
-import img.service.ImageService;
+import img.service.IImageService;
 import vo.ImageVO;
 import vo.EmpVO;
 
@@ -31,7 +31,7 @@ public class Detail extends HttpServlet {
 		req.setAttribute("ev", ev); // 5. db에서 가져온 값 세팅
 		
 		if(empNo != null && !empNo.isEmpty()) {
-			ImageService imageService = ImageServiceImpl.getInstance();
+			IImageService imageService = ImageServiceImpl.getInstance();
 			
 			ImageVO imageVO = imageService.getImage(empNo);
 			

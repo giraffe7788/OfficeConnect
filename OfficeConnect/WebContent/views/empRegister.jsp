@@ -17,6 +17,7 @@
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <!-- css 설정 -->
     <link href="../css/sb-admin-2.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="../script/empRegister.js?ver=1"></script>
 <style>
 #dataTable_wrapper {
@@ -51,11 +52,10 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4" style="margin-top : 1%; width:50%; margin-left : 25%">
                         <div class="card-body">
-                        	<img src="../images/defaultProfile.PNG" alt="기본프로필" style="width:20%; margin-left:40%; margin-bottom:2%">
-                        	<a href="login.html" class="btn btn-primary btn-user btn-block" style="width:20%; margin-left:40%; margin-bottom:2%">
-                                    사진 추가
-                                </a>
-                            <form class="user">
+                            <form class="user" enctype="multipart/form-data">
+                            	<img src="../images/defaultProfile.PNG" alt="기본프로필" id="imageView" style="width:20%; margin-left:40%; margin-bottom:2%">
+                        		<input type="file" class="btn btn-primary btn-user btn-block" id="fileInput" style="width:30%; margin-left:35%; margin-bottom:2%">
+                                    &nbsp;
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" id="empNo"
                                             placeholder="사번">

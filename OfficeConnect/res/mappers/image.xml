@@ -8,17 +8,13 @@
 	</select>
 	
 	<insert id="insertImage" parameterType="imgvo">
-		insert into
-		image(EMP_NO,IMG_PATH,IMG_NAME)
-		values
+		insert into image values
 		(#{empNo},#{imgPath},#{imgName})
 	</insert>
 	
 	<update id="updateImage" parameterType="imgvo">
 		update image
-		set emp_no = #{empNo},
-			img_path = #{imgPath},
-			img_name = #{imgName}
+		set img_name = #{imgName}
 			where emp_no = #{empNo}
 	</update>
 	

@@ -27,7 +27,8 @@
 	type="text/css">
 <!-- css 설정 -->
 <link href="../css/sb-admin-2.min.css" rel="stylesheet">
-<script src="../script/empDetail.js?ver=1"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="../script/empDetail.js?ver=2"></script>
 </head>
 
 <body id="page-top">
@@ -102,20 +103,21 @@
 										</tr>
 									</table>
 								</div>
-								<%System.out.println(imageVO.getImgPath() + imageVO.getImgName()); %>
 								<div class="image-wrapper"
 									style="width: 30%; text-align: center; margin-left: 60px">
-									<img src="<%=imageVO.getImgPath() + imageVO.getImgName()%>" alt="사원 프로필 사진"
-										style="max-width: 51%; height: auto; margin-top: 30%"> <a
-										href="모달로 프로필사진 편집" class="btn btn-primary btn-icon-split"
-										style="margin-top: 45px;"> <span class="text"
-										style="color: #fff">프로필 사진 편집</span>
-									</a>
-									
+									<img src="<%=imageVO.getImgPath() + imageVO.getImgName()%>" alt="<%=imageVO.getImgPath() + imageVO.getImgName()%>"
+										id="imageView" style="max-width: 51%; height: auto; margin-top: 20%"> <form enctype="multipart/form-data"><input type="file"
+										href="#" class="btn btn-primary btn-icon-split" id="fileInput"
+										style="margin-top: 10%;"></form>
 									<a
 										href="#" class="btn btn-primary btn-icon-split"
 										style="margin-top: 45px;" onclick="deleteEmp()"> <span class="text"
 										style="color: #fff">사원삭제</span>
+									</a>
+									<a
+										href="../emp/list.do" class="btn btn-primary btn-icon-split"
+										style="margin-top: 45px;" > <span class="text"
+										style="color: #fff">목록으로</span>
 									</a>
 
 								</div>

@@ -1,48 +1,60 @@
-//package img.controller;
-//import javax.servlet.http.HttpSession;
-//
-//import img.service.ImageService;
-//import img.service.ImageServiceImpl;
-//import vo.ImageVO;
-//
-//public class UpdateImage {
-//	
-//	// 파일 서비스 호출
-//	ImageService fileService = ImageServiceImpl.getInstance();
-//	ImageVO atchFileVO = null;
-//	
-//	// 업로드 된 파일 처리(req.getParts() 사용), 객체에 새로운 파일정보 저장
-//	try {
-//		atchFileVO = fileService.saveAtchFileList(req.getParts());
-//		
-//	}catch(Exception ex) {
-//		ex.printStackTrace();
-//	}
-//ImageVO atchfileVO = new ImageVO();
-//
-//if(atchFileVO != null) {
-//empVO.setEmpNo(empNo);
-//}else {
-//empVO.setEmpNo(atchFileVO.getEmpNo());
-//atchfileVO.setImgName(atchFileVO.getImgName());
-//}
-//
-//int cnt = empService.modifyEmployee(empVO); 
-//if(atchFileVO != null) {
-//atchFileVO.setEmpNo(empVO.getEmpNo());
-//int fileResult = empService.updateFile(atchFileVO);
-//}
-//String msg = "";
-//
-//if(cnt > 0) {
-//msg = "성공";
-//}else {
-//msg = "실패";
-//}
-//
-//HttpSession session = req.getSession();
-//session.setAttribute("msg", msg);
-//
-//resp.setCharacterEncoding("UTF-8");
-//resp.sendRedirect(req.getContextPath() + "/join/list.do");
-//}
+package img.controller;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+
+import img.service.IImageService;
+import img.service.ImageServiceImpl;
+import vo.ImageVO;
+
+@MultipartConfig
+@WebServlet("/img/update.do")
+public class UpdateImage extends HttpServlet {
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+		IImageService imageService = ImageServiceImpl.getInstance();
+
+		String empNo = (String)req.getParameter("empNo");
+		ImageVO imageVO = imageService.saveImage(req.getParts(), empNo);
+		System.out.println(imageVO.getEmpNo());
+		System.out.println(imageVO.getImgName());
+		System.out.println(imageVO.getImgPath());
+		
+		int cnt = imageService.updateImage(imageVO);
+
+		if (cnt > 0) {
+
+			System.out.println("사원사진 변경 성공");
+
+			JsonObject jsonObject = new JsonObject();
+			jsonObject.addProperty("isSuccess", "ok");
+			String jsonStr = new Gson().toJson(jsonObject);
+			resp.setContentType("application/json");
+			resp.getWriter().write(jsonStr);
+		} else {
+			System.out.println("사원사진 변경 실패");
+
+			JsonObject jsonObject = new JsonObject();
+			jsonObject.addProperty("isSuccess", "fail");
+			String jsonStr = new Gson().toJson(jsonObject);
+			resp.setContentType("application/json");
+			resp.getWriter().write(jsonStr);
+		}
+	}
+
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+	}
+}

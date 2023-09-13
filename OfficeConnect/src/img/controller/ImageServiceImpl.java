@@ -1,30 +1,29 @@
-package img.service;
+package img.controller;
 
 import java.io.File;
 import java.util.Collection;
 
 import javax.servlet.http.Part;
 
-import img.dao.IImageDao;
-import img.dao.ImageDaoImpl;
 import img.service.IImageService;
 import vo.ImageVO;
 
-public class ImageServiceImpl implements IImageService{
+public class ImageServiceImpl {
 
-	public IImageDao imageDao = null;
-	public static IImageService instance = null;
+	private IImageService imageService;
+	public static ImageServiceImpl instance = null;
+
 	private ImageServiceImpl() {
-		imageDao = ImageDaoImpl.getInstance();
+		imageService = ImageServiceImpl.getInstance();
 	}
-	public static IImageService getInstance() {
+
+	public static ImageServiceImpl getInstance() {
 		if (instance == null)
 			instance = new ImageServiceImpl();
 		return instance;
 	}
 
 	/** 파일 저장 */
-	@Override
 	public ImageVO saveImage(Collection<Part> parts, String empId) {
 		
 		String uploadPath = "/images/profiles/";
@@ -40,8 +39,8 @@ public class ImageServiceImpl implements IImageService{
 		boolean isFirstFile = true;
 
 		for (Part part : parts) {
+
 			String fileName = part.getSubmittedFileName();
-			
 
 			if (fileName != null && !fileName.equals("")) {
 				if (isFirstFile) {
@@ -67,18 +66,7 @@ public class ImageServiceImpl implements IImageService{
 		return imageVO;
 	}
 	
-	@Override
 	public int insertImage(ImageVO imageVO) {
-		return imageDao.insertImage(imageVO);
-	}
-
-	@Override
-	public ImageVO getImage(String empNo) {
-		return imageDao.getImage(empNo);
-	}
-
-	@Override
-	public int updateImage(ImageVO imageVO) {
-		return imageDao.updateImage(imageVO);
+		return imageService.insertImage(imageVO);
 	}
 }
