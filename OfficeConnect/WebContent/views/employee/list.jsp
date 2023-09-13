@@ -15,7 +15,6 @@
 	if(msg != null){
 		session.removeAttribute("msg");
 	}
-
 %>
 <!DOCTYPE html>
 <html>

@@ -25,7 +25,7 @@ public class ListEmployeeController extends HttpServlet{
 		
 		req.setAttribute("empList", empList);
 		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/views/employee/list.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/views/empList.jsp");
 		
 		dispatcher.forward(req, resp);
 	}
