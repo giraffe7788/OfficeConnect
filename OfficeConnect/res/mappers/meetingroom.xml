@@ -39,7 +39,7 @@
       values(mtr_book_seq.nextval, #{mtrNo}, #{empNo}, #{mtrbookRent}, #{mtrbookRtn}, #{mtrbookPer}, #{mtrbookCont})
    </insert>
    
-   <delete id="deleteBook" parameterType="String">
+   <delete id="deleteBook" parameterType="java.lang.String">
 	  delete from mtrbook where emp_no = #{empNo}
    </delete>
    

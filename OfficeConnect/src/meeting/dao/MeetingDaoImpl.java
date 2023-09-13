@@ -106,7 +106,9 @@ public class MeetingDaoImpl implements IMeetingDao{
 		
 		int cnt = 0;
 		
-		SqlSession session = MyBatisUtil.getInstance();
+		SqlSession session = MyBatisUtil.getInstance(); 
+		
+		System.out.println(empNo);
 		
 		try {
 			cnt = session.delete("meetingroom.deleteBook", empNo);

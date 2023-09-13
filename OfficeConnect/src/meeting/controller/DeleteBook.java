@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+
 import meeting.service.IMeetingService;
 import meeting.service.MeetingServiceImpl;
 
@@ -21,16 +24,28 @@ public class DeleteBook extends HttpServlet{
 		IMeetingService service = MeetingServiceImpl.getInstance();
 		
 		String empNo = req.getParameter("empNo"); // 회원정보 가져옴?
-		int cnt = service.removeBook(empNo);
-		String msg = "";
-		if(cnt > 0) {
-			msg = "ok";
-		}else {
-			msg = "fail";
-		}
 		
-		req.setAttribute("msg", msg);
-		req.getRequestDispatcher(req.getContextPath() + "/MyBook.do").forward(req, resp);
+		int cnt = service.removeBook(empNo);
+		
+		if (cnt > 0) {
+			System.out.println("삭제성공");
+			
+			req.getSession().setAttribute("empNo", empNo); // 다른 데에 로그인한 사람 정보 줄라고
+						
+			JsonObject jsonObject = new JsonObject();
+			jsonObject.addProperty("isSuccess", "ok");
+			String jsonStr = new Gson().toJson(jsonObject);
+			resp.setContentType("application/json");
+			resp.getWriter().write(jsonStr);
+		} else {
+			System.out.println("삭제실패");
+			
+			JsonObject jsonObject = new JsonObject();
+			jsonObject.addProperty("isSuccess", "fail");
+			String jsonStr = new Gson().toJson(jsonObject);
+			resp.setContentType("application/json");
+			resp.getWriter().write(jsonStr);
+		}
 	}
 
 	@Override
