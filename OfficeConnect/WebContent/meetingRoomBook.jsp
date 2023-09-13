@@ -162,15 +162,17 @@
 			alert("예약 취소 중 오류가 발생했습니다");
 		<%
 		}
+		%>
 
 		// 나의 회의실 예약 화면 들어오면 로그인 정보 따라서 예약한 회의실 정보
-		boolean isEmpty = false;
+		let isEmpty = true;
 
 		// 로그인한 사원 확인
+		<%
 		for(MeetingBookVO mvo : mtrList){
 		%>
-		    if(<%=mvo.getMtrNo()%> == <%=currentEmpNo%>){
-		    	<%isEmpty = true;%>
+		    if(<%=mvo.getEmpNo()%> == <%=currentEmpNo%>){
+		    	isEmpty = false;
 		       // 예약한 회의실 번호 출력
 		    	$('#thMtr').empty();			
 				let cont1 = "";
@@ -200,14 +202,13 @@
 		    }
 		<%
 		}
-		if (isEmpty == false) {
 		%>
+		if (isEmpty) {
 			$('#dataTable').css('display', 'none');
 			$('#emptyData').css('display', 'block');
 			$('.btn-close').css('display', 'none');
-		<%
 		}
-		%>
+
 		});
 
 		// 예약 취소 모달창
@@ -234,7 +235,7 @@
 	                    alert('예약 취소 되었습니다.');
 	                    $('#closeModal').modal('hide');               
 	                    location.reload();
-	                    <%isEmpty = false;%>
+	                    isEmpty = true;
 	                } else {
 	                    alert('예약 취소에 실패했습니다.');
 	                }
