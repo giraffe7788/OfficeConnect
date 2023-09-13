@@ -191,13 +191,13 @@
 				// 예약한 회의실 인원 출력
 		    	$('#mtPer').empty();			
 				let cont3 = "";
-				cont3 += <%=mvo.getMtrNo()%>;		
+				cont3 += <%=mvo.getMtrbookPer()%>;		
 				$('#mtPer').text(cont3);
 				
 				// 예약한 회의실 내용 출력
 		    	$('#mtCont').empty();			
 				let cont4 = "";
-				cont4 += <%=mvo.getMtrNo()%>;		
+				cont4 += "<%=mvo.getMtrbookCont()%>";		
 				$('#mtCont').text(cont4);
 		    }
 		<%
