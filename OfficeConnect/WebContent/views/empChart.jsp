@@ -20,10 +20,10 @@
 <title>사원조회</title>
 
 <!-- 아이콘 설정 -->
-<link href="./vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
+<link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
 	type="text/css">
 <!-- css 설정 -->
-<link href="./css/sb-admin-2.min.css" rel="stylesheet">
+<link href="../css/sb-admin-2.min.css" rel="stylesheet">
 
 <style>
 table {
@@ -50,7 +50,7 @@ td {
 	<div id="wrapper">
 
 		<!-- 사이드바 include -->
-		<%@ include file="./views/aside.jsp"%>
+		<%@ include file="./aside.jsp"%>
 
 		<!-- Content Wrapper -->
 		<div id="content-wrapper" class="d-flex flex-column">
@@ -59,7 +59,7 @@ td {
 			<div id="content">
 
 				<!-- 헤더 include -->
-				<%@ include file="./views/header.jsp"%>
+				<%@ include file="./header.jsp"%>
 
 				<!-- 페이지 Content 시작 -->
 				<div class="container-fluid">
@@ -164,17 +164,18 @@ td {
 
 										<div class="image-wrapper"
 											style="width: 60%; margin-left: 10%">
-											<img src="./images/defaultProfile.PNG" alt="기본프로필"
-												style="width: 50%; margin-left: 40%; margin-bottom: 6%; margin-top: 2%"
+											<img src="../images/defaultProfile.PNG" alt="기본프로필"
+												style="width: 40%; margin-left: 40%; margin-bottom: 6%; margin-top: 2%"
 												id="divEmpImg">
 										</div>
 										<div class="table-wrapper" style="width: 60%">
 											<div
 												style="text-align: left; font-size: 1.5em; margin-top: 12%">
-												<div id="divDept" style="margin: 2%">개발부</div>
-												<div id="divEmpPosit" style="margin: 2%">부장</div>
-												<div id="divEmpName" style="margin: 2%">김영남</div>
-												<div id="divEmpTel" style="margin: 2%">010-5191-4987</div>
+												<div id="divEmpDept" style="margin: 2%">부서</div>
+												<div id="divEmpPosit" style="margin: 2%">직급</div>
+												<div id="divEmpName" style="margin: 2%">이름</div>
+												<div id="divEmpTel" style="margin: 2%">전화번호</div>
+												<div id="divEmpState" style="margin: 2%">업무상태</div>
 											</div>
 										</div>
 
@@ -204,9 +205,9 @@ td {
 		<!-- 페이지 Wrapper 끝 -->
 
 		<!-- 공통속성 설정 include -->
-		<%@ include file="./views/common.jsp"%>
-		<script src="./vendor/jquery/jquery.min.js"></script>
-		<script src="./vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<%@ include file="./common.jsp"%>
+		<script src="../vendor/jquery/jquery.min.js"></script>
+		<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 		<script
 			src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 		<script>
@@ -259,18 +260,22 @@ td {
 		    let empNo;
 		    function empChart(empNo){
 		    	
+		    	$('#empTable').css('display', 'block');
+		    	
 		    	$.ajax({
 		    		
-		    		url: 'empChart.do',
+		    		url: '../emp/chart.do',
 		    		type: 'post',
 		    		data: {empNo: empNo},
 		    		
 		    		success:function(data){
 		    			
-		    			console.log(data.empName)
 		    			$("#divEmpName").text(data.empName);
 		    			$('#divEmpPosit').text(data.empPosit);
 		    			$('#divEmpTel').text(data.empTel);
+		    			$('#divEmpDept').text(data.empDept);
+		    			$('#divEmpState').text(data.empState);
+		    			$('#divEmpImg').attr('src', data.imgPath+data.imgName);
 		    		
 		    		},
 		    		error:function(xhr){

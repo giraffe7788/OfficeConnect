@@ -28,7 +28,7 @@ public class EmpDaoImpl implements IEmpDao {
 	 * @param empvo
 	 * @return 로그인 성공여부
 	 */
-	public boolean loginCheck(EmpVO empVO) {
+	public boolean loginCheck(EmpVO empVO, boolean isAdminLogin) {
 		
 		boolean loginCheck = false;
 		SqlSession session = MyBatisUtil.getInstance();
@@ -50,6 +50,7 @@ public class EmpDaoImpl implements IEmpDao {
 		
 		return loginCheck;
 	}
+	
 	
   	/**
 	 * 회원가입 시켜주는 메서드
@@ -77,25 +78,8 @@ public class EmpDaoImpl implements IEmpDao {
 		}
 		
 		return cnt;
-
 	}
   
-  
-	@Override
-	public int forgotPw(String empNo) {
-		
-		SqlSession session = MyBatisUtil.getInstance();
-		
-		int cnt = 0;
-		
-		try {
-			cnt = session.insert("employee.forgotPw", empNo);
-			if (cnt > 0) {
-				session.commit();
-			}
-			
-		} catch (PersistenceException ex) {
-
 	
 	/**
 	 * 사원정보 수정을 위한 메서드
@@ -182,7 +166,6 @@ public class EmpDaoImpl implements IEmpDao {
 		}
 		
 		return isExist;
-		
 	}
 	
 	
@@ -192,13 +175,13 @@ public class EmpDaoImpl implements IEmpDao {
 	 * @return 해당 사원의 정보를 담은 empVO 객체
 	 */
 	@Override
-	public EmpVO getEmployee(String empNo) {
+	public EmpVO selectOne(String empNo) {
 		
 		SqlSession session = MyBatisUtil.getInstance();
 
 		EmpVO ev = null;
 		try {
-			ev = session.selectOne("employee.getEmployee", empNo);
+			ev = session.selectOne("employee.selectOne", empNo);
 			if(ev!=null) {
 				 session.commit();
 			 }
@@ -231,49 +214,24 @@ public class EmpDaoImpl implements IEmpDao {
 		return empList;
 	}
 	
-	/**
-	 * 사원조회 화면에 출력해줄 값들을 가져오는 메서드
-	 * @param empNo
-	 * @return empVO
-	 */
+		
 	@Override
-	public EmpVO empChart(String empNo) {
-		EmpVO empVO = new EmpVO();
+	public int forgotPw(String empNo) {
 		
 		SqlSession session = MyBatisUtil.getInstance();
 		
-		try {
-			
-			empVO = session.selectOne("employee.empCheck",empNo);
-			
-		} catch (PersistenceException e) {
-			e.printStackTrace();
-		}finally {
-			session.close();
-		}
-		
-		return empVO;
-	
-	/**
-	 * 사원 정보를 검색하기 위한 메서드
-	 * @param 검색된 회원정보를 담은 ev 객체
-	 * @return 검색한 사원의 정보를 담은 ev를 return
-	 */
-	@Override
-	public List<EmpVO> searchEmployee(EmpVO ev){
-		List<EmpVO> empList = new ArrayList<EmpVO>();
-		
-		SqlSession session = MyBatisUtil.getInstance(true);
+		int cnt = 0;
 		
 		try {
+			cnt = session.insert("employee.forgotPw", empNo);
+			if (cnt > 0) {
+				session.commit();
+			}
 			
-			empList = session.selectList("employee.searchEmployee", ev);
-			
-		}catch(PersistenceException ex) {
+		} catch (PersistenceException ex) {
 			ex.printStackTrace();
-		}finally {
-			session.close();
 		}
-		return empList;
+		
+		return cnt;
 	}
 }

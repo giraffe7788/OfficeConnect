@@ -2,6 +2,7 @@ package vo;
 
 public class MeetingBookVO {
 
+	private int mtrbookNo;
 	private int mtrNo;
 	private String empNo;
 	private String mtrbookRent;
@@ -22,10 +23,15 @@ public class MeetingBookVO {
 		this.mtrbookCont = mtrbookCont;
 	}
 
+	public int getMtrBookNo() {
+		return mtrbookNo;
+	}
+	public void setMtrBookNo(int mtrbookNo) {
+		this.mtrbookNo = mtrbookNo;
+	}
 	public int getMtrNo() {
 		return mtrNo;
 	}
-
 	public void setMtrNo(int mtrNo) {
 		this.mtrNo = mtrNo;
 	}

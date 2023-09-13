@@ -2,16 +2,6 @@
 <!DOCTYPE mapper   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="employee">
 
-	<select id="selectAll" resultMap="empMap">
-		select * from employee
-	</select>
-
-	<select id="empCheck" resultMap="empMap">
-		select i.img_path,d.dept_name,e.emp_posit,e.emp_name,e.emp_tel 
-		from employee e, dept d, image i 
-		where e.dept_code = d.dept_code and e.emp_no = i.emp_no and e.emp_no = #{empNo}
-	</select>
-
 	<select id="loginCheck" resultMap="empMap" parameterType="empvo">
 		select
 		* from employee
@@ -52,7 +42,7 @@
 		where emp_no = #{empNo}
 	</select>
 	
-	<select id="getEmployee" resultMap="empMap">
+	<select id="selectOne" resultMap="empMap">
 		select * from employee
 		where emp_no = #{empNo}
 	</select>
@@ -80,5 +70,4 @@
 		<result column="admin_code" property="adminCode" />
 		<result column="dept_code" property="deptCode" />
 	</resultMap>
-
 </mapper>

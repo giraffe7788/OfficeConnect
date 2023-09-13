@@ -35,7 +35,7 @@ function updateEmp() {
 	}
 
 	$.ajax({
-		url: 'http://localhost:8888/OfficeConnect/emp/update.do',
+		url: 'update.do',
 		type: 'post',
 		data: {
 			'empNo': empNo,
@@ -73,7 +73,7 @@ function deleteEmp() {
 
 	if (isDelete) {
 		$.ajax({
-			url: 'http://localhost:8888/OfficeConnect/emp/delete.do',
+			url: 'delete.do',
 			type: 'post',
 			data: {
 				'empNo': empNo
@@ -122,7 +122,7 @@ $(document).ready(function() {
 				}
 
 				$.ajax({
-					url: 'http://localhost:8888/OfficeConnect/img/update.do',
+					url: '../img/update.do',
 					type: 'post',
 					data: formData,
 					contentType: false,

@@ -11,11 +11,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+
 import emp.service.EmpServiceImpl;
 import emp.service.IEmpService;
+import img.service.ImageServiceImpl;
+import util.TransEmpInfo;
 import vo.EmpVO;
+import vo.ImageVO;
 
-@WebServlet("/empChart.do")
+@WebServlet("/emp/chart.do")
 public class Chart extends HttpServlet{
 	
 	@Override
@@ -28,7 +34,7 @@ public class Chart extends HttpServlet{
 		
 		req.setAttribute("empList", empList);
 		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/empChart.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/views/empChart.jsp");
 		dispatcher.forward(req, resp);
 		
 	}
@@ -36,20 +42,25 @@ public class Chart extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		String empNo = req.getParameter("empNo");
-		
-		// 얘를 다시 서비스로 보내 준 다음 다오로 넘겨줘서 (xml)에 쿼리 작성, 그 다음 불러 온 그 데이터를 다시 jsp 로 보내줌 
 		IEmpService empService = EmpServiceImpl.getInstance();
-		
-		EmpVO empVO = empService.empChart(empNo);
-		
-		resp.setCharacterEncoding("utf-8");
-		
-		PrintWriter out = resp.getWriter();
+		// parameter로 넘겨준 사번으로 사원정보를 찍어주기 위한 empVO와 imageVO를 가져옴
+		String empNo = req.getParameter("empNo");
+		EmpVO empVO = empService.selectOne(empNo);
+		ImageVO imageVO = ImageServiceImpl.getInstance().getImage(empNo);
 		
 		//json형태로 데이터 넘김
-		out.println("{\"empNo\": \"" + empVO.getEmpNo() + "\", \"empName\": \"" + empVO.getEmpName() + "\", \"empPosit\": \"" + empVO.getEmpPosit() + "\", \"empTel\": \"" + empVO.getEmpTel() + "\", \"deptCode\": \"" + empVO.getDeptCode() + "\"}");
-		
-		
+		JsonObject jsonObject = new JsonObject();
+		jsonObject.addProperty("empNo", empVO.getEmpNo());
+		jsonObject.addProperty("empName", empVO.getEmpName());
+		jsonObject.addProperty("empPosit", empVO.getEmpPosit());
+		jsonObject.addProperty("empTel", empVO.getEmpTel());
+		jsonObject.addProperty("empDept", TransEmpInfo.getInstance().transformDeptCode(empVO.getDeptCode()));
+		jsonObject.addProperty("empState", TransEmpInfo.getInstance().transformStateCode(empVO.getStateCode()));
+		jsonObject.addProperty("imgName", imageVO.getImgName());
+		jsonObject.addProperty("imgPath", imageVO.getImgPath());
+		String jsonStr = new Gson().toJson(jsonObject);
+		resp.setContentType("application/json");
+		resp.getWriter().write(jsonStr);
+
 	}
 }

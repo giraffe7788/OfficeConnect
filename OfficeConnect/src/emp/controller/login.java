@@ -28,16 +28,17 @@ public class login extends HttpServlet {
 
 		String empNo = req.getParameter("emp_no");
 		String empPw = req.getParameter("emp_pw");
+		Boolean isAdminLogin = Boolean.parseBoolean(req.getParameter("adminLogin"));
 
 		IEmpService loginService = EmpServiceImpl.getInstance();
 		EmpVO empVO = new EmpVO();
 		empVO.setEmpNo(empNo);
 		empVO.setEmpPw(empPw);
 
-		if (loginService.loginCheck(empVO)) {
+		if (loginService.loginCheck(empVO, isAdminLogin)) {
 			System.out.println("로그인성공");
 			
-			req.getSession().setAttribute("empNo", empNo); // 다른 데에 로그인한 사람 정보 줄라고
+			req.getSession().setAttribute("empNo", empNo); // 세션에 사번 넣기
 						
 			JsonObject jsonObject = new JsonObject();
 			jsonObject.addProperty("isSuccess", "ok");

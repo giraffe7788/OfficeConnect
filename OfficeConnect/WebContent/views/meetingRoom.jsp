@@ -1,3 +1,4 @@
+<%@page import="com.google.gson.Gson"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="vo.MeetingRoomVO"%>
@@ -395,8 +396,9 @@ td {
 			%>
 			
 			// 회원당 예약  한번만
-			<%for(MeetingBookVO mvo : mtrList){
-				System.out.println(mvo.getEmpNo()+ "==" +currentEmpNo);%>
+			<%
+			for(MeetingBookVO mvo : mtrList){
+			%>
 				if(<%=mvo.getEmpNo()%> == <%=currentEmpNo%>){
 					alert("회의실은 인당 1번만 예약 가능합니다");
 					return;
@@ -404,7 +406,7 @@ td {
 			<%}%>
 			
 			$.ajax({
-				url: "book.do",
+				url: "insert.do",
 				type: "post",
 				data: { 'mtrNo': mtrNo,
 					    'mtrbookPer' : mtrbookPer,
@@ -419,7 +421,7 @@ td {
 					} else {
 						alert("회의실 예약이 실패하였습니다")
 					}
-					location.href = "/OfficeConnect/list.do";
+					location.href = "list.do";
 				},
 				error: function(xhr, status, msg){
 					console.log("상태값: " + status + " Http 에러 메시지: " + msg);

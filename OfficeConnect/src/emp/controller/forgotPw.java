@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import emp.service.EmpServiceImpl;
 import emp.service.IEmpService;
 
-@WebServlet("/password.do")
+@WebServlet("/emp/forgotpw.do")
 public class forgotPw extends HttpServlet{
 
 	@Override

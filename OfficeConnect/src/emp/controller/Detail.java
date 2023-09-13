@@ -26,7 +26,7 @@ public class Detail extends HttpServlet {
 		
 		IEmpService empService = EmpServiceImpl.getInstance(); // 3. 싱글톤 객체 생성
 		
-		EmpVO ev = empService.getEmployee(empNo); // 4. db에서 값 가져오는거
+		EmpVO ev = empService.selectOne(empNo); // 4. db에서 값 가져오는거
 		
 		req.setAttribute("ev", ev); // 5. db에서 가져온 값 세팅
 		

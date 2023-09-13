@@ -17,34 +17,20 @@ public class EmpServiceImpl implements IEmpService{
 		if(instance == null) instance = new EmpServiceImpl();
 		return instance;
 	}
-	
-	IEmpDao dao = EmpDaoImpl.getInstance();
 	IEmpDao empDao = EmpDaoImpl.getInstance();
 	
-	@Override
 	/**
-	 * 로그인 체크를 위한 메서드
-	 * @param empvo
+	 * 로그인 체크를 위한 메서드, 파라미터로 empVO와 관리자로그인 체크 여부가 들어간다
+	 * @param empvo, isAdminLogin
 	 * @return 로그인 성공여부
 	 */
 	@Override
 	public boolean loginCheck(EmpVO empVO, boolean isAdminLogin) {
 		return empDao.loginCheck(empVO, isAdminLogin);
 	}
-	
 		
-	/**
-	 * 사원조회 화면에 출력해줄 값들을 가져오는 메서드
-	 * @param empNo
-	 * @return empVO
-	 */
-	@Override
-	public EmpVO empChart(String empNo) {
-		
-		return dao.empChart(empNo);
-	}
 
-  /**
+   /**
 	 * 사원정보 등록을 위한 메서드
 	 * @param empVO에 등록할 데이터가 담겨진 EmpVO의 객체
 	 * @return 사원 등록이 성공하면 1이상의 값이 반환되고, 실패하면 0이 반환됨.
@@ -95,8 +81,8 @@ public class EmpServiceImpl implements IEmpService{
 	 * @return 해당 사원의 정보를 담은 empVO 객체
 	 */
 	@Override
-	public EmpVO getEmployee(String empNo) {
-		return empDao.getEmployee(empNo);
+	public EmpVO selectOne(String empNo) {
+		return empDao.selectOne(empNo);
 	}
 	
 	
@@ -110,19 +96,8 @@ public class EmpServiceImpl implements IEmpService{
 	}
 	
 	
-	/**
-	 * 사원 정보를 검색하기 위한 메서드
-	 * @param 검색된 회원정보를 담은 ev 객체
-	 * @return 검색한 사원의 정보를 담은 ev를 return
-	 */
-	@Override
-	public List<EmpVO> searchEmployee(EmpVO ev) {
-		List<EmpVO> empList = empDao.searchEmployee(ev);
-		return empList;
-	}
-	
 	@Override
 	public int forgotPw(String empNo) {
-		return loginDao.forgotPw(empNo);
+		return empDao.forgotPw(empNo);
 	}
 }

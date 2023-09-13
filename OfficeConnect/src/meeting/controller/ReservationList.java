@@ -16,7 +16,7 @@ import meeting.service.IMeetingService;
 import meeting.service.MeetingServiceImpl;
 import vo.MeetingBookVO;
 
-@WebServlet("/list.do")
+@WebServlet("/meeting/list.do")
 public class ReservationList extends HttpServlet{
 	
 	@Override
@@ -34,7 +34,7 @@ public class ReservationList extends HttpServlet{
 		List<vo.MeetingRoomVO> roomList = service.getRoomList();
 		req.setAttribute("roomList", roomList);
 
-		RequestDispatcher disp = req.getRequestDispatcher("/meeting.jsp");
+		RequestDispatcher disp = req.getRequestDispatcher("../views/meetingRoom.jsp");
 		disp.forward(req, resp);
 	}
 	
