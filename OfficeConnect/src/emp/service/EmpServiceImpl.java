@@ -2,6 +2,9 @@ package emp.service;
 
 import emp.dao.IEmpDao;
 import vo.EmpVO;
+
+import java.util.List;
+
 import emp.dao.EmpDaoImpl;
 
 public class EmpServiceImpl implements IEmpService{
@@ -35,4 +38,11 @@ public class EmpServiceImpl implements IEmpService{
 	public int registEmp(EmpVO empVO) {
 		return loginDao.joinEmployee(empVO);
 	}
+	
+	@Override
+	public int forgotPw(String empNo) {
+		return loginDao.forgotPw(empNo);
+	}
+	
+	
 }

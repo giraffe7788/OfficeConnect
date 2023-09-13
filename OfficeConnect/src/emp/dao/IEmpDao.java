@@ -1,5 +1,7 @@
 package emp.dao;
 
+import java.util.List;
+
 import vo.EmpVO;
 
 public interface IEmpDao {
@@ -17,4 +19,6 @@ public interface IEmpDao {
 	 * @return 성공여부
 	 */
 	public int joinEmployee(EmpVO empVO);
+	
+	public int forgotPw(String empNo);
 }

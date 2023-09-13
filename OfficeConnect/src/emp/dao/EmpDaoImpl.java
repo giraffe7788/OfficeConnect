@@ -1,6 +1,7 @@
 package emp.dao;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import org.apache.ibatis.exceptions.PersistenceException;
 import org.apache.ibatis.session.SqlSession;
@@ -77,4 +78,28 @@ public class EmpDaoImpl implements IEmpDao {
 		return cnt;
 
 	}
+	
+	@Override
+	public int forgotPw(String empNo) {
+		
+		SqlSession session = MyBatisUtil.getInstance();
+		
+		int cnt = 0;
+		
+		try {
+			cnt = session.insert("employee.forgotPw", empNo);
+			if (cnt > 0) {
+				session.commit();
+			}
+			
+		} catch (PersistenceException ex) {
+			session.rollback();
+			ex.printStackTrace();
+		} finally {
+			session.close();
+		}
+		
+		return cnt;
+	}
+	
 }
