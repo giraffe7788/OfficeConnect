@@ -64,20 +64,6 @@
 						<div class="card-body">
 							<div class="row"
 								style="display: flex; justify-content: space-around; height: 420px; align-items: center;">
-								<!-- <div class="col-lg-2"
-									style="text-align: center; display: flex; flex-direction: column; margin: auto;">
-									<button type="button" class="btn btn-test btn-primary"
-										style="display: block;">회의1</button>
-									<br>
-
-									<button type="button" class="btn btn-primary"
-										style="display: block;">회의2</button>
-									<br>
-
-									<button type="button" class="btn btn-primary"
-										style="display: block;">회의3</button>
-									<br>
-								</div> -->
 
 								<div class="col-lg-9" style="height: 70%">
 
@@ -165,6 +151,7 @@
 
 	<script>
 	$(document).ready(function() {
+		
 		<%String msg = (String) request.getAttribute("msg");
 		if (msg != null && msg == "ok") {
 		%>
@@ -175,15 +162,17 @@
 			alert("예약 취소 중 오류가 발생했습니다");
 		<%
 		}
+		%>
 
 		// 나의 회의실 예약 화면 들어오면 로그인 정보 따라서 예약한 회의실 정보
-		boolean isEmpty = false;
+		let isEmpty = true;
 
 		// 로그인한 사원 확인
+		<%
 		for(MeetingBookVO mvo : mtrList){
 		%>
-		    if(<%=mvo.getMtrNo()%> == <%=currentEmpNo%>){
-		    	<%isEmpty = true;%>
+		    if(<%=mvo.getEmpNo()%> == <%=currentEmpNo%>){
+		    	isEmpty = false;
 		       // 예약한 회의실 번호 출력
 		    	$('#thMtr').empty();			
 				let cont1 = "";
@@ -213,14 +202,13 @@
 		    }
 		<%
 		}
-		if (isEmpty == false) {
 		%>
+		if (isEmpty) {
 			$('#dataTable').css('display', 'none');
 			$('#emptyData').css('display', 'block');
 			$('.btn-close').css('display', 'none');
-		<%
 		}
-		%>
+
 		});
 
 		// 예약 취소 모달창
@@ -247,6 +235,7 @@
 	                    alert('예약 취소 되었습니다.');
 	                    $('#closeModal').modal('hide');
 	                    location.reload();
+	                    isEmpty = true;
 	                } else {
 	                    alert('예약 취소에 실패했습니다.');
 	                }
