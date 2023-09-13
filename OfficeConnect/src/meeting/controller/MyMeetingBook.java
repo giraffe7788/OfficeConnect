@@ -23,7 +23,8 @@ public class MyMeetingBook extends HttpServlet{
 
 		IMeetingService service = MeetingServiceImpl.getInstance();
 		
-		List<MeetingBookVO> mtrList = service.selectAll();
+		List<MeetingBookVO> mtrList = service.selectAllBook();
+
 		req.setAttribute("mtrList", mtrList);	
 		req.setAttribute("empNo", req.getSession().getAttribute("empNo"));
 	

@@ -23,7 +23,7 @@ public class ReservationList extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		IMeetingService service = MeetingServiceImpl.getInstance();
-		List<MeetingBookVO> mtrList = service.selectAll();
+		List<MeetingBookVO> mtrList = service.selectAllBook();
 		
 		req.setAttribute("empNo", req.getSession().getAttribute("empNo"));
 		
@@ -34,7 +34,7 @@ public class ReservationList extends HttpServlet{
 		List<vo.MeetingRoomVO> roomList = service.getRoomList();
 		req.setAttribute("roomList", roomList);
 
-		RequestDispatcher disp = req.getRequestDispatcher("/meeting.jsp");
+		RequestDispatcher disp = req.getRequestDispatcher("/meetingRoom.jsp");
 		disp.forward(req, resp);
 	}
 	

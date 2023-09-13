@@ -26,8 +26,8 @@
    
  -->
 
-    <select id="selectAll" resultType="mtvo" resultMap="mtrMap">
-       select * from mtrbook
+    <select id="selectAllBook" resultMap="mtrMap">
+			select * from mtrbook
     </select>
    
    <select id="selectMeetingRoom" resultType="vo.MeetingRoomVO">
