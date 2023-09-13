@@ -27,6 +27,18 @@ public class EmpVO {
 		this.adminCode = adminCode;
 		this.deptCode = deptCode;
 	}
+	public EmpVO(String empNo, String empAddr, String empTel, String empEmail, String empName,
+			int adminCode, String empPosit, int deptCode) {
+		super();
+		this.empNo = empNo;
+		this.empAddr = empAddr;
+		this.empTel = empTel;
+		this.empEmail = empEmail;
+		this.empName = empName;
+		this.empPosit = empPosit;
+		this.adminCode = adminCode;
+		this.deptCode = deptCode;
+	}
 	
 	public String getEmpNo() {
 		return empNo;
@@ -70,11 +82,11 @@ public class EmpVO {
 	public void setEmpPosit(String empPosit) {
 		this.empPosit = empPosit;
 	}
-	public int getEmpState() {
-		return empState;
+	public int getStateCode() {
+		return stateCode;
 	}
-	public void setEmpState(int empState) {
-		this.empState = empState;
+	public void setStateCode(int stateCode) {
+		this.stateCode = stateCode;
 	}
 	public int getAdminCode() {
 		return adminCode;
