@@ -23,7 +23,7 @@ public class Book extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+
 	}
 	
 	@Override
@@ -61,7 +61,7 @@ public class Book extends HttpServlet {
 			resp.getWriter().write(jsonsStr);
 		}
 		
-		RequestDispatcher disp = req.getRequestDispatcher("/meeting.jsp");
-		disp.forward(req, resp);
+//		RequestDispatcher disp = req.getRequestDispatcher("/meeting.jsp");
+//		disp.forward(req, resp);
 	}
 }

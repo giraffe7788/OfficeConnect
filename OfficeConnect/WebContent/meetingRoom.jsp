@@ -6,8 +6,8 @@
 	pageEncoding="UTF-8"%>
 <%
 	List<MeetingBookVO> mtrList = (List<MeetingBookVO>) request.getAttribute("mtrList");
-List<MeetingRoomVO> roomList = (List<MeetingRoomVO>) request.getAttribute("roomList");
-String currentEmpNo = (String) request.getAttribute("empNo");
+	List<MeetingRoomVO> roomList = (List<MeetingRoomVO>) request.getAttribute("roomList");
+	String currentEmpNo = (String) request.getAttribute("empNo");
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -77,23 +77,23 @@ td {
 								<div class="col-lg-2"
 									style="text-align: center; display: flex; flex-direction: column;">
 									<button type="button" class="btn btn-primary" id="room1"
-										style="display: block;">회의실1</button>
+										style="display: block;" value="1">회의실1</button>
 									<br>
 
 									<button type="button" class="btn btn-primary" id="room2"
-										style="display: block;">회의실2</button>
+										style="display: block;" value="2">회의실2</button>
 									<br>
 
 									<button type="button" class="btn btn-primary" id="room3"
-										style="display: block;">회의실3</button>
+										style="display: block;" value="3">회의실3</button>
 									<br>
 
 									<button type="button" class="btn btn-primary" id="room4"
-										style="display: block;">회의실4</button>
+										style="display: block;" value="4">회의실4</button>
 									<br>
 
 									<button type="button" class="btn btn-primary" id="room5"
-										style="display: block;">회의실5</button>
+										style="display: block;" value="5">회의실5</button>
 									<br>
 									<button type="button" class="btn btn-success" id="myRoom"
 										onClick="window.location.href='meetingRoomBook.jsp'"
@@ -111,17 +111,51 @@ td {
 													<button type="button" class="close" data-dismiss="modal">&times;</button>
 												</div>
 												<div class="modal-body">
-													<form action="url" name="jsp?로 가는 거임?" method="post">
-														<label>예약자 : <input type="text" name="#"></label><br>
-														<!-- 															<label>예약날짜 : <input type="date" name="#"></label><br> -->
-														<label>예약시간 : <input type="time" name="#"></label><br>
+													<div class="mtrNO">
+														<label class="control-label">회의실</label>
+													</div>
 
-														<!-- 윤하가 만들 어 놓은 모달 갔다 쓰고 모달 수정사항 수정하기. -->
+													<form class="reservation">
+														<div class="form-group">
+															<label class="control-label">회의 내용</label>
+															<textarea name="mtrbookCont" rows="5" cols="50"></textarea>
+														</div>
+
+														<div class="form-group">
+															<label class="control-label">예약 시간</label> <select
+																name="mtrbookRent">
+																<option value="9">9
+																<option value="10">10
+																<option value="11">11
+																<option value="12">12
+																<option value="13">13
+																<option value="14">14
+																<option value="15">15
+																<option value="16">16
+																<option value="17">17
+															</select> <span>: 00 ~ </span> <select name="mtrbookRtn">
+																<option class="time" value="10">10
+																<option class="time" value="11">11
+																<option class="time" value="12">12
+																<option class="time" value="13">13
+																<option class="time" value="14">14
+																<option class="time" value="15">15
+																<option class="time" value="16">16
+																<option class="time" value="17">17
+																<option class="time" value="18">18
+															</select> <span>: 00</span>
+														</div>
+
+														<div class="form-group">
+															<label class="control-label">회의 인원</label> <select
+																id="mtrbookPer">
+															</select>
+														</div>
 
 													</form>
 												</div>
 												<div class="modal-footer">
-													<button type="button" class="btn btn-default">Close</button>
+													<button type="button" class="btn_book_out">예약</button>
 												</div>
 											</div>
 
@@ -234,93 +268,172 @@ td {
 	<!-- 페이지 Wrapper 끝 -->
 
 	<!-- 공통속성 설정 include -->
-	<script>
-		//jquery방식으로 modal띄우기
-		$('#room1').on('click', function() {
+<script>
+	// 예약 현황
+	$(document).ready(function () {
+        // 회의실 예약 정보를 포함한 VO 리스트
+        var mtrList = <%=new Gson().toJson(mtrList)%>;
+
+        // 각 예약 정보를 순회하면서 테이블의 배경색을 변경
+        $.each(mtrList, function (index, booking) {
+        	
+        	console.log("예약정보 출력");
+        	console.log("index : " + index);
+        	console.log("booking : " + booking);
+        	
+            var roomId = booking.mtrNo; // 회의실 번호
+            var startTime = booking.mtrbookRent; // 시작 시간
+            var endTime = booking.mtrbookRtn; // 종료 시간
+            console.log(roomId + " | " + startTime + " | " + endTime);
+        	 // td:contains를 사용하여 특정 조건을 만족하는 <td> 요소를 선택
+          		$("td:contains('회의실" + roomId + "-')").each(function() {
+          			var tdText = $(this).text().trim();
+          			console.log(tdText);
+          			console.log(this);
+           	    // 해당 요소의 텍스트가 시작 시간과 종료 시간 사이에 있는 경우 배경색 변경
+          			if (tdText.split('-')[1] >= startTime && tdText.split('-')[1] < endTime) {
+          				$(this).css("background-color", "#cff7dc"); // 배경색을 원하는 색상으로 변경	
+          			}
+               });
+        });
+    });
+
+// 회의실 버튼 속성 한번에 주기
+		$('.btn-primary').on('click', function(){
+			// 해당 회의실 번호 적용
+			console.log($(this).val());
+			mtrNo = $(this).val();
+			console.log("mtrNo = " + mtrNo);
+			let mtrNoT = "<span>";
+			mtrNoT += mtrNo;
+			mtrNoT += "</span>";
+			$('.mtrNO').append(mtrNoT);
+				
+			// 배경색 설정
 			$('#myModal').modal({
 				backdrop : 'static'
 			});
-		});
+			
+			// select 엘리먼트에 대한 참조를 가져옵니다.
+			var selectElement = document.getElementById("mtrbookPer");
+			while (selectElement.options.length > 0) {
+			    selectElement.remove(0);
+			}
+			
+			let index = 0;
+			if(mtrNo == 1){
+				index = <%=roomList.get(0).getMtrPer()%>;
+			} else if(mtrNo == 2){
+				index = <%=roomList.get(1).getMtrPer()%>;
+			} else if(mtrNo == 3){
+				index = <%=roomList.get(2).getMtrPer()%>;
+			} else if(mtrNo == 4){
+				index = <%=roomList.get(3).getMtrPer()%>;
+			} else if(mtrNo == 5){
+				index = <%=roomList.get(4).getMtrPer()%>;
+			}
+			console.log("index =" + index);
+			
+			// 해당 회의실 제한 인원 적용	
+			for(let j = 1; j <= index; j++){
+					
+					// 새로운 option 엘리먼트를 생성합니다.
+					var option = document.createElement("option");
 
-		$('.modal-footer button').on('click', function() {
-			$('#myModal').modal('hide');
-		});
+					// option 엘리먼트의 속성을 설정합니다.
+					option.value = j;
+					option.text = j;
 
-		$('#room2').on('click', function() {
-			$('#myModal').modal({
-				backdrop : 'static'
-			});
+					// select 엘리먼트에 새 option 엘리먼트를 추가합니다.
+					selectElement.appendChild(option);
+				}
 		});
+	
 
-		$('.modal-footer button').on('click', function() {
-			$('#myModal').modal('hide');
-		});
-
-		$('#room3').on('click', function() {
-			$('#myModal').modal({
-				backdrop : 'static'
-			});
-		});
-
-		$('.modal-footer button').on('click', function() {
-			$('#myModal').modal('hide');
-		});
-
-		$('#room4').on('click', function() {
-			$('#myModal').modal({
-				backdrop : 'static'
-			});
-		});
-
-		$('.modal-footer button').on('click', function() {
-			$('#myModal').modal('hide');
-		});
-
-		$('#room5').on('click', function() {
-			$('#myModal').modal({
-				backdrop : 'static'
-			});
-		});
-		
 		$('#myRoom').on('click', function() {
 			$('#myModal').modal({
 				backdrop : 'static'
 			});
 		});
 
-		$('.modal-footer button').on('click', function() {
+		// 모달창-'X' 버튼 클릭했을 때
+		$('button .close').on('click', function() {
 			$('#myModal').modal('hide');
+			
+			// 회의실 번호 초기화
+			$('.mtrNO span').empty();
 		});
 		
-		
-		$(document).ready(function () {
-	        // 회의실 예약 정보를 포함한 VO 리스트
-	        var mtrList = <%=new Gson().toJson(mtrList)%>;
-
-	        // 각 예약 정보를 순회하면서 테이블의 배경색을 변경합니다.
-	        $.each(mtrList, function (index, booking) {
-	        	
-	        	console.log("예약정보 출력");
-	        	console.log("index : " + index);
-	        	console.log("booking : " + booking);
-	        	
-	            var roomId = booking.mtrNo; // 회의실 번호
-	            var startTime = booking.mtrbookRent; // 시작 시간
-	            var endTime = booking.mtrbookRtn; // 종료 시간
-	            console.log(roomId + " | " + startTime + " | " + endTime);
-	        	 // td:contains를 사용하여 특정 조건을 만족하는 <td> 요소를 선택
-           		$("td:contains('회의실" + roomId + "-')").each(function() {
-           			var tdText = $(this).text().trim();
-           			console.log(tdText);
-           			console.log(this);
-            	    // 해당 요소의 텍스트가 시작 시간과 종료 시간 사이에 있는 경우 배경색 변경
-           			if (tdText.split('-')[1] >= startTime && tdText.split('-')[1] < endTime) {
-           				$(this).css("background-color", "#cff7dc"); // 배경색을 원하는 색상으로 변경	
-           			}
-                });
-	        });
-	    });
-	</script>
+		// 모달창-'예약' 버튼 클릭했을 때
+		$('.btn_book_out').on('click', function(){
+			$('#myModal').modal('hide');
+			
+			let mtrbookRent = $('[name="mtrbookRent"]').val();
+			let mtrbookRtn = $('[name="mtrbookRtn"]').val();
+			let mtrbookPer = $('[id="mtrbookPer"]').val();
+			let mtrbookCont = $('[name="mtrbookCont"]').val();
+			
+			// 9시 이상 예약 가능하게
+			if(parseInt(mtrbookRtn, 10) < parseInt(mtrbookRent, 10)){
+				alert("시작 이전 시간은 예약 불가능합니다.");
+				return;
+			}
+			
+			// 예약된 시간엔 예약 안되게
+			<%for(MeetingBookVO mvo : mtrList){%>
+			// 같은 회의실이면 시작끝 시간 겹쳐도 안되고 시작 시간 겹쳐도 안되고 끝시간 겹쳐도 안되고 그 사이 시간도 겹치면 안됨
+				if( <%=mvo.getMtrNo() %> == mtrNo ){
+					if( <%=mvo.getMtrbookRent() %> == mtrbookRent && <%=mvo.getMtrbookRtn() %> == mtrbookRtn){
+						alert("이미 예약된 시간입니다.");
+						return;
+					}else if(<%=mvo.getMtrbookRent()%> < mtrbookRent && <%=mvo.getMtrbookRtn() %> > mtrbookRtn ){
+						alert("이미 예약된 시간입니다.");
+						return;
+					}else if(<%=mvo.getMtrbookRent() %> == mtrbookRent){
+						alert("이미 예약된 시작시간입니다.");
+						return;
+					}else if(<%=mvo.getMtrbookRtn() %> == mtrbookRtn){
+						alert("이미 예약된 종료시간입니다.");
+						return;
+					}
+				}
+			<%
+			}
+			%>
+			
+			// 회원당 예약  한번만
+			<%for(MeetingBookVO mvo : mtrList){
+				System.out.println(mvo.getEmpNo()+ "==" +currentEmpNo);%>
+				if(<%=mvo.getEmpNo()%> == <%=currentEmpNo%>){
+					alert("회의실은 인당 1번만 예약 가능합니다");
+					return;
+				}
+			<%}%>
+			
+			$.ajax({
+				url: "book.do",
+				type: "post",
+				data: { 'mtrNo': mtrNo,
+					    'mtrbookPer' : mtrbookPer,
+					    'mtrbookRent' : mtrbookRent, 
+					    'mtrbookRtn' : mtrbookRtn, 
+					    'mtrbookCont' : mtrbookCont},
+					    
+				success: function(res){	
+					// 시간표 반영
+					if(res.isSuccess == "ok"){
+						alert("회의실 예약이 완료되었습니다");
+					} else {
+						alert("회의실 예약이 실패하였습니다")
+					}
+					location.href = "/OfficeConnect/list.do";
+				},
+				error: function(xhr, status, msg){
+					console.log("상태값: " + status + " Http 에러 메시지: " + msg);
+				}
+			});	
+		});
+</script>
 	<%@ include file="./views/common.jsp"%>
 
 

@@ -51,7 +51,7 @@ public class MeetingServiceImpl implements IMeetingService {
 	
 	@Override
 	/**
-	 * 회의실의 이름과 인원을 가져와서 Map타입으로 만들어주고 반환
+	 * 회의실의 이름과 인원 반환
 	 * @return
 	 */
 	public List<MeetingRoomVO> getRoomList() {

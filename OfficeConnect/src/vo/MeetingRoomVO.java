@@ -4,6 +4,12 @@ public class MeetingRoomVO {
 	String mtrNo;
 	String mtrPer;
 	
+	public MeetingRoomVO() {}
+	public MeetingRoomVO(String mtrNo, String mtrPer) {
+		super();
+		this.mtrNo = mtrNo;
+		this.mtrPer = mtrPer;
+	}
 	public void setMtrNo(String mtrNo) {
 		this.mtrNo = mtrNo;
 	}

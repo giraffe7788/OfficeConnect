@@ -25,11 +25,11 @@ public class MeetingBookVO {
 	public int getMtrbookNo() {
 		return mtrbookNo;
 	}
-	
+
 	public void setMtrbookNo(int mtrbookNo) {
 		this.mtrbookNo = mtrbookNo;
 	}
-	
+
 	public int getMtrNo() {
 		return mtrNo;
 	}
