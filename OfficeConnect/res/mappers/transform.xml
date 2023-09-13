@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="transform">
+
+	<select id="getDeptName" resultType="String">
+		select dept_name from dept
+		where dept_code = #{deptCode}
+	</select>
+	
+	<select id="getStateName" resultType="String">
+		select state_name from state
+		where state_code = #{state_code}
+	</select>
+	
+	<select id="getDeptCode" resultType="Integer">
+		select dept_code from dept
+		where dept_name = #{deptName}
+	</select>
+	
+	<select id="getStateCode" resultType="String">
+		select state_code from state
+		where state_name = #{state_name}
+	</select>
+	
+</mapper>
