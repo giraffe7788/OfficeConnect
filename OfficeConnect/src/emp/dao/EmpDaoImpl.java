@@ -79,6 +79,22 @@ public class EmpDaoImpl implements IEmpDao {
 		return cnt;
 
 	}
+  
+  
+	@Override
+	public int forgotPw(String empNo) {
+		
+		SqlSession session = MyBatisUtil.getInstance();
+		
+		int cnt = 0;
+		
+		try {
+			cnt = session.insert("employee.forgotPw", empNo);
+			if (cnt > 0) {
+				session.commit();
+			}
+			
+		} catch (PersistenceException ex) {
 
 	
 	/**

@@ -108,4 +108,11 @@ public class EmpServiceImpl implements IEmpService{
 		List<EmpVO> empList = empDao.searchEmployee(ev);
 		return empList;
 	}
+	
+	@Override
+	public int forgotPw(String empNo) {
+		return loginDao.forgotPw(empNo);
+	}
+	
+	
 }

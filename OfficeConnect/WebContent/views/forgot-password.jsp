@@ -1,6 +1,11 @@
+<%@page import="vo.EmpVO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<% 
+	String empNo = (String)request.getAttribute("empNo");
+	String empTel = (String)request.getAttribute("empTel");
+%>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -18,6 +23,12 @@
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <!-- css 설정 -->
     <link href="../css/sb-admin-2.min.css" rel="stylesheet">
+    
+    <!-- 부트스트랩 코드, 플러그인 설정 -->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../script/sb-admin-2.min.js"></script>
 </head>
 
 <body class="bg-gradient-primary">
@@ -42,18 +53,18 @@
                                     </div>
                                     <form class="user">
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
+                                            <input type="text" name="eNo" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
                                                 placeholder="사번을 입력하세요.">
                                         </div>
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
+                                            <input type="text" name="eTel" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
                                                 placeholder="전화번호를 입력하세요.">
                                         </div>
-                                        <a href="login.jsp" class="btn btn-primary btn-user btn-block">
-                                           	비밀번호 새로 만들기
-                                        </a>
+<!--                                         <a href="login.jsp" class="btn btn-primary btn-user btn-block" id="newPw">  -->
+                                           	<button type="button" id="newPw">비밀번호 새로 만들기</button>
+<!--                                         </a> -->
                                     </form>
                                     <hr>
 
@@ -71,12 +82,25 @@
         </div>
 
     </div>
+    
+<script>
+$('#newPw').on('click', function(){
+	alert();
+	
+	let eNo = $('[name="eNo"]').val();
+	let eTel = $('[name="eTel"]').val();
+	
+	console.log(<%=empNo %>);
+	
+	if(<%=empNo %> == eNo){
+        alert('사원 번호가 일치합니다.');
+    }else{
+        alert('사원 번호가 일치하지 않습니다.');
+    }
+	
+});
 
-    <!-- 부트스트랩 코드, 플러그인 설정 -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-    <script src="js/sb-admin-2.min.js"></script>
+</script>
 
 </body>
 

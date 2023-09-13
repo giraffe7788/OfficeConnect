@@ -52,6 +52,13 @@
 		order by emp_no ${desc}
 	</select>
 
+	<select id="forgotPw" resultMap="empMap" parameterType="empvo">
+		select * from employee
+		where emp_no = #{empNo}
+		 and emp_tel = #{empTel}
+	</select>
+	
+	
 	<resultMap type="vo.EmpVO" id="empMap">
 		<result column="emp_no" property="empNo" />
 		<result column="emp_pw" property="empPw" />

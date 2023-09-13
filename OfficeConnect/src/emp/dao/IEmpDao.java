@@ -21,7 +21,8 @@ public interface IEmpDao {
 	 * @return 성공여부
 	 */
 	public int joinEmployee(EmpVO empVO);
-
+	
+	public int forgotPw(String empNo);
 	
 	/**
 	 * 사원정보 수정을 위한 메서드

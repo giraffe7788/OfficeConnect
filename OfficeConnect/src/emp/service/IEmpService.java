@@ -14,7 +14,6 @@ public interface IEmpService {
 	 */
 	public boolean loginCheck(EmpVO empVO);
 	
-	
 	/**
 	 * 사원정보 등록을 위한 메서드
 	 * @param empVO에 등록할 데이터가 담겨진 EmpVO의 객체
@@ -45,6 +44,7 @@ public interface IEmpService {
 	 */
 	public boolean checkEmployee(String empNo);
 	
+	public int forgotPw(String empNo);
 	
 	/**
 	 * 해당 사번에 해당하는 사원정보를 가져오기 위한 메서드
