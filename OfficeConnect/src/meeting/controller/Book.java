@@ -23,15 +23,15 @@ public class Book extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+		
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		int mtrNo = Integer.parseInt(req.getParameter("mtrNo"));
 		int mtrbookPer = Integer.parseInt(req.getParameter("mtrbookPer"));
-		int mtrbookRent = Integer.parseInt(req.getParameter("mtrbookRent"));
-		int mtrbookRtn = Integer.parseInt(req.getParameter("mtrbookRtn"));
+		String mtrbookRent = (String)(req.getParameter("mtrbookRent"));
+		String mtrbookRtn = (String)(req.getParameter("mtrbookRtn"));
 		String mtrbookCont = req.getParameter("mtrbookCont");
 		
 		System.out.println("mtrNo : " + mtrNo + " mtrbookPer : " + mtrbookPer + " mtrbookRent : " + mtrbookRent + " mtrbookRtn : " + mtrbookRtn + " mtrbookCont : " + mtrbookCont);
@@ -60,6 +60,8 @@ public class Book extends HttpServlet {
 			resp.setContentType("application/json");
 			resp.getWriter().write(jsonsStr);
 		}
-
+		
+		RequestDispatcher disp = req.getRequestDispatcher("/meeting.jsp");
+		disp.forward(req, resp);
 	}
 }

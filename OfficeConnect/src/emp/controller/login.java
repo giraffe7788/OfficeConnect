@@ -29,16 +29,13 @@ public class login extends HttpServlet {
 
 		String empNo = req.getParameter("emp_no");
 		String empPw = req.getParameter("emp_pw");
-		Boolean isAdminLogin = Boolean.parseBoolean(req.getParameter("adminLogin"));
 
 		IEmpService loginService = EmpServiceImpl.getInstance();
 		EmpVO empVO = new EmpVO();
 		empVO.setEmpNo(empNo);
 		empVO.setEmpPw(empPw);
 
-		boolean isSuccess = loginService.loginCheck(empVO, isAdminLogin);
-		
-		if (isSuccess) {
+		if (loginService.loginCheck(empVO)) {
 			System.out.println("로그인성공");
 			
 			req.getSession().setAttribute("empNo", empNo); // 다른 데에 로그인한 사람 정보 줄라고

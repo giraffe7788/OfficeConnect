@@ -16,15 +16,14 @@ public class EmpServiceImpl implements IEmpService{
 	
 	IEmpDao loginDao = EmpDaoImpl.getInstance();
 	
-	/**
-	 * 로그인 체크 메서드, 파라미터로 사번과 관리자로그인 체크 여부를 받고 로그인 성공 여부를 리턴
-	 * @param empVO
-	 * @param isAdminLogin
-	 * @return
-	 */
 	@Override
-	public boolean loginCheck(EmpVO empVO, boolean isAdminLogin) {
-		return loginDao.loginCheck(empVO, isAdminLogin);
+	/**
+	 * 로그인 체크를 위한 메서드
+	 * @param empvo
+	 * @return 로그인 성공여부
+	 */
+	public boolean loginCheck(EmpVO empVO) {
+		return loginDao.loginCheck(empVO);
 	}
 	
 	/**
@@ -36,5 +35,4 @@ public class EmpServiceImpl implements IEmpService{
 	public int registEmp(EmpVO empVO) {
 		return loginDao.joinEmployee(empVO);
 	}
-
 }
