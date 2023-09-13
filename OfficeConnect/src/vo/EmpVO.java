@@ -106,12 +106,4 @@ public class EmpVO {
 	public void setDeptName(String deptName) {
 		this.deptName = deptName;
 	}
-
-	public String getEmpStateName() {
-		return empStateName;
-	}
-
-	public void setEmpStateName(String empStateName) {
-		this.empStateName = empStateName;
-	}
 }
