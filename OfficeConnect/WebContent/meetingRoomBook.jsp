@@ -64,20 +64,6 @@
 						<div class="card-body">
 							<div class="row"
 								style="display: flex; justify-content: space-around; height: 420px; align-items: center;">
-								<!-- <div class="col-lg-2"
-									style="text-align: center; display: flex; flex-direction: column; margin: auto;">
-									<button type="button" class="btn btn-test btn-primary"
-										style="display: block;">회의1</button>
-									<br>
-
-									<button type="button" class="btn btn-primary"
-										style="display: block;">회의2</button>
-									<br>
-
-									<button type="button" class="btn btn-primary"
-										style="display: block;">회의3</button>
-									<br>
-								</div> -->
 
 								<div class="col-lg-9" style="height: 70%">
 
@@ -165,6 +151,7 @@
 
 	<script>
 	$(document).ready(function() {
+		
 		<%String msg = (String) request.getAttribute("msg");
 		if (msg != null && msg == "ok") {
 		%>
@@ -247,6 +234,7 @@
 	                    alert('예약 취소 되었습니다.');
 	                    $('#closeModal').modal('hide');
 	                    location.reload();
+	                    <%isEmpty = false;%>
 	                } else {
 	                    alert('예약 취소에 실패했습니다.');
 	                }
