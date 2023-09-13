@@ -197,8 +197,7 @@
 				// 예약한 회의실 내용 출력
 		    	$('#mtCont').empty();			
 				let cont4 = "";
-				cont4 += "<%=mvo.getMtrbookCont()%>";	
-				console.log(cont4);
+				cont4 += "<%=mvo.getMtrbookCont()%>";		
 				$('#mtCont').text(cont4);
 		    }
 		<%
@@ -234,7 +233,7 @@
 	            success: function(res) {
 	                if (res.isSuccess === 'ok') {
 	                    alert('예약 취소 되었습니다.');
-	                    $('#closeModal').modal('hide');               
+	                    $('#closeModal').modal('hide');
 	                    location.reload();
 	                    isEmpty = true;
 	                } else {
