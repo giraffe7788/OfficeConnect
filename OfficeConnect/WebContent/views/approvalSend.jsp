@@ -68,7 +68,7 @@ td {
 					<!-- Content Row -->
 					<div class="row" style="justify-content : center">
 
-						<div class="col-lg-7 mb-4">
+						<div class="col-lg-5 mb-4">
 
 							<!-- 결재 양식 들어와야되는데 일단 실험용으로 다른거 넣어봄 -->
 							<div class="card shadow mb-4" id="empInfo"">

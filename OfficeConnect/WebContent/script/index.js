@@ -32,7 +32,3 @@ function loginCheck(){
 		dataType : 'json'
 	})
 }
-
-	function getContextPath() {
-		return "<%=request.getContextPath()%>";
-	}

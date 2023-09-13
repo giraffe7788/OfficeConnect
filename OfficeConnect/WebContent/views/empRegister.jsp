@@ -17,7 +17,7 @@
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <!-- css 설정 -->
     <link href="../css/sb-admin-2.min.css" rel="stylesheet">
-
+	<script src="../script/empRegister.js?ver=1"></script>
 <style>
 #dataTable_wrapper {
 	overflow-x : hidden;
@@ -81,7 +81,7 @@
                                 </div>
                                 <div class="form-group">
                                     <nav class="navbar navbar-expand navbar-light bg-light mb-4">
-                                        <a class="navbar-brand" href="#" style="font-size : 1em" id="position">직급</a>
+                                        <a class="navbar-brand" href="#" style="font-size : 1em" id="empPosit">직급</a>
                                         <ul class="navbar-nav ml-auto">
                                             <li class="nav-item dropdown">
                                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
@@ -104,7 +104,7 @@
                                 </div>
                                 <div class="form-group">
                                     <nav class="navbar navbar-expand navbar-light bg-light mb-4">
-                                        <a class="navbar-brand" href="#" style="font-size : 1em" id="department">부서</a>
+                                        <a class="navbar-brand" href="#" style="font-size : 1em" id="empDept">부서</a>
                                         <ul class="navbar-nav ml-auto">
                                             <li class="nav-item dropdown">
                                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
@@ -129,7 +129,7 @@
                                 	<label for="isAdmin"><b>관리자여부&nbsp;<b></b></label>
                                     <input type="checkbox" id="isAdmin">
                                 </div>
-                                <a href="login.html" class="btn btn-primary btn-user btn-block">
+                                <a href="#" class="btn btn-primary btn-user btn-block" onclick="registerEmp()">
                                     사원 추가
                                 </a>
                             </form>
@@ -161,13 +161,13 @@
     	var selectedText = $(this).text(); // 선택된 항목의 텍스트 가져오기
     	
     	    // 업무상태 수정 해야함
-    		$('#position').text(selectedText); // navbar-brand의 텍스트 변경
+    		$('#empPosit').text(selectedText); // navbar-brand의 텍스트 변경
 	});
    	$('#dropdown-department a').click(function () {
     	var selectedText = $(this).text(); // 선택된 항목의 텍스트 가져오기
     	
     	    // 업무상태 수정 해야함
-    		$('#department').text(selectedText); // navbar-brand의 텍스트 변경
+    		$('#empDept').text(selectedText); // navbar-brand의 텍스트 변경
 	});
     </script>
 </body>
