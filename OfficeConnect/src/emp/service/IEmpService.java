@@ -44,7 +44,21 @@ public interface IEmpService {
 	 */
 	public boolean checkEmployee(String empNo);
 	
-	public int forgotPw(String empNo);
+	/**
+	 * 사원데이터를 다 가져올 메서드
+	 * @param empvo
+	 * @return List에 사원 정보다 담김.
+	 */
+	public List<EmpVO> selectAll();
+	
+	/**
+	 * 사원조회 화면에 출력해줄 값들을 가져오는 메서드
+	 * @param empNo
+	 * @return empVO
+	 */
+	public EmpVO empChart(String empNo);
+
+  public int forgotPw(String empNo);
 	
 	/**
 	 * 해당 사번에 해당하는 사원정보를 가져오기 위한 메서드
@@ -52,7 +66,6 @@ public interface IEmpService {
 	 * @return 해당 사원의 정보를 담은 empVO 객체
 	 */
 	public EmpVO getEmployee(String empNo);
-	
 	
 	/**
 	 * 전체 사원정보(리스트)를 가져오는 메서드

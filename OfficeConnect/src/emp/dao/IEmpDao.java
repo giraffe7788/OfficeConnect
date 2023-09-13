@@ -63,7 +63,13 @@ public interface IEmpDao {
 	
 	
 	/**
-	 * 사원 정보를 검색하기 위한 메서드
+	 * 사원조회 화면에 출력해줄 값들을 가져오는 메서드
+	 * @param empNo
+	 * @return empVO
+	 */
+	public EmpVO empChart(String empNo);
+
+  /** 사원 정보를 검색하기 위한 메서드
 	 * @param 검색된 회원정보를 담은 ev 객체
 	 * @return 검색한 사원의 정보를 담은 ev를 return
 	 */

@@ -231,6 +231,28 @@ public class EmpDaoImpl implements IEmpDao {
 		return empList;
 	}
 	
+	/**
+	 * 사원조회 화면에 출력해줄 값들을 가져오는 메서드
+	 * @param empNo
+	 * @return empVO
+	 */
+	@Override
+	public EmpVO empChart(String empNo) {
+		EmpVO empVO = new EmpVO();
+		
+		SqlSession session = MyBatisUtil.getInstance();
+		
+		try {
+			
+			empVO = session.selectOne("employee.empCheck",empNo);
+			
+		} catch (PersistenceException e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		
+		return empVO;
 	
 	/**
 	 * 사원 정보를 검색하기 위한 메서드
