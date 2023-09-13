@@ -9,6 +9,7 @@
 		<typeAlias type="vo.MeetingBookVO" alias="mtvo" />
 		<typeAlias type="vo.CarVO" alias="carvo" />
 <!-- 		<typeAlias type="vo.CarBookVO" alias="carbookvo" /> -->
+		<typeAlias type="vo.ImageVO" alias="imgvo"/>
 	</typeAliases>
 	<environments default="dev">
 		<environment id="dev">
@@ -26,8 +27,10 @@
 	
 	<mappers>
 		<mapper resource="mappers/employee.xml" />
+		<mapper resource="mappers/image.xml"/>
 		<mapper resource="mappers/meetingroom.xml" />
 		<mapper resource="mappers/car.xml" />
 <!-- 		<mapper resource="mappers/carbook.xml" /> -->
+		<mapper resource="mappers/transform.xml" />
 	</mappers>
 </configuration>

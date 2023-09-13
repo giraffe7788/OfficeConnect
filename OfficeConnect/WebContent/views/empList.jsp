@@ -1,5 +1,14 @@
+<%@page import="util.TransEmpInfo"%>
+<%@page import="vo.ImageVO"%>
+<%@page import="vo.EmpVO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% 
+List<EmpVO> empList = (List<EmpVO>)request.getAttribute("empList"); 
+TransEmpInfo transform = TransEmpInfo.getInstance();
+%>
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -83,94 +92,27 @@
 													</tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>201925017</td>
-                                            <td>김영남</td>
-                                            <td>경영지원팀</td>
-                                            <td>대리</td>
-                                            <td>업무중</td>
-                                            <td>010-1234-1234</td>
-                                        </tr>
-                                        <tr>
-                                            <td>201925017</td>
-                                            <td>김영남</td>
-                                            <td>경영지원팀</td>
-                                            <td>대리</td>
-                                            <td>업무중</td>
-                                            <td>010-1234-1234</td>
-                                        </tr>
-                                        <tr>
-                                            <td>201925017</td>
-                                            <td>김영남</td>
-                                            <td>경영지원팀</td>
-                                            <td>대리</td>
-                                            <td>업무중</td>
-                                            <td>010-1234-1234</td>
-                                        </tr>
-                                        <tr>
-                                            <td>201925017</td>
-                                            <td>김영남</td>
-                                            <td>경영지원팀</td>
-                                            <td>대리</td>
-                                            <td>업무중</td>
-                                            <td>010-1234-1234</td>
-                                        </tr>
-                                        <tr>
-                                            <td>201925017</td>
-                                            <td>김영남</td>
-                                            <td>경영지원팀</td>
-                                            <td>대리</td>
-                                            <td>업무중</td>
-                                            <td>010-1234-1234</td>
-                                        </tr>
-                                        <tr>
-                                            <td>201925017</td>
-                                            <td>김영남</td>
-                                            <td>경영지원팀</td>
-                                            <td>대리</td>
-                                            <td>업무중</td>
-                                            <td>010-1234-1234</td>
-                                        </tr>
-                                        <tr>
-                                            <td>201925017</td>
-                                            <td>김영남</td>
-                                            <td>경영지원팀</td>
-                                            <td>대리</td>
-                                            <td>업무중</td>
-                                            <td>010-1234-1234</td>
-                                        </tr>
-                                        <tr>
-                                            <td>201925017</td>
-                                            <td>김영남</td>
-                                            <td>경영지원팀</td>
-                                            <td>대리</td>
-                                            <td>업무중</td>
-                                            <td>010-1234-1234</td>
-                                        </tr>
-                                        <tr>
-                                            <td>201925017</td>
-                                            <td>김영남</td>
-                                            <td>경영지원팀</td>
-                                            <td>대리</td>
-                                            <td>업무중</td>
-                                            <td>010-1234-1234</td>
-                                        </tr>
-                                        <tr>
-                                            <td>201925017</td>
-                                            <td>김영남</td>
-                                            <td>경영지원팀</td>
-                                            <td>대리</td>
-                                            <td>업무중</td>
-                                            <td>010-1234-1234</td>
-                                        </tr>
-                                        <tr>
-                                            <td>201925017</td>
-                                            <td>김영남</td>
-                                            <td>경영지원팀</td>
-                                            <td>대리</td>
-                                            <td>업무중</td>
-                                            <td>010-1234-1234</td>
-                                        </tr>
+                                        <%
+											if(empList.size() == 0){
+										%>
+											<tr><td colspan="10">데이터가 존재하지 않습니다.</td></tr>
+										<%
+										}else{
+		
+												for(EmpVO ev : empList){
+										%>
+											<tr>
+												<td><%=ev.getEmpNo() %></td>
+												<td><a href="../emp/detail.do?empNo=<%=ev.getEmpNo() %>"><%=ev.getEmpName() %></a></td>
+												<td><%=transform.transformDeptCode(ev.getDeptCode()) %></td>
+												<td><%=ev.getEmpPosit() %></td>
+												<td><%=transform.transformStateCode(ev.getStateCode()) %></td>
+												<td><%=ev.getEmpTel() %></td>
+											</tr>
+										<% 
+										}
+													}
+										%>
                                     </tbody>
                                 </table>
                                 

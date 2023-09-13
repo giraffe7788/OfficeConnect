@@ -112,8 +112,8 @@
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">관리자페이지</h6>
-                        <a class="collapse-item" href="./empList.jsp">모든사원조회</a>
-                        <a class="collapse-item" href="./empRegister.jsp">신규사원추가</a>
+                        <a class="collapse-item" href="../emp/list.do">모든사원조회</a>
+                        <a class="collapse-item" href="../emp/join.do">신규사원추가</a>
                     </div>
                 </div>
             </li>
