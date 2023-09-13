@@ -1,6 +1,8 @@
 package emp.dao;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.exceptions.PersistenceException;
 import org.apache.ibatis.session.SqlSession;
@@ -76,5 +78,52 @@ public class EmpDaoImpl implements IEmpDao {
 		
 		return cnt;
 
+	}
+	
+	/**
+	 * 사원(EMPLOYEE table) 데이터를 다 가져오는 메서드
+	 * @return List에 담긴다.
+	 */
+	@Override
+	public List<EmpVO> selectAll() {
+		
+		List<EmpVO> empList = new ArrayList<EmpVO>();
+		
+		SqlSession session = MyBatisUtil.getInstance();
+		
+		try {
+		
+		empList = session.selectList("employee.selectAll");
+		
+		}catch (PersistenceException e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		return empList;
+	}
+	
+	/**
+	 * 사원조회 화면에 출력해줄 값들을 가져오는 메서드
+	 * @param empNo
+	 * @return empVO
+	 */
+	@Override
+	public EmpVO empChart(String empNo) {
+		EmpVO empVO = new EmpVO();
+		
+		SqlSession session = MyBatisUtil.getInstance();
+		
+		try {
+			
+			empVO = session.selectOne("employee.empCheck",empNo);
+			
+		} catch (PersistenceException e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		
+		return empVO;
 	}
 }

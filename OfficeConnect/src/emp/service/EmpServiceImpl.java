@@ -2,6 +2,9 @@ package emp.service;
 
 import emp.dao.IEmpDao;
 import vo.EmpVO;
+
+import java.util.List;
+
 import emp.dao.EmpDaoImpl;
 
 public class EmpServiceImpl implements IEmpService{
@@ -14,7 +17,7 @@ public class EmpServiceImpl implements IEmpService{
 		return instance;
 	}
 	
-	IEmpDao loginDao = EmpDaoImpl.getInstance();
+	IEmpDao dao = EmpDaoImpl.getInstance();
 	
 	@Override
 	/**
@@ -23,7 +26,7 @@ public class EmpServiceImpl implements IEmpService{
 	 * @return 로그인 성공여부
 	 */
 	public boolean loginCheck(EmpVO empVO) {
-		return loginDao.loginCheck(empVO);
+		return dao.loginCheck(empVO);
 	}
 	
 	/**
@@ -33,6 +36,26 @@ public class EmpServiceImpl implements IEmpService{
 	 */
 	@Override
 	public int registEmp(EmpVO empVO) {
-		return loginDao.joinEmployee(empVO);
+		return dao.joinEmployee(empVO);
 	}
+	
+	/**
+	 * 사원(EMPLOYEE table) 데이터를 다 가져오는 메서드
+	 * @return List에 담긴다.
+	 */
+	public List<EmpVO> selectAll() {
+		return dao.selectAll();
+	}
+	
+	/**
+	 * 사원조회 화면에 출력해줄 값들을 가져오는 메서드
+	 * @param empNo
+	 * @return empVO
+	 */
+	@Override
+	public EmpVO empChart(String empNo) {
+		
+		return dao.empChart(empNo);
+	}
+
 }

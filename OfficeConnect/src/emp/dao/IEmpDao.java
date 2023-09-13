@@ -1,5 +1,7 @@
 package emp.dao;
 
+import java.util.List;
+
 import vo.EmpVO;
 
 public interface IEmpDao {
@@ -17,4 +19,18 @@ public interface IEmpDao {
 	 * @return 성공여부
 	 */
 	public int joinEmployee(EmpVO empVO);
+	
+	/**
+	 * 사원(EMPLOYEE table) 데이터를 다 가져오는 메서드
+	 * @return List에 담긴다.
+	 */
+	public List<EmpVO> selectAll();
+	
+	
+	/**
+	 * 사원조회 화면에 출력해줄 값들을 가져오는 메서드
+	 * @param empNo
+	 * @return empVO
+	 */
+	public EmpVO empChart(String empNo);
 }

@@ -27,4 +27,5 @@ public interface IMeetingService {
 	 * @return
 	 */
 	public List<MeetingRoomVO> getRoomList();
+	
 }

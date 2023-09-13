@@ -1,5 +1,7 @@
 package emp.service;
 
+import java.util.List;
+
 import vo.EmpVO;
 
 public interface IEmpService {
@@ -19,4 +21,18 @@ public interface IEmpService {
 	 */
 	public int registEmp(EmpVO empVO);
 	
+	
+	/**
+	 * 사원데이터를 다 가져올 메서드
+	 * @param empvo
+	 * @return List에 사원 정보다 담김.
+	 */
+	public List<EmpVO> selectAll();
+	
+	/**
+	 * 사원조회 화면에 출력해줄 값들을 가져오는 메서드
+	 * @param empNo
+	 * @return empVO
+	 */
+	public EmpVO empChart(String empNo);
 }

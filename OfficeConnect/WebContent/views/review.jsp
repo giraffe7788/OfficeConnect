@@ -87,7 +87,7 @@
 									<div style="margin-bottom: 10px;">
 										이름 : <input type="text" class="form-control"
 											style="width: 150px; display: inline-block;">
-										<button type="submit" class="btn btn-Light">&nbsp;확인&nbsp;</button></div>
+										<button type="submit" class="btn btn-Light" style="margin-bottom: 5px;">&nbsp;확인&nbsp;</button></div>
 										<div class="table-responsive">
 											<div class="table-wrapper">
 
@@ -209,64 +209,7 @@
 	<!-- 페이지 Wrapper 끝 -->
 
 	<!-- 공통속성 설정 include -->
-	<script>
-		//jquery방식으로 modal띄우기
-		$('#room1').on('click', function() {
-			$('#myModal').modal({
-				backdrop : 'static'
-			});
-		});
 
-		$('.modal-footer button').on('click', function() {
-			$('#myModal').modal('hide');
-		});
-
-		$('#room2').on('click', function() {
-			$('#myModal').modal({
-				backdrop : 'static'
-			});
-		});
-
-		$('.modal-footer button').on('click', function() {
-			$('#myModal').modal('hide');
-		});
-
-		$('#room3').on('click', function() {
-			$('#myModal').modal({
-				backdrop : 'static'
-			});
-		});
-
-		$('.modal-footer button').on('click', function() {
-			$('#myModal').modal('hide');
-		});
-
-		$('#room4').on('click', function() {
-			$('#myModal').modal({
-				backdrop : 'static'
-			});
-		});
-
-		$('.modal-footer button').on('click', function() {
-			$('#myModal').modal('hide');
-		});
-
-		$('#room5').on('click', function() {
-			$('#myModal').modal({
-				backdrop : 'static'
-			});
-		});
-
-		$('#myRoom').on('click', function() {
-			$('#myModal').modal({
-				backdrop : 'static'
-			});
-		});
-
-		$('.modal-footer button').on('click', function() {
-			$('#myModal').modal('hide');
-		});
-	</script>
 	<%@ include file="./common.jsp"%>
 
 	<!-- 페이지 검색/조회 플러그인 -->
