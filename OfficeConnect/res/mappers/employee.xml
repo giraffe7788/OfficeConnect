@@ -28,8 +28,8 @@
 	
 	<insert id="joinEmployee" parameterType="empvo">
 		insert into employee
-			(emp_no, emp_pw, emp_addr, emp_tel, emp_email, emp_name, emp_posit, emp_state, admin_code, dept_code)
-        values (#{empNo}, #{empPw}, #{empAddr}, #{empTel}, #{empEmail}, #{empName}, #{empPosit}, #{empState}, #{adminCode}, 1)
+			(emp_no, emp_pw, emp_addr, emp_tel, emp_email, emp_name, emp_posit, admin_code, dept_code, state_code)
+        values (#{empNo}, #{empPw}, #{empAddr}, #{empTel}, #{empEmail}, #{empName}, #{empPosit}, #{adminCode}, 1, #{empState})
 	</insert>
 
 	<resultMap type="vo.EmpVO" id="empMap">
