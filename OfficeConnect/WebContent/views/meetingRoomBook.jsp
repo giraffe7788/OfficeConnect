@@ -1,9 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@page import="javax.swing.text.html.CSS"%>
 <%@page import="vo.MeetingRoomVO"%>
 <%@page import="vo.MeetingBookVO"%>
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -70,7 +70,6 @@
 									<div class="table-responsive"
 										style="position: relative; display: flex;">
 										<div class="table-wrapper" style="width: 100%;">
-											<div id="emptyData"
 												style="display: none; text-align: center; margin-top: 18%; font-size: 2em">
 												현재 예약중인 회의실이 없습니다</div>
 											<table class="table table-bordered" id="dataTable"
@@ -93,7 +92,6 @@
 												<tr>
 													<th style="text-align: center;">회의내용</th>
 													<!--<td><textarea rows="6" style="width: 100%; height: 100%; box-sizing: border-box;">sdlfagdhdㅇㄴㄻㄴㅇㄹ </textarea></td> -->
-													<td id="mtCont" style="height: 140px">asdfhasldga</td>
 												</tr>
 											</table>
 										</div>
@@ -118,7 +116,6 @@
 		</div>
 		<!-- 페이지 Wrapper 끝 -->
 
-	</div>
 	<!-- 메인 Content 끝 -->
 
 	</div>

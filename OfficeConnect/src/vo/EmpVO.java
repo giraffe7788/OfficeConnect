@@ -9,7 +9,7 @@ public class EmpVO {
 	private String empEmail;	// 이메일
 	private String empName;		// 이름
 	private String empPosit;	// 직급
-	private int stateCode;		// 상태코드(부재중, 업무중 등..)
+	private int empState;		// 상태코드(부재중, 업무중 등..)
 	private int adminCode;		// 관리자여부코드(0이면 일반사원, 1이면 관리자)
 	private int deptCode;		// 부서코드
 	

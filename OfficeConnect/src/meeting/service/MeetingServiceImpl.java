@@ -29,13 +29,13 @@ public class MeetingServiceImpl implements IMeetingService {
 	//IMeetingDao bookDao = MeetingDaoImpl.getInstance();
 	
 	/**
-	 * 회의실 예약 리스트 가져오는 메서드
+	 * 회의실 리스트 가져오는 메서드
 	 * @param MeetingBookVO
 	 * @return 
 	 */
 	@Override
-	public List<MeetingBookVO> selectAllBook() {
-		return dao.selectAllBook();
+	public List<MeetingBookVO> selectAll() {
+		return dao.selectAll();
 	}
 	
 	
@@ -51,23 +51,10 @@ public class MeetingServiceImpl implements IMeetingService {
 	
 	@Override
 	/**
-	 * 회의실의 이름과 인원 반환
+	 * 회의실의 이름과 인원을 가져와서 Map타입으로 만들어주고 반환
 	 * @return
 	 */
 	public List<MeetingRoomVO> getRoomList() {
 		return dao.getRoomList();
-	}
-
-	/**
-	 * 회의실 예약 취소를 위한 메서드
-	 * @param empNo
-	 * @return
-	 */
-	@Override
-	public int removeBook(String empNo) {
-		
-		int cnt = dao.deleteBook(empNo);
-		
-		return cnt;
 	}
 }

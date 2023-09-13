@@ -1,16 +1,13 @@
-<%@page import="com.google.gson.Gson"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@page import="vo.MeetingRoomVO"%>
 <%@page import="vo.MeetingBookVO"%>
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
 <%
 	List<MeetingBookVO> mtrList = (List<MeetingBookVO>) request.getAttribute("mtrList");
 	List<MeetingRoomVO> roomList = (List<MeetingRoomVO>) request.getAttribute("roomList");
 	String currentEmpNo = (String) request.getAttribute("empNo");
 %>
-<!DOCTYPE html>
-<html lang="ko">
 
 <head>
 
@@ -151,7 +148,6 @@ td {
 																id="mtrbookPer">
 															</select>
 														</div>
-
 													</form>
 												</div>
 												<div class="modal-footer">
@@ -183,7 +179,6 @@ td {
 												</tr>
 											</thead>
 											<tbody>
-
 												<tr>
 													<td class="td-visible">회의실1</td>
 													<td>회의실1-9</td>
@@ -244,7 +239,6 @@ td {
 													<td>회의실5-16</td>
 													<td>회의실5-17</td>
 												</tr>
-
 											</tbody>
 										</table>
 									</div>
@@ -268,7 +262,7 @@ td {
 	<!-- 페이지 Wrapper 끝 -->
 
 	<!-- 공통속성 설정 include -->
-<script>
+  <script>
 	// 예약 현황
 	$(document).ready(function () {
         // 회의실 예약 정보를 포함한 VO 리스트
@@ -355,7 +349,6 @@ td {
 				backdrop : 'static'
 			});
 		});
-
 		// 모달창-'X' 버튼 클릭했을 때
 		$('button .close').on('click', function() {
 			$('#myModal').modal('hide');

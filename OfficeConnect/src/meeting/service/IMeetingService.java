@@ -9,11 +9,11 @@ import vo.MeetingBookVO;
 public interface IMeetingService {
 	
 	/**
-	 * 회의실 예약 리스트 가져오는 메서드
+	 * 회의실 리스트 가져오는 메서드
 	 * @param MeetingBookVO
 	 * @return 
 	 */
-	public List<MeetingBookVO> selectAllBook();
+	public List<MeetingBookVO> selectAll();
 	
 	/**
 	 * 회의실 예약을 위한 메서드
@@ -27,11 +27,4 @@ public interface IMeetingService {
 	 * @return
 	 */
 	public List<MeetingRoomVO> getRoomList();
-
-	/**
-	 * 회의실 예약 취소를 위한 메서드
-	 * @param empNo
-	 * @return
-	 */
-	public int removeBook(String empNo);
 }

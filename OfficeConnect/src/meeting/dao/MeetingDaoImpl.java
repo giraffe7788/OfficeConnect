@@ -29,14 +29,14 @@ public class MeetingDaoImpl implements IMeetingDao{
 	 * @return 
 	 */
 	@Override
-	public List<MeetingBookVO> selectAllBook() {
+	public List<MeetingBookVO> selectAll() {
 
 		List<MeetingBookVO> mtrList = new ArrayList<MeetingBookVO>();
 		
 		SqlSession session = MyBatisUtil.getInstance();
 		
 		try {
-			mtrList = session.selectList("meetingroom.selectAllBook");
+			mtrList = session.selectList("meetingroom.selectAll");
 		} catch (PersistenceException ex) {
 			session.rollback();
 			ex.printStackTrace();
@@ -44,7 +44,7 @@ public class MeetingDaoImpl implements IMeetingDao{
 			session.close();
 		}
 		
-		System.out.println("mtrListDAO : " + mtrList);
+
 		return mtrList;
 	}
 	
@@ -78,11 +78,9 @@ public class MeetingDaoImpl implements IMeetingDao{
 		return cnt;
 	}
 	
-	
-	
 	@Override
 	/**
-	 * 회의실의 이름과 인원을 가져와서 List타입안에 vo들 넣어주고 반환
+	 * 회의실의 이름과 인원을 가져와서 Map타입으로 만들어주고 반환
 	 * @return
 	 */
 	public List<MeetingRoomVO> getRoomList() {
@@ -94,36 +92,5 @@ public class MeetingDaoImpl implements IMeetingDao{
 		mbVO = session.selectList("meetingroom.selectMeetingRoom");
 		System.out.println("roomMap : " + mbVO);
 		return mbVO;
-	}
-	
-	/**
-	 * 회의실 예약 취소를 위한 메서드
-	 * @param empNo
-	 * @return
-	 */
-	@Override
-	public int deleteBook(String empNo) {
-		
-		int cnt = 0;
-		
-		SqlSession session = MyBatisUtil.getInstance(); 
-		
-		System.out.println(empNo);
-		
-		try {
-			cnt = session.delete("meetingroom.deleteBook", empNo);
-			
-			if(cnt > 0 ) {
-				session.commit();
-			}
-			
-		} catch (PersistenceException ex) {
-			ex.printStackTrace();
-			session.rollback();
-		}finally {
-			session.close();
-		}
-
-		return cnt;
 	}
 }
