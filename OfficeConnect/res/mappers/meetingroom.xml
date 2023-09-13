@@ -29,7 +29,7 @@
     <select id="selectAllBook" resultMap="mtrMap">
 			select * from mtrbook
     </select>
-   
+ 
    <select id="selectMeetingRoom" resultType="vo.MeetingRoomVO">
       select mtr_no as mtrNo, mtr_per as mtrPer from meetingroom
    </select>

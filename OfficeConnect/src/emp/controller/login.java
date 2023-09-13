@@ -38,7 +38,6 @@ public class login extends HttpServlet {
 
 		boolean isSuccess = loginService.loginCheck(empVO, isAdminLogin);
 		
-
 		if (isSuccess) {
 			System.out.println("로그인성공");
 			
