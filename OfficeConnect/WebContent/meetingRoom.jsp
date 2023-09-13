@@ -435,8 +435,6 @@ td {
 		});
 </script>
 	<%@ include file="./views/common.jsp"%>
-
-
 	<!-- 페이지 검색/조회 플러그인 -->
 </body>
 

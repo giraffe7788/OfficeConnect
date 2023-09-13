@@ -57,4 +57,17 @@ public class MeetingServiceImpl implements IMeetingService {
 	public List<MeetingRoomVO> getRoomList() {
 		return dao.getRoomList();
 	}
+
+	/**
+	 * 회의실 예약 취소를 위한 메서드
+	 * @param empNo
+	 * @return
+	 */
+	@Override
+	public int removeBook(String empNo) {
+		
+		int cnt = dao.deleteBook(empNo);
+		
+		return cnt;
+	}
 }
