@@ -42,6 +42,7 @@ public class JoinEmployeeController extends HttpServlet {
 		int adminCode = Integer.parseInt(req.getParameter("adminCode"));
 		int empState =Integer.parseInt(req.getParameter("empState"));
 		int deptCode = Integer.parseInt(req.getParameter("deptCode"));
+		String imgName = req.getParameter("imgName");
 		
 		IAtchFileService fileService = AtchFileServiceImpl.getInstance();
 		AtchFileVO atchFileVO = null;
@@ -53,7 +54,7 @@ public class JoinEmployeeController extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		
+
 
 		EmpVO empVO = new EmpVO();
 		empVO.setEmpPw(empPw);
@@ -66,9 +67,12 @@ public class JoinEmployeeController extends HttpServlet {
 		empVO.setEmpState(empState);
 		empVO.setDeptCode(deptCode);
 		
+		AtchFileVO fileVO = new AtchFileVO();
+		fileVO.setImgName(imgName);
+		
 		if(atchFileVO != null) {
 			empVO.setEmpNo(atchFileVO.getEmpNo());
-		    empVO.setImgExtin(atchFileVO.getImgExtin()); // 파일명 저장
+		    fileVO.setImgName(atchFileVO.getImgName()); // 파일명 저장
 		}
 		
 		int cnt = empService.registEmployee(empVO);

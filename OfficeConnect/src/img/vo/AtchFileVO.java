@@ -13,7 +13,7 @@ public class AtchFileVO {
 	public AtchFileVO(String empNo, String imgPath, String imgName) {
 		this.empNo = empNo;
 		this.imgPath = imgPath;
-		this.imgName = imgName + empNo;
+		this.imgName = imgName;
 	}
 
 	public String getEmpNo() {
@@ -29,7 +29,7 @@ public class AtchFileVO {
 		this.imgPath = imgPath;
 	}
 	public void setImgName(String imgName) {
-		this.imgName = imgName + this.empNo;
+		this.imgName = imgName;
 	}
 	public String getImgName() {
 		return imgName;

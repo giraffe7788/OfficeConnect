@@ -12,7 +12,7 @@
 	
 	<typeAliases>
 		<typeAlias type="vo.EmpVO" alias="empvo" />
-		<typeAlias type="emp.comm.vo.AtchFileVO" alias="fileVO"/>
+		<typeAlias type="img.vo.AtchFileVO" alias="fileVO"/>
 		<typeAlias type="vo.MeetingBookVO" alias="mtvo" />
 	</typeAliases>
 	

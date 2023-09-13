@@ -13,7 +13,7 @@
 
 	<filter>
 		<filter-name>MyCharacterEncoding</filter-name>
-		<filter-class>emp.comm.filter.MyCharacterEncoding</filter-class>
+		<filter-class>filter.MyCharacterEncoding</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>MyCharacterEncoding</filter-name>

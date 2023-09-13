@@ -20,17 +20,16 @@
 	
 	<insert id="insertFile" parameterType="fileVO">
 		insert into
-		image(EMP_NO,IMG_PATH,IMG_EXTIN,ORIGN_FILE_NAME)
+		image(EMP_NO,IMG_PATH,IMG_NAME)
 		values
-		(#{empNo},#{imgPath},#{imgExtin},#{orignFileName})
+		(#{empNo},#{imgPath},#{imgName})
 	</insert>
 	
 	<update id="updateFile" parameterType="fileVO">
 		update image
 		set emp_no = #{empNo},
 			img_path = #{imgPath},
-			img_extin = #{imgExtin},
-			orign_file_name = #{orignFileName}
+			img_name = #{imgName}
 			where emp_no = #{empNo}
 	</update>
 	
@@ -69,7 +68,7 @@
 		order by emp_no ${desc}
 	</select>
 
-	<!-- 동적쿼리 이거 왜 필요한거지..?-->
+	<!-- 동적쿼리 -->
 	<select id="searchEmployee" resultMap="empMap">
 		select *
 		from EMPLOYEE
@@ -106,7 +105,6 @@
 		</if>
 	</select>
 
-	<!-- 컬럼명과 속성을 컴퓨터에게 인지시키면 설정한 id로 사용가능 -->
 	<resultMap type="vo.EmpVO" id="empMap">
 		<result column="emp_no" property="empNo" />
 		<result column="emp_pw" property="empPw" />

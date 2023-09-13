@@ -24,22 +24,22 @@ public class FileDownloadController extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		String empNo = req.getParameter("empNo");
-		String imgExtin = req.getParameter("imgExtin");
+		String imgName = req.getParameter("imgName");
 		
 		IAtchFileService fileService = AtchFileServiceImpl.getInstance();
 		
 		AtchFileVO fileVO = new AtchFileVO();
 
 		fileVO.setEmpNo(empNo);
-		fileVO.setImgExtin(imgExtin);
+		fileVO.setImgName(imgName);
 		AtchFileVO atchFileVO = fileService.getAtchFile(fileVO);
 		
 		/** 다운로드 */
 		resp.setContentType("application/octet-stream");
-		String imgPath = "C:/Users/PC-08/git/OfficeConnect/OfficeConnect/WebContent"+atchFileVO.getImgPath()+"/"+atchFileVO.getImgExtin();
+		String imgPath = "C:/Users/PC-08/git/OfficeConnect/OfficeConnect/WebContent"+atchFileVO.getImgPath()+"/"+atchFileVO.getImgName();
 		//여기 위에 imgPath 변수 경로에 파일이 있어야 저 아래의 data변수에서 프로필사진을 화면에 표시해주는것 같음
 		try{
-			resp.setHeader("Content-Disposition", "attachment; filename=\"" + URLEncoder.encode(atchFileVO.getOrignFileName(),"UTF-8").replaceAll("\\+", "%20") + "\""); //DB에 있는 정보를 replace해줌
+			resp.setHeader("Content-Disposition", "attachment; filename=\"" + URLEncoder.encode(atchFileVO.getImgName(),"UTF-8").replaceAll("\\+", "%20") + "\""); //DB에 있는 정보를 replace해줌
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

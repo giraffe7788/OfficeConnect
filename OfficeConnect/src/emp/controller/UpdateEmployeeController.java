@@ -82,31 +82,19 @@ public class UpdateEmployeeController extends HttpServlet {
 		empVO.setEmpState(empState);
 		empVO.setEmpNo(empNo);
 		
+		AtchFileVO atchfileVO = new AtchFileVO();
 		
-		// 새로 파일 첨부해주면 ( atchFileVO(=getPart로 가져온애)가 null이 아니면 )
 		if(atchFileVO != null) {
-			
-			Part part = req.getPart("atchFile"); // 파일 파라미터 이름은 HTML 폼에서 파일 업로드 필드의 name 속성 값과 일치해야 합니다.
-			
-			// 파일명 추출
-		    String imgName = getFileName(part);
-			// 파일 경로 추출
-		    String imgPath = part.getHeader("content-disposition");
-
-		    // 파일 경로에서 실제 파일명 추출
-		    if (imgPath != null && imgPath.contains("filename=")) {
-		        int startIndex = imgPath.indexOf("filename=") + "filename=".length();
-		        int endIndex = imgPath.lastIndexOf("\"");
-		        if (startIndex != -1 && endIndex != -1) {
-		        	imgName = imgPath.substring(startIndex, endIndex);
-		        }
-		    }
+			empVO.setEmpNo(empNo);
+		}else {
+			empVO.setEmpNo(atchFileVO.getEmpNo());
+			atchfileVO.setImgName(atchFileVO.getImgName());
 		}
 		
-		int fileResult = 0;
 		int cnt = empService.modifyEmployee(empVO); 
 		if(atchFileVO != null) {
-			fileResult = empService.updateFile(atchFileVO);
+			atchFileVO.setEmpNo(empVO.getEmpNo());
+			int fileResult = empService.updateFile(atchFileVO);
 		}
 		String msg = "";
 		
@@ -116,12 +104,6 @@ public class UpdateEmployeeController extends HttpServlet {
 			msg = "실패";
 		}
 		
-		if(fileResult > 0) {
-			System.out.println("파일첨부 성공");
-		} else {
-			System.out.println("실패");
-		}
-		
 		HttpSession session = req.getSession();
 		session.setAttribute("msg", msg);
 		
@@ -129,13 +111,4 @@ public class UpdateEmployeeController extends HttpServlet {
 		resp.sendRedirect(req.getContextPath() + "/join/list.do");
 	}
 	
-	// 파일명 추출을 위한 메서드
-	private String getFileName(Part part) {
-	    for (String content : part.getHeader("content-disposition").split(";")) {
-	        if (content.trim().startsWith("filename")) {
-	            return content.substring(content.indexOf('=') + 1).trim().replace("\"", "");
-	        }
-	    }
-	    return null;
-	}
 }

@@ -55,7 +55,7 @@ public class AtchFileServiceImpl implements IAtchFileService{
 				
 			}
 			
-			String orignFileName = fileName;
+			String ImgName = fileName;
 			String saveFilePath = "";
 			String saveFileName = "";
 			
@@ -63,13 +63,12 @@ public class AtchFileServiceImpl implements IAtchFileService{
 			
 			saveFilePath = uploadDir + File.separator + saveFileName;
 
-			String fileExtension = orignFileName.lastIndexOf(".") < 0 ? "" :
-				orignFileName.substring(orignFileName.lastIndexOf(".")+1);
+			String fileExtension = ImgName.lastIndexOf(".") < 0 ? "" :
+				ImgName.substring(ImgName.lastIndexOf(".")+1);
 			
 			part.write(saveFilePath);
 			atchFileVO.setImgPath(uploadPath);
-			atchFileVO.setImgExtin(saveFileName);
-			atchFileVO.setOrignFileName(orignFileName);
+			atchFileVO.setImgName(saveFileName);
 			part.delete();
 		
 			}

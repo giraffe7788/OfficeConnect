@@ -63,7 +63,7 @@
 					for(AtchFileVO fileVO : fileList){
 			%>
 				<div>
-					<a href="<%=request.getContextPath() %>/join/download.do?empNo=<%=fileVO.getEmpNo() %>"><%=fileVO.getOrignFileName() %></a>
+					<a href="<%=request.getContextPath() %>/join/download.do?empNo=<%=fileVO.getEmpNo() %>"><%=fileVO.getImgName() %></a>
 				</div>			
 			<%
 					}

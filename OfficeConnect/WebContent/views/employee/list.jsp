@@ -26,6 +26,7 @@
 <h3>사원 조회</h3>
 <body>
 <script>
+<!-- 사원조회에서 프로필 사진 누르면 다운로드하는 버튼 함수 -->
 function fnImg(path,no){
 	location.href=path+"/join/download.do?empNo="+no;
 }

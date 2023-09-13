@@ -7,15 +7,13 @@
 		(
 		EMP_NO,
 		IMG_PATH,
-		IMG_EXTIN,
-		ORIGN_FILE_NAME
+		IMG_NAME
 		)
 		VALUES
 		(
 		#{empNo},
 		#{imgPath},
-		#{imgExtin},
-		#{orignFileName}
+		#{imgName}
 		)
 	</insert>
 	
