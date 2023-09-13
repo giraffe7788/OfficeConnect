@@ -245,7 +245,7 @@
 	            success: function(res) {
 	                if (res.isSuccess === 'ok') {
 	                    alert('예약 취소 되었습니다.');
-	                    $('#closeModal').modal('hide');               
+	                    $('#closeModal').modal('hide');
 	                    location.reload();
 	                } else {
 	                    alert('예약 취소에 실패했습니다.');
