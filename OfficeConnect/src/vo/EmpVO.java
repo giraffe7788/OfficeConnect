@@ -85,8 +85,8 @@ public class EmpVO {
 	public int getStateCode() {
 		return stateCode;
 	}
-	public void setStateCode(int empState) {
-		this.stateCode = empState;
+	public void setStateCode(int stateCode) {
+		this.stateCode = stateCode;
 	}
 	public int getAdminCode() {
 		return adminCode;

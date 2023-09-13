@@ -14,7 +14,6 @@ public class ImageServiceImpl {
 	public static ImageServiceImpl instance = null;
 
 	private ImageServiceImpl() {
-		imageService = ImageServiceImpl.getInstance();
 	}
 
 	public static ImageServiceImpl getInstance() {
