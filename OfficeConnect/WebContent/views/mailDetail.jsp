@@ -12,7 +12,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>내게 쓰기</title>
+<title>메일 상세</title>
 
 <!-- 아이콘 설정 -->
 <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -59,7 +59,7 @@
 								<div class="col-lg-2" style="border-right: 1px solid #ccc;">
 
 									<div style="font-size: 1.8rem; text-align: center;">
-										메 일 <img alt="메일" src="../img/mail.png"
+										메 일 <img alt="메일" src="../images/mail.png"
 											style="width: 35px; height: 40px;">
 									</div>
 									<hr>
@@ -140,40 +140,27 @@
 								<!-- 메일 본문 -->
 
 								<div class="col-lg-10">
-									<h4> 내게 메일 쓰기</h4>
-
+									<h4> 메일 상세 </h4>
 									<hr>
-
+									<br><br><br>
 									<form>
-										<div class="mb-3">
-											<label for="subject" class="form-label">제목:</label> <input
-												type="text" class="form-control" id="subject" required>
+									<hr>
+									<h5> 보낸 메일 제목 </h5>
+									<br>
+									<div>보낸 사람<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;이메일 주소</span></div>
+									<div>받는 사람<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;이메일 주소</span></div>
+									<hr>
+									<br>
+										<p>첨부파일 목록</p>
+										<ul>
+								            나중에 여기에 목록을 뭐 파일첨부한거 서블릿으로 받아오면되는..??
+								        </ul>
+										<div class ="attachment-list">
 										</div>
-										
-										<p>첨부파일:</p>
-										<div class="mb-3">
-										<div class="custom-file">
-											<label for="attachment" class="custom-file-label"></label> 
-											<input
-												type="file" class="custom-file-input" id="attachment"
-												name="attachment"
-												style="width: 100%; padding: 0.375rem 0.75rem; font-size: 1rem; font-weight: 400; line-height: 1.5; color: #6e707e; background-color: #fff; background-clip: padding-box; border: 1px solid #d1d3e2; border-radius: 0.35rem; transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;">
-										</div>
-										</div>
-
-										<div class="mb-3">
-											<label for="message" class="form-label">본문:</label>
-											<textarea class="form-control" id="message" rows="12"
-												required></textarea>
-										</div>
-										<div style="text-align: right;">
-											<button type="submit" class="btn btn-primary"
-												style="display: inline-block; margin-right: 10px;">임시저장</button>
-											<button type="submit" class="btn btn-primary"
-												style="display: inline-block;">전송</button>
+										<div style="position: absolute; top: 100px; right: 10px;">
+											<a href="../mail/mailBoxReceived.do" class="btn btn-primary" style="display: inline-block; margin-right: 10px;">목록</a>
 										</div>
 									</form>
-
 								</div>
 								<!-- 메일 본문 종료 -->
 
@@ -199,7 +186,5 @@
 
 	<%@ include file="./common.jsp"%>
 
-	<!-- 페이지 검색/조회 플러그인 -->
 </body>
-
 </html>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mail">
+
+	<insert id="writeMail">
+		insert into
+		mail(Mail_No, Mail_Cont, Mail_SendDate, Mail_SendStat, Mail_ReceStat, Mail_Receiver, Mail_Sender)
+		values
+		(MAIL_SEQ.nextval, #{mailCont}, #{mailSendDate}, #{mailSendStat}, #{mailReceStat},
+		#{mailReceiver}, #{mailSender})
+	</insert>
+
+	<!-- 받은 메일 쿼리  -->
+	<select id="getReceiveMail" resultMap="mailMap">
+		select * from mail
+		where mail_receiver = #{empNo}
+	</select>
+
+	<!-- 보낸 메일 쿼리  -->
+	<select id="getSendMail" resultMap="mailMap">
+		select * from mail
+		where mail_sender = #{empNo}
+	</select>
+	
+	<!-- 여기서 궁금한거!!! mail테이블에는 empNo이 참조조차 안되어있는데
+	쿼리를 이렇게 짠 이유는?
+	SendListMail에서 접속중인 아이디 세션의 속성(empNo)을 가져올 수 있어서??? -->
+
+
+	<resultMap type="vo.MailVO" id="mailMap">
+		<result column="MAIL_NO" property="mailNo" />
+		<result column="MAIL_CONT" property="mailCont" />
+		<result column="MAIL_SENDDATE" property="mailSendDate" />
+		<result column="MAIL_SENDSTAT" property="mailSendStat" />
+		<result column="MAIL_RECESTAT" property="mailReceStat" />
+		<result column="MAIL_RECEIVER" property="mailReceiver" />
+		<result column="MAIL_SENDER" property="mailSender" />
+	</resultMap>
+</mapper>

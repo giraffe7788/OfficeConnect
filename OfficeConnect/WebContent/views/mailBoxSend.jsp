@@ -59,7 +59,7 @@
 								<div class="col-lg-2" style="border-right: 1px solid #ccc;">
 
 									<div style="font-size: 1.8rem; text-align: center;">
-										메 일 <img alt="메일" src="../img/mail.png"
+										메 일 <img alt="메일" src="../images/mail.png"
 											style="width: 35px; height: 40px;">
 									</div>
 									<hr>
@@ -144,8 +144,6 @@
 
 									<hr>
 
-									<form>
-										
 									<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr role="row">
