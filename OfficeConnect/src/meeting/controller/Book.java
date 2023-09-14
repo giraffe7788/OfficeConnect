@@ -18,7 +18,7 @@ import meeting.service.IMeetingService;
 import meeting.service.MeetingServiceImpl;
 import vo.MeetingBookVO;
 
-@WebServlet("/book.do")
+@WebServlet("/meeting/insert.do")
 public class Book extends HttpServlet {
 	
 	@Override
@@ -60,8 +60,5 @@ public class Book extends HttpServlet {
 			resp.setContentType("application/json");
 			resp.getWriter().write(jsonsStr);
 		}
-		
-		RequestDispatcher disp = req.getRequestDispatcher("/meeting.jsp");
-		disp.forward(req, resp);
 	}
 }

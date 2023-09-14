@@ -1,7 +1,7 @@
 package emp.service;
 
 import emp.dao.IEmpDao;
-import img.vo.AtchFileVO;
+import vo.ImageVO;
 import vo.EmpVO;
 
 import java.util.List;
@@ -17,22 +17,20 @@ public class EmpServiceImpl implements IEmpService{
 		if(instance == null) instance = new EmpServiceImpl();
 		return instance;
 	}
-	
 	IEmpDao empDao = EmpDaoImpl.getInstance();
 	
-	
 	/**
-	 * 로그인 체크를 위한 메서드
-	 * @param empvo
+	 * 로그인 체크를 위한 메서드, 파라미터로 empVO와 관리자로그인 체크 여부가 들어간다
+	 * @param empvo, isAdminLogin
 	 * @return 로그인 성공여부
 	 */
 	@Override
-	public boolean loginCheck(EmpVO empVO) {
-		return empDao.loginCheck(empVO);
+	public boolean loginCheck(EmpVO empVO, boolean isAdminLogin) {
+		return empDao.loginCheck(empVO, isAdminLogin);
 	}
-	
-	
-	/**
+		
+
+   /**
 	 * 사원정보 등록을 위한 메서드
 	 * @param empVO에 등록할 데이터가 담겨진 EmpVO의 객체
 	 * @return 사원 등록이 성공하면 1이상의 값이 반환되고, 실패하면 0이 반환됨.
@@ -83,8 +81,8 @@ public class EmpServiceImpl implements IEmpService{
 	 * @return 해당 사원의 정보를 담은 empVO 객체
 	 */
 	@Override
-	public EmpVO getEmployee(String empNo) {
-		return empDao.getEmployee(empNo);
+	public EmpVO selectOne(String empNo) {
+		return empDao.selectOne(empNo);
 	}
 	
 	
@@ -98,38 +96,8 @@ public class EmpServiceImpl implements IEmpService{
 	}
 	
 	
-	/**
-	 * 사원 정보를 검색하기 위한 메서드
-	 * @param 검색된 회원정보를 담은 ev 객체
-	 * @return 검색한 사원의 정보를 담은 ev를 return
-	 */
 	@Override
-	public List<EmpVO> searchEmployee(EmpVO ev) {
-		List<EmpVO> empList = empDao.searchEmployee(ev);
-		return empList;
+	public int forgotPw(String empNo) {
+		return empDao.forgotPw(empNo);
 	}
-	
-	
-	/**
-	 * 파일을 삽입하기 위한 메서드
-	 * @param 삽입할 파일 담은 atchFileVO 객체
-	 * @return 상비한 파일의 정보를 담은 atchFileVO를 return
-	 */
-	@Override
-	public int insertFile(AtchFileVO atchFileVO) {
-		return empDao.insertFile(atchFileVO);
-	}
-	
-	
-	/**
-	 * 파일을 수정하기 위한 메서드
-	 * @param 수정할 파일 담은 atchFileVO 객체
-	 * @return 수정한 파일의 정보를 담은 atchFileVO를 return
-	 */
-	@Override
-	public int updateFile(AtchFileVO atchFileVO) {
-		return empDao.updateFile(atchFileVO);
-	}
-	
-	
 }

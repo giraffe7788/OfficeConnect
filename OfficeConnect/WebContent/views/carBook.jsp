@@ -75,15 +75,15 @@
 											<table class="table table-bordered" id="dataTable"
 												width="100%" cellspacing="0">
 												<tr>
-													<th style="text-align: center; width: 20%;">차량번호</th>
+													<td>차량번호</td>
 													<td>번호 불러오깅</td>
 												</tr>
 												<tr>
-													<th style="text-align: center;">예약시간</th>
+													<td>예약시간</td>
 													<td>시간뭘로 할 지 정하기</td>
 												</tr>
 												<tr>
-													<th style="text-align: center;">탑승인원</th>
+													<td>탑승인원</td>
 													<td>6</td>
 												</tr>
 												<tr>
@@ -117,64 +117,7 @@
 		<!-- 페이지 Wrapper 끝 -->
 
 		<!-- 공통속성 설정 include -->
-		<script>
-			//jquery방식으로 modal띄우기
-			$('#room1').on('click', function() {
-				$('#myModal').modal({
-					backdrop : 'static'
-				});
-			});
-
-			$('.modal-footer button').on('click', function() {
-				$('#myModal').modal('hide');
-			});
-
-			$('#room2').on('click', function() {
-				$('#myModal').modal({
-					backdrop : 'static'
-				});
-			});
-
-			$('.modal-footer button').on('click', function() {
-				$('#myModal').modal('hide');
-			});
-
-			$('#room3').on('click', function() {
-				$('#myModal').modal({
-					backdrop : 'static'
-				});
-			});
-
-			$('.modal-footer button').on('click', function() {
-				$('#myModal').modal('hide');
-			});
-
-			$('#room4').on('click', function() {
-				$('#myModal').modal({
-					backdrop : 'static'
-				});
-			});
-
-			$('.modal-footer button').on('click', function() {
-				$('#myModal').modal('hide');
-			});
-
-			$('#room5').on('click', function() {
-				$('#myModal').modal({
-					backdrop : 'static'
-				});
-			});
-
-			$('#myRoom').on('click', function() {
-				$('#myModal').modal({
-					backdrop : 'static'
-				});
-			});
-
-			$('.modal-footer button').on('click', function() {
-				$('#myModal').modal('hide');
-			});
-		</script>
+			
 		<%@ include file="./common.jsp"%>
 
 		<!-- 페이지 검색/조회 플러그인 -->

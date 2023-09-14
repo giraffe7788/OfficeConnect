@@ -7,8 +7,8 @@ import java.util.List;
 import org.apache.ibatis.exceptions.PersistenceException;
 import org.apache.ibatis.session.SqlSession;
 
-import img.vo.AtchFileVO;
 import util.MyBatisUtil;
+import vo.ImageVO;
 import vo.EmpVO;
 
 public class EmpDaoImpl implements IEmpDao {
@@ -21,13 +21,14 @@ public class EmpDaoImpl implements IEmpDao {
 		return instance;
 	}
 	
+	
+	@Override
 	/**
 	 * 로그인 체크를 위한 메서드
 	 * @param empvo
 	 * @return 로그인 성공여부
 	 */
-	@Override
-	public boolean loginCheck(EmpVO empVO) {
+	public boolean loginCheck(EmpVO empVO, boolean isAdminLogin) {
 		
 		boolean loginCheck = false;
 		SqlSession session = MyBatisUtil.getInstance();
@@ -77,9 +78,8 @@ public class EmpDaoImpl implements IEmpDao {
 		}
 		
 		return cnt;
-
 	}
-
+  
 	
 	/**
 	 * 사원정보 수정을 위한 메서드
@@ -98,8 +98,6 @@ public class EmpDaoImpl implements IEmpDao {
 			
 			if(cnt > 0) {
 				session.commit();
-//			} else {
-//				session.rollback();
 			}
 			
 		} catch(PersistenceException ex) {
@@ -168,7 +166,6 @@ public class EmpDaoImpl implements IEmpDao {
 		}
 		
 		return isExist;
-		
 	}
 	
 	
@@ -178,13 +175,13 @@ public class EmpDaoImpl implements IEmpDao {
 	 * @return 해당 사원의 정보를 담은 empVO 객체
 	 */
 	@Override
-	public EmpVO getEmployee(String empNo) {
+	public EmpVO selectOne(String empNo) {
 		
 		SqlSession session = MyBatisUtil.getInstance();
 
 		EmpVO ev = null;
 		try {
-			ev = session.selectOne("employee.getEmployee", empNo);
+			ev = session.selectOne("employee.selectOne", empNo);
 			if(ev!=null) {
 				 session.commit();
 			 }
@@ -217,81 +214,22 @@ public class EmpDaoImpl implements IEmpDao {
 		return empList;
 	}
 	
-	
-	/**
-	 * 사원 정보를 검색하기 위한 메서드
-	 * @param 검색된 회원정보를 담은 ev 객체
-	 * @return 검색한 사원의 정보를 담은 ev를 return
-	 */
-	@Override
-	public List<EmpVO> searchEmployee(EmpVO ev){
-		List<EmpVO> empList = new ArrayList<EmpVO>();
 		
-		SqlSession session = MyBatisUtil.getInstance(true);
-		
-		try {
-			
-			empList = session.selectList("employee.searchEmployee", ev);
-			
-		}catch(PersistenceException ex) {
-			ex.printStackTrace();
-		}finally {
-			session.close();
-		}
-		return empList;
-	}
-	
-	
-	/**
-	 * 파일을 삽입하기 위한 메서드
-	 * @param 삽입할 파일 담은 atchFileVO 객체
-	 * @return 상비한 파일의 정보를 담은 atchFileVO를 return
-	 */
 	@Override
-	public int insertFile(AtchFileVO atchFileVO) {
+	public int forgotPw(String empNo) {
+		
 		SqlSession session = MyBatisUtil.getInstance();
 		
 		int cnt = 0;
 		
 		try {
-			cnt = session.insert("employee.insertFile", atchFileVO);
+			cnt = session.insert("employee.forgotPw", empNo);
 			if (cnt > 0) {
 				session.commit();
 			}
 			
 		} catch (PersistenceException ex) {
-			session.rollback();
 			ex.printStackTrace();
-		} finally {
-			session.close();
-		}
-		
-		return cnt;
-	}
-	
-	
-	/**
-	 * 파일을 수정하기 위한 메서드
-	 * @param 수정할 파일 담은 atchFileVO 객체
-	 * @return 수정한 파일의 정보를 담은 atchFileVO를 return
-	 */
-	@Override
-	public int updateFile(AtchFileVO atchFileVO) {
-		SqlSession session = MyBatisUtil.getInstance();
-		
-		int cnt = 0;
-		
-		try {
-			cnt = session.insert("employee.updateFile", atchFileVO);
-			if (cnt > 0) {
-				session.commit();
-			}
-			
-		} catch (PersistenceException ex) {
-			session.rollback();
-			ex.printStackTrace();
-		} finally {
-			session.close();
 		}
 		
 		return cnt;

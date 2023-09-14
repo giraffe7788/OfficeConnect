@@ -30,7 +30,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="./empChart.jsp">
+                <a class="nav-link" href="../emp/chart.do">
                     <i class="fa-solid fa-network-wired"></i>
                     <span>사원조회</span>
                 </a>
@@ -54,8 +54,8 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">게시판종류</h6>
-                        <a class="collapse-item" href="./noticeBoard.jsp">공지사항</a>
-                        <a class="collapse-item" href="./freeBoard.jsp">자유게시판</a>
+                        <a class="collapse-item" href="../views/noticeBoard.jsp">공지사항</a>
+                        <a class="collapse-item" href="../views/freeBoard.jsp">자유게시판</a>
                     </div>
                 </div>
             </li>
@@ -86,15 +86,15 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">예약선택</h6>
-                        <a class="collapse-item" href="./meetingRoom.jsp">회의실예약</a>
-                        <a class="collapse-item" href="./car.jsp">차량배차</a>
+                        <a class="collapse-item" href="../meeting/list.do">회의실예약</a>
+                        <a class="collapse-item" href="../car/list.do">차량배차</a>
                     </div>
                 </div>
             </li>
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="./review.jsp">
+                <a class="nav-link" href="../views/review.jsp">
                     <i class="fa-solid fa-list-check"></i>
                     <span>근무태도평가</span></a>
             </li>
@@ -112,8 +112,8 @@
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">관리자페이지</h6>
-                        <a class="collapse-item" href="./empList.jsp">모든사원조회</a>
-                        <a class="collapse-item" href="./empRegister.jsp">신규사원추가</a>
+                        <a class="collapse-item" href="../emp/list.do">모든사원조회</a>
+                        <a class="collapse-item" href="../emp/join.do">신규사원추가</a>
                     </div>
                 </div>
             </li>

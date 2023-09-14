@@ -154,10 +154,11 @@
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right animated--grow-in"
                                                     aria-labelledby="navbarDropdown" style = "text-align : center">
+                                                    <a class="dropdown-item" href="#">근무중</a>
+                                                    <a class="dropdown-item" href="#">외근중</a>
+                                                    <a class="dropdown-item" href="#">결근중</a>
                                                     <a class="dropdown-item" href="#">외출중</a>
-                                                    <a class="dropdown-item" href="#">업무중</a>
-                                                    <a class="dropdown-item" href="#">부재중</a>
-                                                    <a class="dropdown-item" href="#">출장중</a>
+                                                    <a class="dropdown-item" href="#">휴가중</a>
                                                 </div>
                                             </li>
                                         </ul>

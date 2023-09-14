@@ -2,17 +2,17 @@ package emp.dao;
 
 import java.util.List;
 
-import img.vo.AtchFileVO;
+import vo.ImageVO;
 import vo.EmpVO;
 
 public interface IEmpDao {
 	
 	/**
-	 * 로그인 체크를 위한 메서드
-	 * @param empvo
+	 * 로그인 체크를 위한 메서드, 파라미터로 empVO와 관리자로그인 체크 여부가 들어간다
+	 * @param empvo, isAdminLogin
 	 * @return 로그인 성공여부
 	 */
-	public boolean loginCheck(EmpVO empVO);
+	public boolean loginCheck(EmpVO empVO, boolean isAdminLogin);
 	
 	
 	/**
@@ -21,7 +21,7 @@ public interface IEmpDao {
 	 * @return 성공여부
 	 */
 	public int joinEmployee(EmpVO empVO);
-
+	
 	
 	/**
 	 * 사원정보 수정을 위한 메서드
@@ -52,7 +52,7 @@ public interface IEmpDao {
 	 * @param empNo 가져올 사번
 	 * @return 해당 사원의 정보를 담은 empVO 객체
 	 */
-	public EmpVO getEmployee(String empNo);
+	public EmpVO selectOne(String empNo);
 
 	
 	/**
@@ -61,29 +61,5 @@ public interface IEmpDao {
 	public List<EmpVO> selectAll();
 	
 	
-	/**
-	 * 사원 정보를 검색하기 위한 메서드
-	 * @param 검색된 회원정보를 담은 ev 객체
-	 * @return 검색한 사원의 정보를 담은 ev를 return
-	 */
-	public List<EmpVO> searchEmployee(EmpVO ev);
-	
-	
-	/**
-	 * 파일을 삽입하기 위한 메서드
-	 * @param 삽입할 파일 담은 atchFileVO 객체
-	 * @return 상비한 파일의 정보를 담은 atchFileVO를 return
-	 */
-	public int insertFile(AtchFileVO atchFileVO);
-	
-	
-	/**
-	 * 파일을 수정하기 위한 메서드
-	 * @param 수정할 파일 담은 atchFileVO 객체
-	 * @return 수정한 파일의 정보를 담은 atchFileVO를 return
-	 */
-	public int updateFile(AtchFileVO atchFileVO);
-
-
-
+	public int forgotPw(String empNo);
 }

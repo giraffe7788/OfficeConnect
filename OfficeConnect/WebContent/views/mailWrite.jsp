@@ -149,7 +149,7 @@
 											style="width: 60%; display: flex; align-items: center;">
 											<label for="recipient" class="form-label" style="flex: 1;">받는
 												사람:</label> <input type="email" class="form-control" id="recipient"
-												required style="flex: 3; margin-right: 10px;">
+												style="flex: 3; margin-right: 10px;">
 											<button type="submit" class="btn btn-primary"
 												style="flex: 1; margin-right: 10px;">주소록</button>
 											<button type="submit" class="btn btn-primary"

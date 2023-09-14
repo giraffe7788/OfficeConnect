@@ -49,6 +49,7 @@ public class MeetingServiceImpl implements IMeetingService {
 		return dao.bookMtr(meetingVO);
 	}
 	
+	
 	@Override
 	/**
 	 * 회의실의 이름과 인원을 가져와서 Map타입으로 만들어주고 반환
@@ -56,5 +57,19 @@ public class MeetingServiceImpl implements IMeetingService {
 	 */
 	public List<MeetingRoomVO> getRoomList() {
 		return dao.getRoomList();
+	}
+	
+	
+	/**
+	 * 회의실 예약 취소를 위한 메서드
+	 * @param empNo
+	 * @return
+	 */
+	@Override
+	public int deleteBook(String empNo) {
+		
+		int cnt = dao.deleteBook(empNo);
+		
+		return cnt;
 	}
 }
