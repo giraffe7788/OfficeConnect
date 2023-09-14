@@ -214,24 +214,33 @@ public class EmpDaoImpl implements IEmpDao {
 		return empList;
 	}
 	
-		
+	/**
+	 * 이메일과 사번이 들어있는 객체로 비밀번호를 찾아서 비밀번호를 반환
+	 * @param empVO
+	 * @return empPw
+	 */
 	@Override
-	public int forgotPw(String empNo) {
+	public String forgotPw(EmpVO empVO) {
 		
 		SqlSession session = MyBatisUtil.getInstance();
 		
-		int cnt = 0;
+		String empPw = null;
 		
 		try {
-			cnt = session.insert("employee.forgotPw", empNo);
-			if (cnt > 0) {
+			
+			empPw = session.selectOne("employee.forgotPw", empVO);
+			
+			if (empPw != null) {
 				session.commit();
 			}
 			
 		} catch (PersistenceException ex) {
+			session.rollback();
 			ex.printStackTrace();
+		}finally {
+			session.close();
 		}
 		
-		return cnt;
+		return empPw;
 	}
 }

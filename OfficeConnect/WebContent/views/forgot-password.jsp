@@ -4,7 +4,8 @@
     pageEncoding="UTF-8"%>
 <% 
 	String empNo = (String)request.getAttribute("empNo");
-	String empTel = (String)request.getAttribute("empTel");
+	String empEmail = (String)request.getAttribute("empEmail");
+	String empPw = (String)request.getAttribute("empPw");
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -48,7 +49,7 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-2">Office Connection</h1>
+                                        <h1 class="h4 text-gray-900 mb-2">Office Connect</h1>
                                         <p class="mb-4">비밀번호 찾기</p>
                                     </div>
                                     <form class="user">
@@ -58,11 +59,11 @@
                                                 placeholder="사번을 입력하세요.">
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" name="eTel" class="form-control form-control-user"
+                                            <input type="text" name="eEmail" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="전화번호를 입력하세요.">
+                                                placeholder="이메일을 입력하세요.">
                                         </div>
-<!--                                         <a href="login.jsp" class="btn btn-primary btn-user btn-block" id="newPw">  -->
+<!--                                         <a href="login.jsp" class="btn btn-primary btn-user btn-block" id="newPw"> 비밀번호 전송 -->
                                            	<button type="button" id="newPw">비밀번호 새로 만들기</button>
 <!--                                         </a> -->
                                     </form>
@@ -85,19 +86,30 @@
     
 <script>
 $('#newPw').on('click', function(){
-	alert();
 	
 	let eNo = $('[name="eNo"]').val();
-	let eTel = $('[name="eTel"]').val();
-	
-	console.log(<%=empNo %>);
-	
-	if(<%=empNo %> == eNo){
-        alert('사원 번호가 일치합니다.');
-    }else{
-        alert('사원 번호가 일치하지 않습니다.');
-    }
-	
+	let eEmail = $('[name="eEmail"]').val();
+
+	$.ajax({
+		  type: 'post', 
+		  url: '../emp/forgotpw.do',
+		  data: {
+		    'empNo': eNo,
+		    'empEmail': eEmail
+		  },
+		  success: function(res) {
+		    if(res.isSuccess == "ok"){
+		    	alert("이메일로 비밀번호를 전송했습니다");
+		    }else{
+		    	alert("확인되지 않는 회원정보입니다. 다시 입력해 주세요.");
+		    }
+		    console.log(res);
+		  },
+		  error: function(xhr) {
+		    console.log(xhr);
+		  },
+		  dataType : 'json'
+		});
 });
 
 </script>

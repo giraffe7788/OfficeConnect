@@ -345,11 +345,6 @@ td {
 		});
 	
 
-		$('#myRoom').on('click', function() {
-			$('#myModal').modal({
-				backdrop : 'static'
-			});
-		});
 		// 모달창-'X' 버튼 클릭했을 때
 		$('button .close').on('click', function() {
 			$('#myModal').modal('hide');
@@ -399,7 +394,7 @@ td {
 			<%
 			for(MeetingBookVO mvo : mtrList){
 			%>
-				if(<%=mvo.getEmpNo()%> == <%=currentEmpNo%>){
+				if('<%=mvo.getEmpNo()%>' == '<%=currentEmpNo%>'){
 					alert("회의실은 인당 1번만 예약 가능합니다");
 					return;
 				}
