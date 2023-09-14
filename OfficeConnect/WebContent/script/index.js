@@ -5,10 +5,19 @@ function loginCheck(){
 	let idValue = $('#idCheck').val();
 	let pwValue = $('#pwCheck').val();
 	let isAdminLogin = $("#adminLogin").prop("checked");
+	let isKeepId = $("#keepId").prop("checked");
 
 	if(idValue.length <= 0 || pwValue.length <= 0){
 		alert("아이디 또는 비밀번호를 입력해주세요");
 		return;
+	}
+	
+	// 체크박스 상태 확인하고 아이디 저장
+	if(isKeepId){
+		localStorage.setItem('keepId', idValue);
+	}else{
+		// 체크박스 해제된 경우 저장된 아이디 제거
+		localStorage.removeItem('keepId');
 	}
 	
 	$.ajax({
@@ -34,5 +43,5 @@ function loginCheck(){
 			alert("상태 : " + xhr.status);
 		},
 		dataType : 'json'
-	})
+	})	
 }

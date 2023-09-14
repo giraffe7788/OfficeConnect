@@ -100,10 +100,10 @@
 								</div>
 							</div>
 
-							<button type="button" class="btn btn-primary btn-close"
-								style="display: inline-block; width: 100px; margin-bottom: 18px; margin-left: 65%;">취소</button>	
 							<button type="button" class="btn btn-primary btn-toList"
-								style="display: inline-block; width: 100px; margin-bottom: 18px; margin-left: 5%;">목록</button>	
+								style="display: inline-block; width: 100px; margin-bottom: 18px; margin-left: 65%;">목록</button>	
+							<button type="button" class="btn btn-primary btn-close"
+								style="display: inline-block; width: 100px; margin-bottom: 18px; margin-left: 5%;">취소</button>	
 						</div>
 
 					</div>
@@ -245,6 +245,11 @@
 	                console.log("상태값: " + status + " Http 에러 메시지: " + msg);
 	            }
 	        });
+		});
+		
+		// 목록으로 이동하기
+		$('.btn-toList').on('click', function(){
+			"/meeting/list.do"
 		});
 	</script>
 	<%@ include file="./common.jsp"%>
