@@ -63,14 +63,14 @@
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
                                                 placeholder="이메일을 입력하세요.">
                                         </div>
-<!--                                         <a href="login.jsp" class="btn btn-primary btn-user btn-block" id="newPw"> 비밀번호 전송 -->
-                                           	<button type="button" id="newPw">비밀번호 새로 만들기</button>
-<!--                                         </a> -->
+                                        <a href="#" class="btn btn-primary btn-user btn-block" id="newPw"> 비밀번호 전송
+<!--                                            	<button type="button" id="newPw">비밀번호 전송</button> -->
+                                        </a>
                                     </form>
                                     <hr>
 
                                     <div class="text-center">
-                                        <a class="small" href="login.jsp">로그인</a>
+                                        <a class="small" href="../index.jsp">로그인</a>
                                     </div>
                                 </div>
                             </div>

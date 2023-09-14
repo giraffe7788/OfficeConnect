@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import vo.MeetingRoomVO;
+import vo.EmpVO;
 import vo.MeetingBookVO;
 
 public interface IMeetingService {
@@ -35,4 +36,5 @@ public interface IMeetingService {
 	 * @return
 	 */
 	public int deleteBook(String empNo);
+	
 }
