@@ -16,8 +16,8 @@ import mail.service.MailServiceImpl;
 import vo.MailVO;
 
 @MultipartConfig
-@WebServlet("/mail/receiveList.do")
-public class ReceiveListMail extends HttpServlet {
+@WebServlet("/mail/mailBoxMine.do")//"/mail/mailBoxMine.do"??
+public class ReceiveMailList extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

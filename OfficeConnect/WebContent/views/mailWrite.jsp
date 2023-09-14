@@ -3,6 +3,7 @@
 <%
 	// 현재 접속중인 사람의 사번 = 메일 보낸사람 정보
 	String empNo = (String)session.getAttribute("empNo");
+	String mailSender = (String)session.getAttribute("mailSender");
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -151,6 +152,8 @@
 									<form action="../mail/sendList.do" method="post" enctype="multipart/form-data">
 										<!-- 접속중인 사번 숨겨놓고, 다음페이지 넘어갈때 보여주기 위함 -->
 										<td><input type="hidden" name="empNo" value="<%= empNo %>"></td>
+										<td><input type="hidden" name="mailSender" value="<%= mailSender %>"></td>
+										
 										
 
 										<div class="mb-3" style="width: 60%; display: flex; align-items: center;">

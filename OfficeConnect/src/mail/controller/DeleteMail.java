@@ -15,7 +15,7 @@ import mail.service.MailServiceImpl;
 
 @MultipartConfig
 @WebServlet("/mail/delete.do")
-public class DeleteMailController extends HttpServlet {
+public class DeleteMail extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -40,7 +40,6 @@ public class DeleteMailController extends HttpServlet {
 			
 			resp.setCharacterEncoding("UTF-8");
 			resp.sendRedirect(req.getContextPath() + "/mail/mailDetail.do");
-			//삭제 후 경로 어디로 가야할지 아니 갈 필요가없나? 그자리에 고정은 어떻게하지?
 	
 	}
 	

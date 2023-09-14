@@ -24,9 +24,9 @@ public interface IMailService {
 	
 	
 	/**
-	 * 보낸 메일함 확인 메서드?
-	 * @param isSend 보냈는지 확인?
-	 * @return 해당 메일의 정보를 담은 isSend를 return?
+	 * 보낸 메일함 확인 메서드
+	 * @param isSend
+	 * @return 보낸 메일함 확인
 	 */
 	public boolean checkMail(String isSend);
 	

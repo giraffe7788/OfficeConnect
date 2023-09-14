@@ -42,9 +42,9 @@ public class MailServiceImpl implements IMailService {
 	
 	
 	/**
-	 * 보낸 메일함 확인 메서드?
-	 * @param isSend 보냈는지 확인?
-	 * @return 해당 메일의 정보를 담은 isSend를 return?
+	 * 보낸 메일함 확인 메서드
+	 * @param isSend
+	 * @return 보낸 메일함 확인
 	 */
 	@Override
 	public boolean checkMail(String isSend) {
@@ -58,15 +58,8 @@ public class MailServiceImpl implements IMailService {
 	 * @return 메일리스트
 	 */
 	public List<MailVO> getMailList(boolean isSend){
-		//boolean값에 따라 받은메일, 보낸메일 둘중에 하나를 가져온다
-		
-		if(isSend) {
-			// 받은 메일 목록을 가져오는 로직
-			return mailDao.selectReceiveMailList();
-		} else {
-			// 보낸 메일 목록을 가져오는 로직
-			return mailDao.selectSendMailList();
-		}
+		List<MailVO> mailList = mailDao.getMailList(isSend);
+		return mailList;
 	}
 
 }

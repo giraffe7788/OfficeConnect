@@ -34,7 +34,7 @@ public class FileDownloadController extends HttpServlet{
 		fileVO.setEmpNo(empNo);
 		fileVO.setImgName(imgName);
 		List<AtchFileVO> atchFileList = fileService.getAtchFileList(fileVO);
-
+		if(atchFileList.size() > 0) {
 		/** 다운로드 */
 		resp.setContentType("application/octet-stream");
 		String imgPath = "C:/Users/PC-08/git/OfficeConnect/OfficeConnect/WebContent"+atchFileList.get(0).getImgPath()+"/"+atchFileList.get(0).getImgName();
@@ -62,7 +62,7 @@ public class FileDownloadController extends HttpServlet{
 		
 		bis.close();
 		bos.close();
-		
+		}
 	}
 	
 	@Override

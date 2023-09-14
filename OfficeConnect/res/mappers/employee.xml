@@ -48,8 +48,15 @@
 	</select>
 
 	<select id="selectAll" resultMap="empMap">
-		select * from EMPLOYEE
-		order by emp_no ${desc}
+		select AA.*, decode(BB.img_path, null, 'N','Y') as imgYn, CC.dept_name
+    	from
+		EMPLOYEE AA 
+		left outer join IMAGE BB 
+		on AA.emp_no = BB.emp_no
+		left outer join DEPT CC
+		on AA.dept_code = CC.dept_code
+		order by AA.emp_no
+		
 	</select>
 
 	<select id="forgotPw" resultMap="empMap" parameterType="empvo">
