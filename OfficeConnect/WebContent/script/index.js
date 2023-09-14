@@ -12,7 +12,7 @@ function loginCheck(){
 	}
 	
 	$.ajax({
-		url : 'http://localhost:8888/OfficeConnect/login.do',
+		url : 'login.do',
 		type : 'post',
 		data : { 'emp_no': idValue,
 				 'emp_pw' : pwValue,
@@ -25,8 +25,6 @@ function loginCheck(){
 				alert("아이디 또는 비밀번호를 확인해주세요.");
 			}else{
 				alert("로그인성공");
-				//쿠키에 접속자 아이디 저장 후 main.jsp로 보낸다.
-//				setCookie("user_id", idValue, 1);
 				location.href="./views/main.jsp";
 			}
 		},

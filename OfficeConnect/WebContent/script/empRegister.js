@@ -36,7 +36,7 @@ function registerEmp() {
     formData.append('isAdmin', isAdmin);
 
     $.ajax({
-        url: 'http://localhost:8888/OfficeConnect/emp/join.do',
+        url: 'join.do',
         type: 'post',
         data: formData,
         contentType: false,

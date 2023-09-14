@@ -16,7 +16,7 @@ import meeting.service.IMeetingService;
 import meeting.service.MeetingServiceImpl;
 
 @WebServlet("/meeting/delete.do")
-public class DeleteBook extends HttpServlet{
+public class DeleteMeetingBook extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

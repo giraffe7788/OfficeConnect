@@ -19,7 +19,7 @@ import meeting.service.MeetingServiceImpl;
 import vo.MeetingBookVO;
 
 @WebServlet("/meeting/insert.do")
-public class Book extends HttpServlet {
+public class InsertMeetingBook extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -28,6 +28,8 @@ public class Book extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		System.out.println("insert.do의 doPost");
 		int mtrNo = Integer.parseInt(req.getParameter("mtrNo"));
 		int mtrbookPer = Integer.parseInt(req.getParameter("mtrbookPer"));
 		String mtrbookRent = (String)(req.getParameter("mtrbookRent"));
