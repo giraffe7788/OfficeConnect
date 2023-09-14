@@ -27,7 +27,6 @@ public class Chart extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		
 		IEmpService empService = EmpServiceImpl.getInstance();
 		List<EmpVO> empList = empService.selectAll();
 		System.out.println(empList);
