@@ -92,7 +92,6 @@
 												</tr>
 												<tr>
 													<th style="text-align: center;">회의내용</th>
-													<!--<td><textarea rows="6" style="width: 100%; height: 100%; box-sizing: border-box;">sdlfagdhdㅇㄴㄻㄴㅇㄹ </textarea></td> -->
 													<td id="mtCont" style="height: 140px">asdfhasldga</td>
 												</tr>
 											</table>
@@ -102,7 +101,9 @@
 							</div>
 
 							<button type="button" class="btn btn-primary btn-close"
-								style="display: block; width: 100px; margin-bottom: 18px; margin-left: 80%;">취소</button>
+								style="display: inline-block; width: 100px; margin-bottom: 18px; margin-left: 65%;">취소</button>	
+							<button type="button" class="btn btn-primary btn-toList"
+								style="display: inline-block; width: 100px; margin-bottom: 18px; margin-left: 5%;">목록</button>	
 						</div>
 
 					</div>
