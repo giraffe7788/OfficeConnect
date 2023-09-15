@@ -63,8 +63,8 @@
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
                                                 placeholder="이메일을 입력하세요.">
                                         </div>
-                                        <a href="#" class="btn btn-primary btn-user btn-block" id="newPw"> 비밀번호 전송
-<!--                                            	<button type="button" id="newPw">비밀번호 전송</button> -->
+                                        <a href="#" class="btn btn-primary btn-user btn-block" id="newPw"> 
+                                        	비밀번호 전송
                                         </a>
                                     </form>
                                     <hr>
