@@ -67,4 +67,7 @@ public interface IEmpDao {
 	 * @return empPw
 	 */
 	public String forgotPw(EmpVO empVO);
+
+
+	public int changeEmployee(String empNo);
 }

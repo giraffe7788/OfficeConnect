@@ -34,7 +34,8 @@ public class Detail extends HttpServlet {
 			IImageService imageService = ImageServiceImpl.getInstance();
 			
 			ImageVO imageVO = imageService.getImage(empNo);
-			
+			System.out.println("empNo - detail : " + empNo);
+			System.out.println("imageVO - detail : " + imageVO);
 			req.setAttribute("imageVO", imageVO);
 		}
 		

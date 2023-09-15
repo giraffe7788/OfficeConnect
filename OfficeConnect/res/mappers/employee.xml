@@ -30,6 +30,15 @@
 			dept_code = #{deptCode}
 			where emp_no = #{empNo}
 	</update>
+	
+	<update id="changeEmployee" parameterType="empvo">
+		update employee
+		set emp_name = #{empName},
+			emp_email = #{empEmail},
+			emp_tel = #{empTel},
+			emp_addr = #{empAddr}
+		where emp_no = #{empNo}
+	</update>
 
 	<delete id="deleteEmployee" parameterType="String">
 		delete from EMPLOYEE
@@ -48,8 +57,15 @@
 	</select>
 
 	<select id="selectAll" resultMap="empMap">
-		select * from EMPLOYEE
-		order by emp_no ${desc}
+		select AA.*, decode(BB.img_path, null, 'N','Y') as imgYn, CC.dept_name
+    	from
+		EMPLOYEE AA 
+		left outer join IMAGE BB 
+		on AA.emp_no = BB.emp_no
+		left outer join DEPT CC
+		on AA.dept_code = CC.dept_code
+		order by AA.emp_no
+		
 	</select>
 
 	<select id="forgotPw" parameterType="empvo" resultType="String">

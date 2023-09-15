@@ -29,6 +29,7 @@ public class login extends HttpServlet {
 		String empNo = req.getParameter("emp_no");
 		String empPw = req.getParameter("emp_pw");
 		Boolean isAdminLogin = Boolean.parseBoolean(req.getParameter("adminLogin"));
+		System.out.println(isAdminLogin);
 
 		IEmpService loginService = EmpServiceImpl.getInstance();
 		EmpVO empVO = new EmpVO();

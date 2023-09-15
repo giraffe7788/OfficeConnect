@@ -5,14 +5,23 @@ function loginCheck(){
 	let idValue = $('#idCheck').val();
 	let pwValue = $('#pwCheck').val();
 	let isAdminLogin = $("#adminLogin").prop("checked");
+	let isKeepId = $("#keepId").prop("checked");
 
 	if(idValue.length <= 0 || pwValue.length <= 0){
 		alert("아이디 또는 비밀번호를 입력해주세요");
 		return;
 	}
 	
+	// 체크박스 상태 확인하고 아이디 저장
+	if(isKeepId){
+		localStorage.setItem('keepId', idValue);
+	}else{
+		// 체크박스 해제된 경우 저장된 아이디 제거
+		localStorage.removeItem('keepId');
+	}
+	
 	$.ajax({
-		url : 'http://localhost:8888/OfficeConnect/login.do',
+		url : 'login.do',
 		type : 'post',
 		data : { 'emp_no': idValue,
 				 'emp_pw' : pwValue,
@@ -25,8 +34,6 @@ function loginCheck(){
 				alert("아이디 또는 비밀번호를 확인해주세요.");
 			}else{
 				alert("로그인성공");
-				//쿠키에 접속자 아이디 저장 후 main.jsp로 보낸다.
-//				setCookie("user_id", idValue, 1);
 				location.href="./views/main.jsp";
 			}
 		},
@@ -34,5 +41,5 @@ function loginCheck(){
 			alert("상태 : " + xhr.status);
 		},
 		dataType : 'json'
-	})
+	})	
 }

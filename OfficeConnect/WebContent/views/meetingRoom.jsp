@@ -1,14 +1,16 @@
 <%@page import="com.google.gson.Gson"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
 <%@page import="vo.MeetingRoomVO"%>
 <%@page import="vo.MeetingBookVO"%>
 <%@page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%
 	List<MeetingBookVO> mtrList = (List<MeetingBookVO>) request.getAttribute("mtrList");
 	List<MeetingRoomVO> roomList = (List<MeetingRoomVO>) request.getAttribute("roomList");
 	String currentEmpNo = (String) request.getAttribute("empNo");
 %>
+<!DOCTYPE html>
+<html lang="ko">
 
 <head>
 
@@ -149,6 +151,7 @@ td {
 																id="mtrbookPer">
 															</select>
 														</div>
+
 													</form>
 												</div>
 												<div class="modal-footer">
@@ -180,6 +183,7 @@ td {
 												</tr>
 											</thead>
 											<tbody>
+
 												<tr>
 													<td class="td-visible">회의실1</td>
 													<td>회의실1-9</td>
@@ -240,6 +244,7 @@ td {
 													<td>회의실5-16</td>
 													<td>회의실5-17</td>
 												</tr>
+
 											</tbody>
 										</table>
 									</div>
@@ -263,9 +268,10 @@ td {
 	<!-- 페이지 Wrapper 끝 -->
 
 	<!-- 공통속성 설정 include -->
-  <script>
+<script>
 	// 예약 현황
 	$(document).ready(function () {
+		
         // 회의실 예약 정보를 포함한 VO 리스트
         var mtrList = <%=new Gson().toJson(mtrList)%>;
 
@@ -286,7 +292,8 @@ td {
           			console.log(tdText);
           			console.log(this);
            	    // 해당 요소의 텍스트가 시작 시간과 종료 시간 사이에 있는 경우 배경색 변경
-          			if (tdText.split('-')[1] >= startTime && tdText.split('-')[1] < endTime) {
+          			if (parseInt(tdText.split('-')[1]) >= parseInt(startTime) && parseInt(tdText.split('-')[1]) < parseInt(endTime)) {
+          				console.log("배경색 변경");
           				$(this).css("background-color", "#cff7dc"); // 배경색을 원하는 색상으로 변경	
           			}
                });
@@ -344,7 +351,6 @@ td {
 				}
 		});
 	
-
 		// 모달창-'X' 버튼 클릭했을 때
 		$('button .close').on('click', function() {
 			$('#myModal').modal('hide');
@@ -360,7 +366,12 @@ td {
 			let mtrbookRent = $('[name="mtrbookRent"]').val();
 			let mtrbookRtn = $('[name="mtrbookRtn"]').val();
 			let mtrbookPer = $('[id="mtrbookPer"]').val();
-			let mtrbookCont = $('[name="mtrbookCont"]').val();
+			let mtrbookCont = "";
+			if($('[name="mtrbookCont"]').val() == ''){
+				mtrbookCont = '내용이 없습니다.';
+			} else {
+				mtrbookCont = $('[name="mtrbookCont"]').val();
+			}
 			
 			// 9시 이상 예약 가능하게
 			if(parseInt(mtrbookRtn, 10) < parseInt(mtrbookRent, 10)){
@@ -371,7 +382,7 @@ td {
 			// 예약된 시간엔 예약 안되게
 			<%for(MeetingBookVO mvo : mtrList){%>
 			// 같은 회의실이면 시작끝 시간 겹쳐도 안되고 시작 시간 겹쳐도 안되고 끝시간 겹쳐도 안되고 그 사이 시간도 겹치면 안됨
-				if( <%=mvo.getMtrNo() %> == mtrNo ){
+				if( '<%=mvo.getMtrNo() %>' == 'mtrNo' ){
 					if( <%=mvo.getMtrbookRent() %> == mtrbookRent && <%=mvo.getMtrbookRtn() %> == mtrbookRtn){
 						alert("이미 예약된 시간입니다.");
 						return;
@@ -391,9 +402,7 @@ td {
 			%>
 			
 			// 회원당 예약  한번만
-			<%
-			for(MeetingBookVO mvo : mtrList){
-			%>
+			<%for(MeetingBookVO mvo : mtrList){
 				if('<%=mvo.getEmpNo()%>' == '<%=currentEmpNo%>'){
 					alert("회의실은 인당 1번만 예약 가능합니다");
 					return;
@@ -407,7 +416,7 @@ td {
 					    'mtrbookPer' : mtrbookPer,
 					    'mtrbookRent' : mtrbookRent, 
 					    'mtrbookRtn' : mtrbookRtn, 
-					    'mtrbookCont' : mtrbookCont},
+					    'mtrbookCont' : mtrbookCont },
 					    
 				success: function(res){	
 					// 시간표 반영

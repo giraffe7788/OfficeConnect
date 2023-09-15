@@ -1,5 +1,14 @@
+<%@page import="util.TransEmpInfo"%>
+<%@page import="vo.ImageVO"%>
+<%@page import="vo.EmpVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	EmpVO empVO = (EmpVO) request.getAttribute("ev");
+	ImageVO imageVO = (ImageVO) request.getAttribute("imageVO");
+	String currentEmpNo = (String) request.getAttribute("empNo");
+	TransEmpInfo transform = TransEmpInfo.getInstance();
+%>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -14,10 +23,10 @@
 
 <title>마이페이지</title>
 
-    <!-- 아이콘 설정 -->
-    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <!-- css 설정 -->
-    <link href="../css/sb-admin-2.min.css" rel="stylesheet">
+<!-- 아이콘 설정 -->
+<link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+<!-- css 설정 -->
+<link href="../css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
 
@@ -58,38 +67,42 @@
 										cellspacing="0">
 										<tr>
 											<th>이름</th>
-											<td>김태영</td>
+											<td><%=empVO.getEmpName()%></td>
 										</tr>
 										<tr>
 											<th>사원번호</th>
-											<td>111111</td>
+											<td><%=empVO.getEmpNo()%></td>
+										</tr>
+										<tr>
+											<th>비밀번호</th>
+											<td><%=empVO.getEmpPw()%></td>
 										</tr>
 										<tr>
 											<th>이메일</th>
-											<td>111111@?????????</td>
+											<td><%=empVO.getEmpEmail()%></td>
 										</tr>
 										<tr>
 											<th>전화번호</th>
-											<td>1111-1111</td>
+											<td><%=empVO.getEmpTel()%></td>
 										</tr>
 										<tr>
 											<th>주소</th>
-											<td>대전</td>
+											<td><%=empVO.getEmpAddr()%></td>
 										</tr>
 										<tr>
 											<th>부서</th>
-											<td>개발부</td>
+											<td><%=transform.transformDeptCode(empVO.getDeptCode())%></td>
 										</tr>
 										<tr>
 											<th>직급</th>
-											<td>부장</td>
+											<td><%=empVO.getEmpPosit()%></td>
 										</tr>
 									</table>
 								</div>
 								<div class="image-wrapper"
-									style="width: 30%; text-align: center; margin-left: 60px">
-									<img src="../img/profileTest.jpg" alt="증명사진"
-										style="max-width: 51%; height: auto; margin-top : 4%"> <a href="모달로 프로필사진 편집"
+									style="width: 30%; text-align: center; margin-left: 60px">		
+									<img src="<%=imageVO.getImgPath() + imageVO.getImgName()%>" alt="<%=imageVO.getImgPath() + imageVO.getImgName()%>"
+										id="imageView" style="max-width: 51%; height: auto; margin-top: 20%"> <a href="모달로 프로필사진 편집"
 										class="btn btn-primary btn-icon-split" style="margin-top: 45px;">
 										<span class="text" style="color: #fff">프로필 사진 편집</span>
 									</a>
@@ -100,13 +113,13 @@
 							
 							
 		    <!-- 모달 시작 -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="margin-left : 25%">정보수정</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#infoChangeModal" style="margin-left : 25%">정보수정</button>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="infoChangeModal" tabindex="-1" aria-labelledby="infoChangeModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel" >정보수정</h5>
+        <h5 class="modal-title" id="infoChangeModalLabel" >정보수정</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -134,7 +147,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-        <button type="button" class="btn btn-primary">수정</button>
+        <button type="button" class="btn btn-primary btn-change">수정</button>
       </div>
     </div>
   </div>
@@ -181,7 +194,7 @@
     <script src="../vendor/jquery/jquery.min.js"></script>
     <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script>
-	$('#exampleModal').on('show.bs.modal', function (event) {
+	$('#infoChangeModal').on('show.bs.modal', function (event) {
 		  // 아래 템플릿 코드인데 수정해서 db연동하고 회원정보 수정되도록 ㄱㄱ
 		  var button = $(event.relatedTarget) 
 		  var recipient = button.data('whatever') 
@@ -201,6 +214,27 @@
     	} else {
     	    // 사용자가 "취소"를 선택한 경우 또는 경고창을 닫은 경우
     	}
+	});
+	
+	$('.btn-change').on('click', function(){
+		$.ajax({
+			url: 'mypagechange.do',
+			type: 'POST',
+			data: {'empNo': <%=currentEmpNo%>},
+			success: function(res){
+				if(res.isSuccess === 'ok'){
+					alert('정보가 수정되었습니다.');
+					$('infoChangeModal').modal('hide');
+					location.reload();
+				} else {
+					alert('정보 수정이 취소됐습니다');
+					console.log(res.isSuccess);
+				}
+			},
+			error: function(xhr, status, msg){
+                console.log("오류");
+            }
+		});
 	});
 	</script>
 	
@@ -263,7 +297,7 @@
 			}
 		
 			// 모달 종료
-			$('#exampleModal').modal('hide');
+			$('#infoChangeModal').modal('hide');
 			}
 		}).open();
 	}

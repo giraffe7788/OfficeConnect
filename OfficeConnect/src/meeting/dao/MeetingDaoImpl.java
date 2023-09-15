@@ -64,10 +64,7 @@ public class MeetingDaoImpl implements IMeetingDao{
 			cnt = session.insert("meetingroom.insertBook", meetingVO);
 			if(cnt > 0) {
 				session.commit();
-			} else {
-				session.rollback();
 			}
-			
 		} catch (PersistenceException ex) {
 			session.rollback();
 			ex.printStackTrace();

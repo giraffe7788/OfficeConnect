@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="comment">
+  
+    <select id="commentList" parameterType="Integer" resultType="commentvo">
+       select * from comm where brd_no=#{brdNo} order by comm_date
+    </select>
+    
+    <insert id="commentInsert" parameterType="commentvo">
+        insert into comm(comm_no,comm_cont,emp_no,brd_no)
+        values(
+        comm_seq.nextval,
+        #{commCont},
+        #{empNo},
+        #{brdNo}
+    		 )       
+    </insert>
+    
+
+        
+    <delete id="deleteboard" parameterType="Integer">  
+        delete from comm where comm_no=#{commNo}
+    </delete>
+    
+    <select id="detailboard" parameterType="Integer" resultType="commentvo">        
+        select * from board where brd_no=#{brdNo}
+    </select>
+    
+    <update id="updateboard" parameterType="boardvo">
+         update board 
+         set brd_title=#{brdTitle}, brd_cont=#{brdCont}, brd_mod=SYSDATE 
+         where brd_no=#{brdNo}	 
+    </update>
+    
+    
+    
+</mapper>
