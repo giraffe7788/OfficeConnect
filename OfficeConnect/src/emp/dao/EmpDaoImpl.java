@@ -15,92 +15,99 @@ public class EmpDaoImpl implements IEmpDao {
 
 	// 싱글톤패턴
 	public static IEmpDao instance = null;
-	private EmpDaoImpl() {}
+
+	private EmpDaoImpl() {
+	}
+
 	public static IEmpDao getInstance() {
-		if(instance == null) instance = new EmpDaoImpl();
+		if (instance == null)
+			instance = new EmpDaoImpl();
 		return instance;
 	}
-	
-	
+
 	/**
 	 * 로그인 체크를 위한 메서드
+	 * 
 	 * @param empvo
 	 * @return 로그인 성공여부
 	 */
 	@Override
 	public boolean loginCheck(EmpVO empVO, boolean isAdminLogin) {
-		
+
 		boolean isSuccess = false;
 		SqlSession session = MyBatisUtil.getInstance();
 		EmpVO result = null;
-		
+
 		try {
-			
-			if(isAdminLogin) {
+
+			if (isAdminLogin) {
 				result = session.selectOne("employee.adminCheck", empVO);
-			} else if(isAdminLogin == false) {
+			} else if (isAdminLogin == false) {
 				result = session.selectOne("employee.loginCheck", empVO);
 			}
-			
-			if(result != null) {
+
+			if (result != null) {
 				isSuccess = true;
 			}
-			
+
 		} catch (PersistenceException e) {
 			e.printStackTrace();
 			session.rollback();
 		} finally {
 			session.close();
 		}
-		
+
 		return isSuccess;
 	}
-	
-	
-  	/**
+
+	/**
 	 * 회원가입 시켜주는 메서드
+	 * 
 	 * @param empVO
 	 * @return 성공여부
 	 */
 	@Override
 	public int joinEmployee(EmpVO empVO) {
-		
+
 		SqlSession session = MyBatisUtil.getInstance();
-		
+
 		int cnt = 0;
-		
+
 		try {
 			cnt = session.insert("employee.joinEmployee", empVO);
 			if (cnt > 0) {
 				session.commit();
 			}
-			
+
 		} catch (PersistenceException ex) {
 			session.rollback();
 			ex.printStackTrace();
 		} finally {
 			session.close();
 		}
-		
+
 		return cnt;
 	}
-  
-	
+
 	/**
 	 * 사원정보 수정을 위한 메서드
 	 * @param empVO에 등록할 데이터가 담겨진 EmpVO의 객체
+	 * @param 관리자권한 업데이트 유무
 	 * @return 사원정보 수정에 성공하면 1이상의 값 반환, 실패하면 0 반환
 	 */
 	@Override
-	public int updateEmployee(EmpVO empVO) {
+	public int updateEmployee(EmpVO empVO, boolean isAdmin) {
 		int cnt = 0;
 		
 		SqlSession session = MyBatisUtil.getInstance();
 		
 		try {
 			
-			cnt = session.update("employee.updateEmployee", empVO);
-			
+			if(isAdmin) {
+			cnt = session.update("employee.updateEmployeeAdmin", empVO);
+			} else {
+				cnt = session.update("employee.updateEmployee", empVO);
+			}
 			if(cnt > 0) {
 				session.commit();
 			}
@@ -114,10 +121,10 @@ public class EmpDaoImpl implements IEmpDao {
 		
 		return cnt;
 	}
-	
-	
+
 	/**
 	 * 사원정보 삭제를 위한 메서드
+	 * 
 	 * @param empNo 삭제할 사원의 사번
 	 * @return 삭제에 성공하면 1 반환, 실패하면 0 반환
 	 */
@@ -143,53 +150,53 @@ public class EmpDaoImpl implements IEmpDao {
 		}
 		return cnt;
 	}
-	
-	
+
 	/**
 	 * 사원정보가 존재하는지 확인하는 메서드
+	 * 
 	 * @param empNo 체크할 사원의 사번
 	 * @return 사번이 존재하면 true, 없으면 false 리턴
 	 */
 	@Override
 	public boolean checkEmployee(String empNo) {
-		
+
 		boolean isExist = false;
-		
+
 		SqlSession session = MyBatisUtil.getInstance(true);
-		
+
 		try {
 			int cnt = session.selectOne("employee.checkEmployee", empNo);
-			
-			if(cnt > 0) {
+
+			if (cnt > 0) {
 				isExist = true;
 			}
-			
+
 		} catch (PersistenceException ex) {
 			ex.printStackTrace();
 		} finally {
 			session.close();
 		}
-		
+
 		return isExist;
 	}
-	
-	
+
 	/**
 	 * 해당 사번에 해당하는 사원정보를 가져오기 위한 메서드
+	 * 
 	 * @param empNo 가져올 사번
 	 * @return 해당 사원의 정보를 담은 empVO 객체
 	 */
 	@Override
 	public EmpVO selectOne(String empNo) {
-		
+
 		SqlSession session = MyBatisUtil.getInstance();
 
 		EmpVO ev = null;
 		try {
 			ev = session.selectOne("employee.selectOne", empNo);
-			if(ev!=null) {
-				 session.commit();
-			 }
+			if (ev != null) {
+				session.commit();
+			}
 		} catch (PersistenceException ex) {
 			session.rollback();
 			ex.printStackTrace();
@@ -198,77 +205,55 @@ public class EmpDaoImpl implements IEmpDao {
 		}
 		return ev;
 	}
-	
-	
+
 	/**
 	 * 전체 사원정보(리스트)를 가져오는 메서드
 	 */
 	@Override
 	public List<EmpVO> selectAll() {
 		List<EmpVO> empList = new ArrayList<EmpVO>();
-		
+
 		SqlSession session = MyBatisUtil.getInstance(true);
-		
+
 		try {
 			empList = session.selectList("employee.selectAll");
-		}catch(PersistenceException ex) {
-			ex.printStackTrace();
-		}finally {
-			session.close();
-		}
-		
-		return empList;
-	}
-	
-	/**
-	 * 이메일과 사번이 들어있는 객체로 비밀번호를 찾아서 비밀번호를 반환
-	 * @param empVO
-	 * @return empPw
-	 */
-	@Override
-	public String forgotPw(EmpVO empVO) {
-		
-		SqlSession session = MyBatisUtil.getInstance();
-		
-		String empPw = null;
-		
-		try {
-			
-			empPw = session.selectOne("employee.forgotPw", empVO);
-			
-			if (empPw != null) {
-				session.commit();
-			}
-			
-		} catch (PersistenceException ex) {
-			session.rollback();
-			ex.printStackTrace();
-		}finally {
-			session.close();
-		}
-		
-		return empPw;
-	}
-	
-	/**
-	 * 사번에 맞는 사원 내용 바꾸기
-	 */
-	@Override
-	public int changeEmployee(String empNo) {
-		SqlSession session = MyBatisUtil.getInstance();
-		
-		int cnt = 0;
-		try {
-			cnt = session.insert("employee.changeEmployee", empNo);
-			if(cnt > 0) {
-				session.commit();
-			}
-			
 		} catch (PersistenceException ex) {
 			ex.printStackTrace();
 		} finally {
 			session.close();
 		}
-		return cnt;
+
+		return empList;
+	}
+
+	/**
+	 * 이메일과 사번이 들어있는 객체로 비밀번호를 찾아서 비밀번호를 반환
+	 * 
+	 * @param empVO
+	 * @return empPw
+	 */
+	@Override
+	public String forgotPw(EmpVO empVO) {
+
+		SqlSession session = MyBatisUtil.getInstance();
+
+		String empPw = null;
+
+		try {
+
+			empPw = session.selectOne("employee.forgotPw", empVO);
+
+			if (empPw != null) {
+				session.commit();
+			}
+
+		} catch (PersistenceException ex) {
+			session.rollback();
+			ex.printStackTrace();
+		} finally {
+			session.close();
+		}
+
+		return empPw;
 	}
 }

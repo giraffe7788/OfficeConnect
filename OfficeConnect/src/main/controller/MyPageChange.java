@@ -21,7 +21,7 @@ public class MyPageChange extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-			req.getRequestDispatcher("/views/mypage.jsp").forward(req, resp);
+			//req.getRequestDispatcher("/views/mypage.jsp").forward(req, resp);
 	}
 	
 	@Override
@@ -30,27 +30,27 @@ public class MyPageChange extends HttpServlet {
 		TransEmpInfo transform = TransEmpInfo.getInstance();
 		
 		String empNo = (String)req.getSession().getAttribute("empNo");
-
+		
 		String empName = req.getParameter("empName");
 		String empEmail = req.getParameter("empEmail");
 		String empTel = req.getParameter("empTel");
 		String empAddr = req.getParameter("empAddr");
 		
-		EmpVO myempVO = new EmpVO(empName, empEmail, empTel, empAddr);
-		myempVO.setEmpNo(empNo);
+		EmpVO empVO = new EmpVO(empName, empEmail, empTel, empAddr);
+		System.out.println("empName: " + empName +"empEmail: " + empEmail
+							+ "empTel: " + empTel + "empAddr: " + empAddr);
+		empVO.setEmpNo(empNo);
 		
-		int cnt = empService.changeEmployee(empNo);
-		
-		System.out.println("empNo:   " + empNo);
+		int cnt = empService.modifyEmployee(empVO, false);
 		
 		if(cnt > 0) {
-			System.out.println("회원 정보 수정 성공");
+			System .out.println("회원 정보 수정 성공");
 			
 			JsonObject jsonObject = new JsonObject();
 			jsonObject.addProperty("isSuccess", "ok");
 			String jsonStr = new Gson().toJson(jsonObject);
 			resp.setContentType("application/json");
-			resp.getWriter().write(jsonStr);			
+			resp.getWriter().write(jsonStr);
 		}else {
 			System.out.println("회원 정보 수정 실패");
 			

@@ -17,7 +17,7 @@
 		#{empName}, #{empPosit}, #{adminCode}, #{deptCode})
 	</insert>
 	
-	<update id="updateEmployee" parameterType="empvo">
+	<update id="updateEmployeeAdmin" parameterType="empvo">
 		update employee
 		set emp_pw = #{empPw},
 			emp_addr = #{empAddr},
@@ -31,7 +31,7 @@
 			where emp_no = #{empNo}
 	</update>
 	
-	<update id="changeEmployee" parameterType="empvo">
+	<update id="updateEmployee" parameterType="empvo">
 		update employee
 		set emp_name = #{empName},
 			emp_email = #{empEmail},

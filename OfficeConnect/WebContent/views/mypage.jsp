@@ -199,7 +199,7 @@
 	$('#infoChangeModal').on('show.bs.modal', function (event) {
 		  // 아래 템플릿 코드인데 수정해서 db연동하고 회원정보 수정되도록 ㄱㄱ
 		  var button = $(event.relatedTarget) 
-		  var recipient = button.data('whatever') 
+		  var recipient = button.data('whatever')
 
 		  var modal = $(this)
 		  modal.find('.modal-title').text('정보수정')
@@ -218,14 +218,26 @@
     	}
 	});
 	
+	
 	$('.btn-change').on('click', function(){
+		
+		let empName = $('#empName').val();
+		let empEmail = $('#empEmail').val();
+		let empTel = $('#empTel').val();
+		let empAddr = $('#empAddr').val();
+		
 		$.ajax({
-			url: 'mypagechange.do',
+			url: 'mypageUpdate.do',
 			type: 'POST',
-			data: {'empNo': <%=currentEmpNo%>},
+			data: {'empName': empName,
+					'empEmail': empEmail,
+					'empTel': empTel,
+					'empAddr': empAddr
+			},
 			success: function(res){
 				if(res.isSuccess === 'ok'){
 					alert('정보가 수정되었습니다.');
+					alert(res.isSuccess);
 					$('infoChangeModal').modal('hide');
 					location.reload();
 				} else {
@@ -233,11 +245,12 @@
 					console.log(res.isSuccess);
 				}
 			},
-			error: function(xhr, status, msg){
-                console.log("오류");
-            }
-		});
-	});
+			error: function(xhr) {
+				alert("상태 : " + xhr.status);
+            },
+            dataType: 'json'
+		})
+	})
 	</script>
 	
 	<!-- 주소 API -->

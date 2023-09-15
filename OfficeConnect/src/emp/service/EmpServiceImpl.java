@@ -47,8 +47,8 @@ public class EmpServiceImpl implements IEmpService{
 	 * @return 사원정보 수정에 성공하면 1이상의 값 반환, 실패하면 0 반환
 	 */
 	@Override
-	public int modifyEmployee(EmpVO empVO) {
-		int cnt = empDao.updateEmployee(empVO);
+	public int modifyEmployee(EmpVO empVO, boolean isAdmin) {
+		int cnt = empDao.updateEmployee(empVO, isAdmin);
 		return cnt;
 	}
 	
@@ -104,11 +104,5 @@ public class EmpServiceImpl implements IEmpService{
 	@Override
 	public String forgotPw(EmpVO empVO) {
 		return empDao.forgotPw(empVO);
-	}
-
-
-	@Override
-	public int changeEmployee(String empNo) {
-		return empDao.changeEmployee(empNo);
 	}
 }

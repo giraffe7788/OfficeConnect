@@ -28,7 +28,7 @@ public interface IEmpDao {
 	 * @param empVO에 등록할 데이터가 담겨진 EmpVO의 객체
 	 * @return 사원정보 수정에 성공하면 1이상의 값 반환, 실패하면 0 반환
 	 */
-	public int updateEmployee(EmpVO empVO);
+	public int updateEmployee(EmpVO empVO, boolean isAdmin);
 	
 	
 	/**
@@ -67,7 +67,4 @@ public interface IEmpDao {
 	 * @return empPw
 	 */
 	public String forgotPw(EmpVO empVO);
-
-
-	public int changeEmployee(String empNo);
 }
