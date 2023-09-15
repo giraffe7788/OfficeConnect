@@ -8,7 +8,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="./main.jsp">
+                <a class="nav-link" href="../main/main.do">
 					<i class="fa-solid fa-house"></i>
                     <span>메인화면</span>
                 </a>

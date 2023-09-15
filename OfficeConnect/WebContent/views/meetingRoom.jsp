@@ -403,6 +403,7 @@ td {
 			
 			// 회원당 예약  한번만
 			<%for(MeetingBookVO mvo : mtrList){
+				System.out.println(mvo.getEmpNo()+ "==" +currentEmpNo);%>
 				if('<%=mvo.getEmpNo()%>' == '<%=currentEmpNo%>'){
 					alert("회의실은 인당 1번만 예약 가능합니다");
 					return;
