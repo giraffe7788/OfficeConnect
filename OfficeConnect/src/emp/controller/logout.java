@@ -30,6 +30,5 @@ public class logout extends HttpServlet{
 //		session.invalidate();
 //		
 	}
-
 }
 

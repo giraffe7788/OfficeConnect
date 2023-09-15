@@ -22,23 +22,28 @@ public class EmpDaoImpl implements IEmpDao {
 	}
 	
 	
-	@Override
 	/**
 	 * 로그인 체크를 위한 메서드
 	 * @param empvo
 	 * @return 로그인 성공여부
 	 */
+	@Override
 	public boolean loginCheck(EmpVO empVO, boolean isAdminLogin) {
 		
-		boolean loginCheck = false;
+		boolean isSuccess = false;
 		SqlSession session = MyBatisUtil.getInstance();
+		EmpVO result = null;
 		
 		try {
 			
-			if(session.selectOne("employee.loginCheck", empVO) == null) {
-				loginCheck = false;
-			} else {
-				loginCheck = true;
+			if(isAdminLogin) {
+				result = session.selectOne("employee.adminCheck", empVO);
+			} else if(isAdminLogin == false) {
+				result = session.selectOne("employee.loginCheck", empVO);
+			}
+			
+			if(result != null) {
+				isSuccess = true;
 			}
 			
 		} catch (PersistenceException e) {
@@ -48,7 +53,7 @@ public class EmpDaoImpl implements IEmpDao {
 			session.close();
 		}
 		
-		return loginCheck;
+		return isSuccess;
 	}
 	
 	
@@ -211,6 +216,7 @@ public class EmpDaoImpl implements IEmpDao {
 		}finally {
 			session.close();
 		}
+		
 		return empList;
 	}
 	
@@ -242,5 +248,24 @@ public class EmpDaoImpl implements IEmpDao {
 		}
 		
 		return empPw;
+	}
+	
+	@Override
+	public int changeEmployee(String empNo) {
+		SqlSession session = MyBatisUtil.getInstance();
+		
+		int cnt = 0;
+		try {
+			cnt = session.insert("employee.changeEmployee", empNo);
+			if(cnt > 0) {
+				session.commit();
+			}
+			
+		} catch (PersistenceException ex) {
+			ex.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return cnt;
 	}
 }

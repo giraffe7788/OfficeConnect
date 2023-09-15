@@ -27,10 +27,9 @@ public class ImageServiceImpl implements IImageService{
 	@Override
 	public ImageVO saveImage(Collection<Part> parts, String empId) {
 		
-		String uploadPath = "/images/profiles/";
-		String dir = "C:\\Users\\giraf\\git\\OfficeConnect\\OfficeConnect\\WebContent";
+		String dir = "C:\\Users\\PC-23\\git\\khmConnect\\OfficeConnect\\OfficeConnect\\WebContent\\images\\profiles";
 
-		File uploadDir = new File(dir + uploadPath);
+		File uploadDir = new File(dir);
 		if (!uploadDir.exists()) {
 			uploadDir.mkdir();
 		}

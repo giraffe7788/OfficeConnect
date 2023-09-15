@@ -163,19 +163,19 @@ td {
 										style="position: relative; display: flex; height: 100%; margin-top: 20px; display: none;">
 
 										<div class="image-wrapper"
-											style="width: 60%; margin-left: 10%">
+											style="width: 60%; margin-left: 7%">
 											<img src="../images/defaultProfile.PNG" alt="기본프로필"
-												style="width: 40%; margin-left: 40%; margin-bottom: 6%; margin-top: 2%"
+												style="width: 40%; margin-left: 40%; margin-top: 2%"
 												id="divEmpImg">
 										</div>
-										<div class="table-wrapper" style="width: 60%">
+										<div class="table-wrapper" style="width: 100%">
 											<div
-												style="text-align: left; font-size: 1.5em; margin-top: 12%">
-												<div id="divEmpDept" style="margin: 2%">부서</div>
-												<div id="divEmpPosit" style="margin: 2%">직급</div>
-												<div id="divEmpName" style="margin: 2%">이름</div>
-												<div id="divEmpTel" style="margin: 2%">전화번호</div>
-												<div id="divEmpState" style="margin: 2%">업무상태</div>
+												style="text-align: center; font-size: 1.5em; margin-top:2%">
+												<div id="divEmpDept">부서</div>
+												<div id="divEmpPosit">직급</div>
+												<div id="divEmpName">이름</div>
+												<div id="divEmpTel">전화번호</div>
+												<div id="divEmpState">업무상태</div>
 											</div>
 										</div>
 
@@ -260,6 +260,8 @@ td {
 		    let empNo;
 		    function empChart(empNo){
 		    	
+		    	
+		    	$('#emptyEmp').css('display', 'none')
 		    	$('#empTable').css('display', 'block');
 		    	
 		    	$.ajax({

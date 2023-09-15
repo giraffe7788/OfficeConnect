@@ -12,6 +12,8 @@ public class EmpVO {
 	private int stateCode;		// 상태코드(부재중, 업무중 등..)
 	private int adminCode;		// 관리자여부코드(0이면 일반사원, 1이면 관리자)
 	private int deptCode;		// 부서코드
+	private String deptName;		// 부서이름
+	private String imgYn;		// 이미지 존재여부
 	
 	public EmpVO() {};
 	
@@ -38,6 +40,14 @@ public class EmpVO {
 		this.empPosit = empPosit;
 		this.adminCode = adminCode;
 		this.deptCode = deptCode;
+	}
+	
+	public EmpVO(String empName, String empEmail, String empTel, String empAddr) {
+		super();
+		this.empName = empName;
+		this.empEmail = empEmail;
+		this.empTel = empTel;
+		this.empAddr = empAddr;
 	}
 	
 	public String getEmpNo() {
@@ -99,5 +109,21 @@ public class EmpVO {
 	}
 	public void setDeptCode(int deptCode) {
 		this.deptCode = deptCode;
+	}
+
+	public String getImgYn() {
+		return imgYn;
+	}
+	
+	public void setImgYn(String imgYn) {
+		this.imgYn = imgYn;
+	}
+	
+	public String getDeptName() {
+		return deptName;
+	}
+	
+	public void setDeptName(String deptName) {
+		this.deptName = deptName;
 	}
 }
