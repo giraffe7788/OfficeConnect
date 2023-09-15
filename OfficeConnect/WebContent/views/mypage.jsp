@@ -228,6 +228,7 @@
 					location.reload();
 				} else {
 					alert('정보 수정이 취소됐습니다');
+					console.log(res.isSuccess);
 				}
 			},
 			error: function(xhr, status, msg){

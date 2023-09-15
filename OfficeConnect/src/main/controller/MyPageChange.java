@@ -30,7 +30,7 @@ public class MyPageChange extends HttpServlet {
 		TransEmpInfo transform = TransEmpInfo.getInstance();
 		
 		String empNo = (String)req.getSession().getAttribute("empNo");
-		
+
 		String empName = req.getParameter("empName");
 		String empEmail = req.getParameter("empEmail");
 		String empTel = req.getParameter("empTel");
@@ -41,7 +41,7 @@ public class MyPageChange extends HttpServlet {
 		
 		int cnt = empService.changeEmployee(empNo);
 		
-		System.out.println("empNo" + empNo);
+		System.out.println("empNo:   " + empNo);
 		
 		if(cnt > 0) {
 			System.out.println("회원 정보 수정 성공");
