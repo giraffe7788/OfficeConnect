@@ -62,8 +62,12 @@ public interface IEmpService {
 	 */
 	public List<EmpVO> selectAll();
 
-	
-	public int forgotPw(String empNo);
+	/**
+	 * 이메일과 사번이 들어있는 객체로 비밀번호를 찾아서 비밀번호를 반환
+	 * @param empVO
+	 * @return empPw
+	 */
+	public String forgotPw(EmpVO empVO);
 
 
 	public int changeEmployee(String empNo);

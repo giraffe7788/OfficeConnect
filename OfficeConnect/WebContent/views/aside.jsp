@@ -8,7 +8,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="./main.jsp">
+                <a class="nav-link" href="../main/main.do">
 					<i class="fa-solid fa-house"></i>
                     <span>메인화면</span>
                 </a>
@@ -62,7 +62,7 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="./mailBoxMine.jsp">
+                <a class="nav-link" href="../mail/sendList.do">
                     <i class="fa-solid fa-envelope"></i>
                     <span>메일</span></a>
             </li>

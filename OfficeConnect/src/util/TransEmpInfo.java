@@ -25,7 +25,7 @@ public class TransEmpInfo {
 		
 		try {
 		
-			deptName = session.selectOne("transform.getDeptName", deptCode);
+			deptName = session.selectOne("transfer.getDeptName", deptCode);
 		
 		} catch(PersistenceException e) {
 			session.rollback();
@@ -49,7 +49,7 @@ public class TransEmpInfo {
 		
 		try {
 		
-			stateName = session.selectOne("transform.getStateName", stateCode);
+			stateName = session.selectOne("transfer.getStateName", stateCode);
 		
 		} catch(PersistenceException e) {
 			session.rollback();
@@ -73,7 +73,7 @@ public class TransEmpInfo {
 		
 		try {
 		
-			deptCode = session.selectOne("transform.getDeptCode", deptName);
+			deptCode = session.selectOne("transfer.getDeptCode", deptName);
 			System.out.println("deptCode : " + deptCode);
 		
 		} catch(PersistenceException e) {
@@ -98,7 +98,7 @@ public class TransEmpInfo {
 		
 		try {
 		
-			stateCode = Integer.parseInt(session.selectOne("transform.getStateCode", stateName));
+			stateCode = Integer.parseInt(session.selectOne("transfer.getStateCode", stateName));
 			System.out.println("stateCode : " + stateCode);
 			
 		} catch(PersistenceException e) {
