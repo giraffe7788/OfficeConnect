@@ -12,7 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import car.service.CarServiceImpl;
 import car.service.ICarService;
+import emp.service.EmpServiceImpl;
+import vo.CarBookVO;
 import vo.CarVO;
+import vo.EmpVO;
 
 @WebServlet("/car/list.do")
 public class CarList extends HttpServlet{
@@ -22,8 +25,10 @@ public class CarList extends HttpServlet{
 		
 		ICarService carService = CarServiceImpl.getInstance();
 		List<CarVO> carList = carService.selectAllCar();
+		List<CarBookVO> carbookList = carService.selectAllcarBookList();
 		
 		req.setAttribute("carList", carList);
+		req.setAttribute("carbookList", carbookList);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/views/car.jsp");
 		dispatcher.forward(req, resp);
@@ -31,6 +36,8 @@ public class CarList extends HttpServlet{
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		
 	}
 
 }

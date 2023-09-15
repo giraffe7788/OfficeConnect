@@ -2,11 +2,26 @@
 <!DOCTYPE mapper   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="car">
 
-
+<!-- 보유차량 조회 -->
 <select id="selectAllcar" resultMap="carMap">
 	select * from car
 </select>
 
+<!-- 나의 차량 예약 내역을 조회 -->
+<select id="selectOneMycar" resultMap="carBookMap">
+	select * from carbook where emp_no = #{empNo}
+</select>
+
+<!-- 차량 예약 insert문  -->
+<insert id="insertCar" parameterType="carbookvo">
+	insert into carbook (carbook_no, emp_no, car_no, carbook_rent, carbook_return, carbook_cont) 
+	values (car_seq.nextval, #{empNo}, #{carNo}, #{carBookRent}, #{carBookReturn}, #{carBookCont})
+</insert>
+
+<!-- 전체 차량 예약 조회 -->
+<select id="selectAllcarBookList" resultMap = "carBookMap">
+	select emp_no, car_no, carbook_rent, carbook_return, carbook_cont from carbook order by car_no
+</select>
 
 <resultMap type="vo.CarVO" id="carMap">
 	<result column="car_no" property="carNo"/>
@@ -15,4 +30,12 @@
 	<result column="car_imagename" property="carImageName"/>
 </resultMap>
 
+<resultMap type="vo.CarBookVO" id="carBookMap">
+	<result column="carbook_no" property="carBookNo"/>
+	<result column="emp_no" property="empNo"/>
+	<result column="car_no" property="carNo"/>
+	<result column="carBook_rent" property="carBookRent"/>
+	<result column="carbook_return" property="carBookReturn"/>
+	<result column="carbook_cont" property="carBookCont"/>
+</resultMap>
 </mapper>
