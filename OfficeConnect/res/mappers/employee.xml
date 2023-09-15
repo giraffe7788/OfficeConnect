@@ -56,13 +56,18 @@
 		left outer join DEPT CC
 		on AA.dept_code = CC.dept_code
 		order by AA.emp_no
-		
 	</select>
 
 	<select id="forgotPw" resultMap="empMap" parameterType="empvo">
 		select * from employee
 		where emp_no = #{empNo}
 		 and emp_tel = #{empTel}
+	</select>
+	
+	<!-- 사원정보에 저장된 이메일 출력을 위한 쿼리 -->
+	<select id="mailSelect" resultType="String"  parameterType="String">
+		select emp_email as email 
+		from employee where emp_no = #{empNo}
 	</select>
 	
 	<resultMap type="vo.EmpVO" id="empMap">

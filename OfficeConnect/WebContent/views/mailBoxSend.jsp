@@ -1,5 +1,11 @@
+<%@page import="vo.MailVO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<% 
+	List<MailVO> sendMailList = (List<MailVO>) request.getAttribute("sendMailList");
+	String empNo = (String)request.getSession().getAttribute("empNo");
+%>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -91,11 +97,11 @@
 
 									<nav id="sidebar" style="padding: inherit;">
 										<ul class="list-unstyled">
-											<li style="margin-bottom: 3px;"><a href="../views/mailBoxReceived.jsp"
+											<li style="margin-bottom: 3px;"><a href="../mail/receiveList.do?isSend=2"
 												style="text-decoration: none; color: inherit; background-color: transparent;">받은
 													메일함</a></li>
 
-											<li style="margin-bottom: 3px;"><a href="../views/mailBoxSend.jsp"
+											<li style="margin-bottom: 3px;"><a href="../mail/sendList.do?isSend=1"
 												style="text-decoration: none; color: inherit; background-color: transparent;">보낸
 													메일함</a></li>
 
@@ -153,7 +159,6 @@
                                              rowspan="1" colspan="1"
                                              aria-label="작성일: activate to sort column ascending"
                                              style="width: 15%;">제목</th>
-<!--                                        내용 길어지면 ...으로 뒤에 내용 짤리게 어케함? -->
                                           <th class="sorting" tabindex="0" aria-controls="dataTable"
                                              rowspan="1" colspan="1"
                                              aria-label="작성일: activate to sort column ascending"
@@ -169,109 +174,23 @@
                                        </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                        	<td><input type="checkbox" class="mailCheckbox"></td>
-                                            <td>안녕하세요 저는 김영남입니다</td>
-                                            <td>안건이있는데 그 안건을 처리해주실 수 있는지에 대하여 여쭤봐도 되는지 검토해주실</td>
-                                            <td>김영남</td>
-                                            <td>2023-09-11</td>
-                                        </tr>
-                                        <tr>
-                                        	<td><input type="checkbox" class="mailCheckbox"></td>
-                                            <td>안녕하세요</td>
-                                            <td>안건이있는데 그 안건을 처리해주실 수 있는지에 대하여</td>
-                                            <td>김영남</td>
-                                            <td>2023-09-11</td>
-                                        </tr>
-                                        <tr>
-                                        	<td><input type="checkbox" class="mailCheckbox"></td>
-                                            <td>안녕하세요</td>
-                                            <td>안건이있는데 그 안건을 처리해주실 수 있는지에 대하여</td>
-                                            <td>김영남</td>
-                                            <td>2023-09-11</td>
-                                        </tr>
-                                        <tr>
-                                        	<td><input type="checkbox" class="mailCheckbox"></td>
-                                            <td>안녕하세요</td>
-                                            <td>안건이있는데 그 안건을 처리해주실 수 있는지에 대하여</td>
-                                            <td>김영남</td>
-                                            <td>2023-09-11</td>
-                                        </tr>
-                                        <tr>
-                                        	<td><input type="checkbox" class="mailCheckbox"></td>
-                                            <td>안녕하세요</td>
-                                            <td>안건이있는데 그 안건을 처리해주실 수 있는지에 대하여</td>
-                                            <td>김영남</td>
-                                            <td>2023-09-11</td>
-                                        </tr>
-                                        <tr>
-                                        	<td><input type="checkbox" class="mailCheckbox"></td>
-                                            <td>안녕하세요 저는 김영남입니다</td>
-                                            <td>안건이있는데 그 안건을 처리해주실 수 있는지에 대하여 여쭤봐도 되는지 검토해주실 수 있는지에 대하여 의견을 구하고자하는것에 대해 어떻게 생각하시는지 질문을 해봐도 되겠습니까</td>
-                                            <td>김영남</td>
-                                            <td>2023-09-11</td>
-                                        </tr>
-                                        <tr>
-                                        	<td><input type="checkbox" class="mailCheckbox"></td>
-                                            <td>안녕하세요</td>
-                                            <td>안건이있는데 그 안건을 처리해주실 수 있는지에 대하여</td>
-                                            <td>김영남</td>
-                                            <td>2023-09-11</td>
-                                        </tr>
-                                        <tr>
-                                        	<td><input type="checkbox" class="mailCheckbox"></td>
-                                            <td>안녕하세요</td>
-                                            <td>안건이있는데 그 안건을 처리해주실 수 있는지에 대하여</td>
-                                            <td>김영남</td>
-                                            <td>2023-09-11</td>
-                                        </tr>
-                                        <tr>
-                                        	<td><input type="checkbox" class="mailCheckbox"></td>
-                                            <td>안녕하세요</td>
-                                            <td>안건이있는데 그 안건을 처리해주실 수 있는지에 대하여</td>
-                                            <td>김영남</td>
-                                            <td>2023-09-11</td>
-                                        </tr>
-                                        <tr>
-                                        	<td><input type="checkbox" class="mailCheckbox"></td>
-                                            <td>안녕하세요</td>
-                                            <td>안건이있는데 그 안건을 처리해주실 수 있는지에 대하여</td>
-                                            <td>김영남</td>
-                                            <td>2023-09-11</td>
-                                        </tr>
-                                                                                <tr>
-                                        	<td><input type="checkbox" class="mailCheckbox"></td>
-                                            <td>안녕하세요</td>
-                                            <td>안건이있는데 그 안건을 처리해주실 수 있는지에 대하여</td>
-                                            <td>김영남</td>
-                                            <td>2023-09-11</td>
-                                        </tr>
-                                                                                <tr>
-                                        	<td><input type="checkbox" class="mailCheckbox"></td>
-                                            <td>안녕하세요</td>
-                                            <td>안건이있는데 그 안건을 처리해주실 수 있는지에 대하여</td>
-                                            <td>김영남</td>
-                                            <td>2023-09-11</td>
-                                        </tr>
-                                                                                <tr>
-                                        	<td><input type="checkbox" class="mailCheckbox"></td>
-                                            <td>안녕하세요</td>
-                                            <td>안건이있는데 그 안건을 처리해주실 수 있는지에 대하여</td>
-                                            <td>김영남</td>
-                                            <td>2023-09-11</td>
-                                        </tr>
-                                                                                <tr>
-                                        	<td><input type="checkbox" class="mailCheckbox"></td>
-                                            <td>안녕하세요</td>
-                                            <td>안건이있는데 그 안건을 처리해주실 수 있는지에 대하여</td>
-                                            <td>김영남</td>
-                                            <td>2023-09-11</td>
-                                        </tr>
+										<%
+										for (MailVO mail : sendMailList) {
+										%>
+										<tr>
+										    <td><input type="checkbox" class="mailCheckbox" value="<%= mail.getMailNo() %>"></td>
+										    <td> 제목 어케넣지</td>
+										    <td><%= mail.getMailCont() %></td>
+										    <td><%= mail.getMailSender() %></td>
+										    <td><%= mail.getMailSendDate() %></td>
+										</tr>
+										<%
+										}
+										%>
                                     </tbody>
                                 </table>
 
 										<div style="text-align: right; margin-top: -51px;">
-
 											<button type="submit" class="btn btn-primary"
 												style="display: inline-block;">삭제</button>
 										</div>

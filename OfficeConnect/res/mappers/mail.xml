@@ -12,25 +12,24 @@
 		#{mailReceiver}, #{mailSender})
 	</insert>
 
-
 	<!-- 받은 메일 확인  -->
-	<select id="getReceiveMail" resultMap="mailMap">
+	<select id="getReceiveMail" resultMap="mailMap" parameterType="map">
 		select * from mail
-		where mail_receiver = #{mailReceiver}
+		where mail_receiver = #{empNo}
 	</select>
 
 
 	<!-- 보낸 메일 확인  -->
-	<select id="getSendMail" resultMap="mailMap">
+	<select id="getSendMail" resultMap="mailMap" parameterType="map">
 		select * from mail
-		where mail_sender = #{mailSender}
+		where mail_sender = #{empNo}
 	</select>
 
 
 	<!-- 메일 삭제 -->	
 	<delete id="deleteMail">
 		delete from mail
-		where mail_no = #{mailNo}
+		where mail_no = #{empNo}
 	</delete>
 	
 
@@ -42,6 +41,5 @@
 		<result column="MAIL_RECESTAT" property="mailReceStat" />
 		<result column="MAIL_RECEIVER" property="mailReceiver" />
 		<result column="MAIL_SENDER" property="mailSender" />
-		<result column="MAIL_MAILTITLE" property="mailTitle" />
 	</resultMap>
 </mapper>

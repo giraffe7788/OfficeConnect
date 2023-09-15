@@ -62,4 +62,10 @@ public interface IEmpDao {
 	
 	
 	public int forgotPw(String empNo);
+	
+	
+	/**
+	 * 	사번으로 메일 출력을 위한 메서드
+	 */
+	public String mailSelect (String empNo);
 }

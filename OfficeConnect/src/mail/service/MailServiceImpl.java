@@ -1,6 +1,7 @@
 package mail.service;
 
 import java.util.List;
+import java.util.Map;
 
 import mail.dao.IMailDao;
 import mail.dao.MailDaoImpl;
@@ -54,11 +55,11 @@ public class MailServiceImpl implements IMailService {
 	
 	/**
 	 * 메일 리스트 뽑아오는 메서드, 파라미터로 보낸메일을 뽑을지 받은메일을 뽑을지 결정
-	 * @param isSend
-	 * @return 메일리스트
+	 * @param paramMap
+	 * @return mailList
 	 */
-	public List<MailVO> getMailList(boolean isSend){
-		List<MailVO> mailList = mailDao.getMailList(isSend);
+	public List<MailVO> getMailList(Map<String,Object> paramMap){
+		List<MailVO> mailList = mailDao.getMailList(paramMap);
 		return mailList;
 	}
 

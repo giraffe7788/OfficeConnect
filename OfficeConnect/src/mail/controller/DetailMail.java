@@ -22,10 +22,10 @@ public class DetailMail extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		IMailService mailService = MailServiceImpl.getInstance();
-		List<MailVO> mailList = mailService.getMailList(true);
+		//List<MailVO> mailList = mailService.getMailList(true);
 //		//mailNo는 보통 ?로 가져오니까 get에 써주는듯
 //		String mailNo = (String)req.getParameter("mailNo");
-		req.setAttribute("mailList", mailList);
+	//	req.setAttribute("mailList", mailList);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/views/mailDetail.jsp");
 		

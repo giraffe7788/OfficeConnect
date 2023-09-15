@@ -64,4 +64,11 @@ public interface IEmpService {
 
 	
 	public int forgotPw(String empNo);
+	
+	/**
+	 * 객체에 담긴 이메일들을 출력오기 위한 메서드
+	 * @param empNo
+	 * @return
+	 */
+	public String mailSelect (String empNo);
 }

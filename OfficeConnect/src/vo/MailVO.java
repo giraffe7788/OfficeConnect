@@ -11,7 +11,6 @@ public class MailVO {
 	private int mailReceStat;     // 받은사람 메일 상태(0 삭제안함, 1 삭제함)
 	private Date mailSendDate;    // 메일 발신날짜
 	private String isSend; 		  // 보낸메일 확인
-	private String mailTitle; 		  // 메일 제목
 	
 	public MailVO (){};
 	
@@ -91,12 +90,4 @@ public class MailVO {
 		this.isSend = isSend;
 	}
 
-	public String getMailTitle() {
-		return mailTitle;
-	}
-
-	public void setMailTitle(String mailTitle) {
-		this.mailTitle = mailTitle;
-	}
-	
 }

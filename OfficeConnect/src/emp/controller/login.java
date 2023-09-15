@@ -39,7 +39,6 @@ public class login extends HttpServlet {
 			System.out.println("로그인성공");
 			
 			req.getSession().setAttribute("empNo", empNo); // 세션에 사번 넣기
-						
 			JsonObject jsonObject = new JsonObject();
 			jsonObject.addProperty("isSuccess", "ok");
 			String jsonStr = new Gson().toJson(jsonObject);
