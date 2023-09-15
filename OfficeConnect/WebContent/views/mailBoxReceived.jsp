@@ -1,5 +1,11 @@
+<%@page import="vo.MailVO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	List<MailVO> mailList = (List<MailVO>)request.getAttribute("mailList");
+%>
+	
 <!DOCTYPE html>
 <html lang="ko">
 

@@ -1,11 +1,14 @@
 <%@page import="vo.MailVO"%>
 <%@page import="java.util.List"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-	MailVO mailVO = (MailVO) request.getAttribute("MailVO");	
+	MailVO mailVO = (MailVO) request.getAttribute("MailVO");
 	System.out.println(mailVO);
-	String empNo = (String)session.getAttribute("empNo");
+	
+	String empNo = (String) session.getAttribute("empNo");
+	System.out.println(empNo);
 %>	
 
 <!DOCTYPE html>
@@ -151,7 +154,7 @@
 									<h4> 메일 상세 </h4>
 									<hr>
 									<br><br><br>
-									<<form action="../mail/detail.do" method="post" enctype="multipart/form-data">
+									<form action="../mail/detail.do" method="post" enctype="multipart/form-data">
 									
 									<hr>
 									    <h5> <%= mailVO.getMailCont() %> </h5>

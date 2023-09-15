@@ -66,7 +66,7 @@
 
 									<div style="text-align: center;">
 										<button type="submit" class="btn btn-outline-primary"
-											onClick="window.location.href='mailWrite.jsp'"
+											onClick="window.location.href='../mail/insert.do'"
 											style="display: inline-block;">메일쓰기</button>
 
 										<button type="submit" class="btn btn-outline-info" onClick="window.location.href='mailWriteMine.jsp'"
@@ -77,13 +77,11 @@
 
 									<div style="text-align: center;">
 
-										<button type="submit" class="btn btn-outline-warning"
-											onClick="#" style="display: inline-block;">
+										<button type="submit" class="btn btn-outline-warning" onClick="#" style="display: inline-block;">
 											안읽음 <span class="badge badge-danger badge-counter">1</span>
 										</button>
 
-										<button type="submit" class="btn btn-outline-danger"
-											onClick="#" style="display: inline-block;">
+										<button type="submit" class="btn btn-outline-danger" onClick="#" style="display: inline-block;">
 											중요메일<span class="badge badge-danger badge-counter">3</span>
 										</button>
 
@@ -308,6 +306,21 @@
     <script src="../vendor/datatables/dataTables.bootstrap4.js"></script>
     <script src="../js/demo/datatables-demo.js"></script>
 	<!-- 페이지 검색/조회 플러그인 -->
+	<script>
+	<%
+	if(session.getAttribute("msg") == "성공"){
+		session.setAttribute("msg", "");
+		%>
+		alert("메일을 성공적으로 발신했습니다");	
+		<%
+	} else if(session.getAttribute("msg") == "실패"){
+		session.setAttribute("msg", "");
+		%>
+		alert("메일 발송중 오류가 발생했습니다");
+		<%
+	}
+	%>
+	</script>
 </body>
 
 </html>

@@ -1,8 +1,11 @@
 package mail.controller;
 
 import java.io.IOException;
+import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,24 +15,21 @@ import mail.service.IMailService;
 import mail.service.MailServiceImpl;
 import vo.MailVO;
 
+@MultipartConfig
 @WebServlet("/mail/mailDetail.do")
 public class DetailMail extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.setCharacterEncoding("UTF-8");
-		System.out.println("어디냐 또");
-		//mailNo는 보통 ?로 가져오니까 get에 써주는듯
-		String mailNo = (String)req.getParameter("mailNo");
-		
 		IMailService mailService = MailServiceImpl.getInstance();
-		System.out.println("어디냐 또2"); // 여기까진 찍힌다라........... vo...vo....
+		List<MailVO> mailList = mailService.getMailList(true);
+//		//mailNo는 보통 ?로 가져오니까 get에 써주는듯
+//		String mailNo = (String)req.getParameter("mailNo");
+		req.setAttribute("mailList", mailList);
 		
-		MailVO mailvo = (MailVO) mailService.getMailList(true);
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/views/mailDetail.jsp");
 		
-		req.setAttribute("mailvo", mailvo);
-		
-		req.getRequestDispatcher("/mail/list.jsp").forward(req, resp);
+		dispatcher.forward(req, resp);
 		
 		
 //		String mailNo = (String)req.getParameter("mailNo");

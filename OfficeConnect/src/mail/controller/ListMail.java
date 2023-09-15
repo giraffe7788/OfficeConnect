@@ -11,24 +11,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import img.service.ImageServiceImpl;
 import mail.service.IMailService;
 import mail.service.MailServiceImpl;
 import vo.MailVO;
 
-@WebServlet("/mail/receiveList.do")//"/mail/mailBoxMine.do"??
-public class ReceiveMailList extends HttpServlet {
+@MultipartConfig
+@WebServlet("/mail/mailBoxReceived.do")
+public class ListMail extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
 		IMailService mailService = MailServiceImpl.getInstance();
 		List<MailVO> mailList = mailService.getMailList(true);
-		//true면 받은메일목록을 가져와?, false면 보낸메일 목록을 가져와?
-		
+				
 		req.setAttribute("mailList", mailList);
 		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/mailBoxReceived.jsp");
-	
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/views/mailBoxReceived.jsp");
+		
 		dispatcher.forward(req, resp);
 	}
 	

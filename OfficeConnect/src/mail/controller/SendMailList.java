@@ -20,69 +20,17 @@ import mail.service.MailServiceImpl;
 import util.MailUtil;
 import vo.MailVO;
 
-@MultipartConfig
-@WebServlet("/mail/sendList.do") //이 sendList.do가 오면 sendMailList가 움직인다?
+@WebServlet("/mail/sendList.do")
 public class SendMailList extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//		req.getRequestDispatcher("/views/mailWrite.jsp").forward(req, resp);
-
+		// db에서 내가(현재접속중인 사람) 보낸 메일 리스트들을 꺼내와서 mailBoxSend(보낸메일 출력화면)에 쏴주는 애
+		req.getRequestDispatcher("/views/mailBoxSend.jsp").forward(req, resp);
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.setCharacterEncoding("UTF-8");
 		
-		String empNo = (String)req.getSession().getAttribute("empNo");
-		
-//		// MailUtil의 제목, 내용, 받은사람 이메일주소의 매개변수를 가져옴
-		String title = req.getParameter("title");
-//		String body = req.getParameter("body");
-//		String address = req.getParameter("address");
-		
-		// 사용자로부터 입력 받은 데이터를 DB로 가져온다.
-		String mailCont = req.getParameter("body");
-		String mailReceiver = req.getParameter("address");
-		String mailSender = req.getParameter("empNo");
-		
-		Date mailSendDate = new Date(); // 현재 날짜 설정
-//		mailVO.setMailSendDate(mailSendDate);
-		
-		IMailService mailService = MailServiceImpl.getInstance();
-		
-	    MailVO mailVO = new MailVO();
-	    mailVO.setMailCont(mailCont);
-	    mailVO.setMailSender(mailSender);
-	    mailVO.setMailReceiver(mailReceiver);
-	    mailVO.setMailSendStat(0); // 보낸 메일 상태: 삭제 안함
-	    mailVO.setMailReceStat(0); // 받은 메일 상태: 삭제 안함
-		mailVO.setMailSendDate(mailSendDate);
-		
-	    int cnt = mailService.writeMail(mailVO); // 메일 저장
-	    
-	    
-	    String msg = "";
-		if(cnt > 0) {
-			msg = "성공";
-			System.out.println("성공!!!!!!!!!!!");
-			
-			// 외부 네이버 메일 API
-//			MailUtil sendMail = new MailUtil();
-//			sendMail.sendMail("title", "body", "address");
-			
-		} else {
-			msg = "실패";
-		}
-		
-		req.setAttribute("MailVO", mailVO);
-		
-		HttpSession session = req.getSession();
-		session.setAttribute("msg", msg);
-		
-		resp.setCharacterEncoding("UTF-8");
-		resp.sendRedirect(req.getContextPath() + "/mail/mailDetail.do");
-	
-//		doGet(req, resp);
 	}
 }

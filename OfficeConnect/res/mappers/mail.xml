@@ -4,9 +4,9 @@
 
 
 	<!-- 메일 쓰기 -->
-	<insert id="writeMail">
+	<insert id="writeMail" parameterType="vo.MailVO">
 		insert into
-		mail(Mail_No, Mail_Cont, Mail_SendDate, Mail_SendStat, Mail_ReceStat, Mail_Receiver, Mail_Sender)
+		mail(MAIL_NO, MAIL_CONT, MAIL_SENDDATE, MAIL_SENDSTAT, MAIL_RECESTAT, MAIL_RECEIVER, MAIL_SENDER)
 		values
 		(MAIL_SEQ.nextval, #{mailCont}, #{mailSendDate}, #{mailSendStat}, #{mailReceStat},
 		#{mailReceiver}, #{mailSender})
@@ -16,14 +16,14 @@
 	<!-- 받은 메일 확인  -->
 	<select id="getReceiveMail" resultMap="mailMap">
 		select * from mail
-		where mail_receiver = #{empNo}
+		where mail_receiver = #{mailReceiver}
 	</select>
 
 
 	<!-- 보낸 메일 확인  -->
 	<select id="getSendMail" resultMap="mailMap">
 		select * from mail
-		where mail_sender = #{empNo}
+		where mail_sender = #{mailSender}
 	</select>
 
 
@@ -42,5 +42,6 @@
 		<result column="MAIL_RECESTAT" property="mailReceStat" />
 		<result column="MAIL_RECEIVER" property="mailReceiver" />
 		<result column="MAIL_SENDER" property="mailSender" />
+		<result column="MAIL_MAILTITLE" property="mailTitle" />
 	</resultMap>
 </mapper>
