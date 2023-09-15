@@ -95,11 +95,19 @@ public class EmpServiceImpl implements IEmpService{
 		return empList;
 	}
 	
-	
+		
+	/**
+	 * 이메일과 사번이 들어있는 객체로 비밀번호를 찾아서 비밀번호를 반환
+	 * @param empVO
+	 * @return empPw
+	 */
 	@Override
+	}	
 	public int forgotPw(String empNo) {
 		return empDao.forgotPw(empNo);
 	}
+
+
 	@Override
 	public int changeEmployee(String empNo) {
 		return empDao.changeEmployee(empNo);

@@ -68,10 +68,10 @@
 		
 	</select>
 
-	<select id="forgotPw" resultMap="empMap" parameterType="empvo">
-		select * from employee
+	<select id="forgotPw" parameterType="empvo" resultType="String">
+		select emp_pw from employee
 		where emp_no = #{empNo}
-		 and emp_tel = #{empTel}
+		 and emp_email = #{empEmail}
 	</select>
 	
 	<resultMap type="vo.EmpVO" id="empMap">
