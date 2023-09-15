@@ -64,4 +64,7 @@ public interface IEmpService {
 
 	
 	public int forgotPw(String empNo);
+
+
+	public int changeEmployee(String empNo);
 }
