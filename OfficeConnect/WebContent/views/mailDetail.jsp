@@ -1,5 +1,16 @@
+<%@page import="vo.MailVO"%>
+<%@page import="java.util.List"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	MailVO mailVO = (MailVO) request.getAttribute("MailVO");
+	System.out.println(mailVO);
+	
+	String empNo = (String) session.getAttribute("empNo");
+	System.out.println(empNo);
+%>	
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -12,7 +23,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>내게 쓰기</title>
+<title>메일 상세</title>
 
 <!-- 아이콘 설정 -->
 <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -140,40 +151,27 @@
 								<!-- 메일 본문 -->
 
 								<div class="col-lg-10">
-									<h4> 내게 메일 쓰기</h4>
-
+									<h4> 메일 상세 </h4>
 									<hr>
-
-									<form>
-										<div class="mb-3">
-											<label for="subject" class="form-label">제목:</label> <input
-												type="text" class="form-control" id="subject" required>
+									<br><br><br>
+									<form action="../mail/detail.do" method="post" enctype="multipart/form-data">
+									
+									<hr>
+									    <h5> <%= mailVO.getMailCont() %> </h5>
+									    <br>
+									    <div>보낸 사람: <%= mailVO.getMailSender()%> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;이메일 주소: [보낸 사람 이메일 주소]</div>
+									    <div>받는 사람: <%= mailVO.getMailReceiver() %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;이메일 주소: [받는 사람 이메일 주소]</div>
+										<hr> 
+									<br>
+										<p>첨부파일 목록</p>
+										<ul>
+								        </ul>
+										<div class ="attachment-list">
 										</div>
-										
-										<p>첨부파일:</p>
-										<div class="mb-3">
-										<div class="custom-file">
-											<label for="attachment" class="custom-file-label"></label> 
-											<input
-												type="file" class="custom-file-input" id="attachment"
-												name="attachment"
-												style="width: 100%; padding: 0.375rem 0.75rem; font-size: 1rem; font-weight: 400; line-height: 1.5; color: #6e707e; background-color: #fff; background-clip: padding-box; border: 1px solid #d1d3e2; border-radius: 0.35rem; transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;">
-										</div>
-										</div>
-
-										<div class="mb-3">
-											<label for="message" class="form-label">본문:</label>
-											<textarea class="form-control" id="message" rows="12"
-												required></textarea>
-										</div>
-										<div style="text-align: right;">
-											<button type="submit" class="btn btn-primary"
-												style="display: inline-block; margin-right: 10px;">임시저장</button>
-											<button type="submit" class="btn btn-primary"
-												style="display: inline-block;">전송</button>
+										<div style="position: absolute; top: 100px; right: 10px;">
+											<a href="../mail/mailBoxMine.do" class="btn btn-primary" style="display: inline-block; margin-right: 10px;">목록</a>
 										</div>
 									</form>
-
 								</div>
 								<!-- 메일 본문 종료 -->
 
@@ -198,8 +196,6 @@
 	<!-- 공통속성 설정 include -->
 
 	<%@ include file="./common.jsp"%>
-
-	<!-- 페이지 검색/조회 플러그인 -->
+	
 </body>
-
 </html>

@@ -1,5 +1,11 @@
+<%@page import="vo.MailVO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	List<MailVO> mailList = (List<MailVO>)request.getAttribute("mailList");
+%>
+	
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -59,7 +65,7 @@
 								<div class="col-lg-2" style="border-right: 1px solid #ccc;">
 
 									<div style="font-size: 1.8rem; text-align: center;">
-										메 일 <img alt="메일" src="../img/mail.png"
+										메 일 <img alt="메일" src="../images/mail.png"
 											style="width: 35px; height: 40px;">
 									</div>
 									<hr>

@@ -17,6 +17,7 @@
 		<typeAlias type="vo.ImageVO" alias="imgvo"/>
 		<typeAlias type="vo.BoardVO" alias="boardvo" />
 		<typeAlias type="vo.CommentVO" alias="commentvo" />
+		<typeAlias type="vo.MailVO" alias="mailvo"/>
 	</typeAliases>
 	
 	<environments default="dev">
@@ -41,5 +42,6 @@
 		<mapper resource="mappers/meetingroom.xml" />
 		<mapper resource="mappers/comment.xml" />
 		<mapper resource="mappers/board.xml"/>
+		<mapper resource="mappers/mail.xml" />
 	</mappers>
 </configuration>
