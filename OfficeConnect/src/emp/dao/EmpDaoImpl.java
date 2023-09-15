@@ -253,6 +253,8 @@ public class EmpDaoImpl implements IEmpDao {
 			
 		} catch (PersistenceException ex) {
 			ex.printStackTrace();
+		} finally {
+			session.close();
 		}
 		return cnt;
 	}

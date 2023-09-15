@@ -37,7 +37,7 @@
 			emp_email = #{empEmail},
 			emp_tel = #{empTel},
 			emp_addr = #{empAddr}
-		where emp_no = #{empNo};
+		where emp_no = #{empNo}
 	</update>
 
 	<delete id="deleteEmployee" parameterType="String">
