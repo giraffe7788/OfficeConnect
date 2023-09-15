@@ -4,7 +4,7 @@
   "https://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<properties resource="db.properties" />
-	
+
 	<settings>
 	<setting name="mapUnderscoreToCamelCase" value="true"/>
 	<setting name="jdbcTypeForNull" value="NULL"/>
@@ -15,6 +15,8 @@
 		<typeAlias type="vo.MeetingBookVO" alias="mtvo" />
 		<typeAlias type="vo.CarVO" alias="carvo" />
 		<typeAlias type="vo.ImageVO" alias="imgvo"/>
+		<typeAlias type="vo.BoardVO" alias="boardvo" />
+		<typeAlias type="vo.CommentVO" alias="commentvo" />
 	</typeAliases>
 	
 	<environments default="dev">
@@ -35,7 +37,9 @@
 		<mapper resource="mappers/employee.xml" />
 		<mapper resource="mappers/image.xml"/>
 		<mapper resource="mappers/car.xml" />
-		<mapper resource="mappers/transform.xml" />
+		<mapper resource="mappers/transfer.xml" />
 		<mapper resource="mappers/meetingroom.xml" />
+		<mapper resource="mappers/comment.xml" />
+		<mapper resource="mappers/board.xml"/>
 	</mappers>
 </configuration>
