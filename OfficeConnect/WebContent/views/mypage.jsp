@@ -6,6 +6,7 @@
 <%
 	EmpVO empVO = (EmpVO) request.getAttribute("ev");
 	ImageVO imageVO = (ImageVO) request.getAttribute("imageVO");
+	String currentEmpNo = (String) request.getAttribute("empNo");
 	TransEmpInfo transform = TransEmpInfo.getInstance();
 %>
 <!DOCTYPE html>
@@ -112,13 +113,13 @@
 							
 							
 		    <!-- 모달 시작 -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="margin-left : 25%">정보수정</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#infoChangeModal" style="margin-left : 25%">정보수정</button>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="infoChangeModal" tabindex="-1" aria-labelledby="infoChangeModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel" >정보수정</h5>
+        <h5 class="modal-title" id="infoChangeModalLabel" >정보수정</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -146,7 +147,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-        <button type="button" class="btn btn-primary">수정</button>
+        <button type="button" class="btn btn-primary btn-change">수정</button>
       </div>
     </div>
   </div>
@@ -193,7 +194,7 @@
     <script src="../vendor/jquery/jquery.min.js"></script>
     <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script>
-	$('#exampleModal').on('show.bs.modal', function (event) {
+	$('#infoChangeModal').on('show.bs.modal', function (event) {
 		  // 아래 템플릿 코드인데 수정해서 db연동하고 회원정보 수정되도록 ㄱㄱ
 		  var button = $(event.relatedTarget) 
 		  var recipient = button.data('whatever') 
@@ -213,6 +214,26 @@
     	} else {
     	    // 사용자가 "취소"를 선택한 경우 또는 경고창을 닫은 경우
     	}
+	});
+	
+	$('.btn-change').on('click', function(){
+		$.ajax({
+			url: 'mypagechange.do',
+			type: 'POST',
+			data: {'empNo': <%=currentEmpNo%>},
+			success: function(res){
+				if(res.isSuccess === 'ok'){
+					alert('정보가 수정되었습니다.');
+					$('infoChangeModal').modal('hide');
+					location.reload();
+				} else {
+					alert('정보 수정이 취소됐습니다');
+				}
+			},
+			error: function(xhr, status, msg){
+                console.log("오류");
+            }
+		});
 	});
 	</script>
 	
@@ -275,7 +296,7 @@
 			}
 		
 			// 모달 종료
-			$('#exampleModal').modal('hide');
+			$('#infoChangeModal').modal('hide');
 			}
 		}).open();
 	}
