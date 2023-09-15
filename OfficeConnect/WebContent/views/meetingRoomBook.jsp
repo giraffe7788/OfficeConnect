@@ -99,19 +99,16 @@
 									</div>
 								</div>
 							</div>
-<<<<<<< HEAD
 
 							<button type="button" class="btn btn-primary btn-toList"
 								style="display: inline-block; width: 100px; margin-bottom: 18px; margin-left: 65%;">목록</button>	
 							<button type="button" class="btn btn-primary btn-close"
 								style="display: inline-block; width: 100px; margin-bottom: 18px; margin-left: 5%;">취소</button>	
-=======
 								<a href="list.do"><button type="button" class="btn btn-primary btn-close"
 								id="goList" style="display: inline-block; width: 10%; margin-bottom: 5%; margin-left: 66%;">목록으로</button></a>
 								
 								<button type="button" class="btn btn-primary btn-close" id="buttonCancle"
 								style="display: inline-block; width: 10%; margin-bottom: 5%; margin-left: 1%;">취소</button>
->>>>>>> branch 'master' of https://github.com/giraffe7788/OfficeConnect.git
 						</div>
 
 					</div>

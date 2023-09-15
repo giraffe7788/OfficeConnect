@@ -1,5 +1,13 @@
+<%@page import="util.TransEmpInfo"%>
+<%@page import="vo.ImageVO"%>
+<%@page import="vo.EmpVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	EmpVO empVO = (EmpVO) request.getAttribute("ev");
+	ImageVO imageVO = (ImageVO) request.getAttribute("imageVO");
+	TransEmpInfo transform = TransEmpInfo.getInstance();
+%>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -14,10 +22,10 @@
 
 <title>마이페이지</title>
 
-    <!-- 아이콘 설정 -->
-    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <!-- css 설정 -->
-    <link href="../css/sb-admin-2.min.css" rel="stylesheet">
+<!-- 아이콘 설정 -->
+<link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+<!-- css 설정 -->
+<link href="../css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
 
@@ -58,38 +66,42 @@
 										cellspacing="0">
 										<tr>
 											<th>이름</th>
-											<td>김태영</td>
+											<td><%=empVO.getEmpName()%></td>
 										</tr>
 										<tr>
 											<th>사원번호</th>
-											<td>111111</td>
+											<td><%=empVO.getEmpNo()%></td>
+										</tr>
+										<tr>
+											<th>비밀번호</th>
+											<td><%=empVO.getEmpPw()%></td>
 										</tr>
 										<tr>
 											<th>이메일</th>
-											<td>111111@?????????</td>
+											<td><%=empVO.getEmpEmail()%></td>
 										</tr>
 										<tr>
 											<th>전화번호</th>
-											<td>1111-1111</td>
+											<td><%=empVO.getEmpTel()%></td>
 										</tr>
 										<tr>
 											<th>주소</th>
-											<td>대전</td>
+											<td><%=empVO.getEmpAddr()%></td>
 										</tr>
 										<tr>
 											<th>부서</th>
-											<td>개발부</td>
+											<td><%=transform.transformDeptCode(empVO.getDeptCode())%></td>
 										</tr>
 										<tr>
 											<th>직급</th>
-											<td>부장</td>
+											<td><%=empVO.getEmpPosit()%></td>
 										</tr>
 									</table>
 								</div>
 								<div class="image-wrapper"
-									style="width: 30%; text-align: center; margin-left: 60px">
-									<img src="../img/profileTest.jpg" alt="증명사진"
-										style="max-width: 51%; height: auto; margin-top : 4%"> <a href="모달로 프로필사진 편집"
+									style="width: 30%; text-align: center; margin-left: 60px">		
+									<img src="<%=imageVO.getImgPath() + imageVO.getImgName()%>" alt="<%=imageVO.getImgPath() + imageVO.getImgName()%>"
+										id="imageView" style="max-width: 51%; height: auto; margin-top: 20%"> <a href="모달로 프로필사진 편집"
 										class="btn btn-primary btn-icon-split" style="margin-top: 45px;">
 										<span class="text" style="color: #fff">프로필 사진 편집</span>
 									</a>

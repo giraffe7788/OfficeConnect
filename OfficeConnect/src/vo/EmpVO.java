@@ -40,6 +40,14 @@ public class EmpVO {
 		this.deptCode = deptCode;
 	}
 	
+	public EmpVO(String empName, String empEmail, String empTel, String empAddr) {
+		super();
+		this.empName = empName;
+		this.empEmail = empEmail;
+		this.empTel = empTel;
+		this.empAddr = empAddr;
+	}
+	
 	public String getEmpNo() {
 		return empNo;
 	}

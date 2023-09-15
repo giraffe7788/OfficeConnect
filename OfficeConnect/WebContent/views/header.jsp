@@ -38,8 +38,8 @@
 	
 	<div class="topbar-divider d-none d-sm-block"></div>
 	
-	<button type="button" onclick="alert('마이 페이지')" style="border: none; background-color: transparent; color: #858796;">
-	<span style="margin-right: 20px;">My Page</span>
+	<button type="button" style="border: none; background-color: transparent; color: #858796;">
+	<span style="margin-right: 20px;"><a class="collapse-item" href="../main/mypage.do">My Page</a></span>
 	</button>
 	
 	<!--Dropdown - User Information -->
