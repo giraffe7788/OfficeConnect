@@ -240,6 +240,9 @@ public class EmpDaoImpl implements IEmpDao {
 		return cnt;
 	}
 	
+	/**
+	 * 사번에 맞는 사원 내용 바꾸기
+	 */
 	@Override
 	public int changeEmployee(String empNo) {
 		SqlSession session = MyBatisUtil.getInstance();
