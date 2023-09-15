@@ -100,10 +100,10 @@
     </style>
   </head>
 
-  <body>
+  <body style="margin:0%">
 <style>
 @page { margin-left: 0.78740157480315in; margin-right: 0.78740157480315in; margin-top: 0.78740157480315in; margin-bottom: 0.78740157480315in; }
-body { margin-left: 0.78740157480315in; margin-right: 0.78740157480315in; margin-top: 0.78740157480315in; margin-bottom: 0.78740157480315in; }
+body { margin:0% }
 </style>
     <table border="0" cellpadding="0" cellspacing="0" id="sheet0" class="sheet0">
         <colgroup><col class="col0">
