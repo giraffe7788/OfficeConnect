@@ -191,14 +191,31 @@ td {
 				modal.find('.modal-title').text('정보수정')
 				modal.find('.modal-body input').val(recipient)
 			})
-
 			$('#dropdown-department a').click(function() {
 				var selectedText = $(this).text(); // 선택된 항목의 텍스트 가져오기
 
-				// 업무상태 수정 해야함
+				// 선택된 값에 따라 결재양식 변경
+				$('#department').text(selectedText); // navbar-brand의 텍스트 변경
+				if(selectedText == '기안서'){
+					$('#form').attr('src', './form/form1.html');
+				}
+			});
+			$('#dropdown-department a').click(function() {
+				var selectedText = $(this).text(); // 선택된 항목의 텍스트 가져오기
+
+				// 선택된 값에 따라 결재양식 변경
 				$('#department').text(selectedText); // navbar-brand의 텍스트 변경
 				if(selectedText == '사직서'){
 					$('#form').attr('src', './form/form3.html');
+				}
+			});
+			$('#dropdown-department a').click(function() {
+				var selectedText = $(this).text(); // 선택된 항목의 텍스트 가져오기
+
+				// 선택된 값에 따라 결재양식 변경
+				$('#department').text(selectedText); // navbar-brand의 텍스트 변경
+				if(selectedText == '연차휴가신청서'){
+					$('#form').attr('src', './form/form2.html');
 				}
 			});
 		</script>
