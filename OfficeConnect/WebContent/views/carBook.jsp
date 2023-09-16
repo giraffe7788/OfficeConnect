@@ -33,7 +33,6 @@
 <script src="../vendor/jquery/jquery.min.js"></script>
 <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-
 </head>
 
 <body id="page-top">
@@ -108,8 +107,15 @@
 								<%} %>
 							</div>
 							
-							<a href="list.do"><button type="button" class="btn btn-primary btn-close"
-                        	id="goList" style="display: flex; margin: auto;">목록으로</button></a>
+							<% if(carBookVO == null && carVO == null){%>
+								
+						<a href="list.do" style="text-decoration: none;"><button type="button" class="btn btn-primary btn-close"
+                           id="goList" style="display:flex; margin: auto;">목록으로</button></a>
+								
+							<%} %>
+							
+							
+
 							
 							
 							<div>
