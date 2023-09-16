@@ -39,6 +39,12 @@
 			emp_addr = #{empAddr}
 		where emp_no = #{empNo}
 	</update>
+	
+	<update id="updateState" parameterType="empvo">
+		update employee
+		set state_code = #{stateCode}
+		where emp_no = #{empNo}
+	</update>
 
 	<delete id="deleteEmployee" parameterType="String">
 		delete from EMPLOYEE

@@ -13,20 +13,22 @@ import com.google.gson.JsonObject;
 
 import emp.service.EmpServiceImpl;
 import emp.service.IEmpService;
+import img.service.IImageService;
+import img.service.ImageServiceImpl;
 import util.TransEmpInfo;
 import vo.EmpVO;
+import vo.ImageVO;
 
 @WebServlet("/main/mypageUpdate.do")
 public class MyPageChange extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-			//req.getRequestDispatcher("/views/mypage.jsp").forward(req, resp);
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		IEmpService empService = EmpServiceImpl.getInstance();	
+		IEmpService empService = EmpServiceImpl.getInstance();
 		TransEmpInfo transform = TransEmpInfo.getInstance();
 		
 		String empNo = (String)req.getSession().getAttribute("empNo");
@@ -37,13 +39,11 @@ public class MyPageChange extends HttpServlet {
 		String empAddr = req.getParameter("empAddr");
 		
 		EmpVO empVO = new EmpVO(empName, empEmail, empTel, empAddr);
-		System.out.println("empName: " + empName +"empEmail: " + empEmail
-							+ "empTel: " + empTel + "empAddr: " + empAddr);
 		empVO.setEmpNo(empNo);
 		
-		int cnt = empService.modifyEmployee(empVO, false);
+		int empCnt = empService.modifyEmployee(empVO, false);
 		
-		if(cnt > 0) {
+		if(empCnt > 0) {
 			System .out.println("회원 정보 수정 성공");
 			
 			JsonObject jsonObject = new JsonObject();
@@ -59,6 +59,6 @@ public class MyPageChange extends HttpServlet {
 			String jsonStr = new Gson().toJson(jsonObject);
 			resp.setContentType("application/json");
 			resp.getWriter().write(jsonStr);
-		}	
+		}
 	}
 }

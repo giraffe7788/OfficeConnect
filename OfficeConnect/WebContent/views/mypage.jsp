@@ -104,7 +104,7 @@
 									<img src="<%=imageVO.getImgPath() + imageVO.getImgName()%>" alt="<%=imageVO.getImgPath() + imageVO.getImgName()%>"
 										id="imageView" style="max-width: 51%; height: auto; margin-top: 20%"><form enctype="multipart/form-data"><input type="file"
 										href="#" class="btn btn-primary btn-icon-split" id="fileInput"
-										style="margin-top: 10%;"></form>
+										style="width:75%; margin-top: 10%;"></form>
 										 <!-- <a href="모달로 프로필사진 편집" class="btn btn-primary btn-icon-split" style="margin-top: 45px;"> -->
 										<span class="text" style="color: #fff">프로필 사진 편집</span>
 									</a>
@@ -218,9 +218,7 @@
     	}
 	});
 	
-	
-	$('.btn-change').on('click', function(){
-		
+	$('.btn-change').on('click', function(){	
 		let empName = $('#empName').val();
 		let empEmail = $('#empEmail').val();
 		let empTel = $('#empTel').val();
@@ -237,7 +235,6 @@
 			success: function(res){
 				if(res.isSuccess === 'ok'){
 					alert('정보가 수정되었습니다.');
-					alert(res.isSuccess);
 					$('infoChangeModal').modal('hide');
 					location.reload();
 				} else {
@@ -251,6 +248,61 @@
             dataType: 'json'
 		})
 	})
+	
+$(document).ready(function() {
+	// 파일이 선택되었을 때 호출되는 함수
+	$('#fileInput').change(function() {
+		let selectedFile = $(this)[0].files[0];
+		if(selectedFile) {
+			// 이미지 파일인지 확인
+			if(selectedFile.type.startsWith('image/')) {
+				// 선택한 이미지 파일을 미리보기 이미지에 표시
+				let selectedImage = $('#imageView');
+				let objectURL = URL.createObjectURL(selectedFile);
+				selectedImage.attr('src', objectURL);
+				
+				// ajax로 정보 /img/update.do로 넘겨준다음
+				// 정보 받아오고 alert띄운다음 다시 detail.do로 복귀
+				let empNo = <%=currentEmpNo%>;
+				let formData = new FormData();
+				formData.append('empNo', empNo);
+				
+				// 이미지 파일 추가
+				let imageInput = $('#fileInput')[0];
+				let imageFile = imageInput.files[0];
+				if(imageFile) {
+					formData.append('image', imageFile);
+				}
+				
+				$.ajax({
+					url: '../img/update.do',
+					type: 'POST',
+					data: formData,
+					contentType: false,
+					processData: false,
+					success: function(res) {
+						if(res.isSuccess == 'fail'){
+							alert("프로필 사진 수정 중 오류가 발생했습니다.");
+						} else if (res.isSuccess == 'ok') {
+							alert("프로필 사진 수정이 성공적으로 되었습니다.");
+						}
+					},
+					error: function(xhr) {
+						alert("상태: " + xhr.status);
+					},
+					dataType: 'json'
+				});
+			} else {
+				alert("이미지 파일이 아닙니다.");
+			}
+		}
+	});
+});
+	onclick="registerEmp()"
+		function updateState() {
+		event.preventDefault();
+		
+		}
 	</script>
 	
 	<!-- 주소 API -->
