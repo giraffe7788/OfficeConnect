@@ -43,7 +43,7 @@ public class SendMailList extends HttpServlet {
 		
 		Map<String, Object> paramMap = new HashMap<String, Object>(); 
 		paramMap.put("isSend", isSend);
-		paramMap.put("empEmail", empEmail);
+		paramMap.put("empNo", empNo);
 
 		List<MailVO> sendMailList = mailService.getMailList(paramMap); 
 		

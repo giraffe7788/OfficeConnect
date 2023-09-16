@@ -42,15 +42,15 @@ public class MailServiceImpl implements IMailService {
 	}
 	
 	
-	/**
-	 * 보낸 메일함 확인 메서드
-	 * @param isSend
-	 * @return 보낸 메일함 확인
-	 */
-	@Override
-	public boolean checkMail(String isSend) {
-		return mailDao.checkMail(isSend);
-	}
+//	/**
+//	 * 보낸 메일함 확인 메서드
+//	 * @param isSend
+//	 * @return 보낸 메일함 확인
+//	 */
+//	@Override
+//	public boolean checkMail(String isSend) {
+//		return mailDao.checkMail(isSend);
+//	}
 	
 	
 	/**

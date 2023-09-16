@@ -6,16 +6,16 @@
 	<!-- 메일 쓰기 -->
 	<insert id="writeMail" parameterType="vo.MailVO">
 		insert into
-		mail(MAIL_NO, MAIL_CONT, MAIL_SENDDATE, MAIL_SENDSTAT, MAIL_RECESTAT, MAIL_RECEIVER, MAIL_SENDER)
+		mail(MAIL_NO, MAIL_CONT, MAIL_SENDDATE, MAIL_SENDSTAT, MAIL_RECESTAT, MAIL_RECEIVER, MAIL_SENDER, MAIL_TITLE)
 		values
 		(MAIL_SEQ.nextval, #{mailCont}, #{mailSendDate}, #{mailSendStat}, #{mailReceStat},
-		#{mailReceiver}, #{mailSender})
+		#{mailReceiver}, #{mailSender}, #{mailTitle})
 	</insert>
 
 	<!-- 받은 메일 확인  -->
 	<select id="getReceiveMail" resultMap="mailMap" parameterType="map">
 		select * from mail
-		where mail_receiver = #{empNo}
+		where mail_receiver = #{empEmail}
 	</select>
 
 

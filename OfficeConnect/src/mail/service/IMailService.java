@@ -24,12 +24,12 @@ public interface IMailService {
 	public int removeMail(int mailNo);
 	
 	
-	/**
-	 * 보낸 메일함 확인 메서드
-	 * @param isSend
-	 * @return 보낸 메일함 확인
-	 */
-	public boolean checkMail(String isSend);
+//	/**
+//	 * 보낸 메일함 확인 메서드
+//	 * @param isSend
+//	 * @return 보낸 메일함 확인
+//	 */
+//	public boolean checkMail(String isSend);
 	
 	
 	/**

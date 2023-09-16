@@ -100,11 +100,11 @@
 
 									<nav id="sidebar" style="padding: inherit;">
 										<ul class="list-unstyled">
-											<li style="margin-bottom: 3px;"><a href="../mail/receiveList.do?isSend=2"
+											<li style="margin-bottom: 3px;"><a href="../mail/receiveList.do?isSend=1"
 												style="text-decoration: none; color: inherit; background-color: transparent;">받은
 													메일함</a></li>
 
-											<li style="margin-bottom: 3px;"><a href="../mail/sendList.do?isSend=1"
+											<li style="margin-bottom: 3px;"><a href="../mail/sendList.do?isSend=2"
 												style="text-decoration: none; color: inherit; background-color: transparent;">보낸
 													메일함</a></li>
 
@@ -184,7 +184,7 @@
 										%>
 										<tr>
 										    <td><input type="checkbox" class="mailCheckbox"></td>
-										    <td> ㅈㅈ </td>
+										    <td><%= mail.getMailTitle() %></td>
 										    <td><%= mail.getMailCont() %></td>
 										    <td><%= mail.getMailSender() %></td>
 										    <td><%= mail.getMailSendDate() %></td>

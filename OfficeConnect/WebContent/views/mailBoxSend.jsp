@@ -97,11 +97,11 @@
 
 									<nav id="sidebar" style="padding: inherit;">
 										<ul class="list-unstyled">
-											<li style="margin-bottom: 3px;"><a href="../mail/receiveList.do?isSend=2"
+											<li style="margin-bottom: 3px;"><a href="../mail/receiveList.do?isSend=1"
 												style="text-decoration: none; color: inherit; background-color: transparent;">받은
 													메일함</a></li>
 
-											<li style="margin-bottom: 3px;"><a href="../mail/sendList.do?isSend=1"
+											<li style="margin-bottom: 3px;"><a href="../mail/sendList.do?isSend=2"
 												style="text-decoration: none; color: inherit; background-color: transparent;">보낸
 													메일함</a></li>
 
@@ -147,7 +147,9 @@
 									<h4> 보낸 메일함</h4>
 
 									<hr>
-
+									
+									<form>
+									
 									<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr role="row">
@@ -166,7 +168,7 @@
                                           <th class="sorting" tabindex="0" aria-controls="dataTable"
                                              rowspan="1" colspan="1"
                                              aria-label="작성일: activate to sort column ascending"
-                                             style="width: 12%;">보낸사람</th>
+                                             style="width: 12%;">받은사람</th>
                                           <th class="sorting" tabindex="0" aria-controls="dataTable"
                                              rowspan="1" colspan="1"
                                              aria-label="작성일: activate to sort column ascending"
@@ -176,12 +178,13 @@
                                     <tbody>
 										<%
 										for (MailVO mail : sendMailList) {
+											if(mail.getMailReceiver().equals(empNo))
 										%>
 										<tr>
 										    <td><input type="checkbox" class="mailCheckbox" value="<%= mail.getMailNo() %>"></td>
-										    <td> 제목 어케넣지</td>
+										    <td><%= mail.getMailTitle() %></td>
 										    <td><%= mail.getMailCont() %></td>
-										    <td><%= mail.getMailSender() %></td>
+											<td><%= mail.getMailReceiver() %></td>
 										    <td><%= mail.getMailSendDate() %></td>
 										</tr>
 										<%

@@ -76,32 +76,32 @@ public class MailDaoImpl implements IMailDao {
 	}
 	
 	
-	/**
-	 * 보낸 메일함 확인 메서드
-	 * @param isSend
-	 * @return 보낸 메일함 확인
-	 */
-	@Override
-	public boolean checkMail(String isSend) {
-		
-		boolean isExist = false;
-		SqlSession session = MyBatisUtil.getInstance();
-		
-		try {
-			int cnt = session.selectOne("mail.checkMail", isSend);
-			
-			if(cnt > 0) {
-				isExist = true;
-			}
-			
-		} catch (PersistenceException e) {
-			e.printStackTrace();
-			session.rollback();
-		} finally {
-			session.close();
-		}
-		return isExist;
-	}
+//	/**
+//	 * 보낸 메일함 확인 메서드
+//	 * @param isSend
+//	 * @return 보낸 메일함 확인
+//	 */
+//	@Override
+//	public boolean checkMail(String isSend) {
+//		
+//		boolean isExist = false;
+//		SqlSession session = MyBatisUtil.getInstance();
+//		
+//		try {
+//			int cnt = session.selectOne("mail.checkMail", isSend);
+//			
+//			if(cnt > 0) {
+//				isExist = true;
+//			}
+//			
+//		} catch (PersistenceException e) {
+//			e.printStackTrace();
+//			session.rollback();
+//		} finally {
+//			session.close();
+//		}
+//		return isExist;
+//	}
 	
 	/**
 	 * 메일 리스트 뽑아오는 메서드, 파라미터로 보낸메일을 뽑을지 받은메일을 뽑을지 결정
@@ -118,10 +118,11 @@ public class MailDaoImpl implements IMailDao {
 		try {
 			if("1".equals(paramMap.get("isSend"))) {
 				mailList = session.selectList("mail.getReceiveMail",paramMap); //받은메일
+				System.out.println("true면 getReceiveMail쿼리");
 			} else {
 				mailList = session.selectList("mail.getSendMail",paramMap); //보낸메일
+				System.out.println("else면 getSendMail쿼리");
 			}
-		
 		} catch (PersistenceException ex) {
 			ex.printStackTrace();
 		} finally {
