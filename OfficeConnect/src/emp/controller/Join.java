@@ -31,7 +31,7 @@ public class Join extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+		System.out.println("서블릿옴?");
 		req.getRequestDispatcher("/views/empRegister.jsp").forward(req, resp);
 	}
 

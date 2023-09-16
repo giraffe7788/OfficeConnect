@@ -34,6 +34,8 @@ public class EmpDaoImpl implements IEmpDao {
 		SqlSession session = MyBatisUtil.getInstance();
 		EmpVO result = null;
 		
+		result = session.selectOne("employee.adminCheck", empVO);
+		
 		try {
 			
 			if(isAdminLogin) {
