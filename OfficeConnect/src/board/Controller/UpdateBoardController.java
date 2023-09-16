@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import board.service.BoardServiceImpl;
 import board.service.IBoardService;
-import board.vo.BoardVO;
+import vo.BoardVO;
 
 
 @MultipartConfig
@@ -25,7 +25,6 @@ public class UpdateBoardController extends HttpServlet {
 
 		int brdNo = Integer.parseInt(req.getParameter("brdNo"));
 		
-		System.out.println(brdNo);
 	
 		
 		IBoardService boardService = BoardServiceImpl.GetInstance();

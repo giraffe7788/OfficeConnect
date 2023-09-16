@@ -2,7 +2,8 @@ package comment.dao;
 
 import java.util.List;
 
-import comment.vo.CommentVO;
+
+import vo.CommentVO;
 
 public interface ICommentDao {
 	
@@ -19,7 +20,7 @@ public interface ICommentDao {
 	public int deleteComment(int commNo);
 	
 	
-	//본인이 작성한 댓글 리스트 확인 
+	//해당 게스판의 댓글리스트출력 
 	public List<CommentVO> selectAll(int brdNo);
 
 	

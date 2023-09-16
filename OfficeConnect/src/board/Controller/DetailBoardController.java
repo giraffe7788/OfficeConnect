@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import board.service.BoardServiceImpl;
 import board.service.IBoardService;
-import board.vo.BoardVO;
+import vo.BoardVO;
 
 
 //寃뚯떆�뙋 �젣紐� �겢由��떆 �솕硫� 
@@ -25,9 +25,9 @@ public class DetailBoardController extends HttpServlet{
 		System.out.println(brdNo);
 		IBoardService memService = BoardServiceImpl.GetInstance();
 		
-		BoardVO bv = memService.detailBoard(brdNo);
+		BoardVO boardVO = memService.detailBoard(brdNo);
 		
-		req.setAttribute("bv", bv);
+		req.setAttribute("boardVO", boardVO);
 		
 		
 		

@@ -8,7 +8,8 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+
+                <a class="nav-link" href="./main.jsp">
 					<i class="fa-solid fa-house"></i>
                     <span>메인화면</span>
                 </a>
@@ -23,16 +24,16 @@
             </div>
 
             <li class="nav-item">
-                <a class="nav-link" href="#결재링크">
+                <a class="nav-link" href="#">
                     <span>&nbsp;</span><i class="fa-solid fa-clipboard"></i>
                     <span>&nbsp;결재</span>
                 </a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="#조직도조회링크">
+                <a class="nav-link" href="../emp/chart.do">
                     <i class="fa-solid fa-network-wired"></i>
-                    <span>조직도조회</span>
+                    <span>사원조회</span>
                 </a>
             </li>
 
@@ -54,15 +55,15 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">게시판종류</h6>
-                        <a class="collapse-item" href="buttons.html">공지사항</a>
-                        <a class="collapse-item" href="cards.html">자유게시판</a>
+                        <a class="collapse-item" href="../views/noticeBoard.jsp">공지사항</a>
+                        <a class="collapse-item" href="../views/freeBoard.jsp">자유게시판</a>
                     </div>
                 </div>
             </li>
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="./mailBoxMine.jsp">
                     <i class="fa-solid fa-envelope"></i>
                     <span>메일</span></a>
             </li>
@@ -86,15 +87,15 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">예약선택</h6>
-                        <a class="collapse-item" href="utilities-color.html">회의실예약</a>
-                        <a class="collapse-item" href="utilities-border.html">차량배차</a>
+                        <a class="collapse-item" href="../meeting/list.do">회의실예약</a>
+                        <a class="collapse-item" href="../car/list.do">차량배차</a>
                     </div>
                 </div>
             </li>
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="../views/review.jsp">
                     <i class="fa-solid fa-list-check"></i>
                     <span>근무태도평가</span></a>
             </li>
@@ -102,11 +103,21 @@
             <!-- 구분선 -->
             <hr class="sidebar-divider">
 
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+            
+              <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                    aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>관리자설정</span></a>
+                    <span>관리자</span>
+                </a>
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">관리자페이지</h6>
+                        <a class="collapse-item" href="../emp/list.do">모든사원조회</a>
+                        <a class="collapse-item" href="../emp/join.do">신규사원추가</a>
+                    </div>
+                </div>
+
             </li>
 
             <!-- 구분선 -->

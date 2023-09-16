@@ -8,8 +8,9 @@ import org.apache.ibatis.session.SqlSession;
 
 import board.dao.BoardDaoImpl;
 import board.dao.IBoardDao;
-import comment.vo.CommentVO;
+
 import util.MyBatisUtil;
+import vo.CommentVO;
 
 public class CommentDaoImpl implements ICommentDao {
 
@@ -31,7 +32,7 @@ public class CommentDaoImpl implements ICommentDao {
 		int cnt = 0;
 
 		try {
-			cnt = session.insert("board.boardInsert",cv );
+			cnt = session.insert("comment.commentInsert",cv );
 			if (cnt > 0) {
 				session.commit();
 			}
@@ -54,7 +55,7 @@ public class CommentDaoImpl implements ICommentDao {
 		SqlSession session = MyBatisUtil.getInstance();
 		
 		try {
-			cnt = session.update("",cv);
+			cnt = session.update("commentUpdate",cv);
 			if(cnt>0) {
 				session.commit();
 			}
@@ -75,7 +76,7 @@ public class CommentDaoImpl implements ICommentDao {
 		SqlSession session = MyBatisUtil.getInstance();
 			
 		try {
-			cnt=session.delete("", commNo);
+			cnt=session.delete("commentDelete", commNo);
 			if(cnt>0) {
 				session.commit();
 			}
@@ -86,6 +87,7 @@ public class CommentDaoImpl implements ICommentDao {
 		}finally {
 			session.close();
 		}
+		System.out.println("다오임 : " + cnt);
 				return cnt;
 	}
 
@@ -97,7 +99,8 @@ public class CommentDaoImpl implements ICommentDao {
 		SqlSession session = MyBatisUtil.getInstance();
 		
 		try {
-			commentList = session.selectList("", brdNo);
+			commentList = session.selectList("comment.commentListWithEmp", brdNo);
+
 			
 		} catch (Exception e) {
 			e.printStackTrace();

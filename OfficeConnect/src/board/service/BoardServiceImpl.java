@@ -4,7 +4,9 @@ import java.util.List;
 
 import board.dao.BoardDaoImpl;
 import board.dao.IBoardDao;
-import board.vo.BoardVO;
+
+import vo.BoardVO;
+
 
 public class BoardServiceImpl implements IBoardService {
 

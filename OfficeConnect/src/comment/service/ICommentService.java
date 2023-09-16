@@ -3,7 +3,10 @@ package comment.service;
 import java.util.Date;
 import java.util.List;
 
-import comment.vo.*;
+
+import vo.*;
+import vo.CommentVO;
+
 
 public interface ICommentService {
 	

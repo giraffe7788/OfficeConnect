@@ -97,35 +97,73 @@
 								</div>
 
 							</div>
-							<div
-								style="display: flex; justify-content: center; align-items: center; margin-bottom: 50px">
-								<a href="모달로 수정페이지 띄우기" class="btn btn-primary btn-icon-split"
-									style="margin-top: 45px;"> <span class="text" id="myPageEditButton"
-									style="color: #fff">마이페이지 수정</span>
-								</a>
-							</div>
+			
+							
+		    <!-- 모달 시작 -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="margin-left : 25%">정보수정</button>
 
-									<!-- Single button -->
-									<nav class="navbar navbar-expand navbar-light bg-light mb-4" style="width : 20%; height:4vh; position:absolute; margin-left:68%; margin-top:-17%">
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" >정보수정</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+                <div class="form-group">
+            <label for="recipient-name" class="col-form-label">이름:</label>
+            <input type="text" class="form-control" id="empName">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">이메일:</label>
+            <input type="text" class="form-control" id="empEmail">
+          </div>
+          <div class="form-group">
+                      <label for="recipient-name" class="col-form-label">전화번호:</label>
+            <input type="text" class="form-control" id="empTel">
+          </div>
+          <div class="form-group">
+                      <label for="recipient-name" class="col-form-label">주소:</label>
+                      <button type="button" class="btn btn-primary btn-sm" id="addressSearchButton">주소찾기</button>
+            <input type="text" class="form-control" id="empAddr">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+        <button type="button" class="btn btn-primary">수정</button>
+      </div>
+    </div>
+  </div>
+</div>
+		    <!-- 모달 시작 -->
+									
+						</div>
+						<!-- 드롭다운 -->
+									<nav class="navbar navbar-expand navbar-light bg-light mb-4" style="width : 14%; height:4vh; position:absolute; margin-left:68%; margin-top:45%">
                                         <a class="navbar-brand" href="#">업무중</a>
                                         <ul class="navbar-nav ml-auto">
                                             <li class="nav-item dropdown">
                                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
                                                     role="button" data-toggle="dropdown" aria-haspopup="true"
                                                     aria-expanded="false">
-                                                    	변경
+                                                    	
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right animated--grow-in"
                                                     aria-labelledby="navbarDropdown" style = "text-align : center">
+                                                    <a class="dropdown-item" href="#">근무중</a>
+                                                    <a class="dropdown-item" href="#">외근중</a>
+                                                    <a class="dropdown-item" href="#">결근중</a>
                                                     <a class="dropdown-item" href="#">외출중</a>
-                                                    <a class="dropdown-item" href="#">업무중</a>
-                                                    <a class="dropdown-item" href="#">부재중</a>
-                                                    <a class="dropdown-item" href="#">출장중</a>
+                                                    <a class="dropdown-item" href="#">휴가중</a>
                                                 </div>
                                             </li>
                                         </ul>
                                     </nav>
-						</div>
+                                    
 					</div>
 
 					<!-- 페이지 Content 끝 -->
@@ -143,14 +181,98 @@
     <script src="../vendor/jquery/jquery.min.js"></script>
     <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script>
-	$('#dropdown-menu dropdown-menu-right animated--grow-in > a').on('click', function() {
-	    // 버튼에 선택된 항목 텍스트 넣기 
-	    $('#navbar-brand').text($(this).text());
-	        
-	    // 선택된 항목 값(value) 얻기
-	    alert($(this).attr('value'));
+	$('#exampleModal').on('show.bs.modal', function (event) {
+		  // 아래 템플릿 코드인데 수정해서 db연동하고 회원정보 수정되도록 ㄱㄱ
+		  var button = $(event.relatedTarget) 
+		  var recipient = button.data('whatever') 
+
+		  var modal = $(this)
+		  modal.find('.modal-title').text('정보수정')
+		  modal.find('.modal-body input').val(recipient)
+		})
+	$('.dropdown-menu a').click(function () {
+    	var selectedText = $(this).text(); // 선택된 항목의 텍스트 가져오기
+    	
+    	var userResponse = window.confirm("업무 상태를 수정하시겠습니까?");
+    	if (userResponse) {
+    	    // 사용자가 "확인"을 선택한 경우
+    	    // 업무상태 수정 해야함
+    		$('.navbar-brand').text(selectedText); // navbar-brand의 텍스트 변경
+    	} else {
+    	    // 사용자가 "취소"를 선택한 경우 또는 경고창을 닫은 경우
+    	}
 	});
 	</script>
-
+	
+	<!-- 주소 API -->
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script>
+	// 주소 찾기 버튼 클릭 시 실행되는 함수
+	function openAddressSearch() {
+		new daum.Postcode({
+			oncomplete: function(data) {
+			var selectedAddress = data.address; //선택한 주소 가져오기
+			setAddress(selectedAddress); // 주소를 입력 필드에 채우는 함수 호출
+		
+			// 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+			// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+			var roadAddr = data.roadAddress; // 도로명 주소 변수
+			var extraRoadAddr = ''; // 참고 항목 변수
+		
+			// 법정동명이 있을 경우 추가한다. (법정리는 제외)
+			// 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+			if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+			extraRoadAddr += data.bname;
+			}
+			// 건물명이 있고, 공동주택일 경우 추가한다.
+			if(data.buildingName !== '' && data.apartment === 'Y'){
+			extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+			}
+			// 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+			if(extraRoadAddr !== ''){
+			extraRoadAddr = ' (' + extraRoadAddr + ')';
+			}
+		
+			// 우편번호와 주소 정보를 해당 필드에 넣는다.
+			document.getElementById('sample4_postcode').value = data.zonecode;
+			document.getElementById("sample4_roadAddress").value = roadAddr;
+			document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
+		
+			// 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
+			if(roadAddr !== ''){
+			document.getElementById("sample4_extraAddress").value = extraRoadAddr;
+		
+			} else {
+			document.getElementById("sample4_extraAddress").value = '';
+			}
+		
+			var guideTextBox = document.getElementById("guide");
+			// 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+			if(data.autoRoadAddress) {
+			var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+			guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+			guideTextBox.style.display = 'block';
+		
+			} else if(data.autoJibunAddress) {
+			var expJibunAddr = data.autoJibunAddress;
+			guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+			guideTextBox.style.display = 'block';
+			} else {
+			guideTextBox.innerHTML = '';
+			guideTextBox.style.display = 'none';
+			}
+		
+			// 모달 종료
+			$('#exampleModal').modal('hide');
+			}
+		}).open();
+	}
+	function setAddress(address) {
+		document.getElementById('empAddr').value = address;
+	}
+		// 주소 찾기 버튼에 이벤트 리스너 추가
+		document.getElementById('addressSearchButton').addEventListener('click', openAddressSearch);
+	</script>
+>>>>>>> branch 'revert-6-yun' of https://github.com/giraffe7788/OfficeConnect.git
 </body>
 </html>

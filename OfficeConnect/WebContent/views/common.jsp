@@ -34,4 +34,5 @@
 	<script src="https://kit.fontawesome.com/721f3d622d.js" crossorigin="anonymous"></script>
     <!-- 스크립트, 설정 플러그인 -->
     <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
     <script src="../js/sb-admin-2.min.js"></script>

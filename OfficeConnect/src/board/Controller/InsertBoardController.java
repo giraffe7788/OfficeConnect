@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import board.service.BoardServiceImpl;
 import board.service.IBoardService;
-import board.vo.BoardVO;
+import vo.BoardVO;
 
 
 @MultipartConfig
@@ -26,16 +26,21 @@ public class InsertBoardController extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("왔음");
+		
 
 		req.setCharacterEncoding("UTF-8");
 		
 		String brdTitle = req.getParameter("brdTitle");
 		String brdCont = req.getParameter("brdCont");
+		String empNo = req.getParameter("empNo");
 		
 
 		IBoardService boardService = BoardServiceImpl.GetInstance();
-		BoardVO bv = new BoardVO(brdCont, brdTitle);
+		
+		BoardVO bv = new BoardVO();
+		bv.setBrdTitle(brdTitle);
+		bv.setBrdCont(brdCont);
+		bv.setEmpNo(empNo);
 			
 		int cnt = boardService.insertBoard(bv);
 

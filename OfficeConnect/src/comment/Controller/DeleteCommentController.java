@@ -20,23 +20,14 @@ public class DeleteCommentController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		int commentNo = Integer.parseInt(req.getParameter("CommentNo"));
-		System.out.println(commentNo);
+System.out.println("댓글 삭제왔음");
+		int commNo = Integer.parseInt(req.getParameter("commNo"));
+		System.out.println(commNo);
 		ICommentService commentService = CommentServiceImpl.GetInstance();
 
-		int cnt = commentService.deleteComment(commentNo);
-		String msg = "";
-		if (cnt > 0) {
-			msg = "성공";
-		} else {
-			msg = "실패";
-		}
-		HttpSession session = req.getSession();
-
-		session.setAttribute("msg", msg);
-		resp.sendRedirect(req.getContextPath() + "/comment/list.do");
-
+		int cnt = commentService.deleteComment(commNo);
+		System.out.println(cnt);
+		resp.getWriter().print(cnt);
 	}
 
 	@Override

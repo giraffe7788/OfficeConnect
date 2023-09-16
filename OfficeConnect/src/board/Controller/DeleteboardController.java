@@ -19,7 +19,7 @@ public class DeleteboardController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+	
 		int brdNo = Integer.parseInt(req.getParameter("brdNo"));
 		System.out.println(brdNo);
 		IBoardService boardService = BoardServiceImpl.GetInstance();

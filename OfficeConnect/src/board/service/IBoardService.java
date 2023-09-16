@@ -2,7 +2,9 @@ package board.service;
 
 import java.util.List;
 
-import board.vo.BoardVO;
+
+import vo.BoardVO;
+
 
 /**
  *  

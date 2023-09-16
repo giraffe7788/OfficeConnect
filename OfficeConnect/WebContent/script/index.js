@@ -4,9 +4,10 @@ function loginCheck(){
 	
 	let idValue = $('#idCheck').val();
 	let pwValue = $('#pwCheck').val();
-	
+	let isAdminLogin = $("#adminLogin").prop("checked");
+
 	if(idValue.length <= 0 || pwValue.length <= 0){
-		alert("아이디또는 비밀번호를 입력해주세요");
+		alert("아이디 또는 비밀번호를 입력해주세요");
 		return;
 	}
 	
@@ -14,16 +15,19 @@ function loginCheck(){
 		url : 'http://localhost:8888/OfficeConnect/login.do',
 		type : 'post',
 		data : { 'emp_no': idValue,
-				 'emp_pw' : pwValue },
+				 'emp_pw' : pwValue,
+				 'adminLogin' : isAdminLogin},
 		success : function(res){
 			
-			if( res == 'fail' ){
-				alert("아이디나 비밀번호를 확인해주세요.");
+			if(res.isSuccess == 'fail' && isAdminLogin == true){
+				alert("관리자 권한이 없습니다");
+			} else if( res.isSuccess == 'fail' ){
+				alert("아이디 또는 비밀번호를 확인해주세요.");
 			}else{
 				alert("로그인성공");
 				//쿠키에 접속자 아이디 저장 후 main.jsp로 보낸다.
 //				setCookie("user_id", idValue, 1);
-				location.href="./main.jsp";
+				location.href="./views/main.jsp";
 			}
 		},
 		error : function(xhr){
@@ -32,7 +36,3 @@ function loginCheck(){
 		dataType : 'json'
 	})
 }
-
-	function getContextPath() {
-		return "<%=request.getContextPath()%>";
-	}

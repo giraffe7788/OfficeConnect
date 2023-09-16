@@ -1,14 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!-- Custom fonts for this template-->
-<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
+
+<link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
 	type="text/css">
 <link
 	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
 	rel="stylesheet">
 
 <!-- Custom styles for this template-->
-<link href="css/sb-admin-2.min.css" rel="stylesheet">
+<link href="../css/sb-admin-2.min.css" rel="stylesheet">
 <nav
 	class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
@@ -22,7 +23,8 @@
 	<form
 		class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
 <!-- 		<h2 style="text-align: center;">Office Connection</h2> -->
-		<img src="../img/icon.PNG">
+		<img src="../images/icon.PNG">
+>>>>>>> branch 'revert-6-yun' of https://github.com/giraffe7788/OfficeConnect.git
 	</form>
 
 	<!-- Nav Item - Alerts -->

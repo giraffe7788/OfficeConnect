@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+<!-- 로깅프레임워크(로그를 남기는것)를 사용하는 이유는
+	  로그를 기록하여 , 앱 개발 및 운영 중 발생하는 문제점을 모니터링하고 추적하는데 용이함 -->
+  <Appenders>
+    <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+      <!-- [%t]로그 이벤트가 발생된 스레드의 이름 
+           %level 로그 레벨.. TRACE < DEBUG < INFO < WARN < ERROR < FATAL 
+           			1레벨(fatal)이 가장 높고 6레벨(Trace)이 가장 낮음
+           			내가 설정한 level보다 아래 level의 로그는 무시한다.
+           			윗 레벨들만 나온다.
+           			ex) INFO로 레벨 설정하고 호출할때 DEBUG하면 안나옴. 더 아랫 레벨이라서
+           			    INFO는 INFO < WARN < ERROR < FATAL처럼 상위만 호출함
+           		
+           %로그 이름.. -
+           %msg 메시지 
+           %n 줄바꿈  -->
+    </Console>
+    
+    <File name="MyFile" filename="logs/app.log">
+    	<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+    </File>
+  </Appenders>
+
+  <Loggers>
+  	<!-- 여기에 로거 추가한거는 개별적으로 직접 설정해주고 싶어서임 
+  	ref="Console" 로 네임이 중복될때 다르게 처리하려면 additivity를 false로 설정-->
+  	<Logger name="log4jexam.sql.Query" level="debug" additivity="false">
+      <AppenderRef ref="Console"/>
+      <!-- 어펜더(추가)reference를 통해 로그 폴더를 만들수있음, 로깅프레임웤을 이용해서 체계적으로 로그를 잘 남길 수 있음 
+      	      어펜더 통해서 파일로도 만들고 메일로도 보내고 DB도 건들고 다 하는듯? -->
+      <AppenderRef ref="MyFile"/>
+  	</Logger>
+  	
+  	<Logger name="log4jexam.sql.Parameter" level="info" additivity="false">
+      <AppenderRef ref="Console"/>
+  	</Logger>
+  	
+  	<!-- 얘는 선언할대 클래스명으로 지정해줘서 name값이 다름  -->
+  	<Logger name="kr.or.ddit.basic.T01MemberInfoTest" level="debug" additivity="false">
+      <AppenderRef ref="Console"/>
+  	</Logger>
+  	
+  	
+  	<!-- Root는 기본값(모든 로그들이 상속받는 기본 로그임)
+  	Root를 바꾸는순간 모든 로그들이 레벨 1의 fatal에서 레벨 6의 trace로 바뀜 -->
+    <Root level="trace">
+      <AppenderRef ref="Console"/>
+      <AppenderRef ref="MyFile"/>
+    </Root>
+  </Loggers>
+
+</Configuration>
+
+
+
+
+

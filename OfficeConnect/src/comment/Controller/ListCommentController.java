@@ -11,9 +11,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
 import comment.service.CommentServiceImpl;
 import comment.service.ICommentService;
-import comment.vo.CommentVO;
+import vo.CommentVO;
 
 
 
@@ -23,21 +25,25 @@ public class ListCommentController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	
+		System.out.println("댓글리스트왔음");
 		int brdNo = Integer.parseInt(req.getParameter("brdNo"));
-
 		ICommentService commentService = CommentServiceImpl.GetInstance();
 		List<CommentVO> commentList = commentService.selectAll(brdNo);
 		
-		req.setAttribute("commentList", commentList);
+		Gson g = new Gson();
+		String json=g.toJson(commentList);
 		
-		RequestDispatcher dispacther = req.getRequestDispatcher("/comment/list.jsp");
-		dispacther.forward(req, resp);
+		resp.setContentType("text/json;charset=utf-8");
+		System.out.println(json); // [{    },{    }.....  ]
+		// $.ajax() --> json
+		resp.getWriter().print(json);
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		doGet(req, resp);
 	}
+	
+	
 
 }

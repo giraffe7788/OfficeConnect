@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <% request.setCharacterEncoding("utf-8"); %>
-<%@ page import="board.vo.*"%>
+
+<%@ page import="vo.*"%>
+>>>>>>> branch 'revert-6-yun' of https://github.com/giraffe7788/OfficeConnect.git
 <%
 	BoardVO vo = (BoardVO) request.getAttribute("bv");
 %>

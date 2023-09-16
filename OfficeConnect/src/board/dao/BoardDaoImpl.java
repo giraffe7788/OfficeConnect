@@ -10,8 +10,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import board.vo.BoardVO;
 import util.MyBatisUtil;
+import vo.BoardVO;
 
 
 public class BoardDaoImpl implements IBoardDao{
@@ -138,7 +138,8 @@ public class BoardDaoImpl implements IBoardDao{
 		
 		try {
 			
-			boardList = session.selectList("board.boardList");
+			boardList = session.selectList("board.boardListWithEmp");
+
 			
 		} catch (PersistenceException e) {
 			// TODO: handle exception

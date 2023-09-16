@@ -1,9 +1,14 @@
+<%@page import="util.TransEmpInfo"%>
+<%@page import="util.SessionEmpInfo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="board.vo.*"%>
+<%@ page import="vo.*"%>
 <%@ page import="java.util.*"%>
 <%
 	ArrayList<BoardVO> list = (ArrayList<BoardVO>) request.getAttribute("boardList");
+	String empNo = (String)session.getAttribute("empNo");
+	EmpVO empVO = SessionEmpInfo.getInstance().getEmpVO(empNo);
+	TransEmpInfo transfer = TransEmpInfo.getInstance();
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -95,7 +100,7 @@
 											<td><%=vo.getBrdNo()%></td>
 											<td><a
 												href="<%=request.getContextPath()%>/board/detail.do?brdNo=<%=vo.getBrdNo()%>"><%=vo.getBrdTitle()%></a></td>
-											<td><%=vo.getEmpNo()%></td>
+											<td><%=transfer.transformDeptCode(empVO.getDeptCode())%>&nbsp;&nbsp;<%=vo.getEmpPosit()%>&nbsp;&nbsp;<%=vo.getEmpName()%></td>
 											<td><%=vo.getBrdDateDisplay()%></td>
 									
 										</tr>

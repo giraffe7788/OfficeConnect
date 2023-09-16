@@ -12,17 +12,13 @@ import javax.servlet.http.HttpSession;
 
 import comment.service.CommentServiceImpl;
 import comment.service.ICommentService;
-import comment.vo.CommentVO;
+import vo.CommentVO;
 
 
 @MultipartConfig
-@WebServlet("/Comment/insert.do") // value 생략가능(어노테이션)
+@WebServlet("/comment/insert.do") // value 생략가능(어노테이션)
 public class InsertCommentController extends HttpServlet {
 
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/Comment/insertForm.jsp").forward(req, resp);
-	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -30,30 +26,21 @@ public class InsertCommentController extends HttpServlet {
 
 		req.setCharacterEncoding("UTF-8");
 		
-		String brdTitle = req.getParameter("brdTitle");
-		String brdCont = req.getParameter("brdCont");
-		
+		String empNo = req.getParameter("empNo");
+		int brdNo = Integer.parseInt(req.getParameter("brdNo"));
+		String commCont = req.getParameter("commCont");
+		System.out.println("empNo : " + empNo+ "brdNo : " + brdNo + "commCont :" +commCont );
 
 		ICommentService CommentService = CommentServiceImpl.GetInstance();
+		
 		CommentVO cv = new CommentVO();
+		cv.setEmpNo(empNo);
+		cv.setBrdNo(brdNo);
+		cv.setCommCont(commCont);
 			
 		int cnt = CommentService.insertComment(cv);
-
-		String msg = "";
-
-		if (cnt > 0) {
-			msg = "성공";
-		} else {
-			msg = "실패";
-		}
-
-		HttpSession session = req.getSession();
-
-		session.setAttribute("msg", msg);
-
-//		req.getRequestDispatcher("/Comment/list.do").forward(req, resp);
-
-		resp.sendRedirect(req.getContextPath() + "/Comment/list.do");
+		System.out.println(cnt);
+		resp.getWriter().print(cnt);
 
 	}
 }

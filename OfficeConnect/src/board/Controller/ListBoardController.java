@@ -12,7 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import board.service.BoardServiceImpl;
 import board.service.IBoardService;
-import board.vo.BoardVO;
+import emp.service.EmpServiceImpl;
+import vo.BoardVO;
 
 
 @WebServlet("/board/list.do")
@@ -25,7 +26,6 @@ public class ListBoardController extends HttpServlet {
 		List<BoardVO> boardList = boardService.selectAll();
 		
 		req.setAttribute("boardList", boardList);
-		
 		RequestDispatcher dispacther = req.getRequestDispatcher("/views/freeBoard.jsp");
 		dispacther.forward(req, resp);
 	}

@@ -2,7 +2,8 @@ package board.dao;
 
 import java.util.List;
 
-import board.vo.BoardVO;
+
+import vo.BoardVO;
 
 /**
  * 실제 DB와 연결해서 SQL문을 수행한 후 결 과를 작성하여 서비스에 

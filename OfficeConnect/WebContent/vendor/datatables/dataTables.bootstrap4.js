@@ -1,5 +1,6 @@
-/*! DataTables Bootstrap 4 integration
- * ©2011-2017 SpryMedia Ltd - datatables.net/license
+
+ /* ©2011-2017 SpryMedia Ltd - datatables.net/license
+>>>>>>> branch 'revert-6-yun' of https://github.com/giraffe7788/OfficeConnect.git
  */
 
 /**
