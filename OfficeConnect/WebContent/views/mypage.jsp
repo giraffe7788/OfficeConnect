@@ -159,7 +159,7 @@
 						</div>
 						<!-- 드롭다운 -->
 									<nav class="navbar navbar-expand navbar-light bg-light mb-4" style="width : 14%; height:4vh; position:absolute; margin-left:68%; margin-top:45%">
-                                        <a class="navbar-brand" href="#">업무중</a>
+                                        <a class="navbar-brand" href="#" style="font-size : 1em" id="empPosit">업무중</a>
                                         <ul class="navbar-nav ml-auto">
                                             <li class="nav-item dropdown">
                                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
@@ -168,12 +168,12 @@
                                                     	
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right animated--grow-in"
-                                                    aria-labelledby="navbarDropdown" style = "text-align : center">
-                                                    <a class="dropdown-item" href="#">근무중</a>
-                                                    <a class="dropdown-item" href="#">외근중</a>
-                                                    <a class="dropdown-item" href="#">결근중</a>
-                                                    <a class="dropdown-item" href="#">외출중</a>
-                                                    <a class="dropdown-item" href="#">휴가중</a>
+                                                    aria-labelledby="navbarDropdown" id="dropdown-position" style = "text-align : center">
+                                                    <a class="dropdown-item" href="#" >근무중</a>
+                                                    <a class="dropdown-item" href="#" >외근중</a>
+                                                    <a class="dropdown-item" href="#" >결근중</a>
+                                                    <a class="dropdown-item" href="#" >외출중</a>
+                                                    <a class="dropdown-item" href="#" >휴가중</a>
                                                 </div>
                                             </li>
                                         </ul>
@@ -249,60 +249,107 @@
 		})
 	})
 	
-$(document).ready(function() {
-	// 파일이 선택되었을 때 호출되는 함수
-	$('#fileInput').change(function() {
-		let selectedFile = $(this)[0].files[0];
-		if(selectedFile) {
-			// 이미지 파일인지 확인
-			if(selectedFile.type.startsWith('image/')) {
-				// 선택한 이미지 파일을 미리보기 이미지에 표시
-				let selectedImage = $('#imageView');
-				let objectURL = URL.createObjectURL(selectedFile);
-				selectedImage.attr('src', objectURL);
-				
-				// ajax로 정보 /img/update.do로 넘겨준다음
-				// 정보 받아오고 alert띄운다음 다시 detail.do로 복귀
-				let empNo = <%=currentEmpNo%>;
-				let formData = new FormData();
-				formData.append('empNo', empNo);
-				
-				// 이미지 파일 추가
-				let imageInput = $('#fileInput')[0];
-				let imageFile = imageInput.files[0];
-				if(imageFile) {
-					formData.append('image', imageFile);
+	$(document).ready(function() {
+		// 파일이 선택되었을 때 호출되는 함수
+		$('#fileInput').change(function() {
+			let selectedFile = $(this)[0].files[0];
+			if(selectedFile) {
+				// 이미지 파일인지 확인
+				if(selectedFile.type.startsWith('image/')) {
+					// 선택한 이미지 파일을 미리보기 이미지에 표시
+					let selectedImage = $('#imageView');
+					let objectURL = URL.createObjectURL(selectedFile);
+					selectedImage.attr('src', objectURL);
+					
+					// ajax로 정보 /img/update.do로 넘겨준다음
+					// 정보 받아오고 alert띄운다음 다시 detail.do로 복귀
+					let empNo = <%=currentEmpNo%>;
+					let formData = new FormData();
+					formData.append('empNo', empNo);
+					
+					// 이미지 파일 추가
+					let imageInput = $('#fileInput')[0];
+					let imageFile = imageInput.files[0];
+					if(imageFile) {
+						formData.append('image', imageFile);
+					}
+					
+					$.ajax({
+						url: '../img/update.do',
+						type: 'POST',
+						data: formData,
+						contentType: false,
+						processData: false,
+						success: function(res) {
+							if(res.isSuccess == 'fail'){
+								alert("프로필 사진 수정 중 오류가 발생했습니다.");
+							} else if (res.isSuccess == 'ok') {
+								alert("프로필 사진 수정이 성공적으로 되었습니다.");
+							}
+						},
+						error: function(xhr) {
+							alert("상태: " + xhr.status);
+						},
+						dataType: 'json'
+					});
+				} else {
+					alert("이미지 파일이 아닙니다.");
 				}
-				
-				$.ajax({
-					url: '../img/update.do',
-					type: 'POST',
-					data: formData,
-					contentType: false,
-					processData: false,
-					success: function(res) {
-						if(res.isSuccess == 'fail'){
-							alert("프로필 사진 수정 중 오류가 발생했습니다.");
-						} else if (res.isSuccess == 'ok') {
-							alert("프로필 사진 수정이 성공적으로 되었습니다.");
-						}
-					},
-					error: function(xhr) {
-						alert("상태: " + xhr.status);
-					},
-					dataType: 'json'
-				});
-			} else {
-				alert("이미지 파일이 아닙니다.");
 			}
-		}
+		});
 	});
-});
-	onclick="registerEmp()"
-		function updateState() {
-		event.preventDefault();
+	
 		
+	$('#dropdown-position a').click(function(){
+		let selectedText = $(this).text();
+		console.log(selectedText);
+		$('#empPosit').text(selectedText);
+	});
+	
+	$('#dropdown-position a').change(function(){
+		let selectedText = $(this).text();
+		let currentState = '';
+		
+		if(selectedText == '업무중'){
+			currentState = '0';
+		} else if(selectedText == '근무중'){
+			currentState = '1';
+		} else if(selectedText == '외근중'){
+			currentState = '2';
+		} else if(selectedText == '결근중'){
+			currentState = '3';
+		} else if(selectedText == '외출중'){
+			currentState = '4';
+		} else if(selectedText == '휴가중'){
+			currentState = '5';
 		}
+		
+		console.log(currentState);
+		
+		$.ajax({
+			url: 'mypageChangeState.do',
+			type: 'POST',
+			data: {'empNo' : <%=currentEmpNo%>,
+					'currentState' : currentState
+					},
+			contentType: false,
+			processData: false,
+			success: function(res){
+				if(res.isSuccess == 'fail'){
+					alert("상태 변경에 실패했습니다.");
+				} else {
+					alert("상태 변경 되었습니다.");
+					location.reload();
+				}
+			},
+			error: function(xhr) {
+	            alert("상태 : " + xhr.status);
+	        },
+	        dataType: 'json'
+		});
+	});
+	
+	
 	</script>
 	
 	<!-- 주소 API -->
