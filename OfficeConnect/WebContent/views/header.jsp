@@ -72,19 +72,8 @@
 <script>
 $('#logout').on('click', function(){
 	
-<%
-	HttpSession session2 = request.getSession();
-	System.out.println(session.getAttribute("empNo"));
-	
-	if(session.getAttribute("empNo") != null) {
-// 		session.removeAttribute("empNo");
-		session.invalidate();
-%>
 	alert("로그아웃!");
 	location.href = "../index.jsp";
-<%	
-	}
-%>
 });
 
 </script>
