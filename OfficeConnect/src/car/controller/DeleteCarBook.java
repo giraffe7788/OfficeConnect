@@ -1,9 +1,6 @@
 package car.controller;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,51 +13,39 @@ import com.google.gson.JsonObject;
 
 import car.service.CarServiceImpl;
 import car.service.ICarService;
-import vo.CarBookVO;
 
-@WebServlet("/car/book.do")
-public class CarBook extends HttpServlet{
+
+@WebServlet("/car/delete.do")
+public class DeleteCarBook extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
 	}
-
+	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		String currentCarNo = req.getParameter("currentCarNo");
-		String carBookRent = req.getParameter("carBookRent");
-		String carBookReturn = req.getParameter("carBookReturn");
-		String carBookCont = req.getParameter("carBookCont");
+		System.out.println("여기까지 옴?");
+		
+		ICarService carService = CarServiceImpl.getInstance();
 		
 		String empNo = (String)req.getSession().getAttribute("empNo");
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Date carBookRentDate = null;
-		Date carBookReturnDate = null;
-		try {
-			carBookRentDate = sdf.parse(carBookRent);
-			carBookReturnDate = sdf.parse(carBookReturn);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+		System.out.println("사원번호 : " + empNo );
 		
-		ICarService service = CarServiceImpl.getInstance();
+		int cnt = carService.deleteCarBook(empNo);
 		
-		CarBookVO carBookVO = new CarBookVO(empNo, currentCarNo, carBookRentDate, carBookReturnDate, carBookCont);
-		
-		if (service.registCar(carBookVO) > 0) {
-			
-			System.out.println("예약성공");
+		if(cnt > 0) {
+			System.out.println("삭제성공");
 			
 			JsonObject jsonObject = new JsonObject();
 			jsonObject.addProperty("isSuccess", "ok");
 			String jsonStr = new Gson().toJson(jsonObject);
 			resp.setContentType("application/json");
 			resp.getWriter().write(jsonStr);
-			
 		}else {
-			System.out.println("예약실패");
+			System.out.println("삭제실패");
 			
 			JsonObject jsonObject = new JsonObject();
 			jsonObject.addProperty("isSuccess", "fail");
@@ -69,4 +54,5 @@ public class CarBook extends HttpServlet{
 			resp.getWriter().write(jsonStr);
 		}
 	}
+
 }

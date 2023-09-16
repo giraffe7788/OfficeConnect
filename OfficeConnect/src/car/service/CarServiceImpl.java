@@ -60,11 +60,33 @@ public class CarServiceImpl implements ICarService{
 		
 		return dao.selectOnecarBookEmpName();
 	}
-
+	/**
+	 * 사원이 예약한 차량 내역을 가져오는 메서드
+	 * @return 예약 내역
+	 */
 	@Override
 	public CarBookVO selectOneMyCarBook(String empNo) {
 		
 		return dao.selectOneMyCarBook(empNo);
+	}
+	
+	/**
+	 * 사원이 예약한 차량 이미지를 가져오는 메서드
+	 * @return 차량 이미지 경로
+	 */
+	@Override
+	public CarVO selectOneCarInfo(String carNo) {
+		
+		return dao.selectOneCarInfo(carNo);
+	}
+	/**
+	 * 차량 예약 내역을 삭제하는 메서드
+	 * @return 차량 예약 내역 삭제 여부
+	 */
+	@Override
+	public int deleteCarBook(String empNo) {
+		
+		return dao.deleteCarBook(empNo);
 	}
 
 }

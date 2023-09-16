@@ -42,5 +42,20 @@ public interface ICarService {
 	 */
 	public CarBookVO selectOneMyCarBook(String empNo);
 	
+	/**
+	 * 차량 이미지를 가져오기 위한 메서드
+	 * @param carNo
+	 * @return 
+	 */
+	public CarVO selectOneCarInfo(String carNo);
+	
+	
+	/**
+	 * 차량 예약 취소를 위한 메서드
+	 * @param empNo
+	 * @return 예약취소가 성공하면 1이상의 값이 반환되고, 실패하면 0이 반환됨.
+	 */
+	public int deleteCarBook(String empNo);
+	
 
 }

@@ -45,6 +45,7 @@ public class CarDaoImpl implements ICarDao {
 			ex.printStackTrace();
 			
 		}finally {
+			
 			session.close();
 		}
 		
@@ -133,7 +134,10 @@ public class CarDaoImpl implements ICarDao {
 		
 	
 	}
-
+	/**
+	 * 나의 차량 예약 내역을 불러오는 메서드
+	 * @return 나의 차량 내역
+	 */
 	@Override
 	public CarBookVO selectOneMyCarBook(String empNo) {
 		
@@ -154,6 +158,57 @@ public class CarDaoImpl implements ICarDao {
 		}
 		return carBookVO;
 		
+	}
+	
+	/**
+	 * 예약한 차량 이미지 경로는 불러오는 메소드
+	 * @return 이미지경로
+	 */
+	@Override
+	public CarVO selectOneCarInfo(String carNo) {
+		
+		SqlSession session = MyBatisUtil.getInstance();
+		
+		CarVO carVO = null;
+		
+		try {
+			
+			carVO = session.selectOne("car.selectOneCarInfo", carNo);
+			if (carVO != null) {
+				session.commit();
+			}
+			
+		} catch (PersistenceException ex) {
+			session.rollback();
+			ex.printStackTrace();
+		}finally {
+			session.close();
+		}
+		return carVO;
+	}
+	/**
+	 * 나의 차량 예약을 삭제하는 메소드
+	 * @return 성공여부
+	 */
+	@Override
+	public int deleteCarBook(String empNo) {
+		
+		SqlSession session = MyBatisUtil.getInstance();
+		
+		int cnt = 0;
+		
+		try {
+			cnt = session.delete("car.deleteCarBook", empNo);
+			session.commit();
+			
+		} catch (PersistenceException ex) {
+			session.rollback();
+			ex.printStackTrace();
+		}finally {
+			session.close();
+		}
+		
+		return cnt;
 	}
 
 }

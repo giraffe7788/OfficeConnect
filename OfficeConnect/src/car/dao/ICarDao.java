@@ -42,4 +42,18 @@ public interface ICarDao {
 	 */
 	public CarBookVO selectOneMyCarBook(String empNo);
 
+	/**
+	 * 차량 번호로 차량 이미지를 가져오는 메서드
+	 * @param carNo
+	 * @return 차량 이미지
+	 */
+	public CarVO selectOneCarInfo(String carNo);
+
+	/**
+	 * 차량 예약내역을 삭제하는 메서드
+	 * @param empNo
+	 * @return 예약 삭제 성공여부 
+	 */
+	public int deleteCarBook(String empNo);
+
 }

@@ -57,6 +57,18 @@
 .body {
 	padding-left: 20px;
 }
+
+.carbook {
+	border: 1px solid #858796;
+}
+
+.carbookth {
+	padding: 10px;
+}
+
+.carbooktd {
+	padding: 4x;
+}
 </style>
 
 </head>
@@ -106,7 +118,7 @@
 										src="<%=carList.get(0).getcarImagePath() + carList.get(0).getcarImageName()%>"
 										style="width: 240px; height: 150px;">
 									<div>
-										법인공용차량1<br> 차량명 :
+										법인공용차량<br> 차량명 :
 										<%=carList.get(0).getCarName()%><br> 차량 번호 :
 										<%=carList.get(0).getCarNo()%>
 										<br>
@@ -129,7 +141,7 @@
 										src="<%=carList.get(1).getcarImagePath() + carList.get(1).getcarImageName()%>"
 										style="width: 240px; height: 150px;">
 									<div>
-										법인공용차량2<br> 차량명 :
+										법인공용차량<br> 차량명 :
 										<%=carList.get(1).getCarName()%><br> 차량 번호 :
 										<%=carList.get(1).getCarNo()%>
 										<br>
@@ -150,7 +162,7 @@
 										src="<%=carList.get(2).getcarImagePath() + carList.get(2).getcarImageName()%>"
 										style="width: 240px; height: 150px;">
 									<div>
-										법인공용차량3<br> 차량명 :
+										법인공용차량<br> 차량명 :
 										<%=carList.get(2).getCarName()%><br> 차량 번호 :
 										<%=carList.get(2).getCarNo()%><br>
 									</div>
@@ -176,13 +188,9 @@
 										</div>
 										<div class="modal-body">
 											<form>
-												<label>예약자 : <br> <input type="text"
-													name="carBookEmpName"></label><br> <label>예약날짜:
-													<br> <input type="date" name="carBookRent">
-												</label><br> <label>반납날짜 : <br> <input type="date"
-													name="carBookReturn"></label><br> <label>예약사유:
-													<br> <textarea rows="4" cols="55" name="carBookCont"></textarea>
-												</label>
+												<label>예약날짜:<br> <input type="date" name="carBookRent"> </label><br> 
+												<label>반납날짜 : <br> <input type="date" name="carBookReturn"></label><br> 
+												<label>예약사유:<br> <textarea rows="4" cols="55" name="carBookCont"></textarea></label>
 											</form>
 										</div>
 										<div class="modal-footer">
@@ -206,29 +214,30 @@
 											<button type="button" class="close" data-dismiss="modal">&times;</button>
 										</div>
 										<div class="modal-body">
-
 											<form>
 												<div class="table-responsive">
+												<%if(!carBookList.isEmpty() && !carList.isEmpty()) { %>
 													<div class="table-wrapper">
 														<h5 style="text-align: center; margin-bottom: 20px;">법인공용차량</h5>
+													
 														<table id="BookTable" style="border: 1px solid #858796;">
-															<thead style="text-align: center; border: 1px solid #858796;">
+															<thead style="text-align: center; border: 1px solid #858796; padding: 2px;">
 																<tr>
-																	<th style="border: 1px solid #858796;">사원 이름</th>
-																	<th style="border: 1px solid #858796;">차량 번호</th>
-																	<th style="border: 1px solid #858796;">예약 날짜</th>
-																	<th style="border: 1px solid #858796;">반납 날짜</th>
-																	<th style="border: 1px solid #858796;">예약 사유</th>
+																	<th class="carbookth carbook">사원 이름</th>
+																	<th class="carbookth carbook">차량 번호</th>
+																	<th class="carbookth carbook">예약 날짜</th>
+																	<th class="carbookth carbook">반납 날짜</th>
+																	<th class="carbookth carbook">예약 사유</th>
 																</tr>
 															</thead>
 															<tbody style="text-align: center; border: 1px solid #858796;">
 															<% for(CarBookVO carBookVO : carBookList){ %>
 																<tr>
-																<td style="border: 1px solid #858796;"><%=sessionEmpInfo.getEmpVO(carBookVO.getEmpNo()).getEmpName() %></td>
-																<td style="border: 1px solid #858796;"><%=carBookVO.getCarNo()%></td>
-																<td style="border: 1px solid #858796;"><%=simpleDateFormat.format(carBookVO.getCarBookRent())%></td>
-																<td style="border: 1px solid #858796;"><%=simpleDateFormat.format(carBookVO.getCarBookReturn())%></td>
-																<td style="border: 1px solid #858796;"><%=carBookVO.getCarBookCont()%></td>
+																<td class="carbooktd carbook"><%=sessionEmpInfo.getEmpVO(carBookVO.getEmpNo()).getEmpName() %></td>
+																<td class="carbooktd carbook"><%=carBookVO.getCarNo()%></td>
+																<td class="carbooktd carbook"><%=simpleDateFormat.format(carBookVO.getCarBookRent())%></td>
+																<td class="carbooktd carbook"><%=simpleDateFormat.format(carBookVO.getCarBookReturn())%></td>
+																<td class="carbooktd carbook"><%=carBookVO.getCarBookCont()%></td>
 																</tr>
 															<%} %>
 															</tbody>
@@ -236,6 +245,9 @@
 														</table>
 
 													</div>
+													<%} else{ %>
+														<div> 차량 예약 내역이 없습니다.</div>
+													<% } %>
 
 												</div>
 											</form>
@@ -323,15 +335,22 @@
    		    let carBookReturn = $('[name=carBookReturn]').val();
 			let carBookCont = $('[name=carBookCont]').val();
 			
+			//Date 객체가 현재 날짜와 시간을 받아주는데 폼창에서 입력 받은 날짜는 한국 표준시 am9시로 받아줘서 
+			//오늘 날짜부터 예약할 수 하기 위해 현재 날짜,시간을 받고 1일을 빼줌.
 			let currentDate = new Date();
+			const oneDayInMilliseconds = 24 * 60 * 60 * 1000;
+			let oneDayBefore = new Date(currentDate.getTime() - oneDayInMilliseconds);
 			
-		    if (carBookRent <= currentDate || carBookReturn <= currentDate) {
-		        alert('오늘 날짜부터 예약 가능합니다.');
-		        return; // 예약을 중단하고 함수를 종료합니다.
-		    }
+			let rentDate = new Date(carBookRent);
+			let returnDate = new Date(carBookReturn);
+
+			if (rentDate < oneDayBefore || returnDate < oneDayBefore) {
+			    alert('오늘 날짜부터 예약 가능합니다.');
+			    return; // 예약을 중단하고 함수를 종료합니다.
+			}
 			
 		    $.ajax({
-		        url: "<%=request.getContextPath()%>/car/book.do",
+		        url: "book.do",
 				type : "post",
 				data : {
 					'currentCarNo' : currentCarNo,
@@ -369,7 +388,6 @@
 		$('.modal-footer button').on('click', function() {
 			$('#carBookModal').modal('hide');
 		});
-		
 		
 	</script>
 

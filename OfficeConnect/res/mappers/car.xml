@@ -23,6 +23,16 @@
 	select emp_no, car_no, carbook_rent, carbook_return, carbook_cont from carbook order by car_no
 </select>
 
+<!-- 차량 이미지 가져오기 -->
+<select id="selectOneCarInfo" resultMap="carMap">
+	select * from car where car_no = #{carNo}
+</select>
+
+<!-- 차량 예약 삭제  -->
+<delete id="deleteCarBook" parameterType="String">
+	delete from carbook where emp_no = #{empNo}
+</delete>
+
 <resultMap type="vo.CarVO" id="carMap">
 	<result column="car_no" property="carNo"/>
 	<result column="car_name" property="carName"/>
