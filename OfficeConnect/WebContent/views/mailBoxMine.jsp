@@ -156,20 +156,19 @@
                                           <th class="sorting" tabindex="0" aria-controls="dataTable"
                                              rowspan="1" colspan="1"
                                              aria-label="작성일: activate to sort column ascending"
-                                             style="width: 15%;">제목</th>
-<!--                                        내용 길어지면 ...으로 뒤에 내용 짤리게 어케함? -->
+                                             style="width: 25%;">제목</th>
                                           <th class="sorting" tabindex="0" aria-controls="dataTable"
                                              rowspan="1" colspan="1"
                                              aria-label="작성일: activate to sort column ascending"
-                                             style="width: 55%;">본문</th>
+                                             style="width: 45%;">본문</th>
                                           <th class="sorting" tabindex="0" aria-controls="dataTable"
                                              rowspan="1" colspan="1"
                                              aria-label="작성일: activate to sort column ascending"
-                                             style="width: 12%;">보낸사람</th>
+                                             style="width: 15%;">보낸사람</th>
                                           <th class="sorting" tabindex="0" aria-controls="dataTable"
                                              rowspan="1" colspan="1"
                                              aria-label="작성일: activate to sort column ascending"
-                                             style="width: 18%;">보낸날짜</th>
+                                             style="width: 15%;">보낸날짜</th>
                                        </tr>
                                     </thead>
                                     <tbody>

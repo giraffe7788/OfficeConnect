@@ -16,6 +16,7 @@
 	<select id="getReceiveMail" resultMap="mailMap" parameterType="map">
 		select * from mail
 		where mail_receiver = #{empEmail}
+		order by mail_SendDate desc
 	</select>
 
 
@@ -23,6 +24,7 @@
 	<select id="getSendMail" resultMap="mailMap" parameterType="map">
 		select * from mail
 		where mail_sender = #{empNo}
+		order by mail_SendDate desc
 	</select>
 
 

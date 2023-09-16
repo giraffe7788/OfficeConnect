@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="vo.MailVO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -160,19 +161,19 @@
                                           <th class="sorting" tabindex="0" aria-controls="dataTable"
                                              rowspan="1" colspan="1"
                                              aria-label="작성일: activate to sort column ascending"
-                                             style="width: 15%;">제목</th>
+                                             style="width: 25%;">제목</th>
                                           <th class="sorting" tabindex="0" aria-controls="dataTable"
                                              rowspan="1" colspan="1"
                                              aria-label="작성일: activate to sort column ascending"
-                                             style="width: 55%;">본문</th>
+                                             style="width: 45%;">본문</th>
                                           <th class="sorting" tabindex="0" aria-controls="dataTable"
                                              rowspan="1" colspan="1"
                                              aria-label="작성일: activate to sort column ascending"
-                                             style="width: 12%;">받은사람</th>
+                                             style="width: 15%;">받은사람</th>
                                           <th class="sorting" tabindex="0" aria-controls="dataTable"
                                              rowspan="1" colspan="1"
                                              aria-label="작성일: activate to sort column ascending"
-                                             style="width: 18%;">보낸날짜</th>
+                                             style="width: 15%;">보낸날짜</th>
                                        </tr>
                                     </thead>
                                     <tbody>
@@ -185,7 +186,7 @@
 										    <td><%= mail.getMailTitle() %></td>
 										    <td><%= mail.getMailCont() %></td>
 											<td><%= mail.getMailReceiver() %></td>
-										    <td><%= mail.getMailSendDate() %></td>
+										    <td><%= mail.getMailSendDateFormat() %></td>
 										</tr>
 										<%
 										}
