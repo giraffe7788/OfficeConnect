@@ -18,22 +18,15 @@ import sun.print.resources.serviceui;
 import util.MyBatisUtil;
 import vo.EmpVO;
 
-@WebServlet("/Main.do")
+@WebServlet("/main/main.do")
 public class MainPage extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	}
-
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		String empNo = req.getParameter("empNo");
-
-		IMainService service = MainServiceImpl.getInstance();
-
-		List<EmpVO> ev = service.getMtrBook(empNo);
-
+	
+		String empNo = (String)req.getSession().getAttribute("empNo");
+		System.out.println(empNo);
+		
 //		현재 내 회의실
 //		차량 예약정보
 //		최근 공지사항 내역 5개씩
@@ -46,5 +39,7 @@ public class MainPage extends HttpServlet {
 		dispatcher.forward(req, resp);
 	}
 
-
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	}
 }

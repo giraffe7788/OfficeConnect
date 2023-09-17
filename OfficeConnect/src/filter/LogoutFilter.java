@@ -31,7 +31,7 @@ public class LogoutFilter implements Filter{
 		
 		if(session == null || session.getAttribute("empNo") == null) {
 			HttpServletResponse resp = (HttpServletResponse) response;
-			resp.sendRedirect("../index.jsp");
+			resp.sendRedirect("./index.jsp");
 		}else {
 			chain.doFilter(request, response);
 		}

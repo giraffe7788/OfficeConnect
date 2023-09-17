@@ -16,7 +16,7 @@ import emp.service.IEmpService;
 import util.TransEmpInfo;
 import vo.EmpVO;
 
-@WebServlet("/main/mypagechange.do")
+@WebServlet("/main/mypageUpdate.do")
 public class MyPageChange extends HttpServlet {
 
 	@Override

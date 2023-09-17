@@ -1,5 +1,12 @@
+<%@page import="util.TransEmpInfo"%>
+<%@page import="vo.EmpVO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	List<EmpVO> empList = (List<EmpVO>)request.getAttribute("empList");
+	TransEmpInfo transfer = TransEmpInfo.getInstance();
+%>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -74,7 +81,7 @@ td {
 							<div class="card shadow mb-4" id="empInfo"">
 								<div class="card-body" style="height:110vh">
 <%-- 									<%@ include file = "../form/form1.html" %> --%>
-									<iframe src="./form/form1.html" width="100%" height="100%" frameborder="0" scrolling="no" id="form"></iframe>
+									<iframe src="../views/form/form1.html" width="100%" height="100%" frameborder="0" scrolling="no" id="form"></iframe>
 								</div>
 							</div>
 						</div>
@@ -104,10 +111,10 @@ td {
 							</nav>
 
 							<div style="margin-top : 15%; display:inline-block; width:100%">
-								<nav class="navbar navbar-expand navbar-light bg-success mb-4"
+								<nav class="navbar navbar-expand navbar-light bg-success mb-4" id="seqBtn1"
 									style="border-radius: 0.35rem">
 									<a class="navbar-brand" href="#" style="font-size: 1em"><div
-											class="text-white shadow" id="department">결재자1 지정(필수)</div></a>
+											class="text-white shadow" id="seq1">결재자1 지정(필수)</div></a>
 									<ul class="navbar-nav ml-auto">
 										<li class="nav-item dropdown"><a
 											class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
@@ -115,17 +122,18 @@ td {
 											aria-expanded="false"> </a>
 											<div
 												class="dropdown-menu dropdown-menu-right animated--grow-in"
-												aria-labelledby="navbarDropdown" id="dropdown-department"
+												aria-labelledby="navbarDropdown" id="dropdown-seq1"
 												style="text-align: center">
-												<a class="dropdown-item" href="#">여기는 j쿼리로 내 부서 상사가 오도록
-													지정</a>
+												<%for(EmpVO empVO : empList){ %>
+												<a class="dropdown-item" href="#"><%= transfer.transformDeptCode(empVO.getDeptCode())%>&nbsp;&nbsp;<%= empVO.getEmpName()%>&nbsp;<%= empVO.getEmpPosit()%></a>
+												<%} %>
 											</div></li>
 									</ul>
 								</nav>
-								<nav class="navbar navbar-expand navbar-light bg-success mb-4"
+								<nav class="navbar navbar-expand navbar-light bg-success mb-4" id="seqBtn2"
 									style="border-radius: 0.35rem">
 									<a class="navbar-brand" href="#" style="font-size: 1em"><div
-											class="text-white shadow" id="department">결재자2 지정</div></a>
+											class="text-white shadow" id="seq2">결재자2 지정</div></a>
 									<ul class="navbar-nav ml-auto">
 										<li class="nav-item dropdown"><a
 											class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
@@ -133,17 +141,18 @@ td {
 											aria-expanded="false"> </a>
 											<div
 												class="dropdown-menu dropdown-menu-right animated--grow-in"
-												aria-labelledby="navbarDropdown" id="dropdown-department"
+												aria-labelledby="navbarDropdown" id="dropdown-seq2"
 												style="text-align: center">
-												<a class="dropdown-item" href="#">여기는 j쿼리로 내 부서 상사가 오도록
-													지정</a>
+												<%for(EmpVO empVO : empList){ %>
+												<a class="dropdown-item" href="#"><%= transfer.transformDeptCode(empVO.getDeptCode())%>&nbsp;&nbsp;<%= empVO.getEmpName()%>&nbsp;<%= empVO.getEmpPosit()%></a>
+												<%} %>
 											</div></li>
 									</ul>
 								</nav>
-								<nav class="navbar navbar-expand navbar-light bg-success mb-4"
+								<nav class="navbar navbar-expand navbar-light bg-success mb-4" id="seqBtn3"
 									style="border-radius: 0.35rem">
 									<a class="navbar-brand" href="#" style="font-size: 1em"><div
-											class="text-white shadow" id="department">결재자3 지정</div></a>
+											class="text-white shadow" id="seq3">결재자3 지정</div></a>
 									<ul class="navbar-nav ml-auto">
 										<li class="nav-item dropdown"><a
 											class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
@@ -151,10 +160,11 @@ td {
 											aria-expanded="false"> </a>
 											<div
 												class="dropdown-menu dropdown-menu-right animated--grow-in"
-												aria-labelledby="navbarDropdown" id="dropdown-department"
+												aria-labelledby="navbarDropdown" id="dropdown-seq3"
 												style="text-align: center">
-												<a class="dropdown-item" href="#">여기는 j쿼리로 내 부서 상사가 오도록
-													지정</a>
+												<%for(EmpVO empVO : empList){ %>
+												<a class="dropdown-item" href="#"><%= transfer.transformDeptCode(empVO.getDeptCode())%>&nbsp;&nbsp;<%= empVO.getEmpName()%>&nbsp;<%= empVO.getEmpPosit()%></a>
+												<%} %>
 											</div></li>
 									</ul>
 								</nav>
@@ -191,13 +201,30 @@ td {
 				modal.find('.modal-title').text('정보수정')
 				modal.find('.modal-body input').val(recipient)
 			})
+			
+			// 결재 양식 선택시 양식 변경
 			$('#dropdown-department a').click(function() {
 				var selectedText = $(this).text(); // 선택된 항목의 텍스트 가져오기
 
+				$('#seqBtn2').css('display', 'block');
+				$('#seqBtn3').css('display', 'block');
+				
 				// 선택된 값에 따라 결재양식 변경
 				$('#department').text(selectedText); // navbar-brand의 텍스트 변경
 				if(selectedText == '기안서'){
-					$('#form').attr('src', './form/form1.html');
+					$('#form').attr('src', '../views/form/form1.html');
+				}
+			});
+			$('#dropdown-department a').click(function() {
+				var selectedText = $(this).text(); // 선택된 항목의 텍스트 가져오기
+
+				$('#seqBtn2').css('display', 'none');
+				$('#seqBtn3').css('display', 'none');
+				
+				// 선택된 값에 따라 결재양식 변경
+				$('#department').text(selectedText); // navbar-brand의 텍스트 변경
+				if(selectedText == '연차휴가신청서'){
+					$('#form').attr('src', '../views/form/form2.html');
 				}
 			});
 			$('#dropdown-department a').click(function() {
@@ -206,17 +233,26 @@ td {
 				// 선택된 값에 따라 결재양식 변경
 				$('#department').text(selectedText); // navbar-brand의 텍스트 변경
 				if(selectedText == '사직서'){
-					$('#form').attr('src', './form/form3.html');
+					$('#form').attr('src', '../views/form/form3.html');
 				}
 			});
-			$('#dropdown-department a').click(function() {
-				var selectedText = $(this).text(); // 선택된 항목의 텍스트 가져오기
-
-				// 선택된 값에 따라 결재양식 변경
-				$('#department').text(selectedText); // navbar-brand의 텍스트 변경
-				if(selectedText == '연차휴가신청서'){
-					$('#form').attr('src', './form/form2.html');
-				}
+			
+			
+			// 결재자 지정시 결재자 변경되도록
+			$('#dropdown-seq1 a').click(function () {
+		    	var selectedText = $(this).text(); // 선택된 항목의 텍스트 가져오기
+		    	
+		    		$('#seq1').text(selectedText); // navbar-brand의 텍스트 변경
+			});
+			$('#dropdown-seq2 a').click(function () {
+		    	var selectedText = $(this).text(); // 선택된 항목의 텍스트 가져오기
+		    	
+		    		$('#seq2').text(selectedText); // navbar-brand의 텍스트 변경
+			});
+			$('#dropdown-seq3 a').click(function () {
+		    	var selectedText = $(this).text(); // 선택된 항목의 텍스트 가져오기
+		    	
+		    		$('#seq3').text(selectedText); // navbar-brand의 텍스트 변경
 			});
 		</script>
 </body>

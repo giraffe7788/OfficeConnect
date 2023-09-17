@@ -29,7 +29,6 @@ public class login extends HttpServlet {
 		String empNo = req.getParameter("emp_no");
 		String empPw = req.getParameter("emp_pw");
 		Boolean isAdminLogin = Boolean.parseBoolean(req.getParameter("adminLogin"));
-		System.out.println(isAdminLogin);
 
 		IEmpService loginService = EmpServiceImpl.getInstance();
 		EmpVO empVO = new EmpVO();
@@ -37,7 +36,6 @@ public class login extends HttpServlet {
 		empVO.setEmpPw(empPw);
 
 		if (loginService.loginCheck(empVO, isAdminLogin)) {
-			System.out.println("로그인성공");
 			
 			req.getSession().setAttribute("empNo", empNo); // 세션에 사번 넣기
 						
@@ -47,7 +45,6 @@ public class login extends HttpServlet {
 			resp.setContentType("application/json");
 			resp.getWriter().write(jsonStr);
 		} else {
-			System.out.println("로그인실패");
 			
 			JsonObject jsonObject = new JsonObject();
 			jsonObject.addProperty("isSuccess", "fail");

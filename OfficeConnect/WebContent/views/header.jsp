@@ -80,6 +80,7 @@ $('#logout').on('click', function(){
 <%
 	}
 %>
+
 });
 
 </script>

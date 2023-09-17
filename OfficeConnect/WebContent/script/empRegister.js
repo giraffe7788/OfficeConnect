@@ -1,4 +1,5 @@
 function registerEmp() {
+	
     event.preventDefault(); // submit 버튼의 고유 기능 방지
 
     let empNo = $('#empNo').val();
