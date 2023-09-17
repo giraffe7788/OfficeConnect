@@ -72,6 +72,12 @@ public class BoardServiceImpl implements IBoardService {
 		return cnt;
 	}
 
+	@Override
+	public int updateViews(int brdNo) {
+		int cnt = BoardDao.updateViews(brdNo);
+		return cnt;
+	}
+
 
 
 

@@ -62,6 +62,9 @@ public interface IBoardDao {
 	 * @return 검색된 게시판정보를 담은 List객체
 	 */
 	public List<BoardVO> searchBoard(BoardVO bv);
+
+	public int updateViews(int brdNo);
+	
 	
 	
 }

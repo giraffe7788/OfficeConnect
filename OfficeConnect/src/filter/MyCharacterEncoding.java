@@ -26,14 +26,12 @@ public class MyCharacterEncoding implements Filter{
 		
 		chain.doFilter(req, resp);
 	}
-
 	@Override
 	public void init(FilterConfig fc) throws ServletException {
-		if(fc.getInitParameter("encoding") == null) {
-			this.encoding = "UTF-8";
-		}else {
-			this.encoding = fc.getInitParameter("encoding");
-		}
-		System.out.println("현재 설정된 인코딩 정보 : " + this.encoding);
+	  this.encoding = fc.getInitParameter("encoding");
+	  if (this.encoding == null) {
+	    this.encoding = "UTF-8";
+	  }
+	  System.out.println("현재 설정된 인코딩 정보 : " + this.encoding);
 	}
 }

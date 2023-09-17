@@ -190,7 +190,28 @@ public class BoardDaoImpl implements IBoardDao{
 		}
 		return bv;
 	}
-
+	@Override
+	public int updateViews(int brdNo) {
+		int cnt =0;
+		
+		SqlSession session = MyBatisUtil.getInstance();
+		try {
+			
+			cnt = session.update("board.updateViews",brdNo);
+			if(cnt>0) {
+				session.commit();
+			}
+					
+		} catch (PersistenceException e) {
+			e.printStackTrace();
+			session.rollback();
+			// TODO: handle exception
+		}finally {
+			session.close();
+		}
+		System.out.println("views : " + cnt);
+		return cnt;
+	}
 
 
 

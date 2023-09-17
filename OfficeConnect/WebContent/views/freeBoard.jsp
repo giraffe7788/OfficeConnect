@@ -89,6 +89,10 @@
 												rowspan="1" colspan="1"
 												aria-label="작성일: activate to sort column ascending"
 												style="width: 305.703px;">작성일</th>
+											<th class="sorting" tabindex="0" aria-controls="dataTable"
+												rowspan="1" colspan="1"
+												aria-label="조회수: activate to sort column ascending"
+												style="width: 305.703px;">조회수</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -100,8 +104,9 @@
 											<td><%=vo.getBrdNo()%></td>
 											<td><a
 												href="<%=request.getContextPath()%>/board/detail.do?brdNo=<%=vo.getBrdNo()%>"><%=vo.getBrdTitle()%></a></td>
-											<td><%=transfer.transformDeptCode(empVO.getDeptCode())%>&nbsp;&nbsp;<%=vo.getEmpPosit()%>&nbsp;&nbsp;<%=vo.getEmpName()%></td>
+											<td><%=transfer.transformDeptCode(vo.getDeptCode())%>&nbsp;&nbsp;<%=vo.getEmpPosit()%>&nbsp;&nbsp;<%=vo.getEmpName()%></td>
 											<td><%=vo.getBrdDateDisplay()%></td>
+											<td><%=vo.getBrdViews()%></td>
 									
 										</tr>
 

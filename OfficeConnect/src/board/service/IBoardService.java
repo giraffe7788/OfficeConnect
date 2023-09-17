@@ -28,6 +28,9 @@ public interface IBoardService {
 	 */
 	
 	public int updateBoard(BoardVO bv);
+
+	
+	public int updateViews(int brdNo);
 	
 	/**
 	 * 해당 ID에 해당하는 게시판정보를 삭제하기 위한 메서드

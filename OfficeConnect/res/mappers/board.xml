@@ -33,6 +33,11 @@
          where brd_no=#{brdNo}	 
     </update>
     
+    <update id="updateViews" parameterType="Integer">
+    	update board 
+    	set brd_views = brd_views+1 where brd_no=#{brdNo}
+    </update>
+    
 <!-- 	<select id="boardWithEmp" resultMap="board"> -->
 <!-- 		select brd_no, emp_no, brd_date, brd_mod, brd_cont, brd_title, brd_views from board where brd_no= #{brdNo} -->
 <!-- 	</select> -->
@@ -60,9 +65,10 @@
    	</resultMap>
     
     <select id="boardListWithEmp" resultType="boardvo">
-    	select b.brd_no, b.brd_date, b.brd_mod, b.brd_title, b.brd_views, e.emp_no, e.emp_name, e.emp_posit, e.admin_code
+    	select b.brd_no, b.brd_date, b.brd_mod, b.brd_title, b.brd_views, e.emp_no, e.emp_name, e.emp_posit, e.admin_code,e.dept_code
     	from board b join employee e
-    	on b.emp_no=e.emp_no	
+    	on b.emp_no=e.emp_no
+    	order by b.brd_date desc
     </select>
    
     

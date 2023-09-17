@@ -16,9 +16,18 @@ public class BoardVO {
 	private int adminCode;
 	private String empPosit;
 	private String empName;
+	private int deptCode;
 	
 	
 	
+	public int getDeptCode() {
+		return deptCode;
+	}
+
+	public void setDeptCode(int deptCode) {
+		this.deptCode = deptCode;
+	}
+
 	public int getAdminCode() {
 		return adminCode;
 	}
