@@ -110,4 +110,54 @@ public class TransEmpInfo {
 		
 		return stateCode;
 	}
+	
+	/**
+	 * 파라미터로 결재 코드를 받으면 결재상태명으로 변환해서 반환시켜주는 메소드
+	 * @param apprsCode
+	 * @return apprsName
+	 */
+	public String transferApprsCode(int apprsCode) {
+		
+		SqlSession session = MyBatisUtil.getInstance();
+		String apprsName = null;
+		
+		try {
+		
+			apprsName = session.selectOne("transfer.getApprsName", apprsCode);
+			System.out.println("apprsName : " + apprsName);
+			
+		} catch(PersistenceException e) {
+			session.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		
+		return apprsName;
+	}
+	
+	/**
+	 * 파라미터로 결재상태명을 받으면 결재 코드로 변환해서 반환시켜주는 메소드
+	 * @param apprsName
+	 * @return apprsCode
+	 */
+	public int transferApprsName(String apprsName) {
+		
+		SqlSession session = MyBatisUtil.getInstance();
+		int apprsCode = 0;
+		
+		try {
+		
+			apprsCode = session.selectOne("transfer.getApprsCode", apprsName);
+			System.out.println("apprsCode : " + apprsCode);
+			
+		} catch(PersistenceException e) {
+			session.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		
+		return apprsCode;
+	}
 }

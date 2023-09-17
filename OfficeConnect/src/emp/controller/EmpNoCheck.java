@@ -25,12 +25,15 @@ public class EmpNoCheck extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+		System.out.println("check진입");
+		
 		IEmpService service = EmpServiceImpl.getInstance();
 		String empNo = req.getParameter("empNo");
 		
 		System.out.println("empNo = " + empNo);
 		
 		boolean isExist = service.checkEmployee(empNo);
+		System.out.println("isExist : " + isExist);
 		
 		if(isExist) {
 			

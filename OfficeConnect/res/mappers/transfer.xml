@@ -12,6 +12,11 @@
 		where state_code = #{state_code}
 	</select>
 	
+	<select id="getApprsName" resultType="String">
+		select apprs_name from apprstate
+		where apprs_code = #{apprsCode}
+	</select>
+	
 	<select id="getDeptCode" resultType="Integer">
 		select dept_code from dept
 		where dept_name = #{deptName}
@@ -22,4 +27,8 @@
 		where state_name = #{state_name}
 	</select>
 	
+	<select id="getApprsCode" resultType="Integer">
+		select apprs_code from apprstate
+		where apprs_name = #{apprsName}
+	</select>
 </mapper>

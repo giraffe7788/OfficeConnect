@@ -3,8 +3,8 @@
     pageEncoding="UTF-8"%>
 <%
 	SessionEmpInfo sessionEmpInfo = SessionEmpInfo.getInstance();
-	String empNo = (String)session.getAttribute("empNo");
-	int adminCode = sessionEmpInfo.getEmpVO(empNo).getAdminCode();
+	String empNoAside = (String)session.getAttribute("empNo");
+	int adminCode = sessionEmpInfo.getEmpVO(empNoAside).getAdminCode();
 %>
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -28,7 +28,7 @@
             </div>
 
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="../approval/sendList.do">
                     <span>&nbsp;</span><i class="fa-solid fa-clipboard"></i>
                     <span>&nbsp;결재</span>
                 </a>

@@ -18,6 +18,8 @@
 		<typeAlias type="vo.BoardVO" alias="boardvo" />
 		<typeAlias type="vo.CommentVO" alias="commentvo" />
 		<typeAlias type="vo.MailVO" alias="mailvo"/>
+		<typeAlias type="vo.ApprovalLineVO" alias="apprlvo"/>
+		<typeAlias type="vo.ApprovalVO" alias="apprvo"/>
 	</typeAliases>
 	
 	<environments default="dev">
@@ -43,5 +45,6 @@
 		<mapper resource="mappers/comment.xml" />
 		<mapper resource="mappers/board.xml"/>
 		<mapper resource="mappers/mail.xml" />
+		<mapper resource="mappers/approval.xml" />
 	</mappers>
 </configuration>
