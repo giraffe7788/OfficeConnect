@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="carbook">
+
+
+
+<resultMap type="vo.CarBookVO" id="carbookvo">
+	<result column="emp_no" property="empNo"/>
+	<result column="car_no" property="carNo"/>
+	<result column="carbook_rent" property="carBookRent"/>
+	<result column="carbook_return" property="carBookReturn"/>
+</resultMap>
+
+</mapper>

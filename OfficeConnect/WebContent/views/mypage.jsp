@@ -228,8 +228,6 @@
     			currentState = 4;
     		}
     		
-    		console.log(currentState);
-    		
     		$.ajax({
     			url: 'mypageChangeState.do',
     			type: 'POST',
