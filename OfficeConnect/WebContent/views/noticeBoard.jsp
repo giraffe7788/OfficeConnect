@@ -1,5 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="util.TransEmpInfo"%>
+<%@page import="util.SessionEmpInfo"%>
+<%@ page import="vo.*"%>
+<%@ page import="java.util.*"%>
+<%
+	ArrayList<NoticeVO> list = (ArrayList<NoticeVO>) request.getAttribute("noticeList");
+	String empNo = (String)session.getAttribute("empNo");
+	EmpVO empVO = SessionEmpInfo.getInstance().getEmpVO(empNo);
+	TransEmpInfo transfer = TransEmpInfo.getInstance();
+%>    
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -78,79 +88,30 @@
 													</tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>해윙~</td>
-                                            <td>관리자</td>
-                                            <td>2023-09-09</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>이게무슨일이야이렇게좋은날에</td>
-                                            <td>B1A4</td>
-                                            <td>2023-09-09</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>제발지옥같은 여기서 날 꺼내줘</td>
-                                            <td>죽을만큼아파서</td>
-                                            <td>2023-09-09</td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>Junior Javascript Developer</td>
-                                            <td>Edinburgh</td>
-                                            <td>43</td>
-                                        </tr>
-                                        <tr>
-                                            <td>5</td>
-                                            <td>Sales Assistant</td>
-                                            <td>New York</td>
-                                            <td>46</td>
-                                        </tr>
-                                        <tr>
-                                            <td>6</td>
-                                            <td>Regional Director</td>
-                                            <td>London</td>
-                                            <td>47</td>
-                                        </tr>
-                                        <tr>
-                                            <td>7</td>
-                                            <td>Systems Administrator</td>
-                                            <td>21</td>
-                                            <td>$103,500</td>
-                                        </tr>
-                                        <tr>
-                                            <td>8</td>
-                                            <td>Developer</td>
-                                            <td>San Francisco</td>
-                                            <td>30</td>
-                                        </tr>
-                                        <tr>
-                                            <td>9</td>
-                                            <td>Regional Director</td>
-                                            <td>Edinburgh</td>
-                                            <td>51</td>
-                                        </tr>
-                                        <tr>
-                                            <td>10</td>
-                                            <td>Javascript Developer</td>
-                                            <td>Singapore</td>
-                                            <td>29</td>
-                                        </tr>
-                                        <tr>
-                                            <td>11</td>
-                                            <td>Customer Support</td>
-                                            <td>New York</td>
-                                            <td>27</td>
-                                        </tr>
+                                 <%
+											for (NoticeVO vo : list) {
+										%>
+
+										<tr>
+											<td><%=vo.getNtcNo()%></td>
+											<td><a
+												href="<%=request.getContextPath()%>/board/detail.do?brdNo=<%=vo.getNtcNo()%>"><%=vo.getNtcTitle()%></a></td>
+											<td><%=transfer.transformDeptCode(vo.getDeptCode())%>&nbsp;&nbsp;<%=vo.getEmpPosit()%>&nbsp;&nbsp;<%=vo.getEmpName()%></td>
+											<td><%=vo.getNtcDateDisplay()%></td>
+											<td><%=vo.getNtcViews()%></td>
+									
+										</tr>
+
+										<%
+											}
+										%>
                                     </tbody>
                                 </table>
                                 <a href="#" class="btn btn-primary btn-icon-split" style="position : absolute; margin-left : 89%; margin-top : -3%">
                                         <span class="icon text-white-50">
                                             <i class="fa-solid fa-pen"></i>
                                         </span>
-                                        <span class="text">글작성</span>
+                                        <span class="text" onclick="location.href='<%=request.getContextPath()%>/notice/insert.do'">글작성</span>
                                     </a>
                             </div>
                         </div>

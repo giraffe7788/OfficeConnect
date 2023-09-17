@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="notice">
+  
+    <select id="listNotice" resultType="noticevo">
+       select * from notice
+    </select>
+    
+    <insert id="insertNotice" parameterType="noticevo">
+        insert into notice(ntc_no,emp_No,ntc_title,ntc_cont)
+        values(
+        ntc_seq.nextval,
+        #{empNo},
+        #{ntcTitle},
+        #{ntcCont}      
+        )       
+    </insert>
+    
+     
+    <delete id="deleteNotice" parameterType="Integer">  
+        delete from notice where ntc_no=#{No}
+    </delete>
+    
+    <select id="detailNotice" parameterType="Integer" resultType="noticevo">        
+        select * from notice where ntc_no=#{ntcNo}
+    </select>
+    
+    <update id="updateNotice" parameterType="noticevo">
+         update notice 
+         set ntc_title=#{ntcTitle}, ntc_cont=#{ntcCont} 
+         where ntc_no=#{ntcNo}	 
+    </update>
+    
+    <update id="updateViews" parameterType="Integer">
+    	update notice 
+    	set ntc_views = ntc_views+1 where ntc_no=#{ntcNo}
+    </update>
+    
+    
+    <select id="listNoticeWithEmp" resultType="noticevo">
+    	select n.ntc_no, n.ntc_date, n.ntc_title, n.ntc_views, e.emp_no, e.emp_name, e.emp_posit, e.admin_code,e.dept_code
+    	from notice n join employee e
+    	on n.emp_no=e.emp_no
+    	order by n.ntc_date desc
+    </select>
+   
+    
+    
+</mapper>

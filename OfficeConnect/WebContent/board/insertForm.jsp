@@ -22,7 +22,7 @@ String empNo = (String)session.getAttribute("empNo");
   <label for="title">title:</label>
   <input type="text" class="form-control" name="brdTitle">
   <input type="hidden" name="empNo" value="<%=empNo%>">
->>>>>>> branch 'revert-6-yun' of https://github.com/giraffe7788/OfficeConnect.git
+
 </div>
 <div class="form-group">
   <label for="cont">Comment:</label>

@@ -107,10 +107,4 @@ public class CommentVO {
 		return "CommentVO [commNo=" + commNo + ", empNo=" + empNo + ", commCont=" + commCont + ", brdNo=" + brdNo
 				+ ", commDate=" + commDate + ", commMod=" + commMod + "]";
 	}
-
-
-	
-
-	
-	
 }

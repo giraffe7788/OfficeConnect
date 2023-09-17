@@ -1,4 +1,4 @@
-package comment.Controller;
+package comment.controller;
 
 import java.io.IOException;
 

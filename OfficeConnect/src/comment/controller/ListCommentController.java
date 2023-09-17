@@ -1,4 +1,4 @@
-package comment.Controller;
+package comment.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -34,6 +34,7 @@ public class ListCommentController extends HttpServlet {
 		String json=g.toJson(commentList);
 		
 		resp.setContentType("text/json;charset=utf-8");
+		System.out.println("왔음");
 		System.out.println(json); // [{    },{    }.....  ]
 		// $.ajax() --> json
 		resp.getWriter().print(json);

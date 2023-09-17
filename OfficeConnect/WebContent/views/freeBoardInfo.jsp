@@ -223,7 +223,7 @@ textarea {
 			getcommentList()
 		
 		}); 
-
+ 
 		function getcommentList() {
 
 			$.ajax({
@@ -241,30 +241,24 @@ textarea {
 			            	
 			                html+= "<div class='row' style='justify-content: center'>";
 			            	 $.each(data, function(index, obj){
-			         
+			            		 var currentDate = new Date(obj.commDate);
+			            		 var dateString = currentDate.toLocaleDateString();
 			            		   html += "<div class='col-lg-12'>";
 			                       html += "<div class='card mb-4' id='Form"+ obj.commNo +"'>";
 			                       html += "<div class='card-header' id='abc"+obj.commNo+"'><span id='emp"+obj.commNo+"'>" + obj.deptName +"&nbsp;&nbsp;" +obj.empPosit +"&nbsp;&nbsp;"+ obj.empName+ ""; 
-			                       html += "</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + obj.commMod;			                  
+			                       html += "</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + dateString		
+			                       
+			                       if ( empNo.value == obj.empNo || <%=sessionVO.getAdminCode()%> == 1 ){
 			                       html += "<span id='btn"+obj.commNo+"' style='float: right'><a  href='javascript:void(0)' onclick='updateForm("+obj.commNo+")' class='btn btn-info btn-circle btn-sm' style='margin-top:-0.2%'>";
 			                       html += "<i class='fa-solid fa-pen-to-square'></i></a>&nbsp;&nbsp;&nbsp;&nbsp;";
 			                       html += "<a  href='javascript:void(0)' onclick='deleteFn("+obj.commNo+")' class='btn btn-danger btn-circle btn-sm' style='margin-top:-0.2%'>";
-			                       html += "<i class='fas fa-trash'></i></a></span></div>";
+			                       html += "<i class='fas fa-trash'></i></a></span>";
+			                       }
+			                       html += "</div>";
 			                       html += "<div class='card-body' id='cont"+obj.commNo+"'>" + obj.commCont;		           
 			                       html += "</div>";
 			                       html += "</div>";
 			                       html += "</div>";
-			            	 
-			                       
-			    
-			                            if ( empNo.value!==obj.empNo && <%=sessionVO.getAdminCode()%> !==1 ){
-		                            		console.log(empNo.value)
-		                            		console.log(obj.empNo)
-			                            	console.log( <%=sessionVO.getAdminCode()%>) 
-			                            	console.log(obj.commNo)
-											console.log()
-			                				$("#btn"+obj.commNo).css('background-color','red'); 
-			                }		
 			                       
 			            	 })
 

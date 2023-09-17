@@ -1,4 +1,4 @@
-package board.Controller;
+package notice.controller;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -11,24 +11,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import board.service.BoardServiceImpl;
-import board.service.IBoardService;
-import emp.service.EmpServiceImpl;
-import vo.BoardVO;
+import notice.service.INoticeService;
+import notice.service.NoticeServiceImpl;
+import vo.NoticeVO;
 
 
-@WebServlet("/board/list.do")
-public class ListBoardController extends HttpServlet {
+@WebServlet("/notice/list.do")
+public class ListnoticeController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
-		IBoardService boardService = BoardServiceImpl.GetInstance();
-		List<BoardVO> boardList = boardService.selectAll();
-		Collections.sort(boardList);
+		INoticeService noticeService = NoticeServiceImpl.GetInstance();
+		List<NoticeVO> noticeList = noticeService.selectAll();
+		Collections.sort(noticeList);
 		
-		req.setAttribute("boardList", boardList);
-		RequestDispatcher dispacther = req.getRequestDispatcher("/views/freeBoard.jsp");
+		req.setAttribute("noticeList", noticeList);
+		RequestDispatcher dispacther = req.getRequestDispatcher("/views/noticeBoard.jsp");
 		dispacther.forward(req, resp);
 	}
 	

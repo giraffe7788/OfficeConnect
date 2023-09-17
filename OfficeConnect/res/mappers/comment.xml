@@ -9,7 +9,7 @@
     </select>
     
       <select id="commentListWithEmp" parameterType="Integer" resultType="commentvo">
-    	select c.comm_no, c.emp_no, c.comm_cont, c.brd_no,c.comm_date, to_char(c.comm_mod,'yyyy-mm-dd'), e.emp_no, e.emp_name, e.emp_posit, e.admin_code, d.dept_name
+    	select c.comm_no, c.emp_no, c.comm_cont, c.brd_no, c.comm_date, to_char(c.comm_mod,'yyyy-mm-dd'), e.emp_no, e.emp_name, e.emp_posit, e.admin_code, d.dept_name
     	from comm c join employee e
     	on c.emp_no= e.emp_no
     	join dept d 
