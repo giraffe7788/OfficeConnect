@@ -99,7 +99,8 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="../views/review.jsp">
+<!--                 <a class="nav-link" href="../review/list.do"> -->
+                <a class="nav-link" href="./review.jsp">
                     <i class="fa-solid fa-list-check"></i>
                     <span>근무태도평가</span></a>
             </li>

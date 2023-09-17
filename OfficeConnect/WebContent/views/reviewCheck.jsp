@@ -1,3 +1,5 @@
+<%@page import="vo.ReviewVO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -21,6 +23,11 @@
 <link href="../css/sb-admin-2.min.css" rel="stylesheet">
 <script src="../vendor/jquery/jquery.min.js"></script>
 <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<%
+	String currentEmpNo = (String) request.getAttribute("empNo");
+	ReviewVO rvo = (ReviewVO) request.getAttribute("rvo");
+%>
 
 </head>
 
@@ -76,11 +83,11 @@
 
 
 									<div style="margin-bottom: 10px;">
-										<b>평가자 :</b> 현재접속중인ID
+										<b>평가자 :</b> <%=rvo.getEmpNo() %>
 									</div>
 
 									<div style="margin-bottom: 10px;">
-										<b>평자가 : </b> 해당 부서 장
+										<b>평자가 : </b> <%=rvo.getRevNo() %>
 									</div>
 									
 									<hr>
@@ -103,21 +110,21 @@
                                           <th>합계</th>
                                        </tr>
                                        <tr>
-                                          <td>
+                                          <td id="score1">
 											점수 불러오기
                                           </td>
-                                          <td>
+                                          <td id="score2">
 											점수불러오기		
                                           
                                           </td>
-                                          <td>
+                                          <td id="score3">
                                      		점수불러오기
                                           </td>
-                                          <td>
+                                          <td id="score4">
 											점수불러오기
                                           
                                           </td>
-                                          <td>
+                                          <td id="sum">
 											점수불러오기
                                           </td>
                                        </tr>
@@ -167,64 +174,13 @@
 	<!-- 페이지 Wrapper 끝 -->
 
 	<!-- 공통속성 설정 include -->
-	<script>
-		//jquery방식으로 modal띄우기
-		$('#room1').on('click', function() {
-			$('#myModal').modal({
-				backdrop : 'static'
-			});
-		});
 
-		$('.modal-footer button').on('click', function() {
-			$('#myModal').modal('hide');
-		});
-
-		$('#room2').on('click', function() {
-			$('#myModal').modal({
-				backdrop : 'static'
-			});
-		});
-
-		$('.modal-footer button').on('click', function() {
-			$('#myModal').modal('hide');
-		});
-
-		$('#room3').on('click', function() {
-			$('#myModal').modal({
-				backdrop : 'static'
-			});
-		});
-
-		$('.modal-footer button').on('click', function() {
-			$('#myModal').modal('hide');
-		});
-
-		$('#room4').on('click', function() {
-			$('#myModal').modal({
-				backdrop : 'static'
-			});
-		});
-
-		$('.modal-footer button').on('click', function() {
-			$('#myModal').modal('hide');
-		});
-
-		$('#room5').on('click', function() {
-			$('#myModal').modal({
-				backdrop : 'static'
-			});
-		});
-
-		$('#myRoom').on('click', function() {
-			$('#myModal').modal({
-				backdrop : 'static'
-			});
-		});
-
-		$('.modal-footer button').on('click', function() {
-			$('#myModal').modal('hide');
-		});
-	</script>
+<script>
+$(document).ready(function(){
+	
+});
+	
+</script>
 	<%@ include file="./common.jsp"%>
 
 	<!-- 페이지 검색/조회 플러그인 -->

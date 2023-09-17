@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="review">
+
+	<select id="selectOne" resultMap="reviewMap">
+		select * from review
+		where emp_no = #{empNo}
+	</select>
+	
+	<select id="getInferiorList">
+		SELECT *
+		FROM employee
+		WHERE 
+		  CASE
+		    WHEN emp_posit = '사원' THEN 1
+		    WHEN emp_posit = '대리' THEN 2
+		    WHEN emp_posit = '과장' THEN 3
+		    WHEN emp_posit = '차장' THEN 4
+		    WHEN emp_posit = '부장' THEN 5
+		    ELSE 6  
+		  END
+		  &lt;
+		  CASE
+		    WHEN (SELECT emp_posit FROM employee WHERE emp_no = 'f') = '사원' THEN 1
+		    WHEN (SELECT emp_posit FROM employee WHERE emp_no = 'f') = '대리' THEN 2
+		    WHEN (SELECT emp_posit FROM employee WHERE emp_no = 'f') = '과장' THEN 3
+		    WHEN (SELECT emp_posit FROM employee WHERE emp_no = 'f') = '차장' THEN 4
+		    WHEN (SELECT emp_posit FROM employee WHERE emp_no = 'f') = '부장' THEN 5
+		    ELSE 6
+		  END
+		  AND DEPT_CODE = 300
+		ORDER BY
+		  CASE
+		    WHEN emp_posit = '사원' THEN 1
+		    WHEN emp_posit = '대리' THEN 2
+		    WHEN emp_posit = '과장' THEN 3
+		    WHEN emp_posit = '차장' THEN 4
+		    WHEN emp_posit = '부장' THEN 5
+		    ELSE 6  
+		  END desc;
+	</select>
+	
+	<resultMap type="vo.ReviewVO" id="reviewMap">
+		<result column="emp_no" property="empNo" />
+		<result column="rev_score" property="revScore" />
+		<result column="rev_empno" property="revEmpNo" />
+		<result column="rev_date" property="revDate" />
+		<result column="rev_no" property="revNo" />
+	</resultMap>
+</mapper>

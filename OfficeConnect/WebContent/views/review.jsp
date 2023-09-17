@@ -62,7 +62,8 @@
 									</button>
 
 
-									<button type="button" onClick="window.location.href='reviewCheck.jsp'" class="btn btn-light btn-icon-split"
+<!-- 									<button type="button" onClick="window.location.href='reviewCheck.jsp'" class="btn btn-light btn-icon-split" -->
+									<button type="button" onClick="window.location.href='../review/list.do'" class="btn btn-light btn-icon-split"
 										style="border: none; background-color: transparent; color: #858796; width: 150px; font-size: 1.3rem;">
 										<b>평가결과조회</b>
 									</button>

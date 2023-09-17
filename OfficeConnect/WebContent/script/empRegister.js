@@ -7,7 +7,6 @@ function registerEmp() {
         url: 'check.do',
         type: 'post',
         data: {'empNo': empNo},
-        contentType: false,
         
         success: function(res) {
             if (res.isExist == 'ok') {
