@@ -23,8 +23,6 @@ public class MyCarBook extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		System.out.println("여기까지는 옴?");
-
 		ICarService carService = CarServiceImpl.getInstance();
 
 		String empNo = (String) req.getSession().getAttribute("empNo");

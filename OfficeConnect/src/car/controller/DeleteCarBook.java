@@ -26,8 +26,6 @@ public class DeleteCarBook extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		System.out.println("여기까지 옴?");
-		
 		ICarService carService = CarServiceImpl.getInstance();
 		
 		String empNo = (String)req.getSession().getAttribute("empNo");
