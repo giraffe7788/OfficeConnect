@@ -29,7 +29,6 @@ public class MyPageChange extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		IEmpService empService = EmpServiceImpl.getInstance();
-		TransEmpInfo transform = TransEmpInfo.getInstance();
 		
 		String empNo = (String)req.getSession().getAttribute("empNo");
 		

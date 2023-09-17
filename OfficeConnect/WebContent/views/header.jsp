@@ -73,7 +73,7 @@
 $('#logout').on('click', function(){
 	
 	alert("로그아웃!");
-	location.href = "../logout.do";
+	location.href = "../index.jsp";
 });
 
 </script>

@@ -27,7 +27,7 @@ public class MyPageChangeState extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		IEmpService empService = EmpServiceImpl.getInstance();
 		
-		String empNo = req.getParameter("empNo");
+		String empNo = (String)req.getSession().getAttribute("empNo");
 		int stateCode = Integer.parseInt(req.getParameter("currentState"));
 		
 		EmpVO empVO = new EmpVO(empNo, stateCode);
@@ -55,5 +55,4 @@ public class MyPageChangeState extends HttpServlet {
 			resp.getWriter().write(jsonStr);
 		}
 	}
-
 }
