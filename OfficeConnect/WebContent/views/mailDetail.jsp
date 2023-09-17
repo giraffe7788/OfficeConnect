@@ -13,7 +13,6 @@
 <html lang="ko">
 
 <head>
-
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
@@ -28,6 +27,7 @@
 	type="text/css">
 <!-- css 설정 -->
 <link href="../css/sb-admin-2.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../css/mail.css">
 <script src="../vendor/jquery/jquery.min.js"></script>
 <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
@@ -149,22 +149,31 @@
 								<!-- 메일 본문 -->
 
 								<div class="col-lg-10">
-									<h4> 받은 메일함 </h4>
+									<h4>받은 메일함</h4>
 									<hr>
 									<br><br><br>
 									<form action="../mail/detail.do" method="post" enctype="multipart/form-data">
 										<hr>
-									    <h5 onclick="showMailContent('<%=mailVO.getMailNo()%>')">제목 : <%= mailVO.getMailTitle() %> </h5>
+									    <h5 onclick="showMailContent('<%=mailVO.getMailNo()%>')"><font color="black"><b><%= mailVO.getMailTitle() %></b></font> </h5>
 									    <br>
-									    <div>보낸사람 : <%=mailVO.getMailSender() %></div>
-									    <div>받는사람 : <%=mailVO.getMailReceiver() %></div>
+									    <div><font color="black"><b>보낸 사람 :</b></font> <span class="rounded-border"><%=mailVO.getMailSender() %></li></div>
+										<div><font color="black"><b>받는 사람 :</b></font> <span class="rounded-border"><%= mailVO.getMailReceiver() %></span></div>
+										<div style="margin-top: 5px;">
+										    <font color="black"><b>날짜 :</b> <%=mailVO.getMailSenddateFormat() %></font>
+										</div>										
+										<br>
 										<hr> 
-									<br>
-										<h5> 내용 </h5>
+										<h5><font color="black"><b>본문 내용</b></font></h5>
 										<div> <%=mailVO.getMailCont() %> </div>
+										<hr>
+										<br>
+									    <div> <li>이전 메일 : </li></div>
+									    <div style="margin-top: 5px;"></div>	
+									    <div> <li>다음 메일 : </li></div>
+										</div>
 										</div>
 										<div style="position: absolute; top: 100px; right: 10px;">
-											<a href="../mail/receiveList.do?isSend=1" class="btn btn-primary" style="display: inline-block; margin-right: 10px;">목록</a>
+											<a href="../mail/receiveList.do?isSend=1" class="btn btn-primary" id="btn btn-primary2" style="display: inline-block; margin-right: 10px;">목록</a>
 										</div>
 									</form>
 								</div>

@@ -80,7 +80,6 @@ public class MailVO {
 		return mailSenddate;
 	}
 	
-	//메일 출력날짜 변경 포맷
 	public String getMailSenddateFormat() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		return sdf.format(this.mailSenddate);
