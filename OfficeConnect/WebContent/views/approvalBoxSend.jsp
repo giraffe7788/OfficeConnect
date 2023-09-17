@@ -86,7 +86,11 @@
                                           <th class="sorting" tabindex="0" aria-controls="dataTable"
                                              rowspan="1" colspan="1"
                                              aria-label="작성일: activate to sort column ascending"
-                                             style="width: 15%;">결재상태</th>                                                                                                                                                                                                                              
+                                             style="width: 15%;">결재상태</th>
+                                          <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                             rowspan="1" colspan="1"
+                                             aria-label="작성일: activate to sort column ascending"
+                                             style="width: 15%;">결재</th>                                                                                                                                                                                                                                                                           
 
                                        </tr>
                                     </thead>
@@ -99,6 +103,7 @@
                                             <td>결재자1</td>
                                             <td>2023-09-11</td>
                                             <td>결제상태</td>
+                                            <td style="text-align: center;"><button type="button" class="btn btn-primary btn-sm">결재</button></td>
                                         </tr>
                                         <tr>
                                         	<td><input type="checkbox"></td>
@@ -108,6 +113,7 @@
                                             <td>결재자1</td>
                                             <td>2023-09-11</td>
                                             <td>결제상태</td>
+                                            <td style="text-align: center;"><button type="button" class="btn btn-primary btn-sm">결재</button></td>
                                         </tr>
                                         <tr>
                                         	<td><input type="checkbox"></td>
@@ -117,6 +123,7 @@
                                             <td>결재자1</td>
                                             <td>2023-09-11</td>
                                             <td>결제상태</td>
+                                            <td style="text-align: center;"><button type="button" class="btn btn-primary btn-sm">결재</button></td>
                                         </tr>    
                                         <tr>
                                         	<td><input type="checkbox"></td>
@@ -126,6 +133,7 @@
                                             <td>결재자1</td>
                                             <td>2023-09-11</td>
                                             <td>결제상태</td>
+                                            <td style="text-align: center;"><button type="button" class="btn btn-primary btn-sm">결재</button></td>
                                         </tr>
                                         <tr>
                                         	<td><input type="checkbox"></td>
@@ -135,6 +143,7 @@
                                             <td>결재자1</td>
                                             <td>2023-09-11</td>
                                             <td>결제상태</td>
+                                            <td style="text-align: center;"><button type="button" class="btn btn-primary btn-sm">결재</button></td>
                                         </tr>
                                         <tr>
                                         	<td><input type="checkbox"></td>
@@ -144,6 +153,7 @@
                                             <td>결재자1</td>
                                             <td>2023-09-11</td>
                                             <td>결제상태</td>
+                                            <td style="text-align: center;"><button type="button" class="btn btn-primary btn-sm">결재</button></td>
                                         </tr>
                                         <tr>
                                         	<td><input type="checkbox"></td>
@@ -153,6 +163,7 @@
                                             <td>결재자1</td>
                                             <td>2023-09-11</td>
                                             <td>결제상태</td>
+                                            <td style="text-align: center;"><button type="button" class="btn btn-primary btn-sm">결재</button></td>
                                         </tr>
                                         <tr>
                                         	<td><input type="checkbox"></td>
@@ -162,6 +173,7 @@
                                             <td>결재자1</td>
                                             <td>2023-09-11</td>
                                             <td>결제상태</td>
+                                            <td style="text-align: center;"><button type="button" class="btn btn-primary btn-sm">결재</button></td>
                                         </tr>
                                         <tr>
                                         	<td><input type="checkbox"></td>
@@ -171,6 +183,7 @@
                                             <td>결재자1</td>
                                             <td>2023-09-11</td>
                                             <td>결제상태</td>
+                                            <td style="text-align: center;"><button type="button" class="btn btn-primary btn-sm">결재</button></td>
                                         </tr>
                                         <tr>
                                         	<td><input type="checkbox"></td>
@@ -180,6 +193,7 @@
                                             <td>결재자1</td>
                                             <td>2023-09-11</td>
                                             <td>결제상태</td>
+                                            <td style="text-align: center;"><button type="button" class="btn btn-primary btn-sm">결재</button></td>
                                         </tr>                                                                                                                                                                                                                                                                                                                           
                                     </tbody>
                       	          </table>
