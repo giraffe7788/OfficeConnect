@@ -1,3 +1,7 @@
+<%@page import="vo.CarBookVO"%>
+<%@page import="vo.CarVO"%>
+<%@page import="vo.MeetingBookVO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -36,8 +40,12 @@
   }
 </style>
 
-</head>
+<%
+	List<MeetingBookVO> mtrList = (List<MeetingBookVO>) request.getAttribute("mtrList");
+	String currentEmpNo = (String) request.getAttribute("empNo");
+%>
 
+</head>
 <body id="page-top">
 
 	<!-- 페이지 Wrapper -->
@@ -99,28 +107,29 @@
                                     </div>
                                		<!-- 내 회의실 예약 내용 들어갈 부분 -->
                                		<!-- 예약 없으면 "현재 예약된 회의실이 없습니다" 출력 있으면 회의실 번호 | 시간 | 인원 출력, 클릭시 이동 -->
-                               		<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="margin-top : 3%">
+                               		<table class="rsvMtr table table-bordered" id="dataTable" width="100%" cellspacing="0" style="margin-top : 3%">
                                     <thead>
-                                        <tr role="row">
-														<th class="sorting" tabindex="0" aria-controls="dataTable"
-															rowspan="1" colspan="1"
-															aria-label="작성일: activate to sort column ascending"
-															style="width: 20%;">회의실</th>
-														<th class="sorting" tabindex="0" aria-controls="dataTable"
-															rowspan="1" colspan="1"
-															aria-label="작성일: activate to sort column ascending"
-															style="width: 40%;">시간</th>
-														<th class="sorting" tabindex="0" aria-controls="dataTable"
-															rowspan="1" colspan="1"
-															aria-label="작성일: activate to sort column ascending"
-															style="width: 20%;">인원</th>
-													</tr>
+                                        <tr role="row" id="data-list">
+											<th class="sorting" tabindex="0" aria-controls="dataTable"
+												rowspan="1" colspan="1"
+												aria-label="작성일: activate to sort column ascending"
+												style="width: 20%;">회의실</th>
+											<th class="sorting" tabindex="0" aria-controls="dataTable"
+												rowspan="1" colspan="1"
+												aria-label="작성일: activate to sort column ascending"
+												style="width: 40%;">시간</th>
+											<th class="sorting" tabindex="0" aria-controls="dataTable"
+												rowspan="1" colspan="1"
+												aria-label="작성일: activate to sort column ascending"
+												style="width: 20%;">인원</th> 
+										</tr>
                                     </thead>
-                                    <tbody>
+                                    <div id="noRsvMtr" style="display: none; margin-top : 10%">회의실 예약 내역이 없습니다</div>
+                                    <tbody class="rsvMtr">
                                         <tr>
-                                            <td>405호</td>
-                                            <td>09:00 - 11:00</td>
-                                            <td>3명</td>
+                                            <td id="thMtr">405호</td>
+                                            <td id="mtTime">09:00 - 11:00</td>
+                                            <td id="mtPer">3명</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -359,5 +368,49 @@
 		
 	<!-- 공통속성 설정 include -->
     <%@ include file="./common.jsp" %>
+    
+ <script>
+ $(document).ready(function(){
+	// 메인 화면 들어오면 로그인 정보 따라서 예약한 회의실 정보
+		let isMtrEmpty = true;
+
+		// 로그인한 사원 확인
+		<%
+		for(MeetingBookVO mvo : mtrList){
+		%>
+		    if(<%=mvo.getEmpNo()%> == <%=currentEmpNo%>){
+		    	isMtrEmpty = false;
+		       // 예약한 회의실 번호 출력
+		    	$('#thMtr').empty();			
+				let cont1 = "";
+				cont1 += <%=mvo.getMtrNo()%>;		
+				$('#thMtr').text(cont1);
+				
+				// 예약한 회의실 시간 출력
+		    	$('#mtTime').empty();			
+				let cont2 = "";
+				cont2 += <%=mvo.getMtrbookRent()%>;
+				cont2 += ":00 ~ ";
+				cont2 += <%=mvo.getMtrbookRtn()%>;
+				cont2 += ":00";
+				$('#mtTime').text(cont2);
+				
+				// 예약한 회의실 인원 출력
+		    	$('#mtPer').empty();			
+				let cont3 = "";
+				cont3 += <%=mvo.getMtrbookPer()%>;		
+				$('#mtPer').text(cont3);
+		    }
+		<%
+		}
+		%>
+		if (isMtrEmpty) {
+			$('.rsvMtr').css('display', 'none');
+			$('#noRsvMtr').css('display', 'inline-block');
+		}
+
+
+ })
+ </script>
 </body>
 </html>
