@@ -8,7 +8,7 @@
 		insert into
 		mail(MAIL_NO, MAIL_CONT, MAIL_SENDDATE, MAIL_SENDSTAT, MAIL_RECESTAT, MAIL_RECEIVER, MAIL_SENDER, MAIL_TITLE)
 		values
-		(MAIL_SEQ.nextval, #{mailCont}, #{mailSendDate}, #{mailSendStat}, #{mailReceStat},
+		(MAIL_SEQ.nextval, #{mailCont}, #{mailSenddate}, #{mailSendstat}, #{mailRecestat},
 		#{mailReceiver}, #{mailSender}, #{mailTitle})
 	</insert>
 
@@ -26,21 +26,30 @@
 		where mail_sender = #{empNo}
 		order by mail_SendDate desc
 	</select>
-
+	
+	<!-- 메일 제목 누르면 내용 조회하는 쿼리 -->
+	<select id="getMailByMailNo" resultType="mailvo" parameterType="String">
+	select a.*, b.emp_name as 보낸사람, c.emp_name as 받는사람 
+	from mail a
+	left join employee b
+	on a.mail_sender = b.emp_no
+	left join employee c
+	on a.mail_receiver = c.emp_email
+	where a.mail_no = #{mailNo} 
+	</select>
 
 	<!-- 메일 삭제 -->	
 	<delete id="deleteMail">
 		delete from mail
-		where mail_no = #{empNo}
+		where mail_no = #{mailNo}
 	</delete>
 	
-
 	<resultMap type="vo.MailVO" id="mailMap">
 		<result column="MAIL_NO" property="mailNo" />
 		<result column="MAIL_CONT" property="mailCont" />
-		<result column="MAIL_SENDDATE" property="mailSendDate" />
-		<result column="MAIL_SENDSTAT" property="mailSendStat" />
-		<result column="MAIL_RECESTAT" property="mailReceStat" />
+		<result column="MAIL_SENDDATE" property="mailSenddate" />
+		<result column="MAIL_SENDSTAT" property="mailSendstat" />
+		<result column="MAIL_RECESTAT" property="mailRecestat" />
 		<result column="MAIL_RECEIVER" property="mailReceiver" />
 		<result column="MAIL_SENDER" property="mailSender" />
 	</resultMap>

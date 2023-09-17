@@ -54,9 +54,9 @@ public class InsertMail extends HttpServlet {
 		mailVO.setMailCont(mailCont);
 		mailVO.setMailReceiver(mailReceiver);
 		mailVO.setMailSender(empNo);
-		mailVO.setMailSendStat(0);
-		mailVO.setMailReceStat(0);
-		mailVO.setMailSendDate(mailSendDate);
+		mailVO.setMailSendstat(0);
+		mailVO.setMailRecestat(0);
+		mailVO.setMailSenddate(mailSendDate);
 
 		int cnt = mailService.writeMail(mailVO); // 메일 저장
 

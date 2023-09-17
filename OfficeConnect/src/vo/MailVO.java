@@ -8,24 +8,24 @@ public class MailVO {
 	private String mailSender; 	  // 보낸사람
 	private String mailReceiver;  // 받는사람
 	private int mailNo;        	  // 메일번호(PK)
-	private int mailSendStat;     // 보낸사람 메일 상태(0 삭제안함, 1 삭제함)
-	private int mailReceStat;     // 받은사람 메일 상태(0 삭제안함, 1 삭제함)
-	private Date mailSendDate;    // 메일 발신날짜
+	private int mailSendstat;     // 보낸사람 메일 상태(0 삭제안함, 1 삭제함)
+	private int mailRecestat;     // 받은사람 메일 상태(0 삭제안함, 1 삭제함)
+	private Date mailSenddate;    // 메일 발신날짜
 	private String isSend; 		  // 보낸메일 확인
 	private String mailTitle;	  // 메일제목
 	
 	public MailVO (){};
 	
-	public MailVO(String mailCont, String mailSender, String mailReceiver, int mailNo, int mailSendStat,
-			int mailReceStat, Date mailSendDate) {
+	public MailVO(String mailCont, String mailSender, String mailReceiver, int mailNo, int mailSendstat,
+			int mailRecestat, Date mailSenddate) {
 		super();
 		this.mailCont = mailCont;
 		this.mailSender = mailSender;
 		this.mailReceiver = mailReceiver;
 		this.mailNo = mailNo;
-		this.mailSendStat = mailSendStat;
-		this.mailReceStat = mailReceStat;
-		this.mailSendDate = mailSendDate;
+		this.mailSendstat = mailSendstat;
+		this.mailRecestat = mailRecestat;
+		this.mailSenddate = mailSenddate;
 	}
 
 	public String getMailCont() {
@@ -60,34 +60,34 @@ public class MailVO {
 		this.mailNo = mailNo;
 	}
 
-	public int getMailSendStat() {
-		return mailSendStat;
+	public int getMailSendstat() {
+		return mailSendstat;
 	}
 
-	public void setMailSendStat(int mailSendStat) {
-		this.mailSendStat = mailSendStat;
+	public void setMailSendstat(int mailSendstat) {
+		this.mailSendstat = mailSendstat;
 	}
 
-	public int getMailReceStat() {
-		return mailReceStat;
+	public int getMailRecestat() {
+		return mailRecestat;
 	}
 
-	public void setMailReceStat(int mailReceStat) {
-		this.mailReceStat = mailReceStat;
+	public void setMailRecestat(int mailRecestat) {
+		this.mailRecestat = mailRecestat;
 	}
 
-	public Date getMailSendDate() {
-		return mailSendDate;
+	public Date getMailSenddate() {
+		return mailSenddate;
 	}
 	
 	//메일 출력날짜 변경 포맷
-	public String getMailSendDateFormat() {
+	public String getMailSenddateFormat() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		return sdf.format(this.mailSendDate);
+		return sdf.format(this.mailSenddate);
 	}
 	
-	public void setMailSendDate(Date mailSendDate) {
-		this.mailSendDate = mailSendDate;
+	public void setMailSenddate(Date mailSenddate) {
+		this.mailSenddate = mailSenddate;
 	}
 
 	public String getIsSend() {

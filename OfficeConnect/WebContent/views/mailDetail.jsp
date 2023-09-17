@@ -4,11 +4,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-	MailVO mailVO = (MailVO) request.getAttribute("MailVO");
-	System.out.println(mailVO);
+	MailVO mailVO = (MailVO) request.getAttribute("mailVO");
 	
 	String empNo = (String) session.getAttribute("empNo");
-	System.out.println(empNo);
 %>	
 
 <!DOCTYPE html>
@@ -151,25 +149,22 @@
 								<!-- 메일 본문 -->
 
 								<div class="col-lg-10">
-									<h4> 메일 상세 </h4>
+									<h4> 받은 메일함 </h4>
 									<hr>
 									<br><br><br>
 									<form action="../mail/detail.do" method="post" enctype="multipart/form-data">
-									
-									<hr>
-									    <h5> <%= mailVO.getMailCont() %> </h5>
+										<hr>
+									    <h5 onclick="showMailContent('<%=mailVO.getMailNo()%>')">제목 : <%= mailVO.getMailTitle() %> </h5>
 									    <br>
-									    <div>보낸 사람: <%= mailVO.getMailSender()%> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;이메일 주소: [보낸 사람 이메일 주소]</div>
-									    <div>받는 사람: <%= mailVO.getMailReceiver() %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;이메일 주소: [받는 사람 이메일 주소]</div>
+									    <div>보낸사람 : <%=mailVO.getMailSender() %></div>
+									    <div>받는사람 : <%=mailVO.getMailReceiver() %></div>
 										<hr> 
 									<br>
-										<p>첨부파일 목록</p>
-										<ul>
-								        </ul>
-										<div class ="attachment-list">
+										<h5> 내용 </h5>
+										<div> <%=mailVO.getMailCont() %> </div>
 										</div>
 										<div style="position: absolute; top: 100px; right: 10px;">
-											<a href="../mail/mailBoxMine.do" class="btn btn-primary" style="display: inline-block; margin-right: 10px;">목록</a>
+											<a href="../mail/receiveList.do?isSend=1" class="btn btn-primary" style="display: inline-block; margin-right: 10px;">목록</a>
 										</div>
 									</form>
 								</div>

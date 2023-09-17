@@ -153,11 +153,11 @@
 									
 									<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
-                                        <tr role="row">
-                                        	<th class="sorting" tabindex="0" aria-controls="dataTable"
+                                       <tr role="row">
+                                          <th class="sorting" tabindex="0" aria-controls="dataTable"
                                              rowspan="1" colspan="1"
                                              aria-label="작성일: activate to sort column ascending"
-                                             style="width: 20px;"></th>
+                                             style="width: 20px;"><input type="checkbox" id="mailAllCheckbox" class="mailCheckbox"></th>
                                           <th class="sorting" tabindex="0" aria-controls="dataTable"
                                              rowspan="1" colspan="1"
                                              aria-label="작성일: activate to sort column ascending"
@@ -182,22 +182,18 @@
 											if(mail.getMailReceiver().equals(empNo))
 										%>
 										<tr>
-										    <td><input type="checkbox" class="mailCheckbox" value="<%= mail.getMailNo() %>"></td>
-										    <td><%= mail.getMailTitle() %></td>
+										    <td><input type="checkbox" name='mailCheckbox' id='mailCheckbox' class="mailCheckbox" value="<%= mail.getMailNo() %>"></td>
+										    <td><a href="detail.do?mailNo=<%=mail.getMailNo() %>" onclick="showMailContent('<%= mail.getMailNo() %>')"><%= mail.getMailTitle() %></a></td>
 										    <td><%= mail.getMailCont() %></td>
 											<td><%= mail.getMailReceiver() %></td>
-										    <td><%= mail.getMailSendDateFormat() %></td>
+										    <td><%= mail.getMailSenddateFormat() %></td>
 										</tr>
 										<%
 										}
 										%>
                                     </tbody>
                                 </table>
-
-										<div style="text-align: right; margin-top: -51px;">
-											<button type="submit" class="btn btn-primary"
-												style="display: inline-block;">삭제</button>
-										</div>
+										<input type="button" class="btn btn-primary" style="display: inline-block;" onclick="MailCheckDelete()" value="삭제">
 									</form>
 
 								</div>
@@ -244,6 +240,61 @@
 	}
 	%>
 	</script>
+	
+	<script>
+	// 페이지 로딩 시 실행될 체크박스 선택 코드
+	$(document).ready(function() {
+		$("#mailAllCheckbox").click(function() {// 전체 선택&해제
+			if($("#mailAllCheckbox").is(":checked"))// 체크 확인
+			   $("input[name=mailCheckbox]").prop("checked", true); //name이 mailCheckbox인 애들 선택
+			else $("input[name=mailCheckbox]").prop("checked", false);//체크 상태 아니면 선택해제
+		});
+
+		$("input[name=mailCheckbox]").click(function() { // 개별 선택&해제
+			var total = $("input[name=mailCheckbox]").length; // name이 mailCheckbox인 체크박스의 개수를 가져옴
+			var checked = $("input[name=mailCheckbox]:checked").length; // name이 mailCheckbox이면서 checked(체크된)인 체크박스의 개수를 가져옴
+
+			if(total != checked) $("#mailAllCheckbox").prop("checked", false); // 체크박스 개수와 선택된 체크븍사의 수가 다르다면 체크박스 해제 상태로 변경
+			else $("#mailAllCheckbox").prop("checked", true); // 그렇지 않으면 선택으로 변경
+		});
+	});
+	
+	// 선택된 메일을 삭제하는 함수
+	function MailCheckDelete(){
+		let nums = [];
+		$('input:checkbox[name=mailCheckbox]').each(function (index) { // name이 mailCehckbox인 모든 체크박스를 선택함, 선택한 체크박스 각각에 대한 반복 실행(.each(index))
+			if($(this).is(":checked")==true){ // 현재 반복중인 체크박스($(this))의 선택 상태를 확인
+		    	nums.push($(this).val()) // 선택 상태인 체크박스의 값을 nums배열에 추가함
+		    }
+		});
+		if(confirm('삭제하시겠습니까?')){
+			$.ajax({ // 선택된 메일을 삭제하고자 서버로 요청을 전송하는 부분
+		        type: "POST",
+		        url: "../mail/delete.do", // 서버에서 처리될 메일 삭제 기능을 호출
+		        traditional: true, // jQuery에서 배열을 데이터를 서버로 전송할때 필요함
+		        data: { "nums": nums },
+		        dataType: 'json',
+		        success: function(response) { // 서버 요청 성공 시 처리될 response 매개변수는 서버에 반환된 응답 데이터를 나타냄
+		        	if(response.isSuccess==="성공"){
+		        		alert('삭제 되었습니다.');
+		        		location.reload(); // 페이지를 다시 로드하여 업데이트 된 메일 목록을 표시함
+		        	}else{
+		        		alert('삭제 실패했습니다.');
+		        	}
+		        },
+		        error: function(error) {
+		            console.error("메일 내용을 가져오는 중 오류 발생: " + error);
+		        }
+			});
+		}
+	}
+	
+	// 메일 제목 눌렀을때 상세 내용으로 이동하는 함수
+	function showMailContent(mailId) {
+		location.href = '/OfficeConnect/views/mailDetail.jsp?mailNo =' + mailId
+	}
+	
+</script>
 </body>
 
 </html>

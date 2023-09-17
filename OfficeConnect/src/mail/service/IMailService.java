@@ -24,18 +24,19 @@ public interface IMailService {
 	public int removeMail(int mailNo);
 	
 	
-//	/**
-//	 * 보낸 메일함 확인 메서드
-//	 * @param isSend
-//	 * @return 보낸 메일함 확인
-//	 */
-//	public boolean checkMail(String isSend);
-	
-	
 	/**
 	 * 메일 리스트 뽑아오는 메서드, 파라미터로 보낸메일을 뽑을지 받은메일을 뽑을지 결정
 	 * @param paramMap
 	 * @return mailList
 	 */
 	public List<MailVO> getMailList(Map<String, Object> paramMap); 
+	
+	
+	/**
+	 * 사용자로부터 받은 MailNo와 실제 DB의 Mail정보를 조회함
+	 * @param mailNo
+	 * @return
+	 */
+	public MailVO getMailByMailNo(String mailNo);
+	
 }

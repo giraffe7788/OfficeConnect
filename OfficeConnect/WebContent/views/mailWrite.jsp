@@ -155,8 +155,6 @@
 										<td><input type="hidden" name="empNo" value="<%= empNo %>"></td>
 										<td><input type="hidden" name="mailSender" value="<%= empNo %>"></td>
 										
-										
-
 										<div class="mb-3" style="width: 60%; display: flex; align-items: center;">
 											<label for="recipient" class="form-label" style="flex: 1;">받는사람:</label> 
 											<input type="email" class="form-control" id="recipient" name="mailReceiver" style="flex: 3; margin-right: 10px;">

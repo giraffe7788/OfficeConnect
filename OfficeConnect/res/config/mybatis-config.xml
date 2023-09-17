@@ -16,7 +16,6 @@
 		<typeAlias type="vo.CarVO" alias="carvo" />
 		<typeAlias type="vo.ImageVO" alias="imgvo"/>
 		<typeAlias type="vo.MailVO" alias="mailvo"/>
-		
 	</typeAliases>
 	
 	<environments default="dev">
