@@ -27,7 +27,7 @@ public class LogoutFilter implements Filter{
 		
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpSession session = req.getSession();
-		System.out.println(session.getAttribute("empNo"));
+//		System.out.println(session.getAttribute("empNo"));
 		
 		if(session == null || session.getAttribute("empNo") == null) {
 			HttpServletResponse resp = (HttpServletResponse) response;

@@ -106,7 +106,6 @@ public class EmpServiceImpl implements IEmpService{
 		return empDao.forgotPw(empVO);
 	}
 
-
 	@Override
 	public int changeEmployee(String empNo) {
 		return empDao.changeEmployee(empNo);
