@@ -30,7 +30,7 @@ public class UpdatenoticeController extends HttpServlet {
 
 		req.setAttribute("nv", nv);
 
-		req.getRequestDispatcher("/notice/updateForm.jsp").forward(req, resp);
+		req.getRequestDispatcher("/views/noticeupdateForm.jsp").forward(req, resp);
 
 	}
 

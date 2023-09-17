@@ -34,7 +34,7 @@ public class InsertnoticeController extends HttpServlet {
 		String ntcTitle = req.getParameter("ntcTitle");
 		String ntcCont = req.getParameter("ntcCont");
 		String empNo = req.getParameter("empNo");
-		
+		ntcCont = ntcCont.replace("\r\n","<br>");
 
 		INoticeService noticeService = NoticeServiceImpl.GetInstance();
 		

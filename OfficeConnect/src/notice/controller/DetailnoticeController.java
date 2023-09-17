@@ -31,7 +31,7 @@ public class DetailnoticeController extends HttpServlet{
 		req.setAttribute("noticeVO", noticeVO);
 		
 		
-		System.out.println("게시판 리뷰수 cnt값" + cnt);
+		System.out.println("공지사항 리뷰수 cnt값" + cnt);
 		req.getRequestDispatcher("/views/noticeBoardInfo.jsp").forward(req, resp);
 
 	}

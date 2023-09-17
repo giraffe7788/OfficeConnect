@@ -1,5 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="util.SessionEmpInfo"%>
+<%@page import="util.TransEmpInfo"%>
+<%@ page import="vo.*"%>
+<%@ page import="java.util.*"%>
+<%
+NoticeVO noticeVO = (NoticeVO)request.getAttribute("noticeVO");
+System.out.println("noticeVO : " + noticeVO);
+String empNo = (String) session.getAttribute("empNo");
+System.out.println("empNo : " + empNo);
+System.out.println("noticeVO : " + noticeVO.getEmpNo());
+EmpVO sessionVO = SessionEmpInfo.getInstance().getEmpVO(empNo);
+System.out.println("sessionVO : " + sessionVO);
+TransEmpInfo transfer = TransEmpInfo.getInstance();
+%>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -12,7 +28,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>제목넣어야함(j쿼리)</title>
+<title> <%=noticeVO.getNtcNo()%>번 공지사항</title>
 
     <!-- 아이콘 설정 -->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -40,16 +56,23 @@
 
 				<!-- 페이지 Content 시작 -->
 				<div class="container-fluid">
-
+				<input type="hidden" name="ntcNo" value="<%=noticeVO.getNtcNo()%>">
 					<!-- Page Heading -->
 					<div
-						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;공지사항의 제목이 들어갈 영역입니다</h1>
-					<a href="#" class="btn btn-danger btn-circle" style="position:absolute; margin-left:68%">
-                        <i class="fas fa-trash"></i>
+						class="d-sm-flex align-items-center justify-content-between mb-4" id="mainbutton">
+						<h1 class="h3 mb-0 text-gray-800">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=noticeVO.getNtcTitle()%></h1>
+					<a 
+						onclick="return confirm('삭제하시겠습니까?')"
+						href='<%=request.getContextPath()%>/notice/delete.do?ntcNo=<%=noticeVO.getNtcNo()%>'
+						class="btn btn-danger btn-circle" 
+						style="position:absolute; margin-left:68%">
+	                    <i class="fas fa-trash"></i>
                    </a>
-                   <a href="#" class="btn btn-info btn-circle" style="position:absolute; margin-left:64%">
-                        <i class="fa-solid fa-pen-to-square"></i>
+                   <a 
+	                   href='<%=request.getContextPath()%>/notice/update.do?ntcNo=<%=noticeVO.getNtcNo()%>'
+	                   class="btn btn-info btn-circle" 
+	                   style="position:absolute; margin-left:64%">
+	                   <i class="fa-solid fa-pen-to-square"></i>
                    </a>
 					</div>
 
@@ -62,10 +85,10 @@
 							<!-- Default Card Example -->
 							<div class="card mb-4">
 								<div class="card-header">
-									작성자이름&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;작성시간 2023-09-07</div>
+									<%=noticeVO.getDeptName()%>&nbsp;&nbsp;<%=noticeVO.getEmpPosit()%>&nbsp;&nbsp;<%=noticeVO.getEmpName()%>&nbsp;&nbsp; <span style="float: right"><%=noticeVO.getNtcDateDisplay()%></span></div>
 								<div class="card-body" style="height: 60vh">
-									공지사항의내용이들어갈영역입니다여기는 아무튼 이렇게 글을 한번 길게 써 보려고 하는데 이상한 사람 아니고요 내용을
-									일단 길게 넣어야 테스트가 되잖아요? 그래서 쓰는겁니다 아시겠나요? 아시~나~요</div>
+									<%=noticeVO.getNtcCont()%>
+									</div>
 
 							</div>
 
@@ -79,7 +102,7 @@
 											<a href="#" class="btn btn-primary btn-icon-split btn-lg"> <span
 							class="icon text-white-50"> 
 							<i class="fa-solid fa-right-to-bracket"></i>
-						</span> <span class="text">목록으로</span>
+						</span> <span class="text" onclick="location.href='<%=request.getContextPath()%>/notice/list.do'">목록으로</span>
 						</a>
 						</div>
 
@@ -99,6 +122,11 @@
 
 	<!-- 공통속성 설정 include -->
 	<%@ include file="./common.jsp"%>
+	<script type="text/javascript">
+	if (<%=sessionVO.getAdminCode()%> !==1 ) {
+		$('#mainbutton').find('a').css('display','none');	
+	}
+	</script>
 </body>
 
 </html>

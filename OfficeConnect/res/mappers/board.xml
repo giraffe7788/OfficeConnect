@@ -24,12 +24,17 @@
     </delete>
     
     <select id="detailboard" parameterType="Integer" resultType="boardvo">        
-        select * from board where brd_no=#{brdNo}
+       	select b.brd_no, b.brd_date, b.brd_cont, b.brd_mod, b.brd_title, b.brd_views, e.emp_no, e.emp_name, e.emp_posit, e.admin_code,e.dept_code,d.dept_name
+    	from board b join employee e
+    	on b.emp_no=e.emp_no
+        join dept d 
+        on e.dept_code = d.dept_code
+        where b.brd_no=#{brdNo}
     </select>
     
     <update id="updateboard" parameterType="boardvo">
          update board 
-         set brd_title=#{brdTitle}, brd_cont=#{brdCont}, brd_mod=SYSDATE 
+         set brd_title=#{brdTitle}, brd_cont=#{brdCont}, brd_mod=sysdate 
          where brd_no=#{brdNo}	 
     </update>
     

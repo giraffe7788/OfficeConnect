@@ -9,7 +9,7 @@ public class NoticeVO implements Comparable<NoticeVO> {
 	private int ntcNo;
 	private String empNo;
 	private Date ntcDate;
-	
+
 	private String ntcCont;
 	private String ntcTitle;
 	private int ntcViews;
@@ -17,15 +17,14 @@ public class NoticeVO implements Comparable<NoticeVO> {
 	private String empPosit;
 	private String empName;
 	private int deptCode;
+	private String deptName;
 
-	
-	
 	public NoticeVO() {
 	}
 
 	public NoticeVO(int ntcNo, String empNo, Date ntcDate, Date ntcMod, String ntcCont, String ntcTitle, int ntcViews,
 			int adminCode, String empPosit, String empName, int deptCode) {
-		
+
 		this.ntcNo = ntcNo;
 		this.empNo = empNo;
 		this.ntcDate = ntcDate;
@@ -36,6 +35,14 @@ public class NoticeVO implements Comparable<NoticeVO> {
 		this.empPosit = empPosit;
 		this.empName = empName;
 		this.deptCode = deptCode;
+	}
+
+	public String getDeptName() {
+		return deptName;
+	}
+
+	public void setDeptName(String deptName) {
+		this.deptName = deptName;
 	}
 
 	public int getNtcNo() {
@@ -62,7 +69,6 @@ public class NoticeVO implements Comparable<NoticeVO> {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		return sdf.format(this.ntcDate);
 	}
-
 
 	public void setNtcDate(Date ntcDate) {
 		this.ntcDate = ntcDate;
@@ -123,8 +129,6 @@ public class NoticeVO implements Comparable<NoticeVO> {
 	public void setDeptCode(int deptCode) {
 		this.deptCode = deptCode;
 	}
-
-	
 
 	@Override
 	public String toString() {

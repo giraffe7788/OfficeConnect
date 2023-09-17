@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
+<% request.setCharacterEncoding("utf-8");
+String empNo = (String)session.getAttribute("empNo");
+%>    
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -41,11 +44,12 @@
 
             <!-- 페이지 Content 시작 -->
             <div class="container-fluid">
-               <form action="#">
+               <form action="<%=request.getContextPath()%>/notice/insert.do" method="post">
                   <!-- 페이지 내 헤더 -->
                   <div
                      class="d-sm-flex align-items-center justify-content-between mb-4">
-                     <input type="text" style="margin-left : 18%; height:5vh; width:64%" placeholder="제목을 입력해주세요"> 
+                     <input type="text" name="ntcTitle" style="margin-left : 18%; height:5vh; width:64%" placeholder="제목을 입력해주세요"> 
+                  <input type="hidden" name="empNo" value="<%=empNo%>">   
                   </div>
 
 
@@ -57,19 +61,23 @@
                         <!-- 공지사항 내용 -->
                         <div class="card mb-4">
                            <div class="card-header">글작성</div>
-   <textarea form="" rows="" cols="" style="margin : 2%; height:60vh; width:96%" placeholder="내용을 입력해주세요"></textarea>
+   <textarea name="ntcCont" rows="" cols="" style="margin : 2%; height:60vh; width:96%" placeholder="내용을 입력해주세요"></textarea>
                         </div>
                      </div>
 
 
 
                   </div>
-                  
-                  <div class="row" style="justify-content: center; margin-bottom: 2%">
-                  <button type="submit" href="#" class="btn btn-primary btn-icon-split btn-lg"> <span
+                    <div class="row" style="justify-content: center; margin-bottom: 2%">
+                		<a href="#" class="btn btn-primary btn-icon-split btn-lg"> <span
+							class="icon text-white-50"> <i
+								class="fa-solid fa-right-to-bracket"></i>
+						</span> <span class="text"
+							onclick="location.href='<%=request.getContextPath()%>/notice/list.do'">목록으로</span></a> 
+						&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" href="#" class="btn btn-primary btn-icon-split btn-lg"> <span
                      class="icon text-white-50"> <i
                         class="fa-solid fa-right-to-bracket"></i>
-                  </span> <span class="text">글작성</span>
+                  </span> <span class="text">글 작성</span>
                   </button>
                </div>
                

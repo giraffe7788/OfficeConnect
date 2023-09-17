@@ -24,7 +24,12 @@
     </delete>
     
     <select id="detailNotice" parameterType="Integer" resultType="noticevo">        
-        select * from notice where ntc_no=#{ntcNo}
+         	select n.ntc_no, n.ntc_title,n.ntc_cont, n.ntc_date, e.emp_no, e.emp_name, e.emp_posit, e.admin_code,e.dept_code,d.dept_name
+    	from notice n join employee e
+    	on n.emp_no=e.emp_no
+        join dept d 
+        on e.dept_code = d.dept_code
+        where n.ntc_no=#{ntcNo}
     </select>
     
     <update id="updateNotice" parameterType="noticevo">

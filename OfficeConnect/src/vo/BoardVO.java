@@ -17,9 +17,18 @@ public class BoardVO implements Comparable<BoardVO>{
 	private String empPosit;
 	private String empName;
 	private int deptCode;
+	private String deptName;
 	
 	
 	
+	public String getDeptName() {
+		return deptName;
+	}
+
+	public void setDeptName(String deptName) {
+		this.deptName = deptName;
+	}
+
 	public int getDeptCode() {
 		return deptCode;
 	}

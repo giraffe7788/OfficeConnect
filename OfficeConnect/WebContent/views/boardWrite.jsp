@@ -75,7 +75,7 @@ String empNo = (String)session.getAttribute("empNo");
 								class="fa-solid fa-right-to-bracket"></i>
 						</span> <span class="text"
 							onclick="location.href='<%=request.getContextPath()%>/board/list.do'">목록으로</span></a> 
-						<button type="submit" href="#" class="btn btn-primary btn-icon-split btn-lg"> <span
+						&nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" href="#" class="btn btn-primary btn-icon-split btn-lg"> <span
                      class="icon text-white-50"> <i
                         class="fa-solid fa-right-to-bracket"></i>
                   </span> <span class="text">글 작성</span>

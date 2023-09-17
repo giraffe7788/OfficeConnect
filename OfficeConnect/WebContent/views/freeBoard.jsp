@@ -7,7 +7,7 @@
 <%
 	ArrayList<BoardVO> list = (ArrayList<BoardVO>) request.getAttribute("boardList");
 	String empNo = (String)session.getAttribute("empNo");
-	EmpVO empVO = SessionEmpInfo.getInstance().getEmpVO(empNo);
+	EmpVO sessionVO = SessionEmpInfo.getInstance().getEmpVO(empNo);
 	TransEmpInfo transfer = TransEmpInfo.getInstance();
 %>
 <!DOCTYPE html>
@@ -119,7 +119,7 @@
 									style="position: absolute; margin-left: 89%; margin-top: -3%">
 									<span class="icon text-white-50"> <i
 										class="fa-solid fa-pen"></i>
-								</span> <span class="text" onclick="location.href='<%=request.getContextPath()%>/board/insert.do'">글작성</span>
+								</span> <span class="text"  onclick="location.href='<%=request.getContextPath()%>/board/insert.do'">글작성</span>
 								</a>
 							</div>
 						</div>
@@ -145,6 +145,7 @@
 	<script src="../vendor/datatables/jquery.dataTables.js"></script>
 	<script src="../vendor/datatables/dataTables.bootstrap4.js"></script>
 	<script src="../js/demo/datatables-demo.js"></script>
+
 </body>
 
 </html>

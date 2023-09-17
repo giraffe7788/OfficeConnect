@@ -38,7 +38,7 @@ public class NoticeDaoImpl implements INoticeDao{
 		
 		try {
 			
-			cnt =session.insert("notice.NoticeInsert", nv);
+			cnt =session.insert("notice.insertNotice", nv);
 			if(cnt > 0) {
 				session.commit();
 			}
@@ -138,7 +138,7 @@ public class NoticeDaoImpl implements INoticeDao{
 		
 		try {
 			
-			NoticeList = session.selectList("notice.NoticeListWithEmp");
+			NoticeList = session.selectList("notice.listNoticeWithEmp");
 
 			
 		} catch (PersistenceException e) {

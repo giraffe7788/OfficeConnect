@@ -1,10 +1,9 @@
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="util.SessionEmpInfo"%>
 <%@page import="util.TransEmpInfo"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
 <%@ page import="vo.*"%>
 <%@ page import="java.util.*"%>
 <%
@@ -16,7 +15,6 @@ System.out.println("boardVO : " + boardVO.getEmpNo());
 EmpVO sessionVO = SessionEmpInfo.getInstance().getEmpVO(empNo);
 System.out.println("sessionVO : " + sessionVO);
 TransEmpInfo transfer = TransEmpInfo.getInstance();
-SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 // 이거는 아래 VO는 현재 게시글 쓴 사람의 VO (직급or부서or작성자이름 등등 떙겨오려고)
 /* EmpVO empVO = (EmpVO) request.getAttribute("empVO"); */
 %>
@@ -34,7 +32,7 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>제목넣어야함(j쿼리)</title>
+<title> <%=boardVO.getBrdNo()%>번 게시판</title>
 
 <!-- 아이콘 설정 -->
 <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -48,25 +46,22 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 border:none; input:focus {outline: none;} 
 } */
 #commCont{
-    padding: 10px;
-    width: 53vw;
+	resize: none;
     border: none;
-}
-#commCont:focus{
-    outline:none;
-}
-
-textarea {
-      width: 100%;
-      resize: none;
-      min-height: 30px;
-      overflow-y: hidden; /* prevents scroll bar flash */
+     overflow-y: hidden; /* prevents scroll bar flash */
       padding: 1.1em; /* prevents text jump on Enter keypress */
       padding-bottom: 0.2em;
       line-height: 1.6;  
       height: auto;
-      
-    }
+      width: 100%;
+      min-height: 30px; 
+     
+}
+#commCont:focus{ 
+    outline:none; 
+ } 
+
+
     
 </style>
 </head>
@@ -100,7 +95,7 @@ textarea {
 						id="mainbutton">
 						<!-- 게시판 수정 삭제 버튼 숨기기 -->
 						<h1 class="h3 mb-0 text-gray-800">
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=boardVO.getBrdTitle()%></h1>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=boardVO.getBrdTitle()%></h1>
 						<a
 							onclick="return confirm('삭제하시겠습니까?')"
 							href='<%=request.getContextPath()%>/board/delete.do?brdNo=<%=boardVO.getBrdNo()%>'
@@ -124,7 +119,7 @@ textarea {
 							<!-- 공지사항 내용 -->
 							<div class="card mb-4">
 								<div class="card-header">
-									<%=boardVO.getEmpNo()%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=boardVO.getBrdMod()%></div>
+									<%=boardVO.getDeptName()%>&nbsp;&nbsp;<%=boardVO.getEmpPosit()%>&nbsp;&nbsp;<%=boardVO.getEmpName()%> <span style="float: right"><%=boardVO.getBrdModDisplay()%></span></div>
 								<div class="card-body" style="height: 60vh">
 									<%=boardVO.getBrdCont()%></div>
 									<div class="card-body">
@@ -146,7 +141,7 @@ textarea {
 										 
 									</div>
 									<div class="card-body">
-										<input type="text" placeholder="댓글을 입력해주세요" id="commCont" name="commCont"  >
+										<textarea placeholder="댓글을 입력해주세요" id="commCont" name="commCont"  autofocus  maxlength='3000' ></textarea>
 									</div>
 								</div>
 								
@@ -210,7 +205,8 @@ textarea {
 					
 		            if(cnt==1){
  		            	getcommentList();
-		                $("#commCont").val("");		           
+		                $("#commCont").val("");		  
+		                $("#commCOnt").css('rows','1')
 		             }
 				},
 				error : function(xhr) {
@@ -225,17 +221,17 @@ textarea {
 		}); 
  
 		function getcommentList() {
-
+			console.log("댓글list ajax  왔음")
 			$.ajax({
 				url : "../comment/list.do", // 서버로 요청
 				type : "get",
-				data : { "brdNo" :	<%=boardVO.getBrdNo()%>},
+				data : { "brdNo" :<%=boardVO.getBrdNo()%>},
 				dataType : "json",
 				success : function(data) {
 					
 					  var html = "";
 			            var cCnt = data.length;
-			            
+			        	console.log("댓글list ajax  왔음2")
 			            if(data.length > 0){
 			         
 			            	
@@ -255,7 +251,7 @@ textarea {
 			                       html += "<i class='fas fa-trash'></i></a></span>";
 			                       }
 			                       html += "</div>";
-			                       html += "<div class='card-body' id='cont"+obj.commNo+"'>" + obj.commCont;		           
+			                       html += "<div class='card-body' id='cont"+obj.commNo+"'  style='white-space:pre;'>" + obj.commCont;		           
 			                       html += "</div>";
 			                       html += "</div>";
 			                       html += "</div>";
@@ -328,7 +324,7 @@ textarea {
 		  }
 			
 		  function resize(obj) {
-			  obj.style.height = "1px";
+			  obj.style.height = 1;
 			  obj.style.height = (12+obj.scrollHeight)+"px";
 			}
 	</script>

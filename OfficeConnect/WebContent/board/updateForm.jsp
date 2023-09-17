@@ -3,7 +3,6 @@
 <% request.setCharacterEncoding("utf-8"); %>
 
 <%@ page import="vo.*"%>
->>>>>>> branch 'revert-6-yun' of https://github.com/giraffe7788/OfficeConnect.git
 <%
 	BoardVO vo = (BoardVO) request.getAttribute("bv");
 %>

@@ -7,7 +7,7 @@
 <%
 	ArrayList<NoticeVO> list = (ArrayList<NoticeVO>) request.getAttribute("noticeList");
 	String empNo = (String)session.getAttribute("empNo");
-	EmpVO empVO = SessionEmpInfo.getInstance().getEmpVO(empNo);
+	EmpVO sessionVO = SessionEmpInfo.getInstance().getEmpVO(empNo);
 	TransEmpInfo transfer = TransEmpInfo.getInstance();
 %>    
 <!DOCTYPE html>
@@ -85,6 +85,10 @@
 															rowspan="1" colspan="1"
 															aria-label="작성일: activate to sort column ascending"
 															style="width: 305.703px;">작성일</th>
+														<th class="sorting" tabindex="0" aria-controls="dataTable"
+															rowspan="1" colspan="1"
+															aria-label="작성일: activate to sort column ascending"
+															style="width: 305.703px;">조회수</th>
 													</tr>
                                     </thead>
                                     <tbody>
@@ -95,7 +99,7 @@
 										<tr>
 											<td><%=vo.getNtcNo()%></td>
 											<td><a
-												href="<%=request.getContextPath()%>/board/detail.do?brdNo=<%=vo.getNtcNo()%>"><%=vo.getNtcTitle()%></a></td>
+												href="<%=request.getContextPath()%>/notice/detail.do?ntcNo=<%=vo.getNtcNo()%>"><%=vo.getNtcTitle()%></a></td>
 											<td><%=transfer.transformDeptCode(vo.getDeptCode())%>&nbsp;&nbsp;<%=vo.getEmpPosit()%>&nbsp;&nbsp;<%=vo.getEmpName()%></td>
 											<td><%=vo.getNtcDateDisplay()%></td>
 											<td><%=vo.getNtcViews()%></td>
@@ -107,11 +111,11 @@
 										%>
                                     </tbody>
                                 </table>
-                                <a href="#" class="btn btn-primary btn-icon-split" style="position : absolute; margin-left : 89%; margin-top : -3%">
+                                <a href="#"  id="btn" class="btn btn-primary btn-icon-split" style="position : absolute; margin-left : 89%; margin-top : -3%">
                                         <span class="icon text-white-50">
                                             <i class="fa-solid fa-pen"></i>
                                         </span>
-                                        <span class="text" onclick="location.href='<%=request.getContextPath()%>/notice/insert.do'">글작성</span>
+                                        <span class="text"  onclick="location.href='<%=request.getContextPath()%>/notice/insert.do'">글작성</span>
                                     </a>
                             </div>
                         </div>
@@ -137,6 +141,11 @@
     <script src="../vendor/datatables/jquery.dataTables.js"></script>
     <script src="../vendor/datatables/dataTables.bootstrap4.js"></script>
     <script src="../js/demo/datatables-demo.js"></script>
+    	<script type="text/javascript">
+		if (<%=sessionVO.getAdminCode()%> !==1 ) {
+		$('#btn').css('display','none');	
+	}
+		</script>
 </body>
 
 </html>

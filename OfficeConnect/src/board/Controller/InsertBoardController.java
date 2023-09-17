@@ -21,7 +21,7 @@ public class InsertBoardController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/board/insertForm.jsp").forward(req, resp);
+		req.getRequestDispatcher("/views/boardWrite.jsp").forward(req, resp);
 	}
 
 	@Override
@@ -33,7 +33,8 @@ public class InsertBoardController extends HttpServlet {
 		String brdTitle = req.getParameter("brdTitle");
 		String brdCont = req.getParameter("brdCont");
 		String empNo = req.getParameter("empNo");
-		
+		brdCont =brdCont.replace("\r\n","<br>");
+
 
 		IBoardService boardService = BoardServiceImpl.GetInstance();
 		
