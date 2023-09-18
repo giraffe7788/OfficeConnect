@@ -14,20 +14,22 @@
 
 	<!-- 받은 메일 확인  -->
 	<select id="getReceiveMail" resultMap="mailMap" parameterType="map">
-		select * from mail
-		where mail_receiver = #{empEmail}
-		order by mail_SendDate desc
+		select * from employee a, mail b 
+		where a.emp_no = b.mail_sender
+		and b.mail_receiver = #{empEmail}
+		order by b.mail_SendDate desc
+		
 	</select>
-
 
 	<!-- 보낸 메일 확인  -->
 	<select id="getSendMail" resultMap="mailMap" parameterType="map">
-		select * from mail
-		where mail_sender = #{empNo}
+		select * from employee a, mail b
+		where a.emp_email = b.mail_receiver
+		and b.mail_sender = #{empNo}
 		order by mail_SendDate desc
 	</select>
 	
-	<!-- 메일 제목 누르면 내용 조회하는 쿼리 -->
+	<!-- 상세 메일 조회  -->
 	<select id="getMailByMailNo" resultMap="mailMap" parameterType="String">
 	select a.*, b.emp_name as MAIL_SENDER_NAME, b.emp_email as MAIL_SENDER_EMAIL, b.emp_posit as MAIL_SENDER_POSIT,
 				c.emp_name as MAIL_RECEIVER_NAME, c.emp_posit as MAIL_RECEIVER_POSIT
@@ -55,5 +57,8 @@
 		<result column="MAIL_SENDER" property="mailSender" />
 		<result column="MAIL_SENDER_NAME" property="mailSenderName" />
     	<result column="MAIL_RECEIVER_NAME" property="mailReceiverName" />
+    	<result column="MAIL_SENDER_EMAIL" property="mailSenderEmail" />
+    	<result column="MAIL_SENDER_POSIT" property="mailSenderPosit" />
+    	<result column="MAIL_RECEIVER_POSIT" property="mailReceiverPosit" />
 	</resultMap>
 </mapper>

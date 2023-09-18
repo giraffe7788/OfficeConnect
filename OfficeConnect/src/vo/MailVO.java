@@ -10,7 +10,7 @@ public class MailVO {
 	private String mailSenderEmail; // 보낸사람 이메일
 	private String mailSenderPosit; // 보낸사람 직위
 	private String mailReceiver;  // 받는사람
-	private String mailReceiverName; // 받는사람 이름
+	private String mailReceiverName; // 받는사람 이름 ㄴㄴ 그게 
 	private String mailReceiverPosit; // 받는사람 직위
 	private int mailNo;        	  // 메일번호(PK)
 	private int mailSendstat;     // 보낸사람 메일 상태(0 삭제안함, 1 삭제함)
@@ -18,11 +18,13 @@ public class MailVO {
 	private Date mailSenddate;    // 메일 발신날짜
 	private String isSend; 		  // 보낸메일 확인
 	private String mailTitle;	  // 메일제목
+	private String empName;	 
+	private String empPosit;	 
 	
 	public MailVO (){};
-	
+	//EMP_NAME, EMP_POSIT
 	public MailVO(String mailCont, String mailSender, String mailReceiver, int mailNo, int mailSendstat,
-			int mailRecestat, Date mailSenddate) {
+			int mailRecestat, Date mailSenddate, String empName, String empPosit) {
 		super();
 		this.mailCont = mailCont;
 		this.mailSender = mailSender;
@@ -31,6 +33,8 @@ public class MailVO {
 		this.mailSendstat = mailSendstat;
 		this.mailRecestat = mailRecestat;
 		this.mailSenddate = mailSenddate;
+		this.empName = empName;
+		this.empPosit = empPosit;
 	}
 
 	public String getMailCont() {
@@ -148,6 +152,20 @@ public class MailVO {
 
 	public void setMailReceiverPosit(String mailReceiverPosit) {
 		this.mailReceiverPosit = mailReceiverPosit;
+	}
+	public String getEmpName() {
+		return empName;
+	}
+	
+	public void getEmpName(String empName) {
+		this.empName = empName;
+	}
+	public String getEmpPosit() {
+		return empPosit;
+	}
+	
+	public void getEmpPosit(String empPosit) {
+		this.empPosit = empPosit;
 	}
 	
 	

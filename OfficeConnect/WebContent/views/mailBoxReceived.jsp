@@ -182,14 +182,12 @@
                                     
                                     <tbody>
                                         <%
-										for (MailVO mail : receiveMailList) {
+										for (MailVO mail : receiveMailList) { 
 										%>
 										<tr>
 										    <td><input type="checkbox" name='mailCheckbox' id='mailCheckbox' class="mailCheckbox" value="<%=mail.getMailNo()%>"></td>
-										    <td><%= mail.getMailSender() %></td>
+										    <td><%= mail.getEmpName() %> <%=mail.getEmpPosit() %></td> <!-- vo에 값을 담아야되는데 이름 매칭이 안되서 (없어서)못담으니 객체 추가 EMP_NAME, EMP_POSIT -->
 										    <td><a href="detail.do?mailNo=<%=mail.getMailNo() %>" onclick="showMailContent('<%= mail.getMailNo() %>')"><%= mail.getMailTitle() %></a></td>
-									   <%-- <td><%= mail.getMailTitle() %></td> --%>
-<%-- 										    <td><%= mail.getMailCont() %></td> --%>
 										    <td><%= mail.getMailSenddateFormat() %></td>
 										</tr>
 										<%
