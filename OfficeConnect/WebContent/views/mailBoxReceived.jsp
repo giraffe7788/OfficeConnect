@@ -231,7 +231,7 @@
     <script src="../js/demo/datatables-demo.js"></script>
 	
 	<script>
-	// 페이지 로딩 시 실행될 체크박스 선택 코드
+	<!-- 메일 전체 체크/해제, 개별 체크/해제 코드 -->
 	$(document).ready(function() {
 		$("#mailAllCheckbox").click(function() {// 전체 선택&해제
 			if($("#mailAllCheckbox").is(":checked"))// 체크 확인

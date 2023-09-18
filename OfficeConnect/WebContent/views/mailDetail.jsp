@@ -153,7 +153,7 @@
 									<br>
 									<form action="../mail/detail.do" method="post" enctype="multipart/form-data">
 										<hr>
-									    <h5 onclick="showMailContent('<%=mailVO.getMailNo()%>')"><font color="black"><b><%= mailVO.getMailTitle() %></b></font> </h5>
+										<h5 id="mail-title" onclick="showMailContent('<%=mailVO.getMailNo()%>')"><font color="black"><b><%= mailVO.getMailTitle() %></b></font> </h5>
 									    <br>
 									    
 									    <div><font color="black"><b>보낸 사람 :</b></font> <span class="rounded-border"><%=mailVO.getMailSenderName() %> <%=mailVO.getMailSenderPosit() %> [<%=mailVO.getMailSenderEmail() %>]</span></div>
@@ -179,7 +179,6 @@
 									</form>
 								</div>
 								<!-- 메일 본문 종료 -->
-
 							</div>
 						</div>
 					</div>

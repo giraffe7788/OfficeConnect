@@ -247,9 +247,9 @@
 	</script>
 	
 	<script>
-	// 페이지 로딩 시 실행될 체크박스 선택 코드
-	$(document).ready(function() { // html문서 전체 선택.문서 준비되면 함수 실행
-		$("#mailAllCheckbox").click(function() {// 전체 선택&해제,  저 ID를 가진 html요소를 선택. 선택한 요소에 대해 클릭 이벤트를 처리(저 ID요소가 클릭될때 실행된다는뜻)
+	<!-- 메일 전체 체크/해제, 개별 체크/해제 코드 -->
+	$(document).ready(function() { // 페이지 로딩 시 html문서 전체 선택.문서 준비되면 함수 실행
+		$("#mailAllCheckbox").click(function() {// 전체 선택&해제,  저 ID를 가진 html요소를 선택. 선택한 요소에 대해 클릭 이벤트를 처리(저 ID요소가 클릭될때 실행된다는 뜻)
 			if($("#mailAllCheckbox").is(":checked"))// 체크 확인	.is(":checked") 체크박스가 선택되어있는지 여부를 확인함. 체크면 true반환, 아니면 false반환
 			   $("input[name=mailCheckbox]").prop("checked", true); //name이 mailCheckbox인 애들 선택(.prop 속성값 가져오기)
 			else $("input[name=mailCheckbox]").prop("checked", false);//체크 상태 아니면 선택해제
