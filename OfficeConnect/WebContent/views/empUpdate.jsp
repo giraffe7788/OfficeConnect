@@ -237,13 +237,11 @@
 	$('#dropdown-position a').click(function () {
     	var selectedText = $(this).text(); // 선택된 항목의 텍스트 가져오기
     	
-    	    // 업무상태 수정 해야함
     		$('#position').text(selectedText); // navbar-brand의 텍스트 변경
 	});
    	$('#dropdown-department a').click(function () {
     	var selectedText = $(this).text(); // 선택된 항목의 텍스트 가져오기
     	
-    	    // 업무상태 수정 해야함
     		$('#department').text(selectedText); // navbar-brand의 텍스트 변경
 	});
 	</script>

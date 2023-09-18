@@ -1,4 +1,3 @@
-
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="vo.CarBookVO"%>
 <%@page import="vo.CarVO"%>
@@ -380,6 +379,5 @@
 		
 	<!-- 공통속성 설정 include -->
     <%@ include file="./common.jsp" %>
-
 </body>
 </html>
