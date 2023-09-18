@@ -1,6 +1,11 @@
+<%@page import="util.SessionEmpInfo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%
+	SessionEmpInfo sessionEmpInfo = SessionEmpInfo.getInstance();
+	String empNoAside = (String)session.getAttribute("empNo");
+	int adminCode = sessionEmpInfo.getEmpVO(empNoAside).getAdminCode();
+%>
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- 구분선 -->
@@ -23,7 +28,7 @@
             </div>
 
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="../approval/sendList.do">
                     <span>&nbsp;</span><i class="fa-solid fa-clipboard"></i>
                     <span>&nbsp;결재</span>
                 </a>
@@ -102,8 +107,8 @@
             <!-- 구분선 -->
             <hr class="sidebar-divider">
 
-            
-              <li class="nav-item">
+            <%if(adminCode == 1) { %>
+              <li class="nav-item" id="admin">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-cog"></i>
@@ -119,6 +124,10 @@
             </li>
 
             <!-- 구분선 -->
-            <hr class="sidebar-divider d-none d-md-block">
+            <hr class="sidebar-divider d-none" id="admin">
+            
+            <%} %>
 
         </ul>
+        
+<script src="../vendor/jquery/jquery.min.js"></script>
