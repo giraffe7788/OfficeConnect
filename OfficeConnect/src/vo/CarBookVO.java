@@ -12,7 +12,6 @@ public class CarBookVO {
    private Date carBookReturn; //반납날짜
    private String carBookCont; // 예약사유
    
-   
    public CarBookVO() {}
    
    //차량 예약을 위한 생성자

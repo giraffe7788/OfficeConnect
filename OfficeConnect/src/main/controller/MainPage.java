@@ -35,7 +35,6 @@ public class MainPage extends HttpServlet {
 		
 //		현재 내 회의실
 		IMeetingService meetingService = MeetingServiceImpl.getInstance();
-
 		List<MeetingBookVO> mtrList = meetingService.selectAll();
 		req.setAttribute("mtrList", mtrList);	
 		req.setAttribute("empNo", req.getSession().getAttribute("empNo"));
@@ -44,7 +43,6 @@ public class MainPage extends HttpServlet {
 //		차량 예약정보
 		ICarService carService = CarServiceImpl.getInstance();
 		List<CarVO> carList = carService.selectAllCar();
-		
 		req.setAttribute("carList", carList);
 //		최근 공지사항 내역 5개씩
 //		최근 자유게시판 내역 5개씩: getNoticeList -> 최근 공지사항 5개 뽑아오는 메소드
