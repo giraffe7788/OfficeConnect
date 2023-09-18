@@ -23,11 +23,10 @@ public class MyMeetingBook extends HttpServlet{
 
 		IMeetingService meetingService = MeetingServiceImpl.getInstance();
 		
-		String empNo = (String)req.getSession().getAttribute("empNo");
-		MeetingBookVO mtrVO = meetingService.getMeetingBookVO(empNo);
+		List<MeetingBookVO> mtrList = meetingService.selectAll();
 
-		req.setAttribute("mtrVO", mtrVO);	
-		req.setAttribute("empNo", empNo);
+		req.setAttribute("mtrList", mtrList);	
+		req.setAttribute("empNo", req.getSession().getAttribute("empNo"));
 	
 		RequestDispatcher disp = req.getRequestDispatcher("../views/meetingRoomBook.jsp");
 		disp.forward(req, resp);

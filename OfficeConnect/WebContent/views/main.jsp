@@ -1,12 +1,18 @@
+<<<<<<< HEAD
 <%-- <%@page import="vo.CarBookVO"%>--%>
+=======
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="vo.CarBookVO"%>
 <%@page import="vo.CarVO"%>
 <%@page import="vo.MeetingBookVO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
+	CarBookVO carBookVO = (CarBookVO)request.getAttribute("carBookVO");
+	String currentEmpNo = (String)request.getAttribute("empNo");
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	MeetingBookVO mtrVO = (MeetingBookVO) request.getAttribute("mtrVO");
-	String currentEmpNo = (String) request.getAttribute("empNo");
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -43,9 +49,6 @@
     max-width: 100px; /* 셀 내용의 최대 너비 설정 (원하는 너비로 조정) */
   }
 </style>
-
-
-
 </head>
 <body id="page-top">
 
@@ -164,27 +167,31 @@
                                     </div>
                                     <!-- 내 차량배차 예약 내용 들어갈 부분 -->
                                		<!-- 예약 없으면 "현재 예약된 차량이 없습니다" 출력 있으면 차량번호 | 시간 | 인원 출력, 클릭시 이동 -->
-<!--                                		<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="margin-top : 3%"> -->
-<!--                                     <thead> -->
-<!--                                         <tr role="row"> -->
-<!-- 														<th class="sorting" tabindex="0" aria-controls="dataTable" -->
-<!-- 															rowspan="1" colspan="1" -->
-<!-- 															aria-label="작성일: activate to sort column ascending" -->
-<!-- 															style="width: 35%;">차량번호</th> -->
-<!-- 														<th class="sorting" tabindex="0" aria-controls="dataTable" -->
-<!-- 															rowspan="1" colspan="1" -->
-<!-- 															aria-label="작성일: activate to sort column ascending" -->
-<!-- 															style="width: 65%;">시간</th> -->
-<!-- 													</tr> -->
-<!--                                     </thead> -->
-<!--                                     <tbody> -->
-<!--                                         <tr> -->
-<!--                                             <td>10무 0119</td> -->
-<!--                                             <td>09:00 - 11:00</td> -->
-<!--                                         </tr> -->
-<!--                                     </tbody> -->
-<!--                                 </table> -->
-									<div id="noRsvCar" style="margin-top : 10%">현재 예약중인 차량이 없습니다</div>
+                               		<%if(carBookVO == null){ %>
+                               		<div id="noRsvCar" style="margin-top : 10%;">현재 예약중인 차량이 없습니다</div>
+                               		<%}else{ %>
+                               		<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="margin-top : 3%">
+                                    <thead>
+                                        <tr role="row">
+											<th class="sorting" tabindex="0" aria-controls="dataTable"
+												rowspan="1" colspan="1"
+												aria-label="작성일: activate to sort column ascending"
+												style="width: 35%;">차량번호</th>
+											<th class="sorting" tabindex="0" aria-controls="dataTable"
+												rowspan="1" colspan="1"
+												aria-label="작성일: activate to sort column ascending"
+												style="width: 65%;">예약날짜</th>
+											</tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><%=carBookVO.getCarNo() %></td>
+                                            <td><%=sdf.format(carBookVO.getCarBookRent()) %> ~ <%=sdf.format(carBookVO.getCarBookReturn()) %></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <%} %>
+									
                                 </div>
                             </div>
                         </div>
@@ -375,6 +382,9 @@
 		
 	<!-- 공통속성 설정 include -->
     <%@ include file="./common.jsp" %>
+<<<<<<< HEAD
     
+=======
+>>>>>>> branch 'kk112' of https://github.com/giraffe7788/OfficeConnect.git
 </body>
 </html>
