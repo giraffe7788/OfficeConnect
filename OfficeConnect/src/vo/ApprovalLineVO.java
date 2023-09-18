@@ -2,10 +2,14 @@ package vo;
 
 public class ApprovalLineVO {
 	
-	String apprlNo;
+	int apprlNo;
 	String apprlSeq1;
 	String apprlSeq2;
 	String apprlSeq3;
+	int apprlProg;
+	
+	public ApprovalLineVO() {
+	}
 	
 	public ApprovalLineVO(String apprlSeq1, String apprlSeq2, String apprlSeq3) {
 		this.apprlSeq1 = apprlSeq1;
@@ -13,11 +17,11 @@ public class ApprovalLineVO {
 		this.apprlSeq3 = apprlSeq3;
 	}
 
-	public String getapprlNo() {
+	public int getapprlNo() {
 		return apprlNo;
 	}
 
-	public void setapprlNo(String apprlNo) {
+	public void setapprlNo(int apprlNo) {
 		this.apprlNo = apprlNo;
 	}
 
@@ -43,5 +47,13 @@ public class ApprovalLineVO {
 
 	public void setapprlSeq3(String apprlSeq3) {
 		this.apprlSeq3 = apprlSeq3;
+	}
+	
+	public int getApprlProg() {
+		return apprlProg;
+	}
+	
+	public void setApprlProg(int apprlProg) {
+		this.apprlProg = apprlProg;
 	}
 }

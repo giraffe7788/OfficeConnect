@@ -116,7 +116,7 @@ td {
 								<nav class="navbar navbar-expand navbar-light bg-success mb-4"
 									id="seqBtn1" style="border-radius: 0.35rem">
 									<a class="navbar-brand" href="#" style="font-size: 1em"><div
-											class="text-white shadow" id="seq1">결재자1 지정(필수)</div></a>
+											class="text-white shadow" id="seq1">결재자1 지정</div></a>
 									<ul class="navbar-nav ml-auto">
 										<li class="nav-item dropdown"><a
 											class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
@@ -286,8 +286,13 @@ td {
 				console.log(seq2);
 				console.log(seq3);
 
-				if (seq1 == null || seq1 == "") {
-					alert("결재자1 지정은 필수입니다");
+				if ((seq1 == null || seq1 == "") && type == 2) {
+					alert("지정되지 않은 결재자가 있습니다");
+					return;
+				}
+				
+				if ((seq1 == null || seq1 == "" || seq2 == null || seq2 == "" || seq3 == null || seq3 == "") && (type == 1 || type == 3)) {
+					alert("지정되지 않은 결재자가 있습니다");
 					return;
 				}
 

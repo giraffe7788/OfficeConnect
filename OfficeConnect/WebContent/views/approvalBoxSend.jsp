@@ -192,7 +192,7 @@
 	
 	<script>
 	function openDetail(apprNo){
-		window.open("detail.do?apprNo="+apprNo, "결재상세보기", "width=1200,height=900");
+		window.open("detail.do?apprNo="+apprNo, "결재상세보기", "width=650,height=1100");
 	}
 	</script>
 </body>

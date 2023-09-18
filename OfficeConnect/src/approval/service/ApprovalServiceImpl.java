@@ -52,8 +52,20 @@ public class ApprovalServiceImpl implements IApprovalService {
 	 * @param empNo
 	 * @return 결재리스트
 	 */
+	@Override
 	public List<ApprovalVO> selectSendAppr(String empNo){
 		return approvalDao.selectSendAppr(empNo);
+	}
+	
+	
+	/**
+	 * 본인이 받은 모든 결재 리스트를 가져옴
+	 * @param empNo
+	 * @return 결재리스트
+	 */
+	@Override
+	public List<ApprovalVO> selectReceiveAppr(String empNo){
+		return approvalDao.selectReceiveAppr(empNo);
 	}
 	
 	
@@ -62,7 +74,53 @@ public class ApprovalServiceImpl implements IApprovalService {
 	 * @param apprNo
 	 * @return 결재 내용
 	 */
+	@Override
 	public ApprovalVO getApprVO(int apprNo) {
 		return approvalDao.getApprVO(apprNo);
+	}
+	
+	
+	/**
+	 * 결재라인 번호로 결재라인내용을 뽑아서 VO로 리턴
+	 * @param apprNo
+	 * @return 결재 내용
+	 */
+	@Override
+	public ApprovalLineVO getApprlVO(int apprlNo) {
+		return approvalDao.getApprlVO(apprlNo);
+	}
+	
+	
+	/**
+	 * 사번과 결재라인 번호로 내가 몇번째인지 반환
+	 * @param1 apprlNo 결재라인 번호
+	 * @param2 empNo 사번
+	 * @return seq 내가 몇번째인지
+	 */
+	@Override
+	public int getApprovalSeq(int apprlNo, String empNo) {
+		return approvalDao.getApprovalSeq(apprlNo, empNo);
+	}
+	
+	
+	/**
+	 * 결재번호와 상태코드를 입력받고 결재테이블의 결재진행상태를 변경시켜주는 메소드
+	 * @param1 apprNo 결재번호
+	 * @param2 apprsCode 상태코드
+	 * @return cnt 성공여부
+	 */
+	@Override
+	public int setApprsCode(int apprNo, int apprsCode) {
+		return approvalDao.setApprsCode(apprNo, apprsCode);
+	}
+	
+	
+	/**
+	 * 결재라인 번호를 입력하면 해당 결재의 진행상황이 1 증가한다
+	 * @param apprlNo
+	 * @return cnt 성공여부
+	 */
+	public int addApprProg(int apprlNo) {
+		return approvalDao.addApprProg(apprlNo);
 	}
 }

@@ -855,10 +855,10 @@
 			</tr>
 			<tr class="row2">
 				<td class="column0">&nbsp;</td>
-				<td class="column4 style7 null style8" colspan="3" rowspan="2"></td>
-				<td class="column7 style7 null style8" colspan="3" rowspan="2"></td>
-				<td class="column10 style7 null style8" colspan="3" rowspan="2"></td>
-				<td class="column13 style7 null style8" colspan="3" rowspan="2"></td>
+				<td class="column4 style7 null style8" colspan="3" rowspan="2"><img id="mark1" src="../../images/approvalMark.PNG" style="width:80%"></td>
+				<td class="column7 style7 null style8" colspan="3" rowspan="2"><img id="mark2" src="../../images/approvalMark.PNG" style="width:80%; display:none"></td>
+				<td class="column10 style7 null style8" colspan="3" rowspan="2"><img id="mark3" src="../../images/approvalMark.PNG" style="width:80%; display:none"></td>
+				<td class="column13 style7 null style8" colspan="3" rowspan="2"><img id="mark4" src="../../images/approvalMark.PNG" style="width:80%; display:none"></td>
 				<td class="column16">&nbsp;</td>
 			</tr>
 			<tr class="row3">
@@ -882,46 +882,44 @@
 			<tr class="row6">
 				<td class="column0">&nbsp;</td>
 				<td class="column1 style2 s">기안일자</td>
-				<td class="column2 style10 s style11" colspan="14">&nbsp;<input type="date" id="data1"></td>
+				<td class="column2 style10 s style11" colspan="14">&nbsp;<span id="data1">내용</span></td>
 				<td class="column16">&nbsp;</td>
 			</tr>
 			<tr class="row7">
 				<td class="column0">&nbsp;</td>
 				<td class="column1 style2 s">시행일자</td>
-				<td class="column2 style10 s style11" colspan="14">&nbsp;<input type="date" id="data2"></td>
+				<td class="column2 style10 s style11" colspan="14">&nbsp;<span id="data2">내용</span></td>
 				<td class="column16">&nbsp;</td>
 			</tr>
 			<tr class="row8">
 				<td class="column0">&nbsp;</td>
 				<td class="column1 style2 s">보존기한</td>
-				<td class="column2 style10 s style11" colspan="14">&nbsp;<input type="date" id="data3"></td>
+				<td class="column2 style10 s style11" colspan="14">&nbsp;<span id="data3">내용</span></td>
 				<td class="column16">&nbsp;</td>
 			</tr>
 			<tr class="row9">
 				<td class="column0">&nbsp;</td>
 				<td class="column1 style2 s">합 의</td>
-				<td class="column2 style10 null style11" colspan="14">&nbsp;<input type="text" id="data4"
-						style="width:27.5%"></td>
+				<td class="column2 style10 null style11" colspan="14">&nbsp;<span id="data4">내용</span></td>
 				<td class="column16">&nbsp;</td>
 			</tr>
 			<tr class="row10">
 				<td class="column0">&nbsp;</td>
 				<td class="column1 style2 s">기안부서</td>
-				<td class="column2 style3 null">&nbsp;<input type="text" id="data5" style="width:70%"></td>
+				<td class="column2 style3 null">&nbsp;<span id="data5">내용</span></td>
 				<td class="column3 style21 s style21" colspan="3">처리기간</td>
-				<td class="column6 style10 null style11" colspan="10">&nbsp;<input type="date" id="data6"></td>
+				<td class="column6 style10 null style11" colspan="10">&nbsp;<span id="data6">내용</span></td>
 				<td class="column16">&nbsp;</td>
 			</tr>
 			<tr class="row11">
 				<td class="column0">&nbsp;</td>
 				<td class="column1 style2 s">제 목</td>
-				<td class="column2 style13 null style14" colspan="14">&nbsp;<input type="text" id="data7"
-						style="width:98%"></td>
+				<td class="column2 style13 null style14" colspan="14">&nbsp;<span id="data7">내용</span></td>
 				<td class="column16">&nbsp;</td>
 			</tr>
 			<tr class="row12">
 				<td class="column0">&nbsp;</td>
-				<td class="column1 style15 null style20" colspan="15" rowspan="2">&nbsp;<textarea form="" rows="" cols="" id="data8" style="margin : 2%; height:60vh; width:96%"></textarea></td>
+				<td class="column1 style15 null style20" colspan="15" rowspan="2">&nbsp;<span id="data8">내용</span></td>
 				<td class="column16">&nbsp;</td>
 			</tr>
 			<tr class="row13">
@@ -933,28 +931,37 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script>
 
-		function sendDataToParent() {
+		function setData(data) {
 
-			// id가 "data1"부터 "dataN"까지인 input 태그와 textarea를 선택
-			var dataElements = $("input[id^='data'], textarea[id^='data']");
-			var datas = "";
-			var isNull = false;
+			var dataArray = data.split("|");
+			console.log(dataArray);
 			
-			// 선택된 요소들을 반복하여 작업을 수행합니다.
-			dataElements.each(function () {
+			// id가 "data1"부터 "dataN"까지인 span를 선택
+			var dataElements = $("span[id^='data']");
+			var index = 0;
+			
+			dataElements.each(function(){
+				
 				var element = $(this);
-				if(element.val() == null || element.val() == ""){
-					isNull = true;
+				
+				if(element){
+					element.text(dataArray[index]);
+					index++;
 				}
-				datas += element.val() + "|"; // 요소의 ID 출력 또는 다른 작업 수행
 			});
-			
-			if(isNull){
-				alert("양식에 입력되지 않은 값이 존재합니다");
-				return;
+		}
+		
+		function setMark(mark){
+			if(mark == 1){
+				$('#mark2').css('display', 'inline-block');
+			} else if(mark == 2){
+				$('#mark2').css('display', 'inline-block');
+				$('#mark3').css('display', 'inline-block');
+			} else if(mark >= 3){
+				$('#mark2').css('display', 'inline-block');
+				$('#mark3').css('display', 'inline-block');
+				$('#mark4').css('display', 'inline-block');
 			}
-			
-			window.parent.receiveDataFromIframe(datas, 1);
 		}
 
 	</script>
