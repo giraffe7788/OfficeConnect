@@ -44,9 +44,6 @@ public class MainPage extends HttpServlet {
 
 //		차량 예약정보
 		ICarService carService = CarServiceImpl.getInstance();
-		List<CarVO> carList = carService.selectAllCar();
-		req.setAttribute("carList", carList);
-		
 		CarBookVO carBookVO = carService.selectOneMyCarBook(empNo);
 		
 		req.setAttribute("carBookVO", carBookVO);

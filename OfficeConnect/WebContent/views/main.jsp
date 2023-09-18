@@ -1,4 +1,3 @@
-<%-- <%@page import="vo.CarBookVO"%>--%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="vo.CarBookVO"%>
 <%@page import="vo.CarVO"%>
