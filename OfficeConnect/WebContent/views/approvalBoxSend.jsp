@@ -97,7 +97,7 @@
                                     <tbody>
                                         <tr>
                                         	<td><input type="checkbox"></td>
-                                            <td>결제종류</td>
+                                            <td>결재종류</td>
                                             <td>결재자1</td>
                                             <td>결재자1</td>
                                             <td>결재자1</td>
@@ -203,7 +203,6 @@
 
 							</div>
 						</div>
-					
 						
 					</div>
 
