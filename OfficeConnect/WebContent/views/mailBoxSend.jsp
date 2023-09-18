@@ -5,6 +5,9 @@
 	pageEncoding="UTF-8"%>
 <% 
 	List<MailVO> sendMailList = (List<MailVO>) request.getAttribute("sendMailList");
+
+	MailVO mailVO = (MailVO)request.getAttribute("mailVO");
+	
 	String empNo = (String)request.getSession().getAttribute("empNo");
 %>
 <!DOCTYPE html>
@@ -28,6 +31,7 @@
 <link href="../css/sb-admin-2.min.css" rel="stylesheet">
 <script src="../vendor/jquery/jquery.min.js"></script>
 <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/mail.css">
 
 <!-- 드롭다운 자바스크립트  -->
 <script
@@ -157,19 +161,19 @@
                                           <th class="sorting" tabindex="0" aria-controls="dataTable"
                                              rowspan="1" colspan="1"
                                              aria-label="작성일: activate to sort column ascending"
-                                             style="width: 20px;"><input type="checkbox" id="mailAllCheckbox" class="mailCheckbox"></th>
-                                          <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                             rowspan="1" colspan="1"
-                                             aria-label="작성일: activate to sort column ascending"
-                                             style="width: 25%;">제목</th>
-                                          <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                             rowspan="1" colspan="1"
-                                             aria-label="작성일: activate to sort column ascending"
-                                             style="width: 45%;">본문</th>
+                                             style="width: 5%;"><input type="checkbox" id="mailAllCheckbox" class="mailCheckbox"></th>
                                           <th class="sorting" tabindex="0" aria-controls="dataTable"
                                              rowspan="1" colspan="1"
                                              aria-label="작성일: activate to sort column ascending"
                                              style="width: 15%;">받은사람</th>
+                                          <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                             rowspan="1" colspan="1"
+                                             aria-label="작성일: activate to sort column ascending"
+                                             style="width: 55%;">제목</th>
+<!--                                           <th class="sorting" tabindex="0" aria-controls="dataTable" -->
+<!--                                              rowspan="1" colspan="1" -->
+<!--                                              aria-label="작성일: activate to sort column ascending" -->
+<!--                                              style="width: 45%;">본문</th> -->
                                           <th class="sorting" tabindex="0" aria-controls="dataTable"
                                              rowspan="1" colspan="1"
                                              aria-label="작성일: activate to sort column ascending"
@@ -183,9 +187,9 @@
 										%>
 										<tr>
 										    <td><input type="checkbox" name='mailCheckbox' id='mailCheckbox' class="mailCheckbox" value="<%= mail.getMailNo() %>"></td>
-										    <td><a href="detail.do?mailNo=<%=mail.getMailNo() %>" onclick="showMailContent('<%= mail.getMailNo() %>')"><%= mail.getMailTitle() %></a></td>
-										    <td><%= mail.getMailCont() %></td>
 											<td><%= mail.getMailReceiver() %></td>
+										    <td><a href="detail.do?mailNo=<%=mail.getMailNo() %>" onclick="showMailContent('<%= mail.getMailNo() %>')"><%= mail.getMailTitle() %></a></td>
+<%-- 										    <td><%= mail.getMailCont() %></td> --%>
 										    <td><%= mail.getMailSenddateFormat() %></td>
 										</tr>
 										<%
@@ -193,7 +197,9 @@
 										%>
                                     </tbody>
                                 </table>
-										<input type="button" class="btn btn-primary" style="display: inline-block;" onclick="MailCheckDelete()" value="삭제">
+                                	<div style="position: absolute; bottom: 17px; right: 13px;">
+										<input type="button" class="btn btn-primary float-right" style="display: inline-block;" onclick="MailCheckDelete()" value="삭제">
+									</div>
 									</form>
 
 								</div>
@@ -243,10 +249,10 @@
 	
 	<script>
 	// 페이지 로딩 시 실행될 체크박스 선택 코드
-	$(document).ready(function() {
-		$("#mailAllCheckbox").click(function() {// 전체 선택&해제
-			if($("#mailAllCheckbox").is(":checked"))// 체크 확인
-			   $("input[name=mailCheckbox]").prop("checked", true); //name이 mailCheckbox인 애들 선택
+	$(document).ready(function() { // html문서 전체 선택.문서 준비되면 함수 실행
+		$("#mailAllCheckbox").click(function() {// 전체 선택&해제,  저 ID를 가진 html요소를 선택. 선택한 요소에 대해 클릭 이벤트를 처리(저 ID요소가 클릭될때 실행된다는뜻)
+			if($("#mailAllCheckbox").is(":checked"))// 체크 확인	.is(":checked") 체크박스가 선택되어있는지 여부를 확인함. 체크면 true반환, 아니면 false반환
+			   $("input[name=mailCheckbox]").prop("checked", true); //name이 mailCheckbox인 애들 선택(.prop 속성값 가져오기)
 			else $("input[name=mailCheckbox]").prop("checked", false);//체크 상태 아니면 선택해제
 		});
 
@@ -262,7 +268,7 @@
 	// 선택된 메일을 삭제하는 함수
 	function MailCheckDelete(){
 		let nums = [];
-		$('input:checkbox[name=mailCheckbox]').each(function (index) { // name이 mailCehckbox인 모든 체크박스를 선택함, 선택한 체크박스 각각에 대한 반복 실행(.each(index))
+		$('input:checkbox[name=mailCheckbox]').each(function (index) { // name이 mailCheckbox인 모든 체크박스를 선택함, 선택한 체크박스 각각에 대한 반복 실행(.each(index))
 			if($(this).is(":checked")==true){ // 현재 반복중인 체크박스($(this))의 선택 상태를 확인
 		    	nums.push($(this).val()) // 선택 상태인 체크박스의 값을 nums배열에 추가함
 		    }

@@ -159,15 +159,7 @@
                                        	  <th class="sorting" tabindex="0" aria-controls="dataTable"
                                              rowspan="1" colspan="1"
                                              aria-label="작성일: activate to sort column ascending"
-                                             style="width: 20px;"><input type="checkbox" id="mailAllCheckbox" class="mailCheckbox"></th>
-                                          <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                             rowspan="1" colspan="1"
-                                             aria-label="작성일: activate to sort column ascending"
-                                             style="width: 25%;">제목</th>
-                                          <th class="sorting" tabindex="0" aria-controls="dataTable"
-                                             rowspan="1" colspan="1"
-                                             aria-label="작성일: activate to sort column ascending"
-                                             style="width: 45%;">본문</th>
+                                             style="width: 5%;"><input type="checkbox" id="mailAllCheckbox" class="mailCheckbox"></th>
                                           <th class="sorting" tabindex="0" aria-controls="dataTable"
                                              rowspan="1" colspan="1"
                                              aria-label="작성일: activate to sort column ascending"
@@ -175,7 +167,16 @@
                                           <th class="sorting" tabindex="0" aria-controls="dataTable"
                                              rowspan="1" colspan="1"
                                              aria-label="작성일: activate to sort column ascending"
+                                             style="width: 55%;">제목</th>
+<!--                                           <th class="sorting" tabindex="0" aria-controls="dataTable" -->
+<!--                                              rowspan="1" colspan="1" -->
+<!--                                              aria-label="작성일: activate to sort column ascending" -->
+<!--                                              style="width: 45%;">본문</th> -->
+                                          <th class="sorting" tabindex="0" aria-controls="dataTable"
+                                             rowspan="1" colspan="1"
+                                             aria-label="작성일: activate to sort column ascending"
                                              style="width: 15%;">보낸날짜</th>
+                                             
                                        </tr>
                                     </thead>
                                     
@@ -185,10 +186,10 @@
 										%>
 										<tr>
 										    <td><input type="checkbox" name='mailCheckbox' id='mailCheckbox' class="mailCheckbox" value="<%=mail.getMailNo()%>"></td>
+										    <td><%= mail.getMailSender() %></td>
 										    <td><a href="detail.do?mailNo=<%=mail.getMailNo() %>" onclick="showMailContent('<%= mail.getMailNo() %>')"><%= mail.getMailTitle() %></a></td>
 									   <%-- <td><%= mail.getMailTitle() %></td> --%>
-										    <td><%= mail.getMailCont() %></td>
-										    <td><%= mail.getMailSender() %></td>
+<%-- 										    <td><%= mail.getMailCont() %></td> --%>
 										    <td><%= mail.getMailSenddateFormat() %></td>
 										</tr>
 										<%
@@ -197,7 +198,9 @@
                                     </tbody>
                                     
                                 </table>
-										<input type="button" class="btn btn-primary" style="display: inline-block;" onclick="MailCheckDelete()" value="삭제">
+                                    <div style="position: absolute; bottom: 17px; right: 13px;">
+										<input type="button" class="btn btn-primary float-right" style="display: inline-block;" onclick="MailCheckDelete()" value="삭제">
+									</div>
 									</form>
 
 								</div>
