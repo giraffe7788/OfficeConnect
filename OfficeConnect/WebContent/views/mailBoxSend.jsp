@@ -1,5 +1,15 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="vo.MailVO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<% 
+	List<MailVO> sendMailList = (List<MailVO>) request.getAttribute("sendMailList");
+
+	MailVO mailVO = (MailVO)request.getAttribute("mailVO");
+	
+	String empNo = (String)request.getSession().getAttribute("empNo");
+%>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -21,6 +31,7 @@
 <link href="../css/sb-admin-2.min.css" rel="stylesheet">
 <script src="../vendor/jquery/jquery.min.js"></script>
 <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/mail.css">
 
 <!-- 드롭다운 자바스크립트  -->
 <script
@@ -91,11 +102,11 @@
 
 									<nav id="sidebar" style="padding: inherit;">
 										<ul class="list-unstyled">
-											<li style="margin-bottom: 3px;"><a href="../views/mailBoxReceived.jsp"
+											<li style="margin-bottom: 3px;"><a href="../mail/receiveList.do?isSend=1"
 												style="text-decoration: none; color: inherit; background-color: transparent;">받은
 													메일함</a></li>
 
-											<li style="margin-bottom: 3px;"><a href="../views/mailBoxSend.jsp"
+											<li style="margin-bottom: 3px;"><a href="../mail/sendList.do?isSend=2"
 												style="text-decoration: none; color: inherit; background-color: transparent;">보낸
 													메일함</a></li>
 
@@ -141,140 +152,53 @@
 									<h4> 보낸 메일함</h4>
 
 									<hr>
-
+									
+									<form>
+									
 									<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
-                                        <tr role="row">
-                                        	<th class="sorting" tabindex="0" aria-controls="dataTable"
-                                             rowspan="1" colspan="1"
-                                             aria-label="작성일: activate to sort column ascending"
-                                             style="width: 20px;"></th>
+                                       <tr role="row">
                                           <th class="sorting" tabindex="0" aria-controls="dataTable"
                                              rowspan="1" colspan="1"
                                              aria-label="작성일: activate to sort column ascending"
-                                             style="width: 15%;">제목</th>
-<!--                                        내용 길어지면 ...으로 뒤에 내용 짤리게 어케함? -->
+                                             style="width: 5%;"><input type="checkbox" id="mailAllCheckbox" class="mailCheckbox"></th>
                                           <th class="sorting" tabindex="0" aria-controls="dataTable"
                                              rowspan="1" colspan="1"
                                              aria-label="작성일: activate to sort column ascending"
-                                             style="width: 55%;">본문</th>
+                                             style="width: 15%;">받은사람</th>
                                           <th class="sorting" tabindex="0" aria-controls="dataTable"
                                              rowspan="1" colspan="1"
                                              aria-label="작성일: activate to sort column ascending"
-                                             style="width: 12%;">보낸사람</th>
+                                             style="width: 55%;">제목</th>
+<!--                                           <th class="sorting" tabindex="0" aria-controls="dataTable" -->
+<!--                                              rowspan="1" colspan="1" -->
+<!--                                              aria-label="작성일: activate to sort column ascending" -->
+<!--                                              style="width: 45%;">본문</th> -->
                                           <th class="sorting" tabindex="0" aria-controls="dataTable"
                                              rowspan="1" colspan="1"
                                              aria-label="작성일: activate to sort column ascending"
-                                             style="width: 18%;">보낸날짜</th>
+                                             style="width: 15%;">보낸날짜</th>
                                        </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                        	<td><input type="checkbox" class="mailCheckbox"></td>
-                                            <td>안녕하세요 저는 김영남입니다</td>
-                                            <td>안건이있는데 그 안건을 처리해주실 수 있는지에 대하여 여쭤봐도 되는지 검토해주실</td>
-                                            <td>김영남</td>
-                                            <td>2023-09-11</td>
-                                        </tr>
-                                        <tr>
-                                        	<td><input type="checkbox" class="mailCheckbox"></td>
-                                            <td>안녕하세요</td>
-                                            <td>안건이있는데 그 안건을 처리해주실 수 있는지에 대하여</td>
-                                            <td>김영남</td>
-                                            <td>2023-09-11</td>
-                                        </tr>
-                                        <tr>
-                                        	<td><input type="checkbox" class="mailCheckbox"></td>
-                                            <td>안녕하세요</td>
-                                            <td>안건이있는데 그 안건을 처리해주실 수 있는지에 대하여</td>
-                                            <td>김영남</td>
-                                            <td>2023-09-11</td>
-                                        </tr>
-                                        <tr>
-                                        	<td><input type="checkbox" class="mailCheckbox"></td>
-                                            <td>안녕하세요</td>
-                                            <td>안건이있는데 그 안건을 처리해주실 수 있는지에 대하여</td>
-                                            <td>김영남</td>
-                                            <td>2023-09-11</td>
-                                        </tr>
-                                        <tr>
-                                        	<td><input type="checkbox" class="mailCheckbox"></td>
-                                            <td>안녕하세요</td>
-                                            <td>안건이있는데 그 안건을 처리해주실 수 있는지에 대하여</td>
-                                            <td>김영남</td>
-                                            <td>2023-09-11</td>
-                                        </tr>
-                                        <tr>
-                                        	<td><input type="checkbox" class="mailCheckbox"></td>
-                                            <td>안녕하세요 저는 김영남입니다</td>
-                                            <td>안건이있는데 그 안건을 처리해주실 수 있는지에 대하여 여쭤봐도 되는지 검토해주실 수 있는지에 대하여 의견을 구하고자하는것에 대해 어떻게 생각하시는지 질문을 해봐도 되겠습니까</td>
-                                            <td>김영남</td>
-                                            <td>2023-09-11</td>
-                                        </tr>
-                                        <tr>
-                                        	<td><input type="checkbox" class="mailCheckbox"></td>
-                                            <td>안녕하세요</td>
-                                            <td>안건이있는데 그 안건을 처리해주실 수 있는지에 대하여</td>
-                                            <td>김영남</td>
-                                            <td>2023-09-11</td>
-                                        </tr>
-                                        <tr>
-                                        	<td><input type="checkbox" class="mailCheckbox"></td>
-                                            <td>안녕하세요</td>
-                                            <td>안건이있는데 그 안건을 처리해주실 수 있는지에 대하여</td>
-                                            <td>김영남</td>
-                                            <td>2023-09-11</td>
-                                        </tr>
-                                        <tr>
-                                        	<td><input type="checkbox" class="mailCheckbox"></td>
-                                            <td>안녕하세요</td>
-                                            <td>안건이있는데 그 안건을 처리해주실 수 있는지에 대하여</td>
-                                            <td>김영남</td>
-                                            <td>2023-09-11</td>
-                                        </tr>
-                                        <tr>
-                                        	<td><input type="checkbox" class="mailCheckbox"></td>
-                                            <td>안녕하세요</td>
-                                            <td>안건이있는데 그 안건을 처리해주실 수 있는지에 대하여</td>
-                                            <td>김영남</td>
-                                            <td>2023-09-11</td>
-                                        </tr>
-                                                                                <tr>
-                                        	<td><input type="checkbox" class="mailCheckbox"></td>
-                                            <td>안녕하세요</td>
-                                            <td>안건이있는데 그 안건을 처리해주실 수 있는지에 대하여</td>
-                                            <td>김영남</td>
-                                            <td>2023-09-11</td>
-                                        </tr>
-                                                                                <tr>
-                                        	<td><input type="checkbox" class="mailCheckbox"></td>
-                                            <td>안녕하세요</td>
-                                            <td>안건이있는데 그 안건을 처리해주실 수 있는지에 대하여</td>
-                                            <td>김영남</td>
-                                            <td>2023-09-11</td>
-                                        </tr>
-                                                                                <tr>
-                                        	<td><input type="checkbox" class="mailCheckbox"></td>
-                                            <td>안녕하세요</td>
-                                            <td>안건이있는데 그 안건을 처리해주실 수 있는지에 대하여</td>
-                                            <td>김영남</td>
-                                            <td>2023-09-11</td>
-                                        </tr>
-                                                                                <tr>
-                                        	<td><input type="checkbox" class="mailCheckbox"></td>
-                                            <td>안녕하세요</td>
-                                            <td>안건이있는데 그 안건을 처리해주실 수 있는지에 대하여</td>
-                                            <td>김영남</td>
-                                            <td>2023-09-11</td>
-                                        </tr>
+										<%
+										for (MailVO mail : sendMailList) {
+											if(mail.getMailReceiver().equals(empNo))
+										%>
+										<tr>
+										    <td><input type="checkbox" name='mailCheckbox' id='mailCheckbox' class="mailCheckbox" value="<%= mail.getMailNo() %>"></td>
+										    <td><%= mail.getEmpName() %> <%=mail.getEmpPosit() %></td> <!-- vo에 값을 담아야되는데 이름 매칭이 안되서 (없어서)못담으니 객체 추가 EMP_NAME, EMP_POSIT -->
+										    <td><a href="detail.do?mailNo=<%=mail.getMailNo() %>" onclick="showMailContent('<%= mail.getMailNo() %>')"><%= mail.getMailTitle() %></a></td>
+										    <td><%= mail.getMailSenddateFormat() %></td>
+										</tr>
+										<%
+										}
+										%>
                                     </tbody>
                                 </table>
-
-										<div style="text-align: right; margin-top: -51px;">
-
-											<button type="submit" class="btn btn-primary"
-												style="display: inline-block;">삭제</button>
-										</div>
+                                	<div style="position: absolute; bottom: 17px; right: 13px;">
+										<input type="button" class="btn btn-primary float-right" style="display: inline-block;" onclick="MailCheckDelete()" value="삭제">
+									</div>
 									</form>
 
 								</div>
@@ -321,6 +245,61 @@
 	}
 	%>
 	</script>
+	
+	<script>
+	<!-- 메일 전체 체크/해제, 개별 체크/해제 코드 -->
+	$(document).ready(function() { // 페이지 로딩 시 html문서 전체 선택.문서 준비되면 함수 실행
+		$("#mailAllCheckbox").click(function() {// 전체 선택&해제,  저 ID를 가진 html요소를 선택. 선택한 요소에 대해 클릭 이벤트를 처리(저 ID요소가 클릭될때 실행된다는 뜻)
+			if($("#mailAllCheckbox").is(":checked"))// 체크 확인	.is(":checked") 체크박스가 선택되어있는지 여부를 확인함. 체크면 true반환, 아니면 false반환
+			   $("input[name=mailCheckbox]").prop("checked", true); //name이 mailCheckbox인 애들 선택(.prop 속성값 가져오기)
+			else $("input[name=mailCheckbox]").prop("checked", false);//체크 상태 아니면 선택해제
+		});
+
+		$("input[name=mailCheckbox]").click(function() { // 개별 선택&해제
+			var total = $("input[name=mailCheckbox]").length; // name이 mailCheckbox인 체크박스의 개수를 가져옴
+			var checked = $("input[name=mailCheckbox]:checked").length; // name이 mailCheckbox이면서 checked(체크된)인 체크박스의 개수를 가져옴
+
+			if(total != checked) $("#mailAllCheckbox").prop("checked", false); // 체크박스 개수와 선택된 체크븍사의 수가 다르다면 체크박스 해제 상태로 변경
+			else $("#mailAllCheckbox").prop("checked", true); // 그렇지 않으면 선택으로 변경
+		});
+	});
+	
+	// 선택된 메일을 삭제하는 함수
+	function MailCheckDelete(){
+		let nums = [];
+		$('input:checkbox[name=mailCheckbox]').each(function (index) { // name이 mailCheckbox인 모든 체크박스를 선택함, 선택한 체크박스 각각에 대한 반복 실행(.each(index))
+			if($(this).is(":checked")==true){ // 현재 반복중인 체크박스($(this))의 선택 상태를 확인
+		    	nums.push($(this).val()) // 선택 상태인 체크박스의 값을 nums배열에 추가함
+		    }
+		});
+		if(confirm('삭제하시겠습니까?')){
+			$.ajax({ // 선택된 메일을 삭제하고자 서버로 요청을 전송하는 부분
+		        type: "POST",
+		        url: "../mail/delete.do", // 서버에서 처리될 메일 삭제 기능을 호출
+		        traditional: true, // jQuery에서 배열을 데이터를 서버로 전송할때 필요함
+		        data: { "nums": nums },
+		        dataType: 'json',
+		        success: function(response) { // 서버 요청 성공 시 처리될 response 매개변수는 서버에 반환된 응답 데이터를 나타냄
+		        	if(response.isSuccess==="성공"){
+		        		alert('삭제 되었습니다.');
+		        		location.reload(); // 페이지를 다시 로드하여 업데이트 된 메일 목록을 표시함
+		        	}else{
+		        		alert('삭제 실패했습니다.');
+		        	}
+		        },
+		        error: function(error) {
+		            console.error("메일 내용을 가져오는 중 오류 발생: " + error);
+		        }
+			});
+		}
+	}
+	
+	// 메일 제목 눌렀을때 상세 내용으로 이동하는 함수
+	function showMailContent(mailId) {
+		location.href = '/OfficeConnect/views/mailDetail.jsp?mailNo =' + mailId
+	}
+	
+</script>
 </body>
 
 </html>

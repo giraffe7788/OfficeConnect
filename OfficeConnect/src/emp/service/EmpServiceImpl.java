@@ -116,4 +116,14 @@ public class EmpServiceImpl implements IEmpService{
 	public String forgotPw(EmpVO empVO) {
 		return empDao.forgotPw(empVO);
 	}
+	
+	/**
+	 * 	사번으로 메일 출력을 위한 메서드
+	 */
+	@Override
+	public String mailSelect(String empNo) {
+		return empDao.mailSelect(empNo);
+	}
+	
+	
 }

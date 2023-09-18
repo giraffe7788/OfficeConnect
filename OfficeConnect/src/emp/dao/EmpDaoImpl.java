@@ -282,4 +282,24 @@ public class EmpDaoImpl implements IEmpDao {
 
 		return empPw;
 	}
+	
+	@Override
+	public String mailSelect(String empNo) {
+		
+		SqlSession session = MyBatisUtil.getInstance();
+
+		String ev = "";
+		try {
+			ev = session.selectOne("employee.mailSelect", empNo);
+			if(ev!=null) {
+				 session.commit();
+			 }
+		} catch (PersistenceException ex) {
+			session.rollback();
+			ex.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return ev;
+	}
 }

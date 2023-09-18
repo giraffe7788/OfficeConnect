@@ -69,6 +69,12 @@ public interface IEmpDao {
 	
 	
 	/**
+	 * 	사번으로 메일 출력을 위한 메서드
+	 */
+	public String mailSelect (String empNo);
+
+  
+  /**
 	 * 이메일과 사번이 들어있는 객체로 비밀번호를 찾아서 비밀번호를 반환
 	 * @param empVO
 	 * @return empPw

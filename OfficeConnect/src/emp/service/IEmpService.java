@@ -69,7 +69,16 @@ public interface IEmpService {
 	 */
 	public List<EmpVO> selectAll();
 
+	
 	/**
+	 * 객체에 담긴 이메일들을 출력오기 위한 메서드
+	 * @param empNo
+	 * @return
+	 */
+	public String mailSelect (String empNo);
+
+  
+  /**
 	 * 이메일과 사번이 들어있는 객체로 비밀번호를 찾아서 비밀번호를 반환
 	 * @param empVO
 	 * @return empPw

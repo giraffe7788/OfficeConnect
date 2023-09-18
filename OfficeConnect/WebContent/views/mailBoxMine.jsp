@@ -66,7 +66,7 @@
 
 									<div style="text-align: center;">
 										<button type="submit" class="btn btn-outline-primary"
-											onClick="window.location.href='mailWrite.jsp'"
+											onClick="window.location.href='../mail/insert.do'"
 											style="display: inline-block;">메일쓰기</button>
 
 										<button type="submit" class="btn btn-outline-info" onClick="window.location.href='mailWriteMine.jsp'"
@@ -93,11 +93,11 @@
 
 									<nav id="sidebar" style="padding: inherit;">
 										<ul class="list-unstyled">
-											<li style="margin-bottom: 3px;"><a href="../views/mailBoxReceived.jsp"
+											<li style="margin-bottom: 3px;"><a href="../mail/receiveList.do?isSend=1"
 												style="text-decoration: none; color: inherit; background-color: transparent;">받은
 													메일함</a></li>
 
-											<li style="margin-bottom: 3px;"><a href="../views/mailBoxSend.jsp"
+											<li style="margin-bottom: 3px;"><a href="../mail/sendList.do?isSend=2"
 												style="text-decoration: none; color: inherit; background-color: transparent;">보낸
 													메일함</a></li>
 
@@ -156,20 +156,19 @@
                                           <th class="sorting" tabindex="0" aria-controls="dataTable"
                                              rowspan="1" colspan="1"
                                              aria-label="작성일: activate to sort column ascending"
-                                             style="width: 15%;">제목</th>
-<!--                                        내용 길어지면 ...으로 뒤에 내용 짤리게 어케함? -->
+                                             style="width: 25%;">제목</th>
                                           <th class="sorting" tabindex="0" aria-controls="dataTable"
                                              rowspan="1" colspan="1"
                                              aria-label="작성일: activate to sort column ascending"
-                                             style="width: 55%;">본문</th>
+                                             style="width: 45%;">본문</th>
                                           <th class="sorting" tabindex="0" aria-controls="dataTable"
                                              rowspan="1" colspan="1"
                                              aria-label="작성일: activate to sort column ascending"
-                                             style="width: 12%;">보낸사람</th>
+                                             style="width: 15%;">보낸사람</th>
                                           <th class="sorting" tabindex="0" aria-controls="dataTable"
                                              rowspan="1" colspan="1"
                                              aria-label="작성일: activate to sort column ascending"
-                                             style="width: 18%;">보낸날짜</th>
+                                             style="width: 15%;">보낸날짜</th>
                                        </tr>
                                     </thead>
                                     <tbody>
@@ -277,7 +276,8 @@
 										<div style="text-align: right; margin-top: -51px;">
 
 											<button type="submit" class="btn btn-primary"
-												style="display: inline-block;">삭제</button>
+												style="display: inline-block;" onclick="deleteMail();">삭제</button>
+										
 										</div>
 									</form>
 
@@ -310,6 +310,15 @@
     <script src="../vendor/datatables/dataTables.bootstrap4.js"></script>
     <script src="../js/demo/datatables-demo.js"></script>
 	<!-- 페이지 검색/조회 플러그인 -->
+	<script>
+	function deleteMail() {
+		var seleteMail = document.querySelectorAll('.mailCheckBox:checked');
+		
+		for (var i = 0; i < selectMail.length; i++) {
+			var selectMail = seleteMail[i];
+		}
+	}
+	</script>
 </body>
 
 </html>

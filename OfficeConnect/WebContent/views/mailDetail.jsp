@@ -4,18 +4,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-	MailVO mailVO = (MailVO) request.getAttribute("MailVO");
-	System.out.println(mailVO);
+	MailVO mailVO = (MailVO) request.getAttribute("mailVO");
 	
 	String empNo = (String) session.getAttribute("empNo");
-	System.out.println(empNo);
 %>	
 
 <!DOCTYPE html>
 <html lang="ko">
 
 <head>
-
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
@@ -30,6 +27,7 @@
 	type="text/css">
 <!-- css 설정 -->
 <link href="../css/sb-admin-2.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../css/mail.css">
 <script src="../vendor/jquery/jquery.min.js"></script>
 <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
@@ -40,7 +38,6 @@
 </head>
 
 <body id="page-top">
-
 	<!-- 페이지 Wrapper -->
 	<div id="wrapper">
 
@@ -77,7 +74,7 @@
 
 									<div style="text-align: center;">
 										<button type="submit" class="btn btn-outline-primary"
-											onClick="window.location.href='mailWrite.jsp'"
+											onClick="window.location.href='../mail/insert.do'"
 											style="display: inline-block;">메일쓰기</button>
 
 										<button type="submit" class="btn btn-outline-info" onClick="window.location.href='mailWriteMine.jsp'"
@@ -104,11 +101,11 @@
 
 									<nav id="sidebar" style="padding: inherit;">
 										<ul class="list-unstyled">
-											<li style="margin-bottom: 3px;"><a href="../views/mailBoxReceived.jsp"
+											<li style="margin-bottom: 3px;"><a href="../mail/receiveList.do?isSend=1"
 												style="text-decoration: none; color: inherit; background-color: transparent;">받은
 													메일함</a></li>
 
-											<li style="margin-bottom: 3px;"><a href="../views/mailBoxSend.jsp"
+											<li style="margin-bottom: 3px;"><a href="../mail/sendList.do?isSend=2"
 												style="text-decoration: none; color: inherit; background-color: transparent;">보낸
 													메일함</a></li>
 
@@ -151,30 +148,37 @@
 								<!-- 메일 본문 -->
 
 								<div class="col-lg-10">
-									<h4> 메일 상세 </h4>
+									<h4>받은 메일함</h4>
 									<hr>
-									<br><br><br>
-									<form action="../mail/detail.do" method="post" enctype="multipart/form-data">
-									
-									<hr>
-									    <h5> <%= mailVO.getMailCont() %> </h5>
-									    <br>
-									    <div>보낸 사람: <%= mailVO.getMailSender()%> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;이메일 주소: [보낸 사람 이메일 주소]</div>
-									    <div>받는 사람: <%= mailVO.getMailReceiver() %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;이메일 주소: [받는 사람 이메일 주소]</div>
-										<hr> 
 									<br>
-										<p>첨부파일 목록</p>
-										<ul>
-								        </ul>
-										<div class ="attachment-list">
+									<form action="../mail/detail.do" method="post" enctype="multipart/form-data">
+										<hr>
+										<h5 id="mail-title" onclick="showMailContent('<%=mailVO.getMailNo()%>')"><font color="black"><b><%= mailVO.getMailTitle() %></b></font> </h5>
+									    <br>
+									    
+									    <div><font color="black"><b>보낸 사람 :</b></font> <span class="rounded-border"><%=mailVO.getMailSenderName() %> <%=mailVO.getMailSenderPosit() %> [<%=mailVO.getMailSenderEmail() %>]</span></div>
+										<div><font color="black"><b>받는 사람 :</b></font> <span class="rounded-border"><%=mailVO.getMailReceiverName() %> <%=mailVO.getMailReceiverPosit() %> [<%=mailVO.getMailReceiver() %>]</span></div>
+										<div style="margin-top: 5px;">
+										    <font color="black"><b>날짜 :</b> <%=mailVO.getMailSenddateFormat() %></font>
+										</div>										
+										<hr> 
+										<br>
+										<h5><font color="black"><b>본문 내용</b></font></h5>
+										<textarea class="form-control" id="message" name="mailCont" rows="20" required><%=mailVO.getMailCont() %></textarea>
+										
+										<hr>
+										<br>
+									    <div> <li>이전 메일 : </li></div>
+									    <div style="margin-top: 5px;"></div>	
+									    <div> <li>다음 메일 : </li></div>
 										</div>
-										<div style="position: absolute; top: 100px; right: 10px;">
-											<a href="../mail/mailBoxMine.do" class="btn btn-primary" style="display: inline-block; margin-right: 10px;">목록</a>
+										</div>
+										<div style="position: absolute; top: 75px; right: 10px;">
+											<a href="../mail/receiveList.do?isSend=1" class="btn btn-primary" id="btn btn-primary2" style="display: inline-block; margin-right: 10px;">목록</a>
 										</div>
 									</form>
 								</div>
 								<!-- 메일 본문 종료 -->
-
 							</div>
 						</div>
 					</div>

@@ -1,6 +1,7 @@
 package mail.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.ServletException;
@@ -23,6 +24,7 @@ public class InsertMail extends HttpServlet {
 	// get으로 들어왔다는 의미는 링크를 타고 들어왔다는 뜻, 그래서 메일 작성 화면을 보여줌
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.getRequestDispatcher("../views/mailWrite.jsp").forward(req, resp);
+		
 	}
 	
 	@Override
@@ -35,23 +37,26 @@ public class InsertMail extends HttpServlet {
 		String empNo = (String) req.getSession().getAttribute("empNo");
 
 		// 사용자로부터 입력 받은 데이터를 DB로 가져온다.
-//		String mailTitle = req.getParameter("mailTitle");
+		String mailTitle = req.getParameter("mailTitle");
 		String mailCont = req.getParameter("mailCont");
 		String mailReceiver = req.getParameter("mailReceiver");
 		String mailSender = req.getParameter("empNo");
 
 		Date mailSendDate = new Date(); // 현재 날짜 설정
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String formattedDate = sdf.format(mailSendDate);
 
 		IMailService mailService = MailServiceImpl.getInstance();
 
 		MailVO mailVO = new MailVO();
+		mailVO.setMailTitle(mailTitle);
 		mailVO.setMailCont(mailCont);
-		mailVO.setMailSender(empNo);
 		mailVO.setMailReceiver(mailReceiver);
-		mailVO.setMailSendStat(0);
-		mailVO.setMailReceStat(0);
-		mailVO.setMailSendDate(mailSendDate);
-//		mailVO.setMailTitle(mailTitle);
+		mailVO.setMailSender(empNo);
+		mailVO.setMailSendstat(0);
+		mailVO.setMailRecestat(0);
+		mailVO.setMailSenddate(mailSendDate);
 
 		int cnt = mailService.writeMail(mailVO); // 메일 저장
 
@@ -69,6 +74,7 @@ public class InsertMail extends HttpServlet {
 		session.setAttribute("msg", msg);
 
 		resp.setCharacterEncoding("UTF-8");
-		resp.sendRedirect("./sendList.do");
+		resp.sendRedirect("../mail/sendList.do");
+		
 	}
 }

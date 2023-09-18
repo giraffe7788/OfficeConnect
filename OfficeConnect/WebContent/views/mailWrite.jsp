@@ -72,7 +72,7 @@
 
 									<div style="text-align: center;">
 										<button type="submit" class="btn btn-outline-primary"
-											onClick="window.location.href='mailWrite.jsp'"
+											onClick="window.location.href='../mail/insert.do'"
 											style="display: inline-block;">메일쓰기</button>
 
 										<button type="submit" class="btn btn-outline-info" 
@@ -101,11 +101,11 @@
 									<nav id="sidebar" style="padding: inherit;">
 										<!-- 사이드바 내용 -->
 										<ul class="list-unstyled">
-											<li style="margin-bottom: 3px;"><a href="../views/mailBoxReceived.jsp "
+											<li style="margin-bottom: 3px;"><a href="../mail/receiveList.do?isSend=1"
 												style="text-decoration: none; color: inherit; background-color: transparent;">받은
 													메일함</a></li>
 
-											<li style="margin-bottom: 3px;"><a href="../views/mailBoxSend.jsp"
+											<li style="margin-bottom: 3px;"><a href="../mail/sendList.do?isSend=2"
 												style="text-decoration: none; color: inherit; background-color: transparent;">보낸
 													메일함</a></li>
 
@@ -155,8 +155,6 @@
 										<td><input type="hidden" name="empNo" value="<%= empNo %>"></td>
 										<td><input type="hidden" name="mailSender" value="<%= empNo %>"></td>
 										
-										
-
 										<div class="mb-3" style="width: 60%; display: flex; align-items: center;">
 											<label for="recipient" class="form-label" style="flex: 1;">받는사람:</label> 
 											<input type="email" class="form-control" id="recipient" name="mailReceiver" style="flex: 3; margin-right: 10px;">

@@ -67,7 +67,8 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="../mail/sendList.do">
+            <!-- get 방식이라 쿼리스트링으로 파라미터(isSend)를 보내줌 .  -->
+                <a class="nav-link" href="../mail/receiveList.do?isSend=1">
                     <i class="fa-solid fa-envelope"></i>
                     <span>메일</span></a>
             </li>
