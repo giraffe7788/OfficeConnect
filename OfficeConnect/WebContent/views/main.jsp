@@ -1,6 +1,4 @@
-<<<<<<< HEAD
 <%-- <%@page import="vo.CarBookVO"%>--%>
-=======
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="vo.CarBookVO"%>
 <%@page import="vo.CarVO"%>
@@ -382,9 +380,5 @@
 		
 	<!-- 공통속성 설정 include -->
     <%@ include file="./common.jsp" %>
-<<<<<<< HEAD
-    
-=======
->>>>>>> branch 'kk112' of https://github.com/giraffe7788/OfficeConnect.git
 </body>
 </html>
