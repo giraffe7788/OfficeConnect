@@ -87,7 +87,7 @@
 									<div style="margin-bottom: 10px;">
 										이름 : <input type="text" class="form-control"
 											style="width: 150px; display: inline-block;">
-										<button type="submit" class="btn btn-Light" style="margin-bottom: 5px;">&nbsp;확인&nbsp;</button></div>
+										<button type="submit" class="btn btn-outline-secondary" style="margin-bottom: 5px;">&nbsp;확인&nbsp;</button></div>
 										<div class="table-responsive">
 											<div class="table-wrapper">
 

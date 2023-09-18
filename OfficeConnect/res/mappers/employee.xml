@@ -9,6 +9,13 @@
 		and emp_pw = #{empPw}
 	</select>
 
+	<select id="adminCheck" resultMap="empMap" parameterType="empvo">
+		select * from employee
+		where emp_no = #{empNo}
+		and emp_pw = #{empPw}
+		and admin_code = 1
+	</select>
+
 	<insert id="joinEmployee" parameterType="empvo">
 		insert into
 		employee(emp_no, emp_pw, emp_addr, emp_tel, emp_email, emp_name,
@@ -19,8 +26,8 @@
 		#{empName}, #{empPosit},
 		#{adminCode}, #{deptCode})
 	</insert>
-
-	<update id="updateEmployee" parameterType="empvo">
+	
+	<update id="updateEmployeeAdmin" parameterType="empvo">
 		update employee
 		set
 		emp_pw = #{empPw},
@@ -34,14 +41,20 @@
 		dept_code = #{deptCode}
 		where emp_no = #{empNo}
 	</update>
-
-	<update id="changeEmployee" parameterType="empvo">
+	
+	<update id="updateEmployee" parameterType="empvo">
 		update employee
 		set
 		emp_name = #{empName},
 		emp_email = #{empEmail},
 		emp_tel = #{empTel},
 		emp_addr = #{empAddr}
+		where emp_no = #{empNo}
+	</update>
+	
+	<update id="updateState" parameterType="empvo">
+		update employee
+		set state_code = #{stateCode}
 		where emp_no = #{empNo}
 	</update>
 

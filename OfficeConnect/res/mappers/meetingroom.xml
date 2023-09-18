@@ -5,6 +5,10 @@
     <select id="selectAll" resultMap="mtrMap">
        select * from mtrbook
     </select>
+    
+    <select id="getMeetingBookVO" resultMap="mtrMap">
+       select * from mtrbook where emp_no = #{empNo}
+    </select>
    
    <insert id="insertBook" parameterType = "mtvo">
       insert into mtrbook

@@ -37,4 +37,11 @@ public interface IMeetingService {
 	 */
 	public int deleteBook(String empNo);
 	
+	
+	/**
+	 * 사번으로 해당 사원이 예약한 예약정보 MeetingBookVO 반환
+	 * @param empNo
+	 * @return MeetingBookVO
+	 */
+	public MeetingBookVO getMeetingBookVO(String empNo);
 }

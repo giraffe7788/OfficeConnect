@@ -39,8 +39,6 @@ public class MyPage extends HttpServlet {
 			
 			ImageVO imageVO = imageService.getImage(empNo);
 			req.setAttribute("imageVO", imageVO);
-			
-			System.out.println("imageVO" + imageVO);
 		}
 		req.getRequestDispatcher("/views/mypage.jsp").forward(req, resp);
 	}

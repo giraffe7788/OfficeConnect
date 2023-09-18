@@ -48,6 +48,12 @@ public class EmpVO {
 		this.empAddr = empAddr;
 	}
 	
+	public EmpVO(String empNo, int stateCode) {
+		super();
+		this.empNo = empNo;
+		this.stateCode = stateCode;
+	}
+	
 	public String getEmpNo() {
 		return empNo;
 	}

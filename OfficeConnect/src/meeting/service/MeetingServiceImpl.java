@@ -72,4 +72,14 @@ public class MeetingServiceImpl implements IMeetingService {
 		
 		return cnt;
 	}
+
+	/**
+	 * 사번으로 해당 사원이 예약한 예약정보 MeetingBookVO 반환
+	 * @param empNo
+	 * @return MeetingBookVO
+	 */
+	@Override
+	public MeetingBookVO getMeetingBookVO(String empNo) {
+		return dao.getMeetingBookVO(empNo);
+	}
 }

@@ -102,8 +102,10 @@
 								<div class="image-wrapper"
 									style="width: 30%; text-align: center; margin-left: 60px">		
 									<img src="<%=imageVO.getImgPath() + imageVO.getImgName()%>" alt="<%=imageVO.getImgPath() + imageVO.getImgName()%>"
-										id="imageView" style="max-width: 51%; height: auto; margin-top: 20%"> <a href="모달로 프로필사진 편집"
-										class="btn btn-primary btn-icon-split" style="margin-top: 45px;">
+										id="imageView" style="max-width: 51%; height: auto; margin-top: 20%"><form enctype="multipart/form-data"><input type="file"
+										href="#" class="btn btn-primary btn-icon-split" id="fileInput"
+										style="width:75%; margin-top: 10%;"></form>
+										 <!-- <a href="모달로 프로필사진 편집" class="btn btn-primary btn-icon-split" style="margin-top: 45px;"> -->
 										<span class="text" style="color: #fff">프로필 사진 편집</span>
 									</a>
 
@@ -128,20 +130,20 @@
         <form>
                 <div class="form-group">
             <label for="recipient-name" class="col-form-label">이름:</label>
-            <input type="text" class="form-control" id="empName">
+            <input type="text" class="form-control" id="empName" placeholder="<%=empVO.getEmpName()%>">
           </div>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">이메일:</label>
-            <input type="text" class="form-control" id="empEmail">
+            <input type="text" class="form-control" id="empEmail" placeholder="<%=empVO.getEmpEmail()%>">
           </div>
           <div class="form-group">
                       <label for="recipient-name" class="col-form-label">전화번호:</label>
-            <input type="text" class="form-control" id="empTel">
+            <input type="text" class="form-control" id="empTel" placeholder="<%=empVO.getEmpTel()%>">
           </div>
           <div class="form-group">
                       <label for="recipient-name" class="col-form-label">주소:</label>
                       <button type="button" class="btn btn-primary btn-sm" id="addressSearchButton">주소찾기</button>
-            <input type="text" class="form-control" id="empAddr">
+            <input type="text" class="form-control" id="empAddr" placeholder="<%=empVO.getEmpAddr()%>">
           </div>
         </form>
       </div>
@@ -152,12 +154,12 @@
     </div>
   </div>
 </div>
-		    <!-- 모달 시작 -->
+		    <!-- 모달 끝 -->
 									
 						</div>
 						<!-- 드롭다운 -->
 									<nav class="navbar navbar-expand navbar-light bg-light mb-4" style="width : 14%; height:4vh; position:absolute; margin-left:68%; margin-top:45%">
-                                        <a class="navbar-brand" href="#">업무중</a>
+                                        <a class="navbar-brand" href="#" style="font-size : 1em" id="empPosit"><%=transform.transformStateCode(empVO.getStateCode()) %></a>
                                         <ul class="navbar-nav ml-auto">
                                             <li class="nav-item dropdown">
                                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
@@ -166,12 +168,12 @@
                                                     	
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right animated--grow-in"
-                                                    aria-labelledby="navbarDropdown" style = "text-align : center">
-                                                    <a class="dropdown-item" href="#">근무중</a>
-                                                    <a class="dropdown-item" href="#">외근중</a>
-                                                    <a class="dropdown-item" href="#">결근중</a>
-                                                    <a class="dropdown-item" href="#">외출중</a>
-                                                    <a class="dropdown-item" href="#">휴가중</a>
+                                                    aria-labelledby="navbarDropdown" id="dropdown-position" style = "text-align : center">
+                                                    <a class="dropdown-item" href="#" >근무중</a>
+                                                    <a class="dropdown-item" href="#" >외근중</a>
+                                                    <a class="dropdown-item" href="#" >결근중</a>
+                                                    <a class="dropdown-item" href="#" >외출중</a>
+                                                    <a class="dropdown-item" href="#" >휴가중</a>
                                                 </div>
                                             </li>
                                         </ul>
@@ -194,15 +196,17 @@
     <script src="../vendor/jquery/jquery.min.js"></script>
     <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script>
+	let currentState;
 	$('#infoChangeModal').on('show.bs.modal', function (event) {
 		  // 아래 템플릿 코드인데 수정해서 db연동하고 회원정보 수정되도록 ㄱㄱ
 		  var button = $(event.relatedTarget) 
-		  var recipient = button.data('whatever') 
+		  var recipient = button.data('whatever')
 
 		  var modal = $(this)
 		  modal.find('.modal-title').text('정보수정')
 		  modal.find('.modal-body input').val(recipient)
 		})
+
 	$('.dropdown-menu a').click(function () {
     	var selectedText = $(this).text(); // 선택된 항목의 텍스트 가져오기
     	
@@ -211,16 +215,56 @@
     	    // 사용자가 "확인"을 선택한 경우
     	    // 업무상태 수정 해야함
     		$('.navbar-brand').text(selectedText); // navbar-brand의 텍스트 변경
+    		
+    		if(selectedText == '근무중'){
+    			currentState = 0;
+    		} else if(selectedText == '외근중'){
+    			currentState = 1;
+    		} else if(selectedText == '결근중'){
+    			currentState = 2;
+    		} else if(selectedText == '외출중'){
+    			currentState = 3;
+    		} else if(selectedText == '휴가중'){
+    			currentState = 4;
+    		}
+    		
+    		$.ajax({
+    			url: 'mypageChangeState.do',
+    			type: 'POST',
+    			data: {'empNo' : <%=currentEmpNo%>,
+    				   'currentState' : currentState},
+    			success: function(res){
+    				if(res.isSuccess == 'fail'){
+    					alert("상태 변경에 실패했습니다.");
+    				} else {
+    					alert("상태 변경 되었습니다.");
+    					location.reload();
+    				}
+    			},
+    			error: function(xhr) {
+    	            alert("상태 : " + xhr.status);
+    	        },
+    	        dataType: 'json'
+    		});
     	} else {
     	    // 사용자가 "취소"를 선택한 경우 또는 경고창을 닫은 경우
     	}
 	});
 	
-	$('.btn-change').on('click', function(){
+	$('.btn-change').on('click', function(){	
+		let empName = $('#empName').val();
+		let empEmail = $('#empEmail').val();
+		let empTel = $('#empTel').val();
+		let empAddr = $('#empAddr').val();
+		
 		$.ajax({
-			url: 'mypagechange.do',
+			url: 'mypageUpdate.do',
 			type: 'POST',
-			data: {'empNo': <%=currentEmpNo%>},
+			data: {'empName': empName,
+					'empEmail': empEmail,
+					'empTel': empTel,
+					'empAddr': empAddr
+			},
 			success: function(res){
 				if(res.isSuccess === 'ok'){
 					alert('정보가 수정되었습니다.');
@@ -231,11 +275,70 @@
 					console.log(res.isSuccess);
 				}
 			},
-			error: function(xhr, status, msg){
-                console.log("오류");
-            }
+			error: function(xhr) {
+				alert("상태 : " + xhr.status);
+            },
+            dataType: 'json'
+		})
+	})
+	
+	$(document).ready(function() {
+		// 파일이 선택되었을 때 호출되는 함수
+		$('#fileInput').change(function() {
+			let selectedFile = $(this)[0].files[0];
+			if(selectedFile) {
+				// 이미지 파일인지 확인
+				if(selectedFile.type.startsWith('image/')) {
+					// 선택한 이미지 파일을 미리보기 이미지에 표시
+					let selectedImage = $('#imageView');
+					let objectURL = URL.createObjectURL(selectedFile);
+					selectedImage.attr('src', objectURL);
+					
+					// ajax로 정보 /img/update.do로 넘겨준다음
+					// 정보 받아오고 alert띄운다음 다시 detail.do로 복귀
+					let empNo = <%=currentEmpNo%>;
+					let formData = new FormData();
+					formData.append('empNo', empNo);
+					
+					// 이미지 파일 추가
+					let imageInput = $('#fileInput')[0];
+					let imageFile = imageInput.files[0];
+					if(imageFile) {
+						formData.append('image', imageFile);
+					}
+					
+					$.ajax({
+						url: '../img/update.do',
+						type: 'POST',
+						data: formData,
+						contentType: false,
+						processData: false,
+						success: function(res) {
+							if(res.isSuccess == 'fail'){
+								alert("프로필 사진 수정 중 오류가 발생했습니다.");
+							} else if (res.isSuccess == 'ok') {
+								alert("프로필 사진 수정이 성공적으로 되었습니다.");
+							}
+						},
+						error: function(xhr) {
+							alert("상태: " + xhr.status);
+						},
+						dataType: 'json'
+					});
+				} else {
+					alert("이미지 파일이 아닙니다.");
+				}
+			}
 		});
 	});
+	
+		
+	$('#dropdown-position a').click(function(){
+		let selectedText = $(this).text();
+		console.log(selectedText);
+		$('#empPosit').text(selectedText);
+	});
+	
 	</script>
 	
 	<!-- 주소 API -->
