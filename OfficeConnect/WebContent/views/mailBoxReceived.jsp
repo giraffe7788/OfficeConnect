@@ -75,25 +75,6 @@
 										<button type="submit" class="btn btn-outline-primary"
 											onClick="window.location.href='../mail/insert.do'"
 											style="display: inline-block;">메일쓰기</button>
-
-										<button type="submit" class="btn btn-outline-info" onClick="window.location.href='mailWriteMine.jsp'"
-											style="display: inline-block;">내게쓰기</button>
-									</div>
-
-									<hr>
-
-									<div style="text-align: center;">
-
-										<button type="submit" class="btn btn-outline-warning"
-											onClick="#" style="display: inline-block;">
-											안읽음 <span class="badge badge-danger badge-counter">1</span>
-										</button>
-
-										<button type="submit" class="btn btn-outline-danger"
-											onClick="#" style="display: inline-block;">
-											중요메일<span class="badge badge-danger badge-counter">3</span>
-										</button>
-
 									</div>
 
 									<hr>
@@ -107,39 +88,10 @@
 											<li style="margin-bottom: 3px;"><a href="../mail/sendList.do?isSend=2"
 												style="text-decoration: none; color: inherit; background-color: transparent;">보낸
 													메일함</a></li>
-
-											<li style="margin-bottom: 3px;"><a href="../views/mailBoxMine.jsp"
-												style="text-decoration: none; color: inherit; background-color: transparent;">내게
-													쓴 메일함</a></li>
-
-<!-- 											<li style="margin-bottom: 3px;"><a href="#" -->
-<!-- 												style="text-decoration: none; color: inherit; background-color: transparent;">임시 -->
-<!-- 													보관함</a></li> -->
-
-											<li style="margin-bottom: 3px;"><a href="#"
-												style="text-decoration: none; color: inherit; background-color: transparent;">휴지통</a></li>
 										</ul>
 									</nav>
 
 									<hr>
-
-									<div class="dropdown">
-										<button class="btn btn-outline-Light dropdown-toggle"
-											type="button" id="groupDropdown" data-bs-toggle="dropdown"
-											aria-expanded="false" style="width: 100%">즐겨찾는 그룹</button>
-
-										<ul class="dropdown-menu" aria-labelledby="groupDropdown"
-											style="width: 100%">
-											<li style="width: 100%"><a class="dropdown-item"
-												href="#">영업 1팀</a></li>
-
-											<li style="width: 100%"><a class="dropdown-item"
-												href="#">마케팅팀</a></li>
-											<!-- 다른 그룹 항목 추가 -->
-										</ul>
-									</div>
-
-
 								</div>
 
 								<!-- 메일 사이드바 종료  -->

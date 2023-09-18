@@ -9,7 +9,6 @@ public class NoticeVO implements Comparable<NoticeVO> {
 	private int ntcNo;
 	private String empNo;
 	private Date ntcDate;
-
 	private String ntcCont;
 	private String ntcTitle;
 	private int ntcViews;

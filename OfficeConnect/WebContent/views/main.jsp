@@ -1,3 +1,8 @@
+<%@page import="vo.BoardVO"%>
+<%@page import="vo.MailVO"%>
+<%@page import="vo.NoticeVO"%>
+<%@page import="util.TransEmpInfo"%>
+<%@page import="vo.ApprovalVO"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="vo.CarBookVO"%>
 <%@page import="vo.CarVO"%>
@@ -6,10 +11,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
+	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	TransEmpInfo transfer = TransEmpInfo.getInstance();
+	SessionEmpInfo info = SessionEmpInfo.getInstance();
+
 	CarBookVO carBookVO = (CarBookVO)request.getAttribute("carBookVO");
 	String currentEmpNo = (String)request.getAttribute("empNo");
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	MeetingBookVO mtrVO = (MeetingBookVO) request.getAttribute("mtrVO");
+	List<ApprovalVO> apprList =  (List<ApprovalVO>)request.getAttribute("apprList");
+	List<NoticeVO> noticeList = (List<NoticeVO>)request.getAttribute("noticeList");
+	List<BoardVO> boardList = (List<BoardVO>)request.getAttribute("boardList");
+	List<MailVO> mailList = (List<MailVO>)request.getAttribute("mailList");
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -81,13 +93,63 @@
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary" style="font-size:1.3em">결재</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary" style="font-size:1.3em">발신결재</h6>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
-                                    <div class="chart-area">
-                                        <canvas id="myAreaChart"></canvas>
-                                    </div>
+                                    <table class="table table-bordered" id="dataTable" width="100%"
+										cellspacing="0">
+										<thead>
+											<tr role="row">
+												<th class="sorting" tabindex="0" aria-controls="dataTable"
+													rowspan="1" colspan="1"
+													aria-label="작성일: activate to sort column ascending"
+													style="width: 10%;">결재종류</th>
+												<th class="sorting" tabindex="0" aria-controls="dataTable"
+													rowspan="1" colspan="1"
+													aria-label="작성일: activate to sort column ascending"
+													style="width: 12.5%;">기안날짜</th>
+												<th class="sorting" tabindex="0" aria-controls="dataTable"
+													rowspan="1" colspan="1"
+													aria-label="작성일: activate to sort column ascending"
+													style="width: 10%;">결재상태</th>
+												<th class="sorting" tabindex="0" aria-controls="dataTable"
+													rowspan="1" colspan="1"
+													aria-label="작성일: activate to sort column ascending"
+													style="width: 10%;">확인</th>
+											</tr>
+										</thead>
+										<tbody>
+											<%
+												for (ApprovalVO apprVO : apprList) {
+											%>
+											<tr>
+												<td>
+													<%
+														switch (apprVO.getApprType()) {
+														case 1 :
+													%>기안서<%
+														break;
+													case 2 :
+													%>연차휴가신청서<%
+														break;
+													case 3 :
+													%>사직서<%
+														break;
+													}
+													%>
+												</td>
+												<td><%=simpleDateFormat.format(apprVO.getApprDate())%></td>
+												<td><%=transfer.transferApprsCode(apprVO.getApprsCode())%></td>
+												<td style="text-align: center;"><button type="button"
+														onclick="openDetail(<%=apprVO.getApprNo()%>)"
+														class="btn btn-primary btn-sm">확인</button></td>
+											</tr>
+											<%
+												}
+											%>
+										</tbody>
+									</table>
                                 </div>
                             </div>
                         </div>
@@ -183,7 +245,7 @@
                                     <tbody>
                                         <tr>
                                             <td><%=carBookVO.getCarNo() %></td>
-                                            <td><%=sdf.format(carBookVO.getCarBookRent()) %> ~ <%=sdf.format(carBookVO.getCarBookReturn()) %></td>
+                                            <td><%=simpleDateFormat.format(carBookVO.getCarBookRent()) %> ~ <%=simpleDateFormat.format(carBookVO.getCarBookReturn()) %></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -213,12 +275,7 @@
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
 															aria-label="작성일: activate to sort column ascending"
-															style="width: 15%;">제목</th>
-<!-- 													내용 길어지면 ...으로 뒤에 내용 짤리게 어케함? -->
-														<th class="sorting" tabindex="0" aria-controls="dataTable"
-															rowspan="1" colspan="1"
-															aria-label="작성일: activate to sort column ascending"
-															style="width: 55%;">내용</th>
+															style="width: 70%;">제목</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
 															aria-label="작성일: activate to sort column ascending"
@@ -230,36 +287,13 @@
 													</tr>
                                     </thead>
                                     <tbody>
+                                    <%for (MailVO mailVO : mailList) { %>
                                         <tr>
-                                            <td>안녕하세요 저는 김영남입니다</td>
-                                            <td>안건이있는데 그 안건을 처리해주실 수 있는지에 대하여 여쭤봐도 되는지 검토해주실 수 있는지에 대하여 의견을 구하고자하는것에 대해 어떻게 생각하시는지 질문을 해봐도 되겠습니까</td>
-                                            <td>김영남</td>
-                                            <td>2023-09-11</td>
+                                            <td><%=mailVO.getMailTitle() %></td>
+                                            <td><%=mailVO.getMailSenderPosit() %>&nbsp;<%=mailVO.getMailSenderName() %></td>
+                                        	<td><%=simpleDateFormat.format(mailVO.getMailSenddate()) %></td>
                                         </tr>
-                                        <tr>
-                                            <td>안녕하세요</td>
-                                            <td>안건이있는데 그 안건을 처리해주실 수 있는지에 대하여</td>
-                                            <td>김영남</td>
-                                            <td>2023-09-11</td>
-                                        </tr>
-                                        <tr>
-                                            <td>안녕하세요</td>
-                                            <td>안건이있는데 그 안건을 처리해주실 수 있는지에 대하여</td>
-                                            <td>김영남</td>
-                                            <td>2023-09-11</td>
-                                        </tr>
-                                        <tr>
-                                            <td>안녕하세요</td>
-                                            <td>안건이있는데 그 안건을 처리해주실 수 있는지에 대하여</td>
-                                            <td>김영남</td>
-                                            <td>2023-09-11</td>
-                                        </tr>
-                                        <tr>
-                                            <td>안녕하세요</td>
-                                            <td>안건이있는데 그 안건을 처리해주실 수 있는지에 대하여</td>
-                                            <td>김영남</td>
-                                            <td>2023-09-11</td>
-                                        </tr>
+                                    <%} %>
                                     </tbody>
                                 </table>
                                 </div>
@@ -290,26 +324,12 @@
 													</tr>
                                     </thead>
                                     <tbody>
+                                    <%for (NoticeVO noticeVO : noticeList) { %>
                                         <tr>
-                                            <td>안건이있는데 그 안건을 처리해주실 수 있는지에 대하여 여쭤봐도 되는지 검토해주실 수 있는지에 대하여 의견을 구하고자하는것에 대해 어떻게 생각하시는지 질문을 해봐도 되겠습니까</td>
-                                            <td>김영남</td>
+                                            <td><%=noticeVO.getNtcCont() %></td>
+                                            <td><%=info.getEmpVO(noticeVO.getEmpNo()).getEmpName() %></td>
                                         </tr>
-                                        <tr>
-                                            <td>안건이있는데 그 안건을 처리해주실 수 있는지에 대하여</td>
-                                            <td>김영남</td>
-                                        </tr>
-                                        <tr>
-                                            <td>안건이있는데 그 안건을 처리해주실 수 있는지에 대하여</td>
-                                            <td>김영남</td>
-                                        </tr>
-                                        <tr>
-                                            <td>안건이있는데 그 안건을 처리해주실 수 있는지에 대하여</td>
-                                            <td>김영남</td>
-                                        </tr>
-                                        <tr>
-                                            <td>안건이있는데 그 안건을 처리해주실 수 있는지에 대하여</td>
-                                            <td>김영남</td>
-                                        </tr>
+                                    <%} %>
                                     </tbody>
                                 </table>
                                 </div>
@@ -340,26 +360,12 @@
 													</tr>
                                     </thead>
                                     <tbody>
+                                        <%for (BoardVO boardVO : boardList) { %>
                                         <tr>
-                                            <td>우리집 고양이 사진 볼사람</td>
-                                            <td>김영남</td>
+                                            <td><%=boardVO.getBrdCont() %></td>
+                                            <td><%=info.getEmpVO(boardVO.getEmpNo()).getEmpName() %></td>
                                         </tr>
-                                        <tr>
-                                            <td>아니 오늘 아침에 차 왤케막힘?</td>
-                                            <td>김태영</td>
-                                        </tr>
-                                        <tr>
-                                            <td>아 집가고싶다</td>
-                                            <td>윤하</td>
-                                        </tr>
-                                        <tr>
-                                            <td>아시는분들은 아시겠지만</td>
-                                            <td>송찬중</td>
-                                        </tr>
-                                        <tr>
-                                            <td>누나 근데 나는 이런느낌의 노래가 좋다, 그잖아 이렇게 신나는 노래에서 에너지를얻는다 해야되나?</td>
-                                            <td>조영재</td>
-                                        </tr>
+                                    <%} %>
                                     </tbody>
                                 </table>
                                 </div>
@@ -379,5 +385,10 @@
 		
 	<!-- 공통속성 설정 include -->
     <%@ include file="./common.jsp" %>
+    <script>
+    function openDetail(apprNo){
+		window.open("../approval/detail.do?apprNo="+apprNo, "결재상세보기", "width=650,height=1100");
+	}
+    </script>
 </body>
 </html>
