@@ -75,6 +75,18 @@
     	on b.emp_no=e.emp_no
     	order by b.brd_date desc
     </select>
+
+    <select id="selectOneBoard" resultType="boardvo">
+    	select b.brd_no, b.brd_date, b.brd_mod, b.brd_title, b.brd_views, e.emp_no, e.emp_name, e.emp_posit, e.admin_code,e.dept_code
+    	from board b join employee e
+    	on b.emp_no=e.emp_no
+    	where b.emp_No=#{empNo}
+    </select>
+    
+    <select id="selectEmp" resultType="empvo">
+    	select * from employee where emp_no=#{empNo}
+	
+    </select>
    
     
     

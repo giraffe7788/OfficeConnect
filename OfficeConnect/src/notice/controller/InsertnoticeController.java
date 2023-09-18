@@ -22,7 +22,7 @@ public class InsertnoticeController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/views/noticeWrite.jsp").forward(req, resp);
+		req.getRequestDispatcher("/views/noticeInsert.jsp").forward(req, resp);
 	}
 
 	@Override

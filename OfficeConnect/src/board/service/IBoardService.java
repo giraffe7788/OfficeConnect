@@ -4,6 +4,7 @@ import java.util.List;
 
 
 import vo.BoardVO;
+import vo.EmpVO;
 
 
 /**
@@ -49,6 +50,10 @@ public interface IBoardService {
 	
 	
 	public BoardVO detailBoard(int num);
+
+	public List<BoardVO> selectOne(String empNo);
+
+	public EmpVO selectEmp(String empNo);
 	
 	/**
 	 * 게시판정보를 검색하기 위한 메서드

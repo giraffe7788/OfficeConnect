@@ -48,20 +48,35 @@ border:none; input:focus {outline: none;}
 #commCont{
 	resize: none;
     border: none;
-     overflow-y: hidden; /* prevents scroll bar flash */
-      padding: 1.1em; /* prevents text jump on Enter keypress */
+     overflow: hidden; /* prevents scroll bar flash */
+      padding: 0.6em; /* prevents text jump on Enter keypress */
       padding-bottom: 0.2em;
       line-height: 1.6;  
       height: auto;
       width: 100%;
-      min-height: 30px; 
-     
+      input:focus {outline: none;}
+} 
+#commCont:focus{
+outline:0
 }
-#commCont:focus{ 
-    outline:none; 
- } 
 
+#comment{
+  display: grid;
+}
 
+.card-body::after {
+  /* Note the weird space! Needed to preventy jumpy behavior */
+  content: attr(data-replicated-value) " ";
+  white-space: pre-wrap;
+  visibility: hidden;
+}
+.card-body > textarea,
+.card-body::after {
+  /* Identical styling required!! */
+  border: none;
+  padding: 0.5rem;
+  grid-area: 1 / 1 / 2 / 2;
+}
     
 </style>
 </head>
@@ -95,7 +110,7 @@ border:none; input:focus {outline: none;}
 						id="mainbutton">
 						<!-- 게시판 수정 삭제 버튼 숨기기 -->
 						<h1 class="h3 mb-0 text-gray-800">
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=boardVO.getBrdTitle()%></h1>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=boardVO.getBrdTitle()%></h1>
 						<a
 							onclick="return confirm('삭제하시겠습니까?')"
 							href='<%=request.getContextPath()%>/board/delete.do?brdNo=<%=boardVO.getBrdNo()%>'
@@ -140,8 +155,8 @@ border:none; input:focus {outline: none;}
 										<%=transfer.transformDeptCode(sessionVO.getDeptCode())%>&nbsp;&nbsp;<%=sessionVO.getEmpPosit()%>&nbsp;&nbsp;<%=sessionVO.getEmpName()%>
 										 
 									</div>
-									<div class="card-body">
-										<textarea placeholder="댓글을 입력해주세요" id="commCont" name="commCont"  autofocus  maxlength='3000' ></textarea>
+									<div class="card-body" id = "comment">
+										<textarea class="autoTextarea" rows="1" onInput="this.parentNode.dataset.replicatedValue = this.value" placeholder="댓글을 입력해주세요" id="commCont" name="commCont"  autofocus  maxlength='3000' ></textarea>
 									</div>
 								</div>
 								
@@ -194,8 +209,14 @@ border:none; input:focus {outline: none;}
 
 	
 		function fn_comment() {
-		
 			var sendData = { "empNo":<%=empNo%>, "brdNo":<%=boardVO.getBrdNo()%>, "commCont" : $("#commCont").val()}
+			var text = $("#commCont").val();
+			if(text.replace(/\s| /gi, "").length == 0){
+				alert("댓글을 입력하세요.");
+				$("#commCont").focus();
+				return;
+			}else{
+			
 			$.ajax({
 				
 			 	url : "../comment/insert.do",
@@ -204,16 +225,17 @@ border:none; input:focus {outline: none;}
 				success : function(cnt){
 					
 		            if(cnt==1){
+ 		            	$('textarea').val('');
  		            	getcommentList();
-		                $("#commCont").val("");		  
-		                $("#commCOnt").css('rows','1')
+		              
+		              
 		             }
 				},
 				error : function(xhr) {
 					alert("상태 : " + xhr.status);
 				} 
 			});
-		}
+		}}
 
  		$(function() {
 			getcommentList()
@@ -251,7 +273,7 @@ border:none; input:focus {outline: none;}
 			                       html += "<i class='fas fa-trash'></i></a></span>";
 			                       }
 			                       html += "</div>";
-			                       html += "<div class='card-body' id='cont"+obj.commNo+"'  style='white-space:pre;'>" + obj.commCont;		           
+			                       html += "<div class='card-body' id='cont"+obj.commNo+"' style='white-space:pre;' >" + obj.commCont;		           
 			                       html += "</div>";
 			                       html += "</div>";
 			                       html += "</div>";
@@ -300,11 +322,12 @@ border:none; input:focus {outline: none;}
 		
 			 
 			  var Form  = "<div class='card-header' >"+emp +"<span style='float: right'><input type='button'  value='취소' onclick='getcommentList()' >&nbsp;&nbsp;&nbsp;&nbsp;<input type='button' style='float: right' value='등록' onclick='updateFn("+ commNo+ ")' ></span></div>";
-			  	  Form += "<textarea id='cont' class='autosize' onkeydown='resize(this)' onkeyup='resize(this)' autofocus  maxlength='3000' >"+cont+"</textarea>";
+			  	  Form += "<textarea id='cont' class='autosize' onKeyDown='{Resize}' onKeyUp='{Resize}' autofocus  maxlength='3000' >"+cont+"</textarea>";
 			  $("#Form"+commNo).html(Form);
 			  
 		  }
 		  function updateFn(num){
+			  
 			  
 			  var cont = $('#cont').val();
 			  alert(cont);
@@ -322,11 +345,8 @@ border:none; input:focus {outline: none;}
 				  error : function(){ alert("error");  }
 			  });
 		  }
-			
-		  function resize(obj) {
-			  obj.style.height = 1;
-			  obj.style.height = (12+obj.scrollHeight)+"px";
-			}
+		  
+
 	</script>
 
 </body>

@@ -30,18 +30,18 @@ public class UpdatenoticeController extends HttpServlet {
 
 		req.setAttribute("nv", nv);
 
-		req.getRequestDispatcher("/views/noticeupdateForm.jsp").forward(req, resp);
+		req.getRequestDispatcher("/views/noticeUpdate.jsp").forward(req, resp);
 
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+		
 		req.setCharacterEncoding("UTF-8");
 		String ntcTitle = req.getParameter("title");
 		String ntcCont = req.getParameter("comment");
 		int ntcNo = Integer.parseInt(req.getParameter("num"));
-
+		ntcCont = ntcCont.replace("\r\n","<br>");
 		try {
 
 		} catch (Exception e) {
@@ -54,6 +54,7 @@ public class UpdatenoticeController extends HttpServlet {
 		nv.setNtcTitle(ntcTitle);
 		nv.setNtcCont(ntcCont);
 		nv.setNtcNo(ntcNo);
+		
 
 		System.out.println(ntcCont);
 		System.out.println("공지사항 수정 도착");

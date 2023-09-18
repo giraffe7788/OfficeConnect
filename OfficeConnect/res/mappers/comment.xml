@@ -15,7 +15,7 @@
     	join dept d 
         on e.dept_code = d.dept_code
     	where brd_no=#{brdNo} 
-    	order by comm_date	
+    	order by c.comm_no	
     </select>
    
     

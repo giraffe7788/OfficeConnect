@@ -12,6 +12,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import util.MyBatisUtil;
 import vo.BoardVO;
+import vo.EmpVO;
 
 
 public class BoardDaoImpl implements IBoardDao{
@@ -212,6 +213,47 @@ public class BoardDaoImpl implements IBoardDao{
 		System.out.println("views : " + cnt);
 		return cnt;
 	}
+	@Override
+	public List<BoardVO> selectOne(String empNo) {
+		List<BoardVO> boardList = new ArrayList<>();
+		
+		SqlSession session = MyBatisUtil.getInstance();
+		
+		try {
+			
+			boardList = session.selectList("board.selectOneBoard",empNo);
+
+			
+		} catch (PersistenceException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			
+		}finally {
+		session.close();	
+		}
+		System.out.println("다오" + boardList);
+		return boardList;
+	}
+	@Override
+	public EmpVO selectEmp(String empNo) {
+		SqlSession session = MyBatisUtil.getInstance(false);
+		
+		EmpVO ev = null;
+				
+		try {
+		
+			ev = session.selectOne("board.selectEmp",empNo);
+			
+			
+		} catch (PersistenceException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		return ev;
+	}
+	
 
 
 

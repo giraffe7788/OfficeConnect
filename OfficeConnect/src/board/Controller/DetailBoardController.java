@@ -23,11 +23,11 @@ public class DetailBoardController extends HttpServlet{
 	
 		int brdNo = Integer.parseInt(req.getParameter("brdNo"));
 		System.out.println(brdNo);
-		IBoardService memService = BoardServiceImpl.GetInstance();
+		IBoardService boardService = BoardServiceImpl.GetInstance();
 		
-		int cnt = memService.updateViews(brdNo);
+		int cnt = boardService.updateViews(brdNo);
 		
-		BoardVO boardVO = memService.detailBoard(brdNo);
+		BoardVO boardVO = boardService.detailBoard(brdNo);
 		req.setAttribute("boardVO", boardVO);
 		
 		

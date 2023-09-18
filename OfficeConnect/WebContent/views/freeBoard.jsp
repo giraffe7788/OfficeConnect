@@ -34,6 +34,7 @@
 #dataTable_wrapper {
 	overflow-x: hidden;
 }
+
 </style>
 </head>
 
@@ -103,8 +104,13 @@
 										<tr>
 											<td><%=vo.getBrdNo()%></td>
 											<td><a
-												href="<%=request.getContextPath()%>/board/detail.do?brdNo=<%=vo.getBrdNo()%>"><%=vo.getBrdTitle()%></a></td>
-											<td><%=transfer.transformDeptCode(vo.getDeptCode())%>&nbsp;&nbsp;<%=vo.getEmpPosit()%>&nbsp;&nbsp;<%=vo.getEmpName()%></td>
+												href="<%=request.getContextPath()%>/board/detail.do?brdNo=<%=vo.getBrdNo()%>"><%=vo.getBrdTitle()%></a></td>	
+											<td>
+											<a href="<%=request.getContextPath()%>/board/selectOne.do?empNo=<%=vo.getEmpNo()%>" ><%=transfer.transformDeptCode(vo.getDeptCode())%>&nbsp;&nbsp;<%=vo.getEmpPosit()%>&nbsp;&nbsp;<%=vo.getEmpName()%></a>
+											 
+											</td>
+											
+											
 											<td><%=vo.getBrdDateDisplay()%></td>
 											<td><%=vo.getBrdViews()%></td>
 									
@@ -145,6 +151,9 @@
 	<script src="../vendor/datatables/jquery.dataTables.js"></script>
 	<script src="../vendor/datatables/dataTables.bootstrap4.js"></script>
 	<script src="../js/demo/datatables-demo.js"></script>
+	<script>
+
+	</script> 
 
 </body>
 

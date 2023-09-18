@@ -6,6 +6,7 @@ import board.dao.BoardDaoImpl;
 import board.dao.IBoardDao;
 
 import vo.BoardVO;
+import vo.EmpVO;
 
 
 public class BoardServiceImpl implements IBoardService {
@@ -76,6 +77,18 @@ public class BoardServiceImpl implements IBoardService {
 	public int updateViews(int brdNo) {
 		int cnt = BoardDao.updateViews(brdNo);
 		return cnt;
+	}
+
+	@Override
+	public List<BoardVO> selectOne(String empNo) {
+		List<BoardVO> boardList = BoardDao.selectOne(empNo);
+		return boardList;
+	}
+
+	@Override
+	public EmpVO selectEmp(String empNo) {
+		
+		return BoardDao.selectEmp(empNo);
 	}
 
 
