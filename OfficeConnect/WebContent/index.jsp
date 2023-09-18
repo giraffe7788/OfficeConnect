@@ -18,8 +18,8 @@
     <link href="./vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <!-- css 설정 -->
     <link href="./css/sb-admin-2.min.css" rel="stylesheet">
-	<script src="./script/index.js" defer></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="./script/index.js?ver=1"></script>
 </head>
 
 <body class="bg-gradient-primary">
@@ -54,14 +54,14 @@
                                         <div id="checkbox" style="text-align: center;">
                                         <div class="form-group" style="display: inline-block;">
                                             <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                <label class="custom-control-label" for="customCheck">아이디 기억하기</label>
+                                                <input type="checkbox" class="custom-control-input" id="keepId">
+                                                <label class="custom-control-label" for="keepId">아이디 기억하기</label>
                                             </div>
                                         </div>
                                         
                                         <div class="form-group" style="display: inline-block;">
                                             <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" id="adminLogin">
+                                                <input type="checkbox" class="adminCheck custom-control-input" id="adminLogin">
                                                 <label class="custom-control-label" for="adminLogin">관리자 로그인</label>
                                             </div>
                                          </div>
@@ -82,6 +82,17 @@
             </div>
         </div>
     </div>
+    
+<script>
+$(document).ready(function(){
+	// 저장된 아이디 확인 후 있다면 입력란에 설정
+	let keepedId = localStorage.getItem('keepId');
+	if(keepedId){
+		$('#idCheck').val(keepedId);
+		$('#keepId').prop('checked', true);
+	}
+})
+</script>
 </body>
 
 </html>

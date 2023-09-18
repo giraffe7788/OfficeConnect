@@ -1,9 +1,7 @@
 package meeting.dao;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.exceptions.PersistenceException;
 import org.apache.ibatis.session.SqlSession;
@@ -64,10 +62,7 @@ public class MeetingDaoImpl implements IMeetingDao{
 			cnt = session.insert("meetingroom.insertBook", meetingVO);
 			if(cnt > 0) {
 				session.commit();
-			} else {
-				session.rollback();
 			}
-			
 		} catch (PersistenceException ex) {
 			session.rollback();
 			ex.printStackTrace();
@@ -92,6 +87,7 @@ public class MeetingDaoImpl implements IMeetingDao{
 		
 		mbVO = session.selectList("meetingroom.selectMeetingRoom");
 		System.out.println("roomMap : " + mbVO);
+		
 		return mbVO;
 	}
 	
@@ -125,5 +121,22 @@ public class MeetingDaoImpl implements IMeetingDao{
 		}
 
 		return cnt;
+	}
+	@Override
+	public MeetingBookVO getMeetingBookVO(String empNo) {
+		
+		MeetingBookVO mtrVO = new MeetingBookVO();
+		SqlSession session = MyBatisUtil.getInstance(true);
+		
+		try {
+			mtrVO = session.selectOne("meetingroom.getMeetingBookVO");
+		} catch (PersistenceException e) {
+			e.printStackTrace();
+			session.rollback();
+		}finally {
+			session.close();
+		}
+
+		return mtrVO;
 	}
 }

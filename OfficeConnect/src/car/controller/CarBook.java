@@ -1,6 +1,9 @@
 package car.controller;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,19 +11,62 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/car/Book.do")
-public class CarBook extends HttpServlet{
-	
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	}
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	
-		// 여기서 카 정보 쫙 뽑아옴 getCarInfo(), 파라미터 없음(selectAll이라서), 리턴타입 List<CarVO>
-		// 그 db에서 뽑아오는 작업은 xml과 dao가 하는것이고
-		// 그 뽑아온걸 sevice로 리턴해주고 그 service에서 다시 여기로 주면
-		// 그 정보들(List)을 포워드 방식으로 자동차예약홈페이지 jsp로 넘겨준다음 늘 하던대로 늘 먹던대로 jsp페이지에서 그 자동차 정보들을 웹에 쫙 뿌려주면 되는것
-	}
+import car.service.CarServiceImpl;
+import car.service.ICarService;
+import vo.CarBookVO;
+
+@WebServlet("/car/book.do")
+public class CarBook extends HttpServlet{
+   
+   @Override
+   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+   }
+
+   @Override
+   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+      
+      String currentCarNo = req.getParameter("currentCarNo");
+      String carBookRent = req.getParameter("carBookRent");
+      String carBookReturn = req.getParameter("carBookReturn");
+      String carBookCont = req.getParameter("carBookCont");
+      
+      String empNo = (String)req.getSession().getAttribute("empNo");
+      
+      SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+      Date carBookRentDate = null;
+      Date carBookReturnDate = null;
+      try {
+         carBookRentDate = sdf.parse(carBookRent);
+         carBookReturnDate = sdf.parse(carBookReturn);
+      } catch (ParseException e) {
+         e.printStackTrace();
+      }
+      
+      ICarService service = CarServiceImpl.getInstance();
+      
+      CarBookVO carBookVO = new CarBookVO(empNo, currentCarNo, carBookRentDate, carBookReturnDate, carBookCont);
+      
+      if (service.registCar(carBookVO) > 0) {
+         
+         System.out.println("예약성공");
+         
+         JsonObject jsonObject = new JsonObject();
+         jsonObject.addProperty("isSuccess", "ok");
+         String jsonStr = new Gson().toJson(jsonObject);
+         resp.setContentType("application/json");
+         resp.getWriter().write(jsonStr);
+         
+      }else {
+         System.out.println("예약실패");
+         
+         JsonObject jsonObject = new JsonObject();
+         jsonObject.addProperty("isSuccess", "fail");
+         String jsonStr = new Gson().toJson(jsonObject);
+         resp.setContentType("application/json");
+         resp.getWriter().write(jsonStr);
+      }
+   }
 }

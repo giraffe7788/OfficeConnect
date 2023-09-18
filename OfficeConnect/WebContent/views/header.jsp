@@ -9,6 +9,8 @@
 
 <!-- Custom styles for this template-->
 <link href="../css/sb-admin-2.min.css" rel="stylesheet">
+
+
 <nav
 	class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
@@ -32,7 +34,7 @@
 	<!-- Nav Item - Messages -->
 
 	<!-- Nav Item - User Information -->
-	<button type="button" onclick="alert('로그아웃')" style="border: none; background-color: transparent; color: #858796;">
+	<button type="button" id="logout" style="border: none; background-color: transparent; color: #858796;">
 		<span>Log Out</span>
 	</button>
 	
@@ -66,5 +68,20 @@
 	<script src="https://kit.fontawesome.com/721f3d622d.js"
 		crossorigin="anonymous"></script>
 </nav>
+<script src="../vendor/jquery/jquery.min.js"></script>
+<script>
+$('#logout').on('click', function(){
+	
+<%
+	if(session.getAttribute("empNo") != null) {
+%>
+		alert("로그아웃 되었습니다");
+		location.href = "../logout.do";
+<%
+	}
+%>
 
+});
+
+</script>
 <%@ include file="./common.jsp"%>

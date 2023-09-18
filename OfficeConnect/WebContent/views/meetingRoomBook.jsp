@@ -71,7 +71,7 @@
 										style="position: relative; display: flex;">
 										<div class="table-wrapper" style="width: 100%;">
 											<div id="emptyData"
-												style="display: none; text-align: center; margin-top: 18%; font-size: 2em">
+												style="display: none; text-align: center; margin-top: 15%; font-size: 2em">
 												현재 예약중인 회의실이 없습니다</div>
 											<table class="table table-bordered" id="dataTable"
 												width="100%" cellspacing="0">
@@ -100,9 +100,11 @@
 									</div>
 								</div>
 							</div>
-
-							<button type="button" class="btn btn-primary btn-close"
-								style="display: block; width: 100px; margin-bottom: 18px; margin-left: 80%;">취소</button>
+								<a href="list.do"><button type="button" class="btn btn-primary btn-close"
+								id="goList" style="display: inline-block; width: 10%; margin-bottom: 5%; margin-left: 66%;">목록으로</button></a>
+								
+								<button type="button" class="btn btn-primary btn-close" id="buttonCancle"
+								style="display: inline-block; width: 10%; margin-bottom: 5%; margin-left: 1%;">취소</button>
 						</div>
 
 					</div>
@@ -195,10 +197,9 @@
 				$('#mtPer').text(cont3);
 				
 				// 예약한 회의실 내용 출력
-		    	$('#mtCont').empty();			
-				let cont4 = "";
-				cont4 += "<%=mvo.getMtrbookCont()%>";		
-				$('#mtCont').text(cont4);
+		    	$('#mtCont').empty();
+		    	let cont4 = "<%=mvo.getMtrbookCont().trim()%>";
+		    	$('#mtCont').text(cont4);
 		    }
 		<%
 		}
@@ -206,10 +207,13 @@
 		if (isEmpty) {
 			$('#dataTable').css('display', 'none');
 			$('#emptyData').css('display', 'block');
-			$('.btn-close').css('display', 'none');
+			$('#buttonCancle').css('display', 'none');
+			$('#goList').css('margin-bottom', '0%');
+			$('#goList').css('margin-left', '45%');
 		}
 
 		});
+	
 
 		// 예약 취소 모달창
 		$('.btn-close').on('click', function() {
@@ -227,7 +231,7 @@
 		$('#closeModal .confirm').on('click', function() {
 			// DB 회의실 예약 정보 삭제
 	        $.ajax({
-	            url: 'deleteBook.do',
+	            url: 'delete.do',
 	            type: 'GET',
 	            data: { 'empNo': <%=currentEmpNo%> },
 	            success: function(res) {

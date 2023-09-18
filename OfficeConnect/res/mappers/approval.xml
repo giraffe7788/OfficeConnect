@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="approval">
+
+	<insert id="insertApprovalLine" parameterType="apprvo">
+		insert into
+		apprline values(apprl_seq.NEXTVAl, #{apprlSeq1}, #{apprlSeq2}, #{apprlSeq3}, 0)
+	</insert>
+
+	<insert id="insertApproval" parameterType="apprvo">
+		insert into appr
+		values(appr_seq.NEXTVAL, #{empNo}, #{apprlNo}, #{apprCont},
+		#{apprType}, sysdate, 0)
+	</insert>
+
+	<select id="getCurrSeq" resultType="int">
+		SELECT apprl_seq.CURRVAl from
+		dual
+	</select>
+
+	<select id="selectSendAppr" resultMap="apprMap">
+		select * from appr where
+		emp_No = #{empNo}
+	</select>
+
+	<select id="selectApprovalLine" resultMap="apprlMap">
+		SELECT *
+		FROM apprline
+		WHERE #{empNo} IN (apprl_seq1, apprl_seq2, apprl_seq3)
+	</select>
+
+	<select id="selectReceiveApprovalVO" resultMap="apprMap">
+		select *
+		from appr
+		where apprl_no = #{apprlNo}
+	</select>
+
+	<select id="selectSeq1" resultType="String">
+		select apprl_seq1 from
+		apprline where apprl_no = #{apprl_no}
+	</select>
+
+	<select id="selectSeq2" resultType="String">
+		select apprl_seq2 from
+		apprline where apprl_no = #{apprl_no}
+	</select>
+
+	<select id="selectSeq3" resultType="String">
+		select apprl_seq3 from
+		apprline where apprl_no = #{apprl_no}
+	</select>
+
+	<select id="getApprVO" resultMap="apprMap">
+		select * from appr where
+		appr_no = #{apprNo}
+	</select>
+	
+	<select id="getApprlVO" resultMap="apprlMap">
+		select * from apprline where
+		apprl_no = #{apprlNo}
+	</select>
+	
+	<select id="getApprovalSeq1" resultType="map">
+		select apprl_seq1 from apprline where apprl_no = #{apprlNo} and apprl_seq1 = #{empNo}
+	</select>
+	
+	<select id="getApprovalSeq2" resultType="map">
+		select apprl_seq2 from apprline where apprl_no = #{apprlNo} and apprl_seq2 = #{empNo}
+	</select>
+	
+	<select id="getApprovalSeq3" resultType="map">
+		select apprl_seq3 from apprline where apprl_no = #{apprlNo} and apprl_seq3 = #{empNo}
+	</select>
+
+	<update id="setApprsCode" parameterType="map">
+		UPDATE appr
+		SET apprs_code = #{apprsCode}
+		WHERE appr_no = #{apprNo}
+	</update>
+	
+	<update id="addApprlProg" parameterType="Integer">
+		UPDATE apprline
+		SET apprl_prog = apprl_prog + 1
+		WHERE apprl_no = #{apprlNo}
+	</update>
+
+	<resultMap type="apprvo" id="apprMap">
+		<result property="appr_no" column="apprNo" />
+		<result property="emp_no" column="empNo" />
+		<result property="apprl_no" column="apprlNo" />
+		<result property="appr_cont" column="apprCont" />
+		<result property="appr_type" column="apprType" />
+		<result property="appr_date" column="apprDate" />
+		<result property="apprs_code" column="apprsCode" />
+	</resultMap>
+
+	<resultMap type="apprlvo" id="apprlMap">
+		<result property="apprl_no" column="apprlNo" />
+		<result property="apprl_seq1" column="apprlSeq1" />
+		<result property="apprl_seq2" column="apprlSeq2" />
+		<result property="apprl_seq3" column="apprlSeq3" />
+		<result property="apprl_prog" column="apprlProg" />
+	</resultMap>
+</mapper>

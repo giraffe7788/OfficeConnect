@@ -35,4 +35,4 @@
     <!-- 스크립트, 설정 플러그인 -->
     <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <script src="../js/sb-admin-2.min.js"></script>
+    <script src="../script/sb-admin-2.min.js"></script>

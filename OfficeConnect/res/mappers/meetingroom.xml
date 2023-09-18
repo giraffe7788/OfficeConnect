@@ -5,9 +5,13 @@
     <select id="selectAll" resultMap="mtrMap">
        select * from mtrbook
     </select>
+    
+    <select id="getMeetingBookVO" resultMap="mtrMap">
+       select * from mtrbook where emp_no = #{empNo}
+    </select>
    
    <insert id="insertBook" parameterType = "mtvo">
-      insert into mtrbook (mtrbook_no, mtr_no, emp_no, mtrbook_rent, mtrbook_return, mtrbook_per, mtrbook_cont)
+      insert into mtrbook
       values(mtr_book_seq.nextval, #{mtrNo}, #{empNo}, #{mtrbookRent}, #{mtrbookRtn}, #{mtrbookPer}, #{mtrbookCont})
    </insert>
    
@@ -15,6 +19,10 @@
       select mtr_no as mtrNo, mtr_per as mtrPer from meetingroom
    </select>
 
+ 	<delete id="deleteBook" parameterType="java.lang.String">
+	  delete from mtrbook where emp_no = #{empNo}
+   </delete>
+   
    <resultMap type="vo.MeetingBookVO" id="mtrMap">
       <result column="mtrbook_no" property="mtrbookNo"/>
       <result column="mtr_no" property="mtrNo"/>

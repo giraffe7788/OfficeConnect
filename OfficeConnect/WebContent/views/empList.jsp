@@ -1,19 +1,14 @@
-<%@page import="img.vo.AtchFileVO"%>
+<%@page import="util.TransEmpInfo"%>
+<%@page import="vo.ImageVO"%>
 <%@page import="vo.EmpVO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-	List<EmpVO> empList = (List<EmpVO>)request.getAttribute("empList");
-
-	List<AtchFileVO> fileList = (List<AtchFileVO>) request.getAttribute("fileList");
-	
-	String msg = (String)session.getAttribute("msg");
-	
-	if(msg != null){
-		session.removeAttribute("msg");
-	}
+<% 
+List<EmpVO> empList = (List<EmpVO>)request.getAttribute("empList"); 
+TransEmpInfo transform = TransEmpInfo.getInstance();
 %>
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -94,49 +89,30 @@
 															rowspan="1" colspan="1"
 															aria-label="작성일: activate to sort column ascending"
 															style="width: 100px;">전화번호</th>
-															<th class="sorting" tabindex="0" aria-controls="dataTable"
-															rowspan="1" colspan="1"
-															aria-label="작성일: activate to sort column ascending"
-															style="width: 100px;">프로필 사진</th>
 													</tr>
                                     </thead>
                                     <tbody>
-                                    <%
-										if(empList==null || empList.isEmpty() || empList.size() == 0){
-									%>
-										<tr><td colspan="7">데이터가 존재하지 않습니다.</td></tr>
-									<%
+                                        <%
+											if(empList.size() == 0){
+										%>
+											<tr><td colspan="10">데이터가 존재하지 않습니다.</td></tr>
+										<%
 										}else{
-											
-											for(EmpVO ev : empList){
-									%>
-                                        <tr>
-                                            <td><%=ev.getEmpNo() %></td>
-											<td><a href="../join/detail.do?empNo=<%=ev.getEmpNo() %>"><%=ev.getEmpName() %></a></td>
-                                            <td><%=ev.getDeptName() %></td>
-                                            <td><%=ev.getEmpPosit() %></td>
-                                            <td><%=ev.getStateCode() %></td>
-                                            <td><%=ev.getEmpTel() %></td>
-                                            <td>
-                                            <img src="../join/download.do?empNo=<%= ev.getEmpNo() %>" onerror="this.src ='../images/profile/defaultProfile.PNG'" width="70" height="70">
-                                            </td>
-                                            <%-- <%
-                                            	if(ev.getImgYn().equals("Y")){
-                                            %>
-											    <img src="<%= request.getContextPath() + "/join/download.do?empNo=" + ev.getEmpNo() %>" onerror="this.src ='<%=request.getContextPath() %>/images/profile/defaultProfile.PNG'" width="70" height="70">
-											<% 
-												} else { 
-											%>
-											    <img src="<%=request.getContextPath() %>/images/profile/defaultProfile.PNG" width="70" height="70">
-											<%
-											%> --%>
-                                        </tr>
-                                    <%
-											}
+		
+												for(EmpVO ev : empList){
+										%>
+											<tr>
+												<td><%=ev.getEmpNo() %></td>
+												<td><a href="../emp/detail.do?empNo=<%=ev.getEmpNo() %>"><%=ev.getEmpName() %></a></td>
+												<td><%=transform.transformDeptCode(ev.getDeptCode()) %></td>
+												<td><%=ev.getEmpPosit() %></td>
+												<td><%=transform.transformStateCode(ev.getStateCode()) %></td>
+												<td><%=ev.getEmpTel() %></td>
+											</tr>
+										<% 
 										}
-									//}
-                                    %>
-                                        
+													}
+										%>
                                     </tbody>
                                 </table>
                                 

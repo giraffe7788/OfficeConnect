@@ -35,9 +35,10 @@ public class login extends HttpServlet {
 		empVO.setEmpNo(empNo);
 		empVO.setEmpPw(empPw);
 
-		if (loginService.loginCheck(empVO, isAdminLogin)) {
+		boolean isSuccess = loginService.loginCheck(empVO, isAdminLogin);
+
+		if (isSuccess) {
 			System.out.println("로그인성공");
-			
 			req.getSession().setAttribute("empNo", empNo); // 세션에 사번 넣기
 			JsonObject jsonObject = new JsonObject();
 			jsonObject.addProperty("isSuccess", "ok");
@@ -45,7 +46,6 @@ public class login extends HttpServlet {
 			resp.setContentType("application/json");
 			resp.getWriter().write(jsonStr);
 		} else {
-			System.out.println("로그인실패");
 			
 			JsonObject jsonObject = new JsonObject();
 			jsonObject.addProperty("isSuccess", "fail");

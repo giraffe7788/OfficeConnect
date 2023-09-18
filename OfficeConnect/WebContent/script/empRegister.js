@@ -1,7 +1,30 @@
 function registerEmp() {
+	
     event.preventDefault(); // submit 버튼의 고유 기능 방지
 
     let empNo = $('#empNo').val();
+ 
+ 	$.ajax({
+        url: 'check.do',
+        type: 'post',
+        data: {'empNo': empNo},
+        
+        success: function(res) {
+            if (res.isExist == 'ok') {
+                alert("중복된 사번입니다.");
+				return;
+            } else if (res.isExist == 'fail') {
+				console.log("중복x");
+            } else {
+				console.log("둘다아님");
+			}
+        },
+        error: function(xhr) {
+            alert("상태 : " + xhr.status);
+        },
+        dataType: 'json'
+    });
+
     let empPw = temp_pw_issuance();
     let empName = $('#empName').val();
     let empEmail = $('#empEmail').val();
@@ -36,7 +59,7 @@ function registerEmp() {
     formData.append('isAdmin', isAdmin);
 
     $.ajax({
-        url: 'http://localhost:8888/OfficeConnect/emp/join.do',
+        url: 'join.do',
         type: 'post',
         data: formData,
         contentType: false,
