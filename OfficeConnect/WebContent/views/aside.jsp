@@ -2,9 +2,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	SessionEmpInfo sessionEmpInfo = SessionEmpInfo.getInstance();
+	SessionEmpInfo sessionEmpInfoAside = SessionEmpInfo.getInstance();
 	String empNoAside = (String)session.getAttribute("empNo");
-	int adminCode = sessionEmpInfo.getEmpVO(empNoAside).getAdminCode();
+	int adminCode = sessionEmpInfoAside.getEmpVO(empNoAside).getAdminCode();
 %>
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -60,7 +60,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">게시판종류</h6>
                         <a class="collapse-item" href="../views/noticeBoard.jsp">공지사항</a>
-                        <a class="collapse-item" href="../views/freeBoard.jsp">자유게시판</a>
+                        <a class="collapse-item" href="../board/list.do">자유게시판</a>
                     </div>
                 </div>
             </li>

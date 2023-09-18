@@ -14,6 +14,7 @@
 		<typeAlias type="vo.EmpVO" alias="empvo" />
 		<typeAlias type="vo.MeetingBookVO" alias="mtvo" />
 		<typeAlias type="vo.CarVO" alias="carvo" />
+		<typeAlias type="vo.CarBookVO" alias="carbookvo" />
 		<typeAlias type="vo.ImageVO" alias="imgvo"/>
 		<typeAlias type="vo.BoardVO" alias="boardvo" />
 		<typeAlias type="vo.CommentVO" alias="commentvo" />

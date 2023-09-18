@@ -110,13 +110,16 @@
                                           <th class="sorting" tabindex="0" aria-controls="dataTable"
                                              rowspan="1" colspan="1"
                                              aria-label="작성일: activate to sort column ascending"
+                                             style="width: 15%;">결재상태</th>      
                                           <th class="sorting" tabindex="0" aria-controls="dataTable"
                                              rowspan="1" colspan="1"
                                              aria-label="작성일: activate to sort column ascending"
                                              style="width: 6%;">확인</th>                                                                                                                                                                                                                          
+
                                        </tr>
                                     </thead>
                                     <tbody>
+                                    <%for(ApprovalVO apprVO : apprList) { %>
                                         <tr>
                                             <td><%switch(apprVO.getApprType()){
                                             case 1:
@@ -156,6 +159,7 @@
                       	          </table>
 								</form>
 								</div>
+								<!-- 보낸결재 함 종료  -->
 
 							</div>
 						</div>
@@ -185,6 +189,7 @@
     <script src="../vendor/datatables/dataTables.bootstrap4.js"></script>
     <script src="../js/demo/datatables-demo.js"></script>
 	<!-- 페이지 검색/조회 플러그인 -->
+	
 	<script>
 	function openDetail(apprNo){
 		window.open("detail.do?apprNo="+apprNo, "결재상세보기", "width=650,height=1100");

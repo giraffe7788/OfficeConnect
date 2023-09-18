@@ -97,13 +97,6 @@
 		and emp_email = #{empEmail}
 	</select>
 	
-	<select id="adminCheck" resultMap="empMap" parameterType="empvo">
-		select * from employee
-		where emp_no = #{empNo}
-		  and emp_pw = #{empPw}
-		  and admin_code = 1
-	</select>
-	
 	<select id="getAllSuperior" parameterType="vo.EmpVO" resultMap="empMap">
 		SELECT *
 		FROM employee

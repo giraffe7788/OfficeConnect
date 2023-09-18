@@ -14,7 +14,6 @@ import board.service.IBoardService;
 import vo.BoardVO;
 
 
-//寃뚯떆�뙋 �젣紐� �겢由��떆 �솕硫� 
 @WebServlet("/board/detail.do")
 public class DetailBoardController extends HttpServlet{
 	
