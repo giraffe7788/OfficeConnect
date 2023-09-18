@@ -20,14 +20,23 @@ public class MyReview  extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		String empNo = req.getParameter("empNo");
-		
 		IReviewService service = ReviewServiceImpl.getInstance();
+		
+		String empNo = (String) req.getSession().getAttribute("empNo");
+//		req.getParameter("empNo");
+//		get or post방식으로 밖에서 주는거야
+//		get방식으로 줄 때는 주소로 주는방식
+//		list.do?empNo=101
+//		post방식
+//		form으로 줄 때 name으로찾아오는거야 예를들어 name이 empNo인 input type="text"라고하자 거기 입력된값을 가져올 수있어
+//		ajax로 줄 때 data = {"empNo" : value}
+		
+		req.setAttribute("empNo", empNo);
+//		req.getAttribute("empNo");
+		
 		ReviewVO rvo = service.selectOne(empNo);
 		
 		req.setAttribute("rvo", rvo);
-		
-		System.out.println("empNo ? " + empNo);
 		
 		RequestDispatcher disp = req.getRequestDispatcher("/views/reviewCheck.jsp");
 		disp.forward(req, resp);
@@ -35,6 +44,7 @@ public class MyReview  extends HttpServlet{
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
 		doGet(req, resp);
 	}
 }

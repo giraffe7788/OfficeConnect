@@ -8,8 +8,7 @@ import vo.ReviewVO;
 
 public class ReviewServiceImpl implements IReviewService{
 	
-	private IReviewDao dao;
-	private static IReviewService service;
+	IReviewDao dao = ReviewDaoImpl.getInstance();
 	
 	public static IReviewService instance = null;
 	private ReviewServiceImpl() {}

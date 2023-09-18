@@ -11,12 +11,12 @@ import vo.ReviewVO;
 
 public class ReviewDaoImpl implements IReviewDao{
 	
-public static IReviewDao dao;
+	public static IReviewDao instance = null;
 	
 	private ReviewDaoImpl() {}
 	public static IReviewDao getInstance() {
-		if(dao == null) dao = new ReviewDaoImpl();
-		return dao;
+		if(instance == null) instance = new ReviewDaoImpl();
+		return instance;
 	}
 
 	@Override
@@ -25,8 +25,11 @@ public static IReviewDao dao;
 		SqlSession session = MyBatisUtil.getInstance();
 
 		ReviewVO rvo = null;
+		
 		try {
+			
 			rvo = session.selectOne("review.selectOne", empNo);
+			
 			if(rvo!=null) {
 				 session.commit();
 			 }

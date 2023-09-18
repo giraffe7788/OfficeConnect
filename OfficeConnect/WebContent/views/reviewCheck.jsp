@@ -1,5 +1,4 @@
 <%@page import="vo.ReviewVO"%>
-<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -25,7 +24,6 @@
 <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <%
-	String currentEmpNo = (String) request.getAttribute("empNo");
 	ReviewVO rvo = (ReviewVO) request.getAttribute("rvo");
 %>
 
@@ -63,7 +61,7 @@
 							<div class="row" style="border-right: 1px solid #858796;">
 								<div class="col-lg-2">
 
-									<button type="button" onClick="window.location.href='review.jsp'" class="btn btn-light btn-icon-split"
+									<button id="review" type="button" onClick="window.location.href='review.jsp'" class="btn btn-light btn-icon-split"
 										style="border: none; background-color: transparent; color: #858796; margin-bottom: 15px; width: 150px; font-size: 1.3rem;">
 										<b>근무태도평가</b>
 									</button>
@@ -82,12 +80,12 @@
 									<hr class="text-gray-800">
 
 
-									<div style="margin-bottom: 10px;">
-										<b>평가자 :</b> <%=rvo.getEmpNo() %>
-									</div>
+<!-- 									<div style="margin-bottom: 10px;"> -->
+<%-- 										<b>평가자 :</b> <%=rvo.getEmpNo() %> --%>
+<!-- 									</div> -->
 
 									<div style="margin-bottom: 10px;">
-										<b>평자가 : </b> <%=rvo.getRevNo() %>
+										<b>평가자 : </b> <%=rvo.getRevNo() %>
 									</div>
 									
 									<hr>
@@ -176,10 +174,9 @@
 	<!-- 공통속성 설정 include -->
 
 <script>
-$(document).ready(function(){
+$('#review').on('click', function(){
 	
 });
-	
 </script>
 	<%@ include file="./common.jsp"%>
 
