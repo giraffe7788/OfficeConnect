@@ -5,6 +5,7 @@ import java.util.List;
 import board.dao.BoardDaoImpl;
 import comment.dao.CommentDaoImpl;
 import comment.dao.ICommentDao;
+
 import vo.BoardVO;
 import vo.CommentVO;
 
@@ -37,14 +38,14 @@ public class CommentServiceImpl implements ICommentService{
 
 	@Override
 	public int updateComment(CommentVO cv) {
-		// TODO Auto-generated method stub
-		return 0;
+		int cnt = CommentDao.updateComment(cv);
+		return cnt;
 	}
 
 	@Override
 	public int deleteComment(int commNo) {
-		// TODO Auto-generated method stub
-		return 0;
+		int cnt = CommentDao.deleteComment(commNo);
+		return cnt;
 	}
 
 	@Override
@@ -52,6 +53,7 @@ public class CommentServiceImpl implements ICommentService{
 		List<CommentVO> commentList = CommentDao.selectAll(brdNo);
 		return commentList;
 	
+
 	}
 
 	@Override

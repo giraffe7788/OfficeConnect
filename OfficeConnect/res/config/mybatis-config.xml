@@ -21,6 +21,7 @@
 		<typeAlias type="vo.MailVO" alias="mailvo"/>
 		<typeAlias type="vo.ApprovalLineVO" alias="apprlvo"/>
 		<typeAlias type="vo.ApprovalVO" alias="apprvo"/>
+		<typeAlias type="vo.NoticeVO" alias="noticevo" />
 	</typeAliases>
 	
 	<environments default="dev">
@@ -47,5 +48,6 @@
 		<mapper resource="mappers/board.xml"/>
 		<mapper resource="mappers/mail.xml" />
 		<mapper resource="mappers/approval.xml" />
+		<mapper resource="mappers/notice.xml"/>
 	</mappers>
 </configuration>

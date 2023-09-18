@@ -22,14 +22,15 @@ public class DetailBoardController extends HttpServlet{
 	
 		int brdNo = Integer.parseInt(req.getParameter("brdNo"));
 		System.out.println(brdNo);
-		IBoardService memService = BoardServiceImpl.GetInstance();
+		IBoardService boardService = BoardServiceImpl.GetInstance();
 		
-		BoardVO boardVO = memService.detailBoard(brdNo);
+		int cnt = boardService.updateViews(brdNo);
 		
+		BoardVO boardVO = boardService.detailBoard(brdNo);
 		req.setAttribute("boardVO", boardVO);
 		
 		
-		
+		System.out.println("게시판 리뷰수 cnt값" + cnt);
 		req.getRequestDispatcher("/views/freeBoardInfo.jsp").forward(req, resp);
 
 	}

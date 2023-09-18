@@ -29,7 +29,8 @@ public class InsertCommentController extends HttpServlet {
 		String empNo = req.getParameter("empNo");
 		int brdNo = Integer.parseInt(req.getParameter("brdNo"));
 		String commCont = req.getParameter("commCont");
-		System.out.println("empNo : " + empNo+ "brdNo : " + brdNo + "commCont :" +commCont );
+		commCont = commCont.replace("\r\n","<br>");
+		System.out.println("댓글 입력 empNo : " + empNo+ "brdNo : " + brdNo + "commCont :" +commCont );
 
 		ICommentService CommentService = CommentServiceImpl.GetInstance();
 		

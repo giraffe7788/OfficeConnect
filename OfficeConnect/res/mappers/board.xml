@@ -24,13 +24,23 @@
     </delete>
     
     <select id="detailboard" parameterType="Integer" resultType="boardvo">        
-        select * from board where brd_no=#{brdNo}
+       	select b.brd_no, b.brd_date, b.brd_cont, b.brd_mod, b.brd_title, b.brd_views, e.emp_no, e.emp_name, e.emp_posit, e.admin_code,e.dept_code,d.dept_name
+    	from board b join employee e
+    	on b.emp_no=e.emp_no
+        join dept d 
+        on e.dept_code = d.dept_code
+        where b.brd_no=#{brdNo}
     </select>
     
     <update id="updateboard" parameterType="boardvo">
          update board 
-         set brd_title=#{brdTitle}, brd_cont=#{brdCont}, brd_mod=SYSDATE 
+         set brd_title=#{brdTitle}, brd_cont=#{brdCont}, brd_mod=sysdate 
          where brd_no=#{brdNo}	 
+    </update>
+    
+    <update id="updateViews" parameterType="Integer">
+    	update board 
+    	set brd_views = brd_views+1 where brd_no=#{brdNo}
     </update>
     
 <!-- 	<select id="boardWithEmp" resultMap="board"> -->
@@ -60,9 +70,22 @@
    	</resultMap>
     
     <select id="boardListWithEmp" resultType="boardvo">
-    	select b.brd_no, b.brd_date, b.brd_mod, b.brd_title, b.brd_views, e.emp_no, e.emp_name, e.emp_posit, e.admin_code
+    	select b.brd_no, b.brd_date, b.brd_mod, b.brd_title, b.brd_views, e.emp_no, e.emp_name, e.emp_posit, e.admin_code,e.dept_code
     	from board b join employee e
-    	on b.emp_no=e.emp_no	
+    	on b.emp_no=e.emp_no
+    	order by b.brd_date desc
+    </select>
+
+    <select id="selectOneBoard" resultType="boardvo">
+    	select b.brd_no, b.brd_date, b.brd_mod, b.brd_title, b.brd_views, e.emp_no, e.emp_name, e.emp_posit, e.admin_code,e.dept_code
+    	from board b join employee e
+    	on b.emp_no=e.emp_no
+    	where b.emp_No=#{empNo}
+    </select>
+    
+    <select id="selectEmp" resultType="empvo">
+    	select * from employee where emp_no=#{empNo}
+	
     </select>
    
     

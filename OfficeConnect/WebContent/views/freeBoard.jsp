@@ -1,13 +1,13 @@
-<%@page import="util.TransEmpInfo"%>
-<%@page import="util.SessionEmpInfo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="util.TransEmpInfo"%>
+<%@page import="util.SessionEmpInfo"%>
 <%@ page import="vo.*"%>
 <%@ page import="java.util.*"%>
 <%
 	ArrayList<BoardVO> list = (ArrayList<BoardVO>) request.getAttribute("boardList");
 	String empNo = (String)session.getAttribute("empNo");
-	EmpVO empVO = SessionEmpInfo.getInstance().getEmpVO(empNo);
+	EmpVO sessionVO = SessionEmpInfo.getInstance().getEmpVO(empNo);
 	TransEmpInfo transfer = TransEmpInfo.getInstance();
 %>
 <!DOCTYPE html>
@@ -34,6 +34,7 @@
 #dataTable_wrapper {
 	overflow-x: hidden;
 }
+
 </style>
 </head>
 
@@ -89,6 +90,10 @@
 												rowspan="1" colspan="1"
 												aria-label="작성일: activate to sort column ascending"
 												style="width: 305.703px;">작성일</th>
+											<th class="sorting" tabindex="0" aria-controls="dataTable"
+												rowspan="1" colspan="1"
+												aria-label="조회수: activate to sort column ascending"
+												style="width: 305.703px;">조회수</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -99,9 +104,15 @@
 										<tr>
 											<td><%=vo.getBrdNo()%></td>
 											<td><a
-												href="<%=request.getContextPath()%>/board/detail.do?brdNo=<%=vo.getBrdNo()%>"><%=vo.getBrdTitle()%></a></td>
-											<td><%=transfer.transformDeptCode(empVO.getDeptCode())%>&nbsp;&nbsp;<%=vo.getEmpPosit()%>&nbsp;&nbsp;<%=vo.getEmpName()%></td>
+												href="<%=request.getContextPath()%>/board/detail.do?brdNo=<%=vo.getBrdNo()%>"><%=vo.getBrdTitle()%></a></td>	
+											<td>
+											<%=transfer.transformDeptCode(vo.getDeptCode())%>&nbsp;&nbsp;<%=vo.getEmpPosit()%>&nbsp;&nbsp;<%=vo.getEmpName()%>
+											 
+											</td>
+											
+											
 											<td><%=vo.getBrdDateDisplay()%></td>
+											<td><%=vo.getBrdViews()%></td>
 									
 										</tr>
 
@@ -114,7 +125,7 @@
 									style="position: absolute; margin-left: 89%; margin-top: -3%">
 									<span class="icon text-white-50"> <i
 										class="fa-solid fa-pen"></i>
-								</span> <span class="text" onclick="location.href='<%=request.getContextPath()%>/board/insert.do'">글작성</span>
+								</span> <span class="text"  onclick="location.href='<%=request.getContextPath()%>/board/insert.do'">글작성</span>
 								</a>
 							</div>
 						</div>
@@ -140,6 +151,10 @@
 	<script src="../vendor/datatables/jquery.dataTables.js"></script>
 	<script src="../vendor/datatables/dataTables.bootstrap4.js"></script>
 	<script src="../js/demo/datatables-demo.js"></script>
+	<script>
+
+	</script> 
+
 </body>
 
 </html>

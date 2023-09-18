@@ -16,7 +16,7 @@ import vo.CommentVO;
 
 
 @MultipartConfig
-@WebServlet("/Comment/update.do")
+@WebServlet("/comment/update.do")
 public class UpdateCommentController extends HttpServlet {
 
 	@Override
@@ -24,7 +24,8 @@ public class UpdateCommentController extends HttpServlet {
 
 			req.setCharacterEncoding("UTF-8");
 			String commCont = req.getParameter("commCont");
-
+			int commNo = Integer.parseInt(req.getParameter("commNo"));
+			
 			try {
 				
 				
@@ -38,26 +39,17 @@ public class UpdateCommentController extends HttpServlet {
 			
 			CommentVO cv = new CommentVO();
 			cv.setCommCont(commCont);
+			cv.setCommNo(commNo);
 
 			
 
 			int cnt = CommentService.updateComment(cv);
-
-			String msg = "";
-
-			if (cnt > 0) {
-				msg ="성공";
-			}else {
-				msg="실패";
-			}
+			System.out.println(cnt + "수정");
+			resp.getWriter().print(cnt);
 			
-			HttpSession session = req.getSession();
-			
-			session.setAttribute("msg", msg);
 
-//			req.getRequestDispatcher("/member/list.do").forward(req, resp);
 
-			resp.sendRedirect(req.getContextPath() + "/Comment/list.do");
+
 			
 	}
 

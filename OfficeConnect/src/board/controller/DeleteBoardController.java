@@ -15,7 +15,7 @@ import board.service.IBoardService;
 
 //삭제파일
 @WebServlet("/board/delete.do")
-public class DeleteboardController extends HttpServlet {
+public class DeleteBoardController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

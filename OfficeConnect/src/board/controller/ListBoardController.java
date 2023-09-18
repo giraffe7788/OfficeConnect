@@ -1,6 +1,7 @@
 package board.controller;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -24,6 +25,7 @@ public class ListBoardController extends HttpServlet {
 	
 		IBoardService boardService = BoardServiceImpl.GetInstance();
 		List<BoardVO> boardList = boardService.selectAll();
+		Collections.sort(boardList);
 		
 		req.setAttribute("boardList", boardList);
 		RequestDispatcher dispacther = req.getRequestDispatcher("/views/freeBoard.jsp");
