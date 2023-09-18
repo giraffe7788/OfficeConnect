@@ -4,6 +4,7 @@ import java.util.List;
 
 import review.dao.IReviewDao;
 import review.dao.ReviewDaoImpl;
+import vo.EmpVO;
 import vo.ReviewVO;
 
 public class ReviewServiceImpl implements IReviewService{
@@ -18,8 +19,22 @@ public class ReviewServiceImpl implements IReviewService{
 	}
 	
 	@Override
-	public ReviewVO selectOne(String empNo) {
-		return dao.selectOne(empNo);
+	public List<ReviewVO> selectList(String empNo) {
+		return dao.selectList(empNo);
+	}
+	
+	@Override
+	public List<EmpVO> getInferiorList(EmpVO empVO) {
+		return dao.getInferiorList(empVO);
+	}
+	
+	@Override
+	public ReviewVO selectScore(String empNo) {
+		return dao.selectScore(empNo);
+	}
+	@Override
+	public int insertScore(ReviewVO reviewVO) {
+		return dao.insertScore(reviewVO);
 	}
 
 }

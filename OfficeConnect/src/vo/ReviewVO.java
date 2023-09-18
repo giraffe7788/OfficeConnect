@@ -3,20 +3,25 @@ package vo;
 public class ReviewVO {
 
 	private String empNo;
-	private int revScore;
 	private String revEmpNo;
 	private String revDate;
-	private int revNo;
+	private int resScore;
+	private int scrScore;
+	private int copScore;
+	private int creScore;
 	
 	public ReviewVO() {}
-	
-	public ReviewVO(String empNo, int revNo, int revScore, String revEmpNo, String revDate) {
+
+	public ReviewVO(String empNo, String revEmpNo, String revDate, int resScore, int scrScore, int copScore,
+			int creScore) {
 		super();
 		this.empNo = empNo;
-		this.revNo = revNo;
-		this.revScore = revScore;
 		this.revEmpNo = revEmpNo;
 		this.revDate = revDate;
+		this.resScore = resScore;
+		this.scrScore = scrScore;
+		this.copScore = copScore;
+		this.creScore = creScore;
 	}
 
 	public String getEmpNo() {
@@ -25,14 +30,6 @@ public class ReviewVO {
 
 	public void setEmpNo(String empNo) {
 		this.empNo = empNo;
-	}
-
-	public int getRevScore() {
-		return revScore;
-	}
-
-	public void setRevScore(int revScore) {
-		this.revScore = revScore;
 	}
 
 	public String getRevEmpNo() {
@@ -51,11 +48,36 @@ public class ReviewVO {
 		this.revDate = revDate;
 	}
 
-	public int getRevNo() {
-		return revNo;
+	public int getResScore() {
+		return resScore;
 	}
 
-	public void setRevNo(int revNo) {
-		this.revNo = revNo;
+	public void setResScore(int resScore) {
+		this.resScore = resScore;
 	}
+
+	public int getScrScore() {
+		return scrScore;
+	}
+
+	public void setScrScore(int scrScore) {
+		this.scrScore = scrScore;
+	}
+
+	public int getCopScore() {
+		return copScore;
+	}
+
+	public void setCopScore(int copScore) {
+		this.copScore = copScore;
+	}
+
+	public int getCreScore() {
+		return creScore;
+	}
+
+	public void setCreScore(int creScore) {
+		this.creScore = creScore;
+	}
+	
 }

@@ -7,6 +7,7 @@ import org.apache.ibatis.exceptions.PersistenceException;
 import org.apache.ibatis.session.SqlSession;
 
 import util.MyBatisUtil;
+import vo.EmpVO;
 import vo.ReviewVO;
 
 public class ReviewDaoImpl implements IReviewDao{
@@ -20,15 +21,15 @@ public class ReviewDaoImpl implements IReviewDao{
 	}
 
 	@Override
-	public ReviewVO selectOne(String empNo) {
+	public List<ReviewVO> selectList(String empNo) {
 
 		SqlSession session = MyBatisUtil.getInstance();
 
-		ReviewVO rvo = null;
+		List<ReviewVO> rvo = null;
 		
 		try {
 			
-			rvo = session.selectOne("review.selectOne", empNo);
+			rvo = session.selectList("review.selectList", empNo);
 			
 			if(rvo!=null) {
 				 session.commit();
@@ -40,6 +41,77 @@ public class ReviewDaoImpl implements IReviewDao{
 			session.close();
 		}
 		return rvo;
+	}
+	
+	@Override
+	public List<EmpVO> getInferiorList(EmpVO empVO) {
+		
+		List<EmpVO> empList = new ArrayList<EmpVO>();
+		
+		SqlSession session = MyBatisUtil.getInstance();
+		
+		try {
+			
+			empList = session.selectList("employee.getInferiorList", empVO);
+			
+		}catch(PersistenceException ex) {
+			ex.printStackTrace();
+			session.rollback();
+		}finally {
+			session.close();
+		}
+		
+		System.out.println("empList : " + empList);
+		return empList;
+	}
+	
+	@Override
+	public ReviewVO selectScore(String empNo) {
+
+		ReviewVO rvo = null;
+		
+		SqlSession session = MyBatisUtil.getInstance();
+		
+		try {
+			
+			rvo = session.selectOne("review.selectOne", empNo);
+			
+			if(rvo != null) {
+				session.commit();
+				
+			}
+		
+		}catch(PersistenceException ex) {
+			ex.printStackTrace();
+			session.rollback();
+		}finally {
+			session.close();
+		}
+		return rvo;
+	}
+	
+	@Override
+	public int insertScore(ReviewVO reviewVO) {
+
+		int cnt = 0;
+		
+		SqlSession session = MyBatisUtil.getInstance();
+		
+		try {
+			
+			cnt = session.insert("review.insertScore", reviewVO);
+			
+			if(cnt > 0) {
+				session.commit();
+			}
+		}catch(PersistenceException ex) {
+			ex.printStackTrace();
+			session.rollback();
+		}finally {
+			session.close();
+		}
+		
+		return cnt;
 	}
 
 }

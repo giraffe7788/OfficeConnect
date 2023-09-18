@@ -7,44 +7,23 @@
 		where emp_no = #{empNo}
 	</select>
 	
-	<select id="getInferiorList">
-		SELECT *
-		FROM employee
-		WHERE 
-		  CASE
-		    WHEN emp_posit = '사원' THEN 1
-		    WHEN emp_posit = '대리' THEN 2
-		    WHEN emp_posit = '과장' THEN 3
-		    WHEN emp_posit = '차장' THEN 4
-		    WHEN emp_posit = '부장' THEN 5
-		    ELSE 6  
-		  END
-		  &lt;
-		  CASE
-		    WHEN (SELECT emp_posit FROM employee WHERE emp_no = #{empNo}) = '사원' THEN 1
-		    WHEN (SELECT emp_posit FROM employee WHERE emp_no = #{empNo}) = '대리' THEN 2
-		    WHEN (SELECT emp_posit FROM employee WHERE emp_no = #{empNo}) = '과장' THEN 3
-		    WHEN (SELECT emp_posit FROM employee WHERE emp_no = #{empNo}) = '차장' THEN 4
-		    WHEN (SELECT emp_posit FROM employee WHERE emp_no = #{empNo}) = '부장' THEN 5
-		    ELSE 6
-		  END
-		  AND DEPT_CODE = #{deptCode}
-		ORDER BY
-		  CASE
-		    WHEN emp_posit = '사원' THEN 1
-		    WHEN emp_posit = '대리' THEN 2
-		    WHEN emp_posit = '과장' THEN 3
-		    WHEN emp_posit = '차장' THEN 4
-		    WHEN emp_posit = '부장' THEN 5
-		    ELSE 6  
-		  END desc;
+	<select id="selectList" resultMap="reviewMap" parameterType="reviewvo">
+		select * from review
+		where emp_no = #{empNo}
 	</select>
+	
+	<insert id="insertScore" parameterType="reviewvo">
+		insert into review(emp_no, rev_empno, rev_date, res_score, scr_score, cop_score, cre_score)
+		values(#{empNo}, #{revEmpNo}, #{revDate}, #{resScore}, #{scrScore}, #{copScore}, #{creScore})
+	</insert>
 	
 	<resultMap type="vo.ReviewVO" id="reviewMap">
 		<result column="emp_no" property="empNo" />
-		<result column="rev_score" property="revScore" />
 		<result column="rev_empno" property="revEmpNo" />
 		<result column="rev_date" property="revDate" />
-		<result column="rev_no" property="revNo" />
+		<result column="res_score" property="resScore" />
+		<result column="scr_score" property="scrScore" />
+		<result column="cop_score" property="copScore" />
+		<result column="cre_score" property="creScore" />
 	</resultMap>
 </mapper>
