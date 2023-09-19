@@ -30,6 +30,7 @@
 	List<EmpVO> empList = (List<EmpVO>) request.getAttribute("empList");
 	EmpVO empVO = (EmpVO)request.getAttribute("empVO");
 	SessionEmpInfo info = SessionEmpInfo.getInstance();
+	String empNo = (String)request.getAttribute("empNo");
 %>
 </head>
 
