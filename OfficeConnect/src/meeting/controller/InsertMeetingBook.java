@@ -29,14 +29,11 @@ public class InsertMeetingBook extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		System.out.println("insert.do의 doPost");
 		int mtrNo = Integer.parseInt(req.getParameter("mtrNo"));
 		int mtrbookPer = Integer.parseInt(req.getParameter("mtrbookPer"));
 		String mtrbookRent = (String)(req.getParameter("mtrbookRent"));
 		String mtrbookRtn = (String)(req.getParameter("mtrbookRtn"));
 		String mtrbookCont = req.getParameter("mtrbookCont");
-		
-		System.out.println("mtrNo : " + mtrNo + " mtrbookPer : " + mtrbookPer + " mtrbookRent : " + mtrbookRent + " mtrbookRtn : " + mtrbookRtn + " mtrbookCont : " + mtrbookCont);
 		
 		// MeetingVO를 만들어서 db에 전달
 		IMeetingService service = MeetingServiceImpl.getInstance();
@@ -44,7 +41,6 @@ public class InsertMeetingBook extends HttpServlet {
 		MeetingBookVO mtVO = new MeetingBookVO(mtrNo, empNo, mtrbookRent, mtrbookRtn, mtrbookPer, mtrbookCont);
 		
 		if(service.registMtr(mtVO) > 0) {
-			
 			System.out.println("예약 성공 :D");
 
 			JsonObject jsonObject = new JsonObject();

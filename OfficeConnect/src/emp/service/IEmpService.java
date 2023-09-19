@@ -28,8 +28,15 @@ public interface IEmpService {
 	 * @param empVO에 등록할 데이터가 담겨진 EmpVO의 객체
 	 * @return 사원정보 수정에 성공하면 1이상의 값 반환, 실패하면 0 반환
 	 */ 
-	public int modifyEmployee(EmpVO empVO);
+	public int modifyEmployee(EmpVO empVO, boolean isAdmin);
 	
+	/**
+	 * 사원정보-상태 수정을 위한 메서드
+	 * @param empVO에 등록할 데이터가 담겨진 EmpVO의 객체
+	 * @param 관리자권한 업데이트 유무
+	 * @return 사원정보 수정에 성공하면 1이상의 값 반환, 실패하면 0 반환
+	 */
+	public int updateEmployeeState(EmpVO empVO);
 	
 	/**
 	 * 사원정보 삭제를 위한 메서드
@@ -62,13 +69,19 @@ public interface IEmpService {
 	 */
 	public List<EmpVO> selectAll();
 
+	
 	/**
+	 * 객체에 담긴 이메일들을 출력오기 위한 메서드
+	 * @param empNo
+	 * @return
+	 */
+	public String mailSelect (String empNo);
+
+  
+  /**
 	 * 이메일과 사번이 들어있는 객체로 비밀번호를 찾아서 비밀번호를 반환
 	 * @param empVO
 	 * @return empPw
 	 */
 	public String forgotPw(EmpVO empVO);
-
-
-	public int changeEmployee(String empNo);
 }

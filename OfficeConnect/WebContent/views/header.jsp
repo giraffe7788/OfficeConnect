@@ -40,7 +40,7 @@
 	
 	<div class="topbar-divider d-none d-sm-block"></div>
 	
-	<button type="button" onclick="alert('마이 페이지')" style="border: none; background-color: transparent; color: #858796;">
+	<button type="button" onclick="linkMyPage()" style="border: none; background-color: transparent; color: #858796;">
 	<span style="margin-right: 20px;">My Page</span>
 	</button>
 	
@@ -80,7 +80,13 @@ $('#logout').on('click', function(){
 <%
 	}
 %>
+
 });
+
+
+function linkMyPage(){
+	location.href="../main/mypage.do";
+}
 
 </script>
 <%@ include file="./common.jsp"%>

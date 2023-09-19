@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+
 import comment.service.CommentServiceImpl;
 import comment.service.ICommentService;
 import vo.CommentVO;
@@ -29,7 +32,8 @@ public class InsertCommentController extends HttpServlet {
 		String empNo = req.getParameter("empNo");
 		int brdNo = Integer.parseInt(req.getParameter("brdNo"));
 		String commCont = req.getParameter("commCont");
-		System.out.println("empNo : " + empNo+ "brdNo : " + brdNo + "commCont :" +commCont );
+		commCont = commCont.replace("\r\n","<br>");
+		System.out.println("댓글 입력 empNo : " + empNo+ "brdNo : " + brdNo + "commCont :" +commCont );
 
 		ICommentService CommentService = CommentServiceImpl.GetInstance();
 		
@@ -39,8 +43,10 @@ public class InsertCommentController extends HttpServlet {
 		cv.setCommCont(commCont);
 			
 		int cnt = CommentService.insertComment(cv);
-		System.out.println(cnt);
-		resp.getWriter().print(cnt);
-
+		JsonObject jsonObject = new JsonObject();
+		jsonObject.addProperty("cnt", cnt);
+		String jsonStr = new Gson().toJson(jsonObject);
+		resp.setContentType("application/json");
+		resp.getWriter().write(jsonStr);
 	}
 }

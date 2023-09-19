@@ -33,7 +33,7 @@ public class UpdateBoardController extends HttpServlet {
 		req.setAttribute("bv", bv);
 
 
-		req.getRequestDispatcher("/board/updateForm.jsp").forward(req, resp);
+		req.getRequestDispatcher("/views/boardUpdate.jsp").forward(req, resp);
 	
 		
 	}
@@ -45,7 +45,7 @@ public class UpdateBoardController extends HttpServlet {
 			String brdTitle =req.getParameter("title");
 			String brdCont = req.getParameter("comment");
 			int brdNo = Integer.parseInt(req.getParameter("num"));
-
+			brdCont =brdCont.replace("\r\n","<br>");
 			try {
 				
 				

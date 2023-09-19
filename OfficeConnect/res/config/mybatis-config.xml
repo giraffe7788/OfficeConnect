@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE configuration
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-config.dtd">
@@ -14,11 +13,15 @@
 		<typeAlias type="vo.EmpVO" alias="empvo" />
 		<typeAlias type="vo.MeetingBookVO" alias="mtvo" />
 		<typeAlias type="vo.CarVO" alias="carvo" />
+		<typeAlias type="vo.CarBookVO" alias="carbookvo" />
 		<typeAlias type="vo.ImageVO" alias="imgvo"/>
 		<typeAlias type="vo.BoardVO" alias="boardvo" />
 		<typeAlias type="vo.CommentVO" alias="commentvo" />
 		<typeAlias type="vo.MailVO" alias="mailvo"/>
 		<typeAlias type="vo.ReviewVO" alias="reviewvo"/>
+		<typeAlias type="vo.ApprovalLineVO" alias="apprlvo"/>
+		<typeAlias type="vo.ApprovalVO" alias="apprvo"/>
+		<typeAlias type="vo.NoticeVO" alias="noticevo" />
 	</typeAliases>
 	
 	<environments default="dev">
@@ -45,5 +48,7 @@
 		<mapper resource="mappers/board.xml"/>
 		<mapper resource="mappers/mail.xml" />
 		<mapper resource="mappers/review.xml" />
+		<mapper resource="mappers/approval.xml" />
+		<mapper resource="mappers/notice.xml"/>
 	</mappers>
 </configuration>

@@ -301,138 +301,138 @@ td {
     });
 
 // 회의실 버튼 속성 한번에 주기
-      $('.btn-primary').on('click', function(){
-         // 해당 회의실 번호 적용
-         console.log($(this).val());
-         mtrNo = $(this).val();
-         console.log("mtrNo = " + mtrNo);
-         let mtrNoT = "<span>";
-         mtrNoT += mtrNo;
-         mtrNoT += "</span>";
-         $('.mtrNO').append(mtrNoT);
-            
-         // 배경색 설정
-         $('#myModal').modal({
-            backdrop : 'static'
-         });
-         
-         // select 엘리먼트에 대한 참조를 가져옵니다.
-         var selectElement = document.getElementById("mtrbookPer");
-         while (selectElement.options.length > 0) {
-             selectElement.remove(0);
-         }
-         
-         let index = 0;
-         if(mtrNo == 1){
-            index = <%=roomList.get(0).getMtrPer()%>;
-         } else if(mtrNo == 2){
-            index = <%=roomList.get(1).getMtrPer()%>;
-         } else if(mtrNo == 3){
-            index = <%=roomList.get(2).getMtrPer()%>;
-         } else if(mtrNo == 4){
-            index = <%=roomList.get(3).getMtrPer()%>;
-         } else if(mtrNo == 5){
-            index = <%=roomList.get(4).getMtrPer()%>;
-         }
-         console.log("index =" + index);
-         
-         // 해당 회의실 제한 인원 적용   
-         for(let j = 1; j <= index; j++){
-               
-               // 새로운 option 엘리먼트를 생성합니다.
-               var option = document.createElement("option");
+		$('.btn-primary').on('click', function(){
+			// 해당 회의실 번호 적용
+			console.log($(this).val());
+			mtrNo = $(this).val();
+			console.log("mtrNo = " + mtrNo);
+			let mtrNoT = "<span>";
+			mtrNoT += mtrNo;
+			mtrNoT += "</span>";
+			$('.mtrNO').append(mtrNoT);
+				
+			// 배경색 설정
+			$('#myModal').modal({
+				backdrop : 'static'
+			});
+			
+			// select 엘리먼트에 대한 참조를 가져옵니다.
+			var selectElement = document.getElementById("mtrbookPer");
+			while (selectElement.options.length > 0) {
+			    selectElement.remove(0);
+			}
+			
+			let index = 0;
+			if(mtrNo == 1){
+				index = <%=roomList.get(0).getMtrPer()%>;
+			} else if(mtrNo == 2){
+				index = <%=roomList.get(1).getMtrPer()%>;
+			} else if(mtrNo == 3){
+				index = <%=roomList.get(2).getMtrPer()%>;
+			} else if(mtrNo == 4){
+				index = <%=roomList.get(3).getMtrPer()%>;
+			} else if(mtrNo == 5){
+				index = <%=roomList.get(4).getMtrPer()%>;
+			}
+			console.log("index =" + index);
+			
+			// 해당 회의실 제한 인원 적용	
+			for(let j = 1; j <= index; j++){
+					
+					// 새로운 option 엘리먼트를 생성합니다.
+					var option = document.createElement("option");
 
-               // option 엘리먼트의 속성을 설정합니다.
-               option.value = j;
-               option.text = j;
+					// option 엘리먼트의 속성을 설정합니다.
+					option.value = j;
+					option.text = j;
 
-               // select 엘리먼트에 새 option 엘리먼트를 추가합니다.
-               selectElement.appendChild(option);
-            }
-      });
-   
-      // 모달창-'X' 버튼 클릭했을 때
-      $('button .close').on('click', function() {
-         $('#myModal').modal('hide');
-         
-         // 회의실 번호 초기화
-         $('.mtrNO span').empty();
-      });
-      
-      // 모달창-'예약' 버튼 클릭했을 때
-      $('.btn_book_out').on('click', function(){
-         $('#myModal').modal('hide');
-         
-         let mtrbookRent = $('[name="mtrbookRent"]').val();
-         let mtrbookRtn = $('[name="mtrbookRtn"]').val();
-         let mtrbookPer = $('[id="mtrbookPer"]').val();
-         let mtrbookCont = "";
-         if($('[name="mtrbookCont"]').val() == ''){
-            mtrbookCont = '내용이 없습니다.';
-         } else {
-            mtrbookCont = $('[name="mtrbookCont"]').val();
-         }
-         
-         // 9시 이상 예약 가능하게
-         if(parseInt(mtrbookRtn, 10) < parseInt(mtrbookRent, 10)){
-            alert("시작 이전 시간은 예약 불가능합니다.");
-            return;
-         }
-         
-         // 예약된 시간엔 예약 안되게
-         <%for(MeetingBookVO mvo : mtrList){%>
-         // 같은 회의실이면 시작끝 시간 겹쳐도 안되고 시작 시간 겹쳐도 안되고 끝시간 겹쳐도 안되고 그 사이 시간도 겹치면 안됨
-            if( '<%=mvo.getMtrNo() %>' == 'mtrNo' ){
-               if( <%=mvo.getMtrbookRent() %> == mtrbookRent && <%=mvo.getMtrbookRtn() %> == mtrbookRtn){
-                  alert("이미 예약된 시간입니다.");
-                  return;
-               }else if(<%=mvo.getMtrbookRent()%> < mtrbookRent && <%=mvo.getMtrbookRtn() %> > mtrbookRtn ){
-                  alert("이미 예약된 시간입니다.");
-                  return;
-               }else if(<%=mvo.getMtrbookRent() %> == mtrbookRent){
-                  alert("이미 예약된 시작시간입니다.");
-                  return;
-               }else if(<%=mvo.getMtrbookRtn() %> == mtrbookRtn){
-                  alert("이미 예약된 종료시간입니다.");
-                  return;
-               }
-            }
-         <%
-         }
-         %>
-         
-         // 회원당 예약  한번만
-         <%for(MeetingBookVO mvo : mtrList){
-            System.out.println(mvo.getEmpNo()+ "==" +currentEmpNo);%>
-            if('<%=mvo.getEmpNo()%>' == '<%=currentEmpNo%>'){
-               alert("회의실은 인당 1번만 예약 가능합니다");
-               return;
-            }
-         <%}%>
-         
-         $.ajax({
-            url: "insert.do",
-            type: "post",
-            data: { 'mtrNo': mtrNo,
-                   'mtrbookPer' : mtrbookPer,
-                   'mtrbookRent' : mtrbookRent, 
-                   'mtrbookRtn' : mtrbookRtn, 
-                   'mtrbookCont' : mtrbookCont },
-                   
-            success: function(res){   
-               // 시간표 반영
-               if(res.isSuccess == "ok"){
-                  alert("회의실 예약이 완료되었습니다");
-               } else {
-                  alert("회의실 예약이 실패하였습니다")
-               }
-               location.href = "list.do";
-            },
-            error: function(xhr, status, msg){
-               console.log("상태값: " + status + " Http 에러 메시지: " + msg);
-            }
-         });   
-      });
+					// select 엘리먼트에 새 option 엘리먼트를 추가합니다.
+					selectElement.appendChild(option);
+				}
+		});
+	
+		// 모달창-'X' 버튼 클릭했을 때
+		$('button .close').on('click', function() {
+			$('#myModal').modal('hide');
+			
+			// 회의실 번호 초기화
+			$('.mtrNO span').empty();
+		});
+		
+		// 모달창-'예약' 버튼 클릭했을 때
+		$('.btn_book_out').on('click', function(){
+			$('#myModal').modal('hide');
+			
+			let mtrbookRent = $('[name="mtrbookRent"]').val();
+			let mtrbookRtn = $('[name="mtrbookRtn"]').val();
+			let mtrbookPer = $('[id="mtrbookPer"]').val();
+			let mtrbookCont = "";
+			if($('[name="mtrbookCont"]').val() == ''){
+				mtrbookCont = '내용이 없습니다.';
+			} else {
+				mtrbookCont = $('[name="mtrbookCont"]').val();
+			}
+			
+			// 9시 이상 예약 가능하게
+			if(parseInt(mtrbookRtn, 10) < parseInt(mtrbookRent, 10)){
+				alert("시작 이전 시간은 예약 불가능합니다.");
+				return;
+			}
+			
+			// 예약된 시간엔 예약 안되게
+			<%for(MeetingBookVO mvo : mtrList){%>
+			// 같은 회의실이면 시작끝 시간 겹쳐도 안되고 시작 시간 겹쳐도 안되고 끝시간 겹쳐도 안되고 그 사이 시간도 겹치면 안됨
+				if( '<%=mvo.getMtrNo() %>' == 'mtrNo' ){
+					if( <%=mvo.getMtrbookRent() %> == mtrbookRent && <%=mvo.getMtrbookRtn() %> == mtrbookRtn){
+						alert("이미 예약된 시간입니다.");
+						return;
+					}else if(<%=mvo.getMtrbookRent()%> < mtrbookRent && <%=mvo.getMtrbookRtn() %> > mtrbookRtn ){
+						alert("이미 예약된 시간입니다.");
+						return;
+					}else if(<%=mvo.getMtrbookRent() %> == mtrbookRent){
+						alert("이미 예약된 시작시간입니다.");
+						return;
+					}else if(<%=mvo.getMtrbookRtn() %> == mtrbookRtn){
+						alert("이미 예약된 종료시간입니다.");
+						return;
+					}
+				}
+			<%
+			}
+			%>
+			
+			// 회원당 예약  한번만
+			<%for(MeetingBookVO mvo : mtrList){
+				System.out.println(mvo.getEmpNo()+ "==" +currentEmpNo);%>
+				if('<%=mvo.getEmpNo()%>' == '<%=currentEmpNo%>'){
+					alert("회의실은 인당 1번만 예약 가능합니다");
+					return;
+				}
+			<%}%>
+			
+			$.ajax({
+				url: "insert.do",
+				type: "post",
+				data: { 'mtrNo': mtrNo,
+					    'mtrbookPer' : mtrbookPer,
+					    'mtrbookRent' : mtrbookRent, 
+					    'mtrbookRtn' : mtrbookRtn, 
+					    'mtrbookCont' : mtrbookCont },
+					    
+				success: function(res){	
+					// 시간표 반영
+					if(res.isSuccess == "ok"){
+						alert("회의실 예약이 완료되었습니다");
+					} else {
+						alert("회의실 예약이 실패하였습니다")
+					}
+					location.href = "list.do";
+				},
+				error: function(xhr, status, msg){
+					console.log("상태값: " + status + " Http 에러 메시지: " + msg);
+				}
+			});	
+		});
 </script>
    <%@ include file="./common.jsp"%>
    <!-- 페이지 검색/조회 플러그인 -->

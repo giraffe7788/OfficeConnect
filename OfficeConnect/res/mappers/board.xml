@@ -3,68 +3,102 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="board">
-  
-    <select id="boardList" resultType="boardvo">
-       select * from board
-    </select>
-    
-    <insert id="boardInsert" parameterType="boardvo">
-        insert into board(brd_no,emp_No,brd_title,brd_cont)
-        values(
-        board_seq.nextval,
-        #{empNo},
-        #{brdTitle},
-        #{brdCont}      
-        )       
-    </insert>
-    
-     
-    <delete id="deleteboard" parameterType="Integer">  
-        delete from board where brd_no=#{brdNo}
-    </delete>
-    
-    <select id="detailboard" parameterType="Integer" resultType="boardvo">        
-        select * from board where brd_no=#{brdNo}
-    </select>
-    
-    <update id="updateboard" parameterType="boardvo">
-         update board 
-         set brd_title=#{brdTitle}, brd_cont=#{brdCont}, brd_mod=SYSDATE 
-         where brd_no=#{brdNo}	 
-    </update>
-    
-<!-- 	<select id="boardWithEmp" resultMap="board"> -->
-<!-- 		select brd_no, emp_no, brd_date, brd_mod, brd_cont, brd_title, brd_views from board where brd_no= #{brdNo} -->
-<!-- 	</select> -->
-	
+
+	<select id="boardList" resultType="boardvo">
+		select * from board
+	</select>
+
+	<insert id="boardInsert" parameterType="boardvo">
+		insert into board(brd_no,emp_No,brd_title,brd_cont)
+		values(
+		board_seq.nextval,
+		#{empNo},
+		#{brdTitle},
+		#{brdCont}
+		)
+	</insert>
+
+
+	<delete id="deleteboard" parameterType="Integer">
+		delete from board where brd_no=#{brdNo}
+	</delete>
+
+	<select id="detailboard" parameterType="Integer"
+		resultType="boardvo">
+		select b.brd_no, b.brd_date, b.brd_cont, b.brd_mod, b.brd_title,
+		b.brd_views, e.emp_no, e.emp_name, e.emp_posit,
+		e.admin_code,e.dept_code,d.dept_name
+		from board b join employee e
+		on b.emp_no=e.emp_no
+		join dept d
+		on e.dept_code = d.dept_code
+		where b.brd_no=#{brdNo}
+	</select>
+
+	<update id="updateboard" parameterType="boardvo">
+		update board
+		set brd_title=#{brdTitle}, brd_cont=#{brdCont}, brd_mod=sysdate
+		where brd_no=#{brdNo}
+	</update>
+
+	<update id="updateViews" parameterType="Integer">
+		update board
+		set brd_views = brd_views+1 where brd_no=#{brdNo}
+	</update>
+
+	<select id="getCurrentBoardList" resultMap="boardVO">
+		SELECT *
+		FROM (
+		SELECT *
+		FROM board
+		ORDER BY brd_no DESC
+		) WHERE ROWNUM &lt;= 5
+	</select>
+
 	<resultMap type="boardvo" id="boardVO">
-		<result property ="brdNo" column="brd_no"/>
-		<result property ="empNo" column="emp_no"/>
-		<result property ="brdDate" column="brd_date"/>
-		<result property ="brdMod" column="brd_mod"/>
-		<result property ="brdCont" column="brd_cont"/>
-		<result property ="brdTitle" column="brd_title"/>
-		<result property ="brdViews" column="brd_views"/>
-<!-- 		<collection property="emplist" column="{empNo=empNo}" ofType="empvo" select="selectEmp"/>	 -->
+		<result property="brdNo" column="brd_no" />
+		<result property="empNo" column="emp_no" />
+		<result property="brdDate" column="brd_date" />
+		<result property="brdMod" column="brd_mod" />
+		<result property="brdCont" column="brd_cont" />
+		<result property="brdTitle" column="brd_title" />
+		<result property="brdViews" column="brd_views" />
+		<!-- <collection property="emplist" column="{empNo=empNo}" ofType="empvo" 
+			select="selectEmp"/> -->
 	</resultMap>
-	      
-<!--     <select id="selectEmp" resultType="empvo"> -->
-<!--     	select emp_No, emp_name, emp_posit, admin_code where emp_no=#{empNo} -->
-<!--     </select> -->
-    
-   	<resultMap type="empvo" id="empVo">
-   		<result property="empNo" column="emp_no"/>
-   		<result property="empName" column="emp_name"/>
-   		<result property="empPosit" column="emp_posit"/>
-   		<result property="adminCode" column="admin_code"/>
-   	</resultMap>
-    
-    <select id="boardListWithEmp" resultType="boardvo">
-    	select b.brd_no, b.brd_date, b.brd_mod, b.brd_title, b.brd_views, e.emp_no, e.emp_name, e.emp_posit, e.admin_code
-    	from board b join employee e
-    	on b.emp_no=e.emp_no	
-    </select>
-   
-    
-    
+
+	<!-- <select id="selectEmp" resultType="empvo"> -->
+	<!-- select emp_No, emp_name, emp_posit, admin_code where emp_no=#{empNo} -->
+	<!-- </select> -->
+
+	<resultMap type="empvo" id="empVo">
+		<result property="empNo" column="emp_no" />
+		<result property="empName" column="emp_name" />
+		<result property="empPosit" column="emp_posit" />
+		<result property="adminCode" column="admin_code" />
+	</resultMap>
+
+	<select id="boardListWithEmp" resultType="boardvo">
+		select b.brd_no, b.brd_date, b.brd_mod, b.brd_title, b.brd_views, e.emp_no,
+		e.emp_name, e.emp_posit, e.admin_code,e.dept_code
+		from board b join employee e
+		on b.emp_no=e.emp_no
+		order by b.brd_date desc
+	</select>
+
+	<select id="selectOneBoard" resultType="boardvo">
+		select b.brd_no, b.brd_date, b.brd_mod, b.brd_title, b.brd_views, e.emp_no,
+		e.emp_name, e.emp_posit, e.admin_code,e.dept_code
+		from board b join employee e
+		on b.emp_no=e.emp_no
+		where b.emp_No=#{empNo}
+	</select>
+
+	<select id="selectEmp" resultType="empvo">
+		select * from employee where emp_no=#{empNo}
+
+	</select>
+
+
+
 </mapper>

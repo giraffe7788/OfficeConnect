@@ -1,9 +1,10 @@
 function registerEmp() {
+	
     event.preventDefault(); // submit 버튼의 고유 기능 방지
 
     let empNo = $('#empNo').val();
-
-	$.ajax({
+ 
+ 	$.ajax({
         url: 'check.do',
         type: 'post',
         data: {'empNo': empNo},
@@ -14,7 +15,9 @@ function registerEmp() {
 				return;
             } else if (res.isExist == 'fail') {
 				console.log("중복x");
-            }
+            } else {
+				console.log("둘다아님");
+			}
         },
         error: function(xhr) {
             alert("상태 : " + xhr.status);

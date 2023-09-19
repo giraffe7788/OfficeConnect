@@ -21,19 +21,20 @@ public class InsertBoardController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/board/insertForm.jsp").forward(req, resp);
+		req.getRequestDispatcher("/views/boardInsert.jsp").forward(req, resp);
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("왔음");
+		
 
 		req.setCharacterEncoding("UTF-8");
 		
 		String brdTitle = req.getParameter("brdTitle");
 		String brdCont = req.getParameter("brdCont");
 		String empNo = req.getParameter("empNo");
-		
+		brdCont =brdCont.replace("\r\n","<br>");
+
 
 		IBoardService boardService = BoardServiceImpl.GetInstance();
 		

@@ -53,7 +53,7 @@
                     <div class="card shadow mb-4" style="margin-top : 1%; width:50%; margin-left : 25%">
                         <div class="card-body">
                             <form class="user" enctype="multipart/form-data">
-                            	<img src="../images/defaultProfile.PNG" alt="기본프로필" id="imageView" style="width:20%; margin-left:40%; margin-bottom:2%">
+                            	<img src="../images/defaultProfile.png" alt="기본프로필" id="imageView" style="width:20%; margin-left:40%; margin-bottom:2%">
                         		<input type="file" class="btn btn-primary btn-user btn-block" id="fileInput" style="width:30%; margin-left:35%; margin-bottom:2%">
                                     &nbsp;
                                 <div class="form-group">

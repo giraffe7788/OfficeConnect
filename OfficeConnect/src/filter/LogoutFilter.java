@@ -27,11 +27,10 @@ public class LogoutFilter implements Filter{
 		
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpSession session = req.getSession();
-//		System.out.println(session.getAttribute("empNo"));
 		
 		if(session == null || session.getAttribute("empNo") == null) {
 			HttpServletResponse resp = (HttpServletResponse) response;
-			resp.sendRedirect("../index.jsp");
+			resp.sendRedirect("./index.jsp");
 		}else {
 			chain.doFilter(request, response);
 		}
@@ -41,5 +40,4 @@ public class LogoutFilter implements Filter{
 	public void init(FilterConfig filterConfig) throws ServletException {
 		
 	}
-
 }

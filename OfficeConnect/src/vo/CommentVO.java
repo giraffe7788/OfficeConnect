@@ -13,7 +13,17 @@ public class CommentVO {
 	private Date commMod;
 	private String empPosit;
 	private String empName;
+	private String deptName;		
 	
+
+	public String getDeptName() {
+		return deptName;
+	}
+
+	public void setDeptName(String deptName) {
+		this.deptName = deptName;
+	}
+
 	public String getEmpPosit() {
 		return empPosit;
 	}
@@ -97,10 +107,4 @@ public class CommentVO {
 		return "CommentVO [commNo=" + commNo + ", empNo=" + empNo + ", commCont=" + commCont + ", brdNo=" + brdNo
 				+ ", commDate=" + commDate + ", commMod=" + commMod + "]";
 	}
-
-
-	
-
-	
-	
 }

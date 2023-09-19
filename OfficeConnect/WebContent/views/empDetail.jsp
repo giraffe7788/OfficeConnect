@@ -1,4 +1,4 @@
-<%@page import="util.TransEmpInfo"%>
+ <%@page import="util.TransEmpInfo"%>
 <%@page import="vo.ImageVO"%>
 <%@page import="vo.EmpVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"

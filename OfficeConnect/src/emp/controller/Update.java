@@ -1,4 +1,4 @@
-package emp.controller;
+  package emp.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -55,7 +55,7 @@ public class Update extends HttpServlet {
 		empVO.setEmpNo(empNo);
 		empVO.setAdminCode(adminCode);
 		
-		int cnt = service.modifyEmployee(empVO);
+		int cnt = service.modifyEmployee(empVO, true);
 		
 		if (cnt>0) {
 			System.out.println("회원 정보 수정 성공");

@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-public class BoardVO {
+public class BoardVO implements Comparable<BoardVO>{
 
 	private int brdNo;
 	private String empNo;
@@ -16,9 +16,27 @@ public class BoardVO {
 	private int adminCode;
 	private String empPosit;
 	private String empName;
+	private int deptCode;
+	private String deptName;
 	
 	
 	
+	public String getDeptName() {
+		return deptName;
+	}
+
+	public void setDeptName(String deptName) {
+		this.deptName = deptName;
+	}
+
+	public int getDeptCode() {
+		return deptCode;
+	}
+
+	public void setDeptCode(int deptCode) {
+		this.deptCode = deptCode;
+	}
+
 	public int getAdminCode() {
 		return adminCode;
 	}
@@ -120,6 +138,11 @@ public class BoardVO {
 	public String toString() {
 		return "BoardVO [brdNo=" + brdNo + ", empNo=" + empNo + ", brdDate=" + brdDate + ", brdMod=" + brdMod
 				+ ", brdCont=" + brdCont + ", brdTitle=" + brdTitle + ", brdViews=" + brdViews + "]";
+	}
+
+	@Override
+	public int compareTo(BoardVO bvo) {
+		return this.brdDate.compareTo(bvo.getBrdDate());
 	}
 
 }

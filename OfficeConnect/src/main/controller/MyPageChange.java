@@ -13,44 +13,43 @@ import com.google.gson.JsonObject;
 
 import emp.service.EmpServiceImpl;
 import emp.service.IEmpService;
+import img.service.IImageService;
+import img.service.ImageServiceImpl;
 import util.TransEmpInfo;
 import vo.EmpVO;
+import vo.ImageVO;
 
-@WebServlet("/main/mypagechange.do")
+@WebServlet("/main/mypageUpdate.do")
 public class MyPageChange extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-			req.getRequestDispatcher("/views/mypage.jsp").forward(req, resp);
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		IEmpService empService = EmpServiceImpl.getInstance();	
-		TransEmpInfo transform = TransEmpInfo.getInstance();
+		IEmpService empService = EmpServiceImpl.getInstance();
 		
 		String empNo = (String)req.getSession().getAttribute("empNo");
-
+		
 		String empName = req.getParameter("empName");
 		String empEmail = req.getParameter("empEmail");
 		String empTel = req.getParameter("empTel");
 		String empAddr = req.getParameter("empAddr");
 		
-		EmpVO myempVO = new EmpVO(empName, empEmail, empTel, empAddr);
-		myempVO.setEmpNo(empNo);
+		EmpVO empVO = new EmpVO(empName, empEmail, empTel, empAddr);
+		empVO.setEmpNo(empNo);
 		
-		int cnt = empService.changeEmployee(empNo);
+		int empCnt = empService.modifyEmployee(empVO, false);
 		
-		System.out.println("empNo:   " + empNo);
-		
-		if(cnt > 0) {
-			System.out.println("회원 정보 수정 성공");
+		if(empCnt > 0) {
+			System .out.println("회원 정보 수정 성공");
 			
 			JsonObject jsonObject = new JsonObject();
 			jsonObject.addProperty("isSuccess", "ok");
 			String jsonStr = new Gson().toJson(jsonObject);
 			resp.setContentType("application/json");
-			resp.getWriter().write(jsonStr);			
+			resp.getWriter().write(jsonStr);
 		}else {
 			System.out.println("회원 정보 수정 실패");
 			
@@ -59,6 +58,6 @@ public class MyPageChange extends HttpServlet {
 			String jsonStr = new Gson().toJson(jsonObject);
 			resp.setContentType("application/json");
 			resp.getWriter().write(jsonStr);
-		}	
+		}
 	}
 }

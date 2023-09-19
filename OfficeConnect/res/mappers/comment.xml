@@ -8,6 +8,17 @@
        select * from comm where brd_no=#{brdNo} order by comm_date
     </select>
     
+      <select id="commentListWithEmp" parameterType="Integer" resultType="commentvo">
+    	select c.comm_no, c.emp_no, c.comm_cont, c.brd_no, c.comm_date, to_char(c.comm_mod,'yyyy-mm-dd'), e.emp_no, e.emp_name, e.emp_posit, e.admin_code, d.dept_name
+    	from comm c join employee e
+    	on c.emp_no= e.emp_no
+    	join dept d 
+        on e.dept_code = d.dept_code
+    	where brd_no=#{brdNo} 
+    	order by c.comm_no	
+    </select>
+   
+    
     <insert id="commentInsert" parameterType="commentvo">
         insert into comm(comm_no,comm_cont,emp_no,brd_no)
         values(
@@ -20,18 +31,16 @@
     
 
         
-    <delete id="deleteboard" parameterType="Integer">  
+    <delete id="commentDelete" parameterType="Integer">  
         delete from comm where comm_no=#{commNo}
     </delete>
     
-    <select id="detailboard" parameterType="Integer" resultType="commentvo">        
-        select * from board where brd_no=#{brdNo}
-    </select>
+
     
-    <update id="updateboard" parameterType="boardvo">
-         update board 
-         set brd_title=#{brdTitle}, brd_cont=#{brdCont}, brd_mod=SYSDATE 
-         where brd_no=#{brdNo}	 
+    <update id="commentUpdate" parameterType="commentvo">
+         update comm 
+         set comm_cont=#{commCont}, comm_mod=sysdate
+         where comm_no=#{commNo}	 
     </update>
     
     

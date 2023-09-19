@@ -2,9 +2,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	SessionEmpInfo sessionEmpInfo = SessionEmpInfo.getInstance();
-	String empNo = (String)session.getAttribute("empNo");
-	int adminCode = sessionEmpInfo.getEmpVO(empNo).getAdminCode();
+	SessionEmpInfo sessionEmpInfoAside = SessionEmpInfo.getInstance();
+	String empNoAside = (String)session.getAttribute("empNo");
+	int adminCode = sessionEmpInfoAside.getEmpVO(empNoAside).getAdminCode();
 %>
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -28,7 +28,7 @@
             </div>
 
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="../approval/sendList.do">
                     <span>&nbsp;</span><i class="fa-solid fa-clipboard"></i>
                     <span>&nbsp;결재</span>
                 </a>
@@ -59,15 +59,16 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">게시판종류</h6>
-                        <a class="collapse-item" href="../views/noticeBoard.jsp">공지사항</a>
-                        <a class="collapse-item" href="../views/freeBoard.jsp">자유게시판</a>
+                        <a class="collapse-item" href="../notice/list.do">공지사항</a>
+                        <a class="collapse-item" href="../board/list.do">자유게시판</a>
                     </div>
                 </div>
             </li>
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="../mail/sendList.do">
+            <!-- get 방식이라 쿼리스트링으로 파라미터(isSend)를 보내줌 .  -->
+                <a class="nav-link" href="../mail/receiveList.do?isSend=1">
                     <i class="fa-solid fa-envelope"></i>
                     <span>메일</span></a>
             </li>

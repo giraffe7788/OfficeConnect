@@ -2,7 +2,9 @@ package board.dao;
 
 import java.util.List;
 
+
 import vo.BoardVO;
+import vo.EmpVO;
 
 /**
  * 실제 DB와 연결해서 SQL문을 수행한 후 결 과를 작성하여 서비스에 
@@ -61,6 +63,13 @@ public interface IBoardDao {
 	 * @return 검색된 게시판정보를 담은 List객체
 	 */
 	public List<BoardVO> searchBoard(BoardVO bv);
+
+	public int updateViews(int brdNo);
+
+	public List<BoardVO> selectOne(String empNo);
+
+	public EmpVO selectEmp(String empNo);
+	
 	
 	
 }
