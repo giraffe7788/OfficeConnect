@@ -30,7 +30,7 @@ public class UpdatenoticeController extends HttpServlet {
 
 		req.setAttribute("nv", nv);
 
-		req.getRequestDispatcher("/views/boardUpdate.jsp").forward(req, resp);
+		req.getRequestDispatcher("/views/noticeUpdate.jsp").forward(req, resp);
 
 	}
 
@@ -72,10 +72,7 @@ public class UpdatenoticeController extends HttpServlet {
 
 		session.setAttribute("msg", msg);
 
-//			req.getRequestDispatcher("/member/list.do").forward(req, resp);
-
 		resp.sendRedirect(req.getContextPath() + "/notice/list.do");
 
 	}
-
 }
