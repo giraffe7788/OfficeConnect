@@ -13,10 +13,13 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
+import emp.service.EmpServiceImpl;
+import emp.service.IEmpService;
 import review.service.IReviewService;
 import review.service.ReviewServiceImpl;
 import util.SessionEmpInfo;
 import vo.EmpVO;
+import vo.MeetingBookVO;
 import vo.ReviewVO;
 
 @WebServlet("/review/insert.do")
@@ -32,24 +35,24 @@ public class Review extends HttpServlet{
 
 		IReviewService service = ReviewServiceImpl.getInstance();
 		
-		String empNo = (String) req.getSession().getAttribute("empNo");
-		EmpVO empVO = SessionEmpInfo.getInstance().getEmpVO(empNo);
+		String revEmpNo = (String) req.getSession().getAttribute("empNo");
+		EmpVO empVO = SessionEmpInfo.getInstance().getEmpVO(revEmpNo);
 		List<EmpVO> empList = service.getInferiorList(empVO);
-		ReviewVO reviewVO = new ReviewVO();
 		
 		req.setAttribute("empVO", empVO);
 		req.setAttribute("empList", empList);
 		RequestDispatcher disp = req.getRequestDispatcher("/views/review.jsp");
 		disp.forward(req, resp);
 		
-		int resScore = Integer.parseInt(req.getParameter("optionValue"));
-		int scrScore = Integer.parseInt(req.getParameter("optionValue"));
-		int copScore = Integer.parseInt(req.getParameter("optionValue"));
-		int creScore = Integer.parseInt(req.getParameter("optionValue"));
+		String empNo = req.getParameter("empNo");
+		int resScore = Integer.parseInt(req.getParameter("resScore"));
+		int scrScore = Integer.parseInt(req.getParameter("scrScore"));
+		int copScore = Integer.parseInt(req.getParameter("copScore"));
+		int creScore = Integer.parseInt(req.getParameter("creScore"));
+
+		ReviewVO reviewVO = new ReviewVO(empNo, revEmpNo, resScore, scrScore, copScore, creScore);
 		
 		if(service.insertScore(reviewVO) > 0) {
-			
-			System.out.println("돼라 제발 집에 가자");
 			
 			JsonObject jsonObject = new JsonObject();
 			jsonObject.addProperty("isSuccess", "ok");
@@ -57,8 +60,6 @@ public class Review extends HttpServlet{
 			resp.setContentType("application/json");
 			resp.getWriter().write(jsonsStr);
 		}else {
-			
-			System.out.println("실패");
 			
 			JsonObject jsonObject = new JsonObject();
 			jsonObject.addProperty("isSuccess", "fail");

@@ -26,7 +26,6 @@
 
 <%
 	ReviewVO rvo = (ReviewVO) request.getAttribute("rvo");
-
 	SessionEmpInfo info = SessionEmpInfo.getInstance();
 	EmpVO empVO = (EmpVO)request.getAttribute("empVO");
 %>
@@ -186,7 +185,12 @@
 <script>
 $('#review').on('click', function(){
 	
-	location.href = "../review/insert.do";
+	if(<%=empVO.getEmpPosit()%> == "부장" && <%=empVO.getEmpPosit()%> == "대표"){
+		location.href = "../review/insert.do";
+	} else{
+		alert("권한이 없습니다.");
+		return;
+	}
 });
 </script>
 	<%@ include file="./common.jsp"%>

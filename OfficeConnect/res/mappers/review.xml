@@ -14,7 +14,7 @@
 	
 	<insert id="insertScore" parameterType="reviewvo">
 		insert into review(emp_no, rev_empno, rev_date, res_score, scr_score, cop_score, cre_score)
-		values(#{empNo}, #{revEmpNo}, #{revDate}, #{resScore}, #{scrScore}, #{copScore}, #{creScore})
+		values(#{empNo}, #{revEmpNo}, sysdate, #{resScore}, #{scrScore}, #{copScore}, #{creScore})
 	</insert>
 	
 	<resultMap type="vo.ReviewVO" id="reviewMap">

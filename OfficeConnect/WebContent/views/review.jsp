@@ -245,49 +245,50 @@ function insertEmpInfo(event){
 	
 	event.preventDefault();
 
-		var empNo = $('#selectEmp').val().split("  ")[0];
+	var empNo = $('#selectEmp').val().split("  ")[0];
 	    
-	    $.ajax({
-	        url: "../emp/detail.do", // Java 변수 값을 반환하는 JSP 페이지
-	        method: "post",
-	        data: {"empNo" : empNo},
-	        success: function(response) {
-	            $('#empName').text(response.empName);
-	            $('#empDept').text(response.empDept);
-	            $('#empPosit').text(response.empPosit);
-	        },
-	        error: function() {
-	            alert("오류");
-	        },
-	        dataType : 'json'
-	    });
-}
-
-$('#score').on('click', function(){
-	let resScore = $("#resScore").val();
-	let scrScore = $("#scrScore").val();
-	let copScore = $("#copScore").val();
-	let creScore = $("#creScore").val();
-	
+    $.ajax({
+        url: "../emp/detail.do", // Java 변수 값을 반환하는 JSP 페이지
+        method: "post",
+        data: {"empNo" : empNo},
+        success: function(res) {
+            $('#empName').text(res.empName);
+            $('#empDept').text(res.empDept);
+            $('#empPosit').text(res.empPosit);
+        },
+        error: function(xhr, status, error) {
+        	console.log("상태값: " + status + " Http 에러 메시지: " + msg);
+        },
+        dataType : 'json'
+    });
+    
+	$('#score').on('click', function(){
+		let resScore = $('[id="resScore"]').val();
+		let scrScore = $('[id="scrScore"]').val();
+		let copScore = $('[id="copScore"]').val();
+		let creScore = $('[id="creScore"]').val();
+		
 		$.ajax({
 			url: 'insert.do',
 			type: 'post',
-			data: {"optionValue": resScore,
-				   "optionValue": scrScore,
-				   "optionValue": copScore,
-				   "optionValue": creScore
+			data: {"resScore": resScore,
+				   "scrScore": scrScore,
+				   "copScore": copScore,
+				   "creScore": creScore,
+				   "empNo" : empNo
 			},
-			dataType : 'json',
-			
 			success: function(res){
-				if(res.isSuccess === 'ok'){
-				alert('서버응답:',res)
+				if(res.isSuccess == 'ok'){
+					alert('성공!');
 				}
 			},
 			error: function(xhr, status, error) {
-				alert('에러')
-			}
+				console.log("상태값: " + status + " Http 에러 메시지: " + msg);
+			},
+			dataType : 'json'
 		});
-});
+	});
+}
+
 </script>
 </html>
