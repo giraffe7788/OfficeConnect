@@ -20,42 +20,44 @@ import vo.NoticeVO;
 @WebServlet("/notice/insert.do") // value 생략가능(어노테이션)
 public class InsertnoticeController extends HttpServlet {
 
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/views/noticeInsert.jsp").forward(req, resp);
-	}
+   @Override
+   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+      req.getRequestDispatcher("/views/noticeInsert.jsp").forward(req, resp);
+   }
 
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+   @Override
+   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+      
 
-		req.setCharacterEncoding("UTF-8");
-		
-		String ntcTitle = req.getParameter("ntcTitle");
-		String ntcCont = req.getParameter("ntcCont");
-		String empNo = req.getParameter("empNo");
-		ntcCont = ntcCont.replace("\r\n","<br>");
+      req.setCharacterEncoding("UTF-8");
+      
+      String ntcTitle = req.getParameter("ntcTitle");
+      String ntcCont = req.getParameter("ntcCont");
+      String empNo = req.getParameter("empNo");
+      ntcCont =ntcCont.replace("\r\n","<br>");
+      ntcCont =ntcCont.replace("\u0020","&nbsp;");
+   
 
-		INoticeService noticeService = NoticeServiceImpl.GetInstance();
-		
-		NoticeVO nv = new NoticeVO();
-		nv.setNtcTitle(ntcTitle);
-		nv.setNtcCont(ntcCont);
-		nv.setEmpNo(empNo);
-			
-		int cnt = noticeService.insertNotice(nv);
+      INoticeService noticeService = NoticeServiceImpl.GetInstance();
+      
+      NoticeVO nv = new NoticeVO();
+      nv.setNtcTitle(ntcTitle);
+      nv.setNtcCont(ntcCont);
+      nv.setEmpNo(empNo);
+         
+      int cnt = noticeService.insertNotice(nv);
 
-		String msg = "";
+      String msg = "";
 
-		if (cnt > 0) {
-			msg = "성공";
-		} else {
-			msg = "실패";
-		}
+      if (cnt > 0) {
+         msg = "성공";
+      } else {
+         msg = "실패";
+      }
 
-		HttpSession session = req.getSession();
+      HttpSession session = req.getSession();
 
-		resp.sendRedirect(req.getContextPath() + "/notice/list.do");
+      resp.sendRedirect(req.getContextPath() + "/notice/list.do");
 
-	}
+   }
 }

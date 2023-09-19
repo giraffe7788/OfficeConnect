@@ -3,6 +3,7 @@ package mail.controller;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -12,8 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import emp.service.EmpServiceImpl;
+import emp.service.IEmpService;
 import mail.service.IMailService;
 import mail.service.MailServiceImpl;
+import vo.EmpVO;
 import vo.MailVO;
 
 @MultipartConfig
@@ -23,8 +27,9 @@ public class InsertMail extends HttpServlet {
 	@Override
 	// get으로 들어왔다는 의미는 링크를 타고 들어왔다는 뜻, 그래서 메일 작성 화면을 보여줌
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		List<EmpVO> empList = EmpServiceImpl.getInstance().selectAll();
+		req.setAttribute("empList", empList);
 		req.getRequestDispatcher("../views/mailWrite.jsp").forward(req, resp);
-		
 	}
 	
 	@Override
@@ -39,9 +44,8 @@ public class InsertMail extends HttpServlet {
 		// 사용자로부터 입력 받은 데이터를 DB로 가져온다.
 		String mailTitle = req.getParameter("mailTitle");
 		String mailCont = req.getParameter("mailCont");
-		String mailReceiver = req.getParameter("mailReceiver");
-		String mailSender = req.getParameter("empNo");
-
+		System.out.println(req.getParameter("receiverEmpNo"));
+		String mailReceiver = req.getParameter("receiverEmpNo");
 		Date mailSendDate = new Date(); // 현재 날짜 설정
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

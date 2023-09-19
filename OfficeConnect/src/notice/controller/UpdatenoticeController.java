@@ -20,59 +20,60 @@ import vo.NoticeVO;
 @WebServlet("/notice/update.do")
 public class UpdatenoticeController extends HttpServlet {
 
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+   @Override
+   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		int ntcNo = Integer.parseInt(req.getParameter("ntcNo"));
+      int ntcNo = Integer.parseInt(req.getParameter("ntcNo"));
 
-		INoticeService noticeService = NoticeServiceImpl.GetInstance();
-		NoticeVO nv = noticeService.detailNotice(ntcNo);
+      INoticeService noticeService = NoticeServiceImpl.GetInstance();
+      NoticeVO nv = noticeService.detailNotice(ntcNo);
+      System.out.println("제목 이다"+nv.getNtcTitle());
+      req.setAttribute("nv", nv);
 
-		req.setAttribute("nv", nv);
+      req.getRequestDispatcher("/views/noticeUpdate.jsp").forward(req, resp);
 
-		req.getRequestDispatcher("/views/noticeUpdate.jsp").forward(req, resp);
+   }
 
-	}
+   @Override
+   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+      
+      req.setCharacterEncoding("UTF-8");
+      String ntcTitle = req.getParameter("title");
+      String ntcCont = req.getParameter("comment");
+      int ntcNo = Integer.parseInt(req.getParameter("num"));
+      ntcCont = ntcCont.replace("\r\n","<br>");
+      ntcCont = ntcCont.replace("\u0020","&nbsp;");
+      try {
 
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		req.setCharacterEncoding("UTF-8");
-		String ntcTitle = req.getParameter("title");
-		String ntcCont = req.getParameter("comment");
-		int ntcNo = Integer.parseInt(req.getParameter("num"));
-		ntcCont = ntcCont.replace("\r\n","<br>");
-		try {
+      } catch (Exception e) {
+         e.printStackTrace();
+      }
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+      INoticeService noticeService = NoticeServiceImpl.GetInstance();
 
-		INoticeService noticeService = NoticeServiceImpl.GetInstance();
+      NoticeVO nv = new NoticeVO();
+      nv.setNtcTitle(ntcTitle);
+      nv.setNtcCont(ntcCont);
+      nv.setNtcNo(ntcNo);
+      
 
-		NoticeVO nv = new NoticeVO();
-		nv.setNtcTitle(ntcTitle);
-		nv.setNtcCont(ntcCont);
-		nv.setNtcNo(ntcNo);
-		
+      System.out.println(ntcCont);
+      System.out.println("공지사항 수정 도착");
+      int cnt = noticeService.updateNotice(nv);
 
-		System.out.println(ntcCont);
-		System.out.println("공지사항 수정 도착");
-		int cnt = noticeService.updateNotice(nv);
+      String msg = "";
 
-		String msg = "";
+      if (cnt > 0) {
+         msg = "성공";
+      } else {
+         msg = "실패";
+      }
 
-		if (cnt > 0) {
-			msg = "성공";
-		} else {
-			msg = "실패";
-		}
+      HttpSession session = req.getSession();
 
-		HttpSession session = req.getSession();
+      session.setAttribute("msg", msg);
 
-		session.setAttribute("msg", msg);
+      resp.sendRedirect(req.getContextPath() + "/notice/detail.do?ntcNo="+ntcNo);
 
-		resp.sendRedirect(req.getContextPath() + "/notice/list.do");
-
-	}
+   }
 }
