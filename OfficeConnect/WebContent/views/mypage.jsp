@@ -158,7 +158,7 @@
 									
 						</div>
 						<!-- 드롭다운 -->
-									<nav class="navbar navbar-expand navbar-light bg-light mb-4" style="width : 14%; height:4vh; position:absolute; margin-left:68%; margin-top:45%">
+									<nav class="navbar navbar-expand navbar-light bg-light mb-4" style="width : 14%; height:4vh; position:absolute; margin-left:73%; margin-top:45%">
                                         <a class="navbar-brand" href="#" style="font-size : 1em" id="empPosit"><%=transform.transformStateCode(empVO.getStateCode()) %></a>
                                         <ul class="navbar-nav ml-auto">
                                             <li class="nav-item dropdown">
@@ -266,7 +266,7 @@
 					'empAddr': empAddr
 			},
 			success: function(res){
-				if(res.isSuccess === 'ok'){
+				if(res.isSuccess == 'ok'){
 					alert('정보가 수정되었습니다.');
 					$('infoChangeModal').modal('hide');
 					location.reload();

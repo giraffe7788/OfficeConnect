@@ -72,25 +72,25 @@
 									</div>
 									<hr>
 
-									<div style="text-align: center;">
-										<button type="submit" class="btn btn-outline-primary"
-											onClick="window.location.href='../mail/insert.do'"
-											style="display: inline-block;">메일쓰기</button>
-									</div>
+									 <div style="text-align: center;">
+                              <button type="submit" class="btn btn-outline-success"
+                                 onClick="window.location.href='../mail/insert.do'"
+                                 style="display: inline-block; width: 100%; height: 60px;">메일쓰기</button>
+                           </div>
 
 									<hr>
 
-									<nav id="sidebar" style="padding: inherit;">
-										<ul class="list-unstyled">
-											<li style="margin-bottom: 3px;"><a href="../mail/receiveList.do?isSend=1"
-												style="text-decoration: none; color: inherit; background-color: transparent;">받은
-													메일함</a></li>
+									<nav id="sidebar">
+                              <ul class="list-unstyled">
+                                 <li style="margin-bottom: 3px;"><a href="../mail/receiveList.do?isSend=1"
+                                    style="text-decoration: none; color: inherit; background-color: transparent;">
+                                    <button class="btn btn-outline-primary" style="display: inline-block; width: 100%; height: 60px;">받은메일함</button></a></li>
 
-											<li style="margin-bottom: 3px;"><a href="../mail/sendList.do?isSend=2"
-												style="text-decoration: none; color: inherit; background-color: transparent;">보낸
-													메일함</a></li>
-										</ul>
-									</nav>
+                                 <li style="margin-bottom: 3px;"><a href="../mail/sendList.do?isSend=2"
+                                    style="text-decoration: none; color: inherit; background-color: transparent;">
+                                    <button class="btn btn-outline-primary" style="display: inline-block; width: 100%; height: 60px;">보낸 메일함</button></a></li>
+                              </ul>
+                           </nav>
 
 									<hr>
 

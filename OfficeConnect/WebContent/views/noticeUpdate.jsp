@@ -74,7 +74,7 @@ NoticeVO vo = (NoticeVO) request.getAttribute("nv");
 									<div class="card-header">내용 수정</div>
 									<textarea name="comment" rows="" cols=""
 										style="margin: 2%; height: 60vh; width: 96%"
-										>value=<%=vo.getNtcCont() %></textarea>
+										><%=vo.getNtcCont() %></textarea>
 										<input type="hidden" name="num" value="<%=vo.getNtcNo()%>">
 								</div>
 							</div>

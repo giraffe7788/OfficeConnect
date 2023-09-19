@@ -14,7 +14,6 @@ import notice.service.NoticeServiceImpl;
 import vo.NoticeVO;
 
 
-//寃뚯떆�뙋 �젣紐� �겢由��떆 �솕硫� 
 @WebServlet("/notice/detail.do")
 public class DetailnoticeController extends HttpServlet{
 	

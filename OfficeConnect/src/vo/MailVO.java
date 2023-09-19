@@ -18,8 +18,8 @@ public class MailVO {
 	private Date mailSenddate;    // 메일 발신날짜
 	private String isSend; 		  // 보낸메일 확인
 	private String mailTitle;	  // 메일제목
-	private String empName;	 
-	private String empPosit;	 
+	private String empName;	 	  // 사원명
+	private String empPosit;	  // 직위
 	
 	public MailVO (){};
 	//EMP_NAME, EMP_POSIT

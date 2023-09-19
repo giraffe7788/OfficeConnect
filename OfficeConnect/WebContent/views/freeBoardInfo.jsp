@@ -209,8 +209,11 @@ outline:0
 
 	
 		function fn_comment() {
+			
 			var sendData = { "empNo":<%=empNo%>, "brdNo":<%=boardVO.getBrdNo()%>, "commCont" : $("#commCont").val()}
 			var text = $("#commCont").val();
+			var commCont = $("#commCont").val();
+			
 			if(text.replace(/\s| /gi, "").length == 0){
 				alert("댓글을 입력하세요.");
 				$("#commCont").focus();
@@ -221,10 +224,12 @@ outline:0
 				
 			 	url : "../comment/insert.do",
 				type : "post",
-				data : sendData,
-				success : function(cnt){
+				data : { "empNo": '<%=empNo%>',
+					     "brdNo": <%=boardVO.getBrdNo()%>, 
+					     "commCont" : commCont},
+				success : function(res){
 					
-		            if(cnt==1){
+		            if(res.cnt==1){
  		            	$('textarea').val('');
  		            	getcommentList();
 		              
@@ -233,7 +238,8 @@ outline:0
 				},
 				error : function(xhr) {
 					alert("상태 : " + xhr.status);
-				} 
+				}, 
+				dataType : 'json'
 			});
 		}}
 
