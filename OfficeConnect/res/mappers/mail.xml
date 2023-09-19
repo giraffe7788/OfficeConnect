@@ -6,47 +6,65 @@
 	<!-- 메일 쓰기 -->
 	<insert id="writeMail" parameterType="vo.MailVO">
 		insert into
-		mail(MAIL_NO, MAIL_CONT, MAIL_SENDDATE, MAIL_SENDSTAT, MAIL_RECESTAT, MAIL_RECEIVER, MAIL_SENDER, MAIL_TITLE)
+		mail(MAIL_NO,
+		MAIL_CONT, MAIL_SENDDATE, MAIL_SENDSTAT, MAIL_RECESTAT, MAIL_RECEIVER,
+		MAIL_SENDER, MAIL_TITLE)
 		values
-		(MAIL_SEQ.nextval, #{mailCont}, #{mailSenddate}, #{mailSendstat}, #{mailRecestat},
-		#{mailReceiver}, #{mailSender}, #{mailTitle})
+		(MAIL_SEQ.nextval, #{mailCont},
+		#{mailSenddate}, #{mailSendstat}, #{mailRecestat},
+		#{mailReceiver},
+		#{mailSender}, #{mailTitle})
 	</insert>
 
-	<!-- 받은 메일 확인  -->
-	<select id="getReceiveMail" resultMap="mailMap" parameterType="map">
-		select * from employee a, mail b 
+	<!-- 받은 메일 확인 -->
+	<select id="getReceiveMail" resultMap="mailMap"
+		parameterType="map">
+		select * from employee a, mail b
 		where a.emp_no = b.mail_sender
 		and b.mail_receiver = #{empEmail}
-		order by b.mail_SendDate desc
-		
+		order by
+		b.mail_SendDate desc
+
 	</select>
 
-	<!-- 보낸 메일 확인  -->
+	<!-- 보낸 메일 확인 -->
 	<select id="getSendMail" resultMap="mailMap" parameterType="map">
 		select * from employee a, mail b
 		where a.emp_email = b.mail_receiver
 		and b.mail_sender = #{empNo}
 		order by mail_SendDate desc
 	</select>
-	
-	<!-- 상세 메일 조회  -->
-	<select id="getMailByMailNo" resultMap="mailMap" parameterType="String">
-	select a.*, b.emp_name as MAIL_SENDER_NAME, b.emp_email as MAIL_SENDER_EMAIL, b.emp_posit as MAIL_SENDER_POSIT,
-				c.emp_name as MAIL_RECEIVER_NAME, c.emp_posit as MAIL_RECEIVER_POSIT
-	from mail a
-	left join employee b
-	on a.mail_sender = b.emp_no
-	left join employee c
-	on a.mail_receiver = c.emp_email
-	where a.mail_no = #{mailNo} 
+
+	<!-- 상세 메일 조회 -->
+	<select id="getMailByMailNo" resultMap="mailMap"
+		parameterType="String">
+		select a.*, b.emp_name as MAIL_SENDER_NAME, b.emp_email as
+		MAIL_SENDER_EMAIL, b.emp_posit as MAIL_SENDER_POSIT,
+		c.emp_name as MAIL_RECEIVER_NAME, c.emp_posit as MAIL_RECEIVER_POSIT
+		from mail a
+		left join employee b
+		on a.mail_sender = b.emp_no
+		left join employee c
+		on a.mail_receiver = c.emp_email
+		where a.mail_no = #{mailNo}
 	</select>
 
-	<!-- 메일 삭제 -->	
+	<!-- 메일 삭제 -->
 	<delete id="deleteMail">
 		delete from mail
 		where mail_no = #{mailNo}
 	</delete>
-	
+
+	<select id="getCurrentReceiveMailList" resultMap="mailMap" parameterType="String">
+		SELECT *
+		FROM (
+		SELECT *
+		FROM mail
+		WHERE mail_receiver = #{empEmail}
+		ORDER BY mail_no DESC
+		) WHERE ROWNUM &lt;= 5
+	</select>
+
 	<resultMap type="vo.MailVO" id="mailMap">
 		<result column="MAIL_NO" property="mailNo" />
 		<result column="MAIL_CONT" property="mailCont" />
@@ -56,9 +74,10 @@
 		<result column="MAIL_RECEIVER" property="mailReceiver" />
 		<result column="MAIL_SENDER" property="mailSender" />
 		<result column="MAIL_SENDER_NAME" property="mailSenderName" />
-    	<result column="MAIL_RECEIVER_NAME" property="mailReceiverName" />
-    	<result column="MAIL_SENDER_EMAIL" property="mailSenderEmail" />
-    	<result column="MAIL_SENDER_POSIT" property="mailSenderPosit" />
-    	<result column="MAIL_RECEIVER_POSIT" property="mailReceiverPosit" />
+		<result column="MAIL_RECEIVER_NAME" property="mailReceiverName" />
+		<result column="MAIL_SENDER_EMAIL" property="mailSenderEmail" />
+		<result column="MAIL_SENDER_POSIT" property="mailSenderPosit" />
+		<result column="MAIL_RECEIVER_POSIT"
+			property="mailReceiverPosit" />
 	</resultMap>
 </mapper>

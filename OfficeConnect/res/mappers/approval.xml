@@ -4,7 +4,8 @@
 
 	<insert id="insertApprovalLine" parameterType="apprvo">
 		insert into
-		apprline values(apprl_seq.NEXTVAl, #{apprlSeq1}, #{apprlSeq2}, #{apprlSeq3}, 0)
+		apprline values(apprl_seq.NEXTVAl, #{apprlSeq1}, #{apprlSeq2},
+		#{apprlSeq3}, 0)
 	</insert>
 
 	<insert id="insertApproval" parameterType="apprvo">
@@ -54,33 +55,48 @@
 		select * from appr where
 		appr_no = #{apprNo}
 	</select>
-	
+
 	<select id="getApprlVO" resultMap="apprlMap">
 		select * from apprline where
 		apprl_no = #{apprlNo}
 	</select>
-	
+
 	<select id="getApprovalSeq1" resultType="map">
-		select apprl_seq1 from apprline where apprl_no = #{apprlNo} and apprl_seq1 = #{empNo}
+		select apprl_seq1 from
+		apprline where apprl_no = #{apprlNo} and apprl_seq1 = #{empNo}
 	</select>
-	
+
 	<select id="getApprovalSeq2" resultType="map">
-		select apprl_seq2 from apprline where apprl_no = #{apprlNo} and apprl_seq2 = #{empNo}
+		select apprl_seq2 from
+		apprline where apprl_no = #{apprlNo} and apprl_seq2 = #{empNo}
 	</select>
-	
+
 	<select id="getApprovalSeq3" resultType="map">
-		select apprl_seq3 from apprline where apprl_no = #{apprlNo} and apprl_seq3 = #{empNo}
+		select apprl_seq3 from
+		apprline where apprl_no = #{apprlNo} and apprl_seq3 = #{empNo}
+	</select>
+
+	<select id="getCurrentSendApprovalList" resultMap="apprMap">
+		SELECT *
+		FROM (
+		SELECT *
+		FROM appr
+		WHERE emp_no = #{empNo}
+		ORDER BY appr_no DESC
+		) WHERE ROWNUM &lt;= 5
 	</select>
 
 	<update id="setApprsCode" parameterType="map">
 		UPDATE appr
-		SET apprs_code = #{apprsCode}
+		SET
+		apprs_code = #{apprsCode}
 		WHERE appr_no = #{apprNo}
 	</update>
-	
+
 	<update id="addApprlProg" parameterType="Integer">
 		UPDATE apprline
-		SET apprl_prog = apprl_prog + 1
+		SET
+		apprl_prog = apprl_prog + 1
 		WHERE apprl_no = #{apprlNo}
 	</update>
 

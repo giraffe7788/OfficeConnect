@@ -129,7 +129,7 @@ public class MeetingDaoImpl implements IMeetingDao{
 		SqlSession session = MyBatisUtil.getInstance(true);
 		
 		try {
-			mtrVO = session.selectOne("meetingroom.getMeetingBookVO");
+			mtrVO = session.selectOne("meetingroom.getMeetingBookVO", empNo);
 		} catch (PersistenceException e) {
 			e.printStackTrace();
 			session.rollback();

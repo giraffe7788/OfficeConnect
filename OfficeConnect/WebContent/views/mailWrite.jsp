@@ -74,26 +74,6 @@
 										<button type="submit" class="btn btn-outline-primary"
 											onClick="window.location.href='../mail/insert.do'"
 											style="display: inline-block;">메일쓰기</button>
-
-										<button type="submit" class="btn btn-outline-info" 
-										onClick="window.location.href='mailWriteMine.jsp'"
-											style="display: inline-block;">내게쓰기</button>
-									</div>
-
-									<hr>
-
-									<div style="text-align: center;">
-
-										<button type="submit" class="btn btn-outline-warning"
-											onClick="#" style="display: inline-block;">
-											안읽음 <span class="badge badge-danger badge-counter">1</span>
-										</button>
-
-										<button type="submit" class="btn btn-outline-danger"
-											onClick="#" style="display: inline-block;">
-											중요메일<span class="badge badge-danger badge-counter">3</span>
-										</button>
-
 									</div>
 
 									<hr>
@@ -109,37 +89,10 @@
 												style="text-decoration: none; color: inherit; background-color: transparent;">보낸
 													메일함</a></li>
 
-											<li style="margin-bottom: 3px;"><a href="../views/mailBoxMine.jsp"
-												style="text-decoration: none; color: inherit; background-color: transparent;">내게
-													쓴 메일함</a></li>
-
-<!-- 											<li style="margin-bottom: 3px;"><a href="#" -->
-<!-- 												style="text-decoration: none; color: inherit; background-color: transparent;">임시 -->
-<!-- 													보관함</a></li> -->
-
-											<li style="margin-bottom: 3px;"><a href="#"
-												style="text-decoration: none; color: inherit; background-color: transparent;">휴지통</a></li>
 										</ul>
 									</nav>
 
 									<hr>
-
-									<div class="dropdown">
-										<button class="btn btn-outline-Light dropdown-toggle"
-											type="button" id="groupDropdown" data-bs-toggle="dropdown"
-											aria-expanded="false" style="width: 100%">즐겨찾는 그룹</button>
-
-										<ul class="dropdown-menu" aria-labelledby="groupDropdown"
-											style="width: 100%">
-											<li style="width: 100%"><a class="dropdown-item"
-												href="#">영업 1팀</a></li>
-
-											<li style="width: 100%"><a class="dropdown-item"
-												href="#">마케팅팀</a></li>
-											<!-- 다른 그룹 항목 추가 -->
-										</ul>
-									</div>
-
 
 								</div>
 
@@ -158,10 +111,6 @@
 										<div class="mb-3" style="width: 60%; display: flex; align-items: center;">
 											<label for="recipient" class="form-label" style="flex: 1;">받는사람:</label> 
 											<input type="email" class="form-control" id="recipient" name="mailReceiver" style="flex: 3; margin-right: 10px;">
-											<button type="submit" class="btn btn-primary"
-												style="flex: 1; margin-right: 10px;">주소록</button>
-											<button type="submit" class="btn btn-primary"
-												style="flex: 1;">즐겨찾는 그룹</button>
 										</div>
 
 										<div class="mb-3">
@@ -169,24 +118,11 @@
 											<input type="text" class="form-control" id="subject" name="mailTitle" required>
 										</div>
 										
-										<p>첨부파일:</p>
-										<div class="mb-3">
-										<div class="custom-file">
-											<label for="attachment" class="custom-file-label"></label> 
-											<input
-												type="file" class="custom-file-input" id="attachment"
-												name="attachment"
-												style="width: 100%; padding: 0.375rem 0.75rem; font-size: 1rem; font-weight: 400; line-height: 1.5; color: #6e707e; background-color: #fff; background-clip: padding-box; border: 1px solid #d1d3e2; border-radius: 0.35rem; transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;">
-										</div>
-										</div>
-
 										<div class="mb-3">
 											<label for="message" class="form-label">본문:</label>
 											<textarea class="form-control" id="message" name="mailCont" rows="12" required></textarea>
 										</div>
 										<div style="text-align: right;">
-											<button type="submit" class="btn btn-primary"
-												style="display: inline-block; margin-right: 10px;">임시저장</button>
 											<button type="submit" class="btn btn-primary"
 												style="display: inline-block;">전송</button>
 										</div>

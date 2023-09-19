@@ -43,7 +43,7 @@ public class ReceiveMailList extends HttpServlet {
 		
 		req.setAttribute("receiveMailList", receiveMailList);
 		
-		req.getRequestDispatcher("/views/mailBoxReceived.jsp").forward(req, resp);
+		req.getRequestDispatcher("../views/mailBoxReceived.jsp").forward(req, resp);
 		
 	}
 	
