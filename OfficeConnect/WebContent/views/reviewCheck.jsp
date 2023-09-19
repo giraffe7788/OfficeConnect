@@ -28,6 +28,7 @@
 	ReviewVO rvo = (ReviewVO) request.getAttribute("rvo");
 	SessionEmpInfo info = SessionEmpInfo.getInstance();
 	EmpVO empVO = (EmpVO)request.getAttribute("empVO");
+	EmpVO ev = (EmpVO)request.getAttribute("ev");
 %>
 </head>
 
@@ -183,14 +184,17 @@
 	<!-- 공통속성 설정 include -->
 
 <script>
+
+var empPosit = "<%=ev.getEmpPosit()%>";
+
 $('#review').on('click', function(){
 	
-	if(<%=empVO.getEmpPosit()%> == "부장" && <%=empVO.getEmpPosit()%> == "대표"){
+	if (empPosit == "부장" || empPosit == "대표") {
 		location.href = "../review/insert.do";
-	} else{
-		alert("권한이 없습니다.");
-		return;
-	}
+ 	} else {
+ 		alert("권한이 없습니다.");
+ 		return;
+ 	}
 });
 </script>
 	<%@ include file="./common.jsp"%>

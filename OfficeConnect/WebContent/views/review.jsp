@@ -195,7 +195,7 @@
                                  </div>
 
                               </div>
-										<button type="submit" id="score" class="btn btn-primary">완료</button>
+										<button type="button" id="score" class="btn btn-primary">완료</button>
 									</form>
 
 								</div>
@@ -229,17 +229,9 @@
 	<!-- 페이지 검색/조회 플러그인 -->
 </body>
 <script>
-$('#check').on('click', function(){
-
 <%
 	EmpVO selectedEmpVo = info.getEmpVO(empNo);
 %>
-
-	$('#empName').text("<%=selectedEmpVo.getEmpName()%>");
-	$('#empPosit').text("<%=selectedEmpVo.getEmpPosit()%>");
-	$('#deptCode').text("<%=TransEmpInfo.getInstance().transformDeptCode(selectedEmpVo.getDeptCode())%>");
-
-});
 
 function insertEmpInfo(event){
 	
@@ -248,21 +240,39 @@ function insertEmpInfo(event){
 	var empNo = $('#selectEmp').val().split("  ")[0];
 	    
     $.ajax({
-        url: "../emp/detail.do", // Java 변수 값을 반환하는 JSP 페이지
-        method: "post",
+
+    	url: "../emp/detail.do", // Java 변수 값을 반환하는 JSP 페이지
+        type: "post",
         data: {"empNo" : empNo},
         success: function(res) {
             $('#empName').text(res.empName);
             $('#empDept').text(res.empDept);
             $('#empPosit').text(res.empPosit);
         },
-        error: function(xhr, status, error) {
+        error: function(xhr, status, msg) {
         	console.log("상태값: " + status + " Http 에러 메시지: " + msg);
         },
         dataType : 'json'
     });
     
+	$('#check').on('click', function(){
+	
+		$('#empName').text("<%=selectedEmpVo.getEmpName()%>");
+		$('#empPosit').text("<%=selectedEmpVo.getEmpPosit()%>");
+		$('#deptCode').text("<%=TransEmpInfo.getInstance().transformDeptCode(selectedEmpVo.getDeptCode())%>");
+	
+	});
+    
+	
+}
+
+
+$(function(){
+	
 	$('#score').on('click', function(){
+		
+		const empNo = $('#selectEmp').val().split("  ")[0];
+		
 		let resScore = $('[id="resScore"]').val();
 		let scrScore = $('[id="scrScore"]').val();
 		let copScore = $('[id="copScore"]').val();
@@ -278,17 +288,27 @@ function insertEmpInfo(event){
 				   "empNo" : empNo
 			},
 			success: function(res){
+				
+				console.log('res', res);
+				
 				if(res.isSuccess == 'ok'){
-					alert('성공!');
+					alert("평가 완료");
+					location.reload();
 				}
 			},
-			error: function(xhr, status, error) {
+			error: function(xhr, status, msg) {
 				console.log("상태값: " + status + " Http 에러 메시지: " + msg);
 			},
 			dataType : 'json'
 		});
 	});
-}
+	
+})
+
+
+
+
+
 
 </script>
 </html>

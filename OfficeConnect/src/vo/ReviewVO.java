@@ -4,6 +4,7 @@ public class ReviewVO {
 
 	private String empNo;
 	private String revEmpNo;
+	private String revDate;
 	private int resScore;
 	private int scrScore;
 	private int copScore;
@@ -11,8 +12,7 @@ public class ReviewVO {
 	
 	public ReviewVO() {}
 
-	public ReviewVO(String empNo, String revEmpNo, int resScore, int scrScore, int copScore,
-			int creScore) {
+	public ReviewVO(String empNo, String revEmpNo, int resScore, int scrScore, int copScore, int creScore) {
 		super();
 		this.empNo = empNo;
 		this.revEmpNo = revEmpNo;
@@ -69,5 +69,6 @@ public class ReviewVO {
 	public void setCreScore(int creScore) {
 		this.creScore = creScore;
 	}
+
 	
 }

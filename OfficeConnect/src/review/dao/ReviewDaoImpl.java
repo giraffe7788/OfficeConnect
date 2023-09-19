@@ -20,6 +20,9 @@ public class ReviewDaoImpl implements IReviewDao{
 		return instance;
 	}
 
+	/**
+	 * 근무태도평가 조회
+	 */
 	@Override
 	public List<ReviewVO> selectList(String empNo) {
 
@@ -43,6 +46,11 @@ public class ReviewDaoImpl implements IReviewDao{
 		return rvo;
 	}
 	
+	/**
+	 * 평가할 수 있는 부하직원들을 확인하는 메서드
+	 * @param empVO
+	 * @return
+	 */
 	@Override
 	public List<EmpVO> getInferiorList(EmpVO empVO) {
 		
@@ -65,6 +73,11 @@ public class ReviewDaoImpl implements IReviewDao{
 		return empList;
 	}
 	
+	/**
+	 * 자신의 평가를 확인
+	 * @param empNo
+	 * @return
+	 */
 	@Override
 	public ReviewVO selectScore(String empNo) {
 
@@ -90,6 +103,11 @@ public class ReviewDaoImpl implements IReviewDao{
 		return rvo;
 	}
 	
+	/**
+	 * 사원의 근무 태도를 평가하는 메서드
+	 * @param reviewVO
+	 * @return
+	 */
 	@Override
 	public int insertScore(ReviewVO reviewVO) {
 

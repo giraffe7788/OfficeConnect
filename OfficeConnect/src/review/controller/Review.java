@@ -27,12 +27,7 @@ public class Review extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		doPost(req, resp);
-	}
-	
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+		
 		IReviewService service = ReviewServiceImpl.getInstance();
 		
 		String revEmpNo = (String) req.getSession().getAttribute("empNo");
@@ -43,16 +38,30 @@ public class Review extends HttpServlet{
 		req.setAttribute("empList", empList);
 		RequestDispatcher disp = req.getRequestDispatcher("/views/review.jsp");
 		disp.forward(req, resp);
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		IReviewService service = ReviewServiceImpl.getInstance();
+		
+		String revEmpNo = (String) req.getSession().getAttribute("empNo");
+		EmpVO empVO = SessionEmpInfo.getInstance().getEmpVO(revEmpNo);
+
+		req.setAttribute("empVO", empVO);
 		
 		String empNo = req.getParameter("empNo");
+		
 		int resScore = Integer.parseInt(req.getParameter("resScore"));
 		int scrScore = Integer.parseInt(req.getParameter("scrScore"));
 		int copScore = Integer.parseInt(req.getParameter("copScore"));
 		int creScore = Integer.parseInt(req.getParameter("creScore"));
-
+		
 		ReviewVO reviewVO = new ReviewVO(empNo, revEmpNo, resScore, scrScore, copScore, creScore);
 		
 		if(service.insertScore(reviewVO) > 0) {
+			
+			System.out.println("^ㅁ^");
 			
 			JsonObject jsonObject = new JsonObject();
 			jsonObject.addProperty("isSuccess", "ok");

@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import emp.service.EmpServiceImpl;
+import emp.service.IEmpService;
 import review.service.IReviewService;
 import review.service.ReviewServiceImpl;
 import util.SessionEmpInfo;
@@ -29,14 +31,19 @@ public class MyReview extends HttpServlet {
 		ReviewVO rvo = service.selectScore(empNo);
 
 		SessionEmpInfo info = SessionEmpInfo.getInstance();
+		
 
 		EmpVO empVO = null;
 		if (rvo != null) {
 			empVO = info.getEmpVO(rvo.getRevEmpNo());
 		}
 
+		IEmpService empService = EmpServiceImpl.getInstance();
+		EmpVO ev = empService.selectOne(empNo);
+
 		req.setAttribute("rvo", rvo);
 		req.setAttribute("empVO", empVO);
+		req.setAttribute("ev", ev);
 
 		RequestDispatcher disp = req.getRequestDispatcher("../views/reviewCheck.jsp");
 		disp.forward(req, resp);
