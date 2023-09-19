@@ -9,9 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+
 import emp.service.EmpServiceImpl;
 import emp.service.IEmpService;
 import img.service.ImageServiceImpl;
+import util.TransEmpInfo;
 import img.service.IImageService;
 import vo.ImageVO;
 import vo.EmpVO;
@@ -43,8 +47,27 @@ public class Detail extends HttpServlet {
 				
 	}
 
+	// 사번으로 vo를 얻어서 json타입으로 반환
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		doGet(req, resp);
+		
+		String empNo = req.getParameter("empNo");
+		
+		IEmpService empService = EmpServiceImpl.getInstance();
+		EmpVO empVO = empService.selectOne(empNo);
+		
+		if (empVO != null) {
+						
+			JsonObject jsonObject = new JsonObject();
+			jsonObject.addProperty("empName", empVO.getEmpName());
+			jsonObject.addProperty("empPosit", empVO.getEmpPosit());
+			jsonObject.addProperty("empDept", TransEmpInfo.getInstance().transformDeptCode(empVO.getDeptCode()));
+			String jsonStr = new Gson().toJson(jsonObject);
+			resp.setContentType("application/json");
+			resp.getWriter().write(jsonStr);
+		} else {
+			
+			System.out.println("사번 입력 오류");
+		}
 	}
 }

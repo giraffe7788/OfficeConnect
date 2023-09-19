@@ -102,6 +102,39 @@
 		from employee where emp_no = #{empNo}
 	</select>
 	
+	<select id="getInferiorList" resultMap="empMap" parameterType="empvo">
+		SELECT *
+		FROM employee
+		WHERE 
+		  CASE
+		    WHEN emp_posit = '사원' THEN 1
+		    WHEN emp_posit = '대리' THEN 2
+		    WHEN emp_posit = '과장' THEN 3
+		    WHEN emp_posit = '차장' THEN 4
+		    WHEN emp_posit = '부장' THEN 5
+		    ELSE 6  
+		  END
+		  &lt;
+		  CASE
+		    WHEN (SELECT emp_posit FROM employee WHERE emp_no = #{empNo}) = '사원' THEN 1
+		    WHEN (SELECT emp_posit FROM employee WHERE emp_no = #{empNo}) = '대리' THEN 2
+		    WHEN (SELECT emp_posit FROM employee WHERE emp_no = #{empNo}) = '과장' THEN 3
+		    WHEN (SELECT emp_posit FROM employee WHERE emp_no = #{empNo}) = '차장' THEN 4
+		    WHEN (SELECT emp_posit FROM employee WHERE emp_no = #{empNo}) = '부장' THEN 5
+		    ELSE 6
+		  END
+		  AND DEPT_CODE = #{deptCode}
+		ORDER BY
+		  CASE
+		    WHEN emp_posit = '사원' THEN 1
+		    WHEN emp_posit = '대리' THEN 2
+		    WHEN emp_posit = '과장' THEN 3
+		    WHEN emp_posit = '차장' THEN 4
+		    WHEN emp_posit = '부장' THEN 5
+		    ELSE 6  
+		  END desc
+	</select>
+	
 	<select id="getAllSuperior" parameterType="vo.EmpVO" resultMap="empMap">
 		SELECT *
 		FROM employee

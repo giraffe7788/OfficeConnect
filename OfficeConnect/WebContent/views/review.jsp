@@ -1,3 +1,7 @@
+<%@page import="util.TransEmpInfo"%>
+<%@page import="vo.ReviewVO"%>
+<%@page import="vo.EmpVO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -22,6 +26,11 @@
 <script src="../vendor/jquery/jquery.min.js"></script>
 <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+<%
+	List<EmpVO> empList = (List<EmpVO>) request.getAttribute("empList");
+	EmpVO empVO = (EmpVO)request.getAttribute("empVO");
+	SessionEmpInfo info = SessionEmpInfo.getInstance();
+%>
 </head>
 
 <body id="page-top">
@@ -62,7 +71,8 @@
 									</button>
 
 
-									<button type="button" onClick="window.location.href='reviewCheck.jsp'" class="btn btn-light btn-icon-split"
+<!-- 									<button type="button" onClick="window.location.href='reviewCheck.jsp'" class="btn btn-light btn-icon-split" -->
+									<button type="button" onClick="window.location.href='../review/list.do'" class="btn btn-light btn-icon-split"
 										style="border: none; background-color: transparent; color: #858796; width: 150px; font-size: 1.3rem;">
 										<b>평가결과조회</b>
 									</button>
@@ -76,18 +86,26 @@
 
 
 									<div style="margin-bottom: 10px;">
-										<b>평가자 :</b> 현재접속중인ID
+										<b>평가자 :</b> <%=empVO.getEmpName() %>
 									</div>
 
 									<div style="margin-bottom: 10px;">
 										<b>피평가자정보</b>
 									</div>
 
-									<form action="">
+									<form onsubmit="insertEmpInfo(event)">
 									<div style="margin-bottom: 10px;">
-										이름 : <input type="text" class="form-control"
-											style="width: 150px; display: inline-block;">
-										<button type="submit" class="btn btn-outline-secondary" style="margin-bottom: 5px;">&nbsp;확인&nbsp;</button></div>
+												<select id="selectEmp">
+													<option value = '' selected>사원 선택</option>
+													<%
+														for(EmpVO evo : empList){
+													%>
+														<option value=<%=evo.getEmpNo() %>><%=evo.getEmpNo()%>&nbsp;&nbsp;<%=evo.getEmpName()%></option>
+													<%		
+														}
+													%>
+												</select>
+										<button type="submit" id="check" class="btn btn-Light" style="margin-bottom: 5px;">&nbsp;확인&nbsp;</button></div>
 										<div class="table-responsive">
 											<div class="table-wrapper">
 
@@ -98,9 +116,9 @@
 														<th>부서</th>
 													</tr>
 													<tr>
-														<td>ㅇ</td>
-														<td>ㅇ</td>
-														<td>ㅇ</td>
+														<td id="empName"></td>
+														<td id="empPosit"></td>
+														<td id="empDept"></td>
 													</tr>
 
 												</table>
@@ -130,11 +148,10 @@
                                           <th>주도성</th>
                                           <th>협동심</th>
                                           <th>창의성</th>
-                                          <th>합계</th>
                                        </tr>
                                        <tr>
                                           <td style="padding: 0">
-                                          <select class="form-select" aria-label="Default select example" style="width: 100%; height:48px; border: none; text-align: center;">
+                                          <select class="form-select" id="resScore" aria-label="Default select example" style="width: 100%; height:48px; border: none; text-align: center;">
                                                 <option value="5">5</option>
                                                 <option value="4">4</option>
                                                 <option value="3">3</option>
@@ -143,7 +160,7 @@
                                           </select>
                                           </td>
                                           <td style="padding: 0">
-                                          <select class="form-select" aria-label="Default select example" style="width: 100%; height:48px; border: none; text-align: center;">
+                                          <select class="form-select" id="scrScore" aria-label="Default select example" style="width: 100%; height:48px; border: none; text-align: center;">
                                                <option value="5">5</option>
                                                <option value="4">4</option>
                                                <option value="3">3</option>
@@ -153,7 +170,7 @@
                                           
                                           </td>
                                           <td style="padding: 0">
-                                          <select class="form-select" aria-label="Default select example" style="width: 100%; height:48px; border: none; text-align: center;">
+                                          <select class="form-select" id="copScore" aria-label="Default select example" style="width: 100%; height:48px; border: none; text-align: center;">
                                                <option value="5">5</option>
                                                <option value="4">4</option>
                                                <option value="3">3</option>
@@ -162,7 +179,7 @@
                                           </select>                                          
                                           </td>
                                           <td style="padding: 0">
-                                          <select class="form-select" aria-label="Default select example" style="width: 100%; height:48px; border: none; text-align: center;">
+                                          <select class="form-select" id="creScore" aria-label="Default select example" style="width: 100%; height:48px; border: none; text-align: center;">
                                                <option value="5">5</option>
                                                <option value="4">4</option>
                                                <option value="3">3</option>
@@ -171,9 +188,6 @@
                                           </select>
                                           
                                           </td>
-                                          <td>
-											합계점수
-                                          </td>
                                        </tr>
 
                                     </table>
@@ -181,7 +195,7 @@
                                  </div>
 
                               </div>
-										<button type="submit" class="btn btn-primary">완료</button>
+										<button type="button" id="score" class="btn btn-primary">완료</button>
 									</form>
 
 								</div>
@@ -214,5 +228,87 @@
 
 	<!-- 페이지 검색/조회 플러그인 -->
 </body>
+<script>
+<%
+	EmpVO selectedEmpVo = info.getEmpVO(empNo);
+%>
 
+function insertEmpInfo(event){
+	
+	event.preventDefault();
+
+	var empNo = $('#selectEmp').val().split("  ")[0];
+	    
+    $.ajax({
+
+    	url: "../emp/detail.do", // Java 변수 값을 반환하는 JSP 페이지
+        type: "post",
+        data: {"empNo" : empNo},
+        success: function(res) {
+            $('#empName').text(res.empName);
+            $('#empDept').text(res.empDept);
+            $('#empPosit').text(res.empPosit);
+        },
+        error: function(xhr, status, msg) {
+        	console.log("상태값: " + status + " Http 에러 메시지: " + msg);
+        },
+        dataType : 'json'
+    });
+    
+	$('#check').on('click', function(){
+	
+		$('#empName').text("<%=selectedEmpVo.getEmpName()%>");
+		$('#empPosit').text("<%=selectedEmpVo.getEmpPosit()%>");
+		$('#deptCode').text("<%=TransEmpInfo.getInstance().transformDeptCode(selectedEmpVo.getDeptCode())%>");
+	
+	});
+    
+	
+}
+
+
+$(function(){
+	
+	$('#score').on('click', function(){
+		
+		const empNo = $('#selectEmp').val().split("  ")[0];
+		
+		let resScore = $('[id="resScore"]').val();
+		let scrScore = $('[id="scrScore"]').val();
+		let copScore = $('[id="copScore"]').val();
+		let creScore = $('[id="creScore"]').val();
+		
+		$.ajax({
+			url: 'insert.do',
+			type: 'post',
+			data: {"resScore": resScore,
+				   "scrScore": scrScore,
+				   "copScore": copScore,
+				   "creScore": creScore,
+				   "empNo" : empNo
+			},
+			success: function(res){
+				
+				console.log('res', res);
+				
+				if(res.isSuccess == 'ok'){
+					alert("평가 완료");
+					location.reload();
+				}
+			},
+			error: function(xhr, status, msg) {
+				console.log("상태값: " + status + " Http 에러 메시지: " + msg);
+			},
+			dataType : 'json'
+		});
+	});
+	
+})
+
+
+
+
+
+
+</script>
 </html>

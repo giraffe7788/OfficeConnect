@@ -1,3 +1,5 @@
+<%@page import="vo.EmpVO"%>
+<%@page import="vo.ReviewVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -22,6 +24,12 @@
 <script src="../vendor/jquery/jquery.min.js"></script>
 <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+<%
+	ReviewVO rvo = (ReviewVO) request.getAttribute("rvo");
+	SessionEmpInfo info = SessionEmpInfo.getInstance();
+	EmpVO empVO = (EmpVO)request.getAttribute("empVO");
+	EmpVO ev = (EmpVO)request.getAttribute("ev");
+%>
 </head>
 
 <body id="page-top">
@@ -56,7 +64,7 @@
 							<div class="row" style="border-right: 1px solid #858796;">
 								<div class="col-lg-2">
 
-									<button type="button" onClick="window.location.href='review.jsp'" class="btn btn-light btn-icon-split"
+									<button id="review" type="button" class="btn btn-light btn-icon-split"
 										style="border: none; background-color: transparent; color: #858796; margin-bottom: 15px; width: 150px; font-size: 1.3rem;">
 										<b>근무태도평가</b>
 									</button>
@@ -73,14 +81,15 @@
 
 									<h4 class="h4 mb-2 text-gray-800">평가결과조회</h4>
 									<hr class="text-gray-800">
-
-
+									
+									
 									<div style="margin-bottom: 10px;">
-										<b>평가자 :</b> 현재접속중인ID
-									</div>
-
-									<div style="margin-bottom: 10px;">
-										<b>평자가 : </b> 해당 부서 장
+										<%if(empVO != null) { %>
+										<b>평가자 : </b><%=empVO.getEmpName() %>
+										<%
+										} else{
+											%><b>평가자 : 미진행</b><%
+										}%>
 									</div>
 									
 									<hr>
@@ -92,6 +101,9 @@
 										<div class="table-responsive">
                                  <div class="table-wrapper" style="text-align: right;">
 
+									<% 
+										if(rvo != null){
+									%>
                                     <table class="table table-bordered" style="width: 100%; text-align: center;">
                                        <tr>
                                           <th rowspan="2" style="vertical-align: middle;">근무태도</th>
@@ -100,29 +112,32 @@
                                           <th>주도성</th>
                                           <th>협동심</th>
                                           <th>창의성</th>
-                                          <th>합계</th>
                                        </tr>
                                        <tr>
-                                          <td>
-											점수 불러오기
+                                       
+                                          <td id="score1">
+                                       		<%=rvo.getResScore() %>	
                                           </td>
-                                          <td>
-											점수불러오기		
                                           
+                                          <td id="score2">
+                                       		<%=rvo.getScrScore() %>	
+													
                                           </td>
-                                          <td>
-                                     		점수불러오기
+                                          <td id="score3">
+                                       		<%=rvo.getCopScore() %>	
+
                                           </td>
-                                          <td>
-											점수불러오기
+                                          <td id="score4">
+                                       		<%=rvo.getCreScore() %>	
                                           
-                                          </td>
-                                          <td>
-											점수불러오기
                                           </td>
                                        </tr>
-
                                     </table>
+                                    <%
+                                    } else {
+                                    	%><div style="margin-right:35%; font-size:1.5em">평가가 진행되지 않았습니다</div><%
+                                    }
+                                    %>
                                     
                                     <hr style="margin-top: 50px;">
                                     
@@ -167,64 +182,21 @@
 	<!-- 페이지 Wrapper 끝 -->
 
 	<!-- 공통속성 설정 include -->
-	<script>
-		//jquery방식으로 modal띄우기
-		$('#room1').on('click', function() {
-			$('#myModal').modal({
-				backdrop : 'static'
-			});
-		});
 
-		$('.modal-footer button').on('click', function() {
-			$('#myModal').modal('hide');
-		});
+<script>
 
-		$('#room2').on('click', function() {
-			$('#myModal').modal({
-				backdrop : 'static'
-			});
-		});
+var empPosit = "<%=ev.getEmpPosit()%>";
 
-		$('.modal-footer button').on('click', function() {
-			$('#myModal').modal('hide');
-		});
-
-		$('#room3').on('click', function() {
-			$('#myModal').modal({
-				backdrop : 'static'
-			});
-		});
-
-		$('.modal-footer button').on('click', function() {
-			$('#myModal').modal('hide');
-		});
-
-		$('#room4').on('click', function() {
-			$('#myModal').modal({
-				backdrop : 'static'
-			});
-		});
-
-		$('.modal-footer button').on('click', function() {
-			$('#myModal').modal('hide');
-		});
-
-		$('#room5').on('click', function() {
-			$('#myModal').modal({
-				backdrop : 'static'
-			});
-		});
-
-		$('#myRoom').on('click', function() {
-			$('#myModal').modal({
-				backdrop : 'static'
-			});
-		});
-
-		$('.modal-footer button').on('click', function() {
-			$('#myModal').modal('hide');
-		});
-	</script>
+$('#review').on('click', function(){
+	
+	if (empPosit == "부장" || empPosit == "대표") {
+		location.href = "../review/insert.do";
+ 	} else {
+ 		alert("권한이 없습니다.");
+ 		return;
+ 	}
+});
+</script>
 	<%@ include file="./common.jsp"%>
 
 	<!-- 페이지 검색/조회 플러그인 -->
