@@ -122,7 +122,7 @@ public class MainDaoImpl implements IMainDao {
 		List<MailVO> mailList = new ArrayList<>();
 		
 		try {
-			mailList = session.selectList("mail.getCurrentReceiveMailList", SessionEmpInfo.getInstance().getEmpVO(empNo).getEmpEmail());
+			mailList = session.selectList("mail.getCurrentReceiveMailList", empNo);
 		} catch (PersistenceException e) {
 			session.rollback();
 			e.printStackTrace();

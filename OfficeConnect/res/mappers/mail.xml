@@ -60,7 +60,7 @@
 		FROM (
 		SELECT *
 		FROM mail
-		WHERE mail_receiver = #{empEmail}
+		WHERE mail_receiver = #{empNo}
 		ORDER BY mail_no DESC
 		) WHERE ROWNUM &lt;= 5
 	</select>

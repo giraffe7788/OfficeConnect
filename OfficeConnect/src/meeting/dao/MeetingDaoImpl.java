@@ -83,11 +83,16 @@ public class MeetingDaoImpl implements IMeetingDao{
 		
 		List<MeetingRoomVO> mbVO = new ArrayList<>();
 		
-		SqlSession session = MyBatisUtil.getInstance();
+		SqlSession session = MyBatisUtil.getInstance(true);
 		
-		mbVO = session.selectList("meetingroom.selectMeetingRoom");
-		System.out.println("roomMap : " + mbVO);
-		
+		try {
+			mbVO = session.selectList("meetingroom.selectMeetingRoom");
+		} catch (PersistenceException e) {
+			e.printStackTrace();
+			session.rollback();
+		} finally {
+			session.close();
+		}
 		return mbVO;
 	}
 	

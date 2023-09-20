@@ -37,7 +37,7 @@ public class ReceiveMailList extends HttpServlet {
 		
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		paramMap.put("isSend", isSend); // 키 , 값 형태로 들어감
-		paramMap.put("empEmail", empEmail); // 데이터를 가지고 오는데 empEmail 라는 변수에 empEmail 값을 보냄 왜? 조건으로 쓰기위해
+		paramMap.put("empEmail", empNo); // 데이터를 가지고 오는데 empEmail 라는 변수에 empEmail 값을 보냄 왜? 조건으로 쓰기위해
 		// paramMap에 데이터를 담을건데 "empEmail" 라는 이름으로 empEmail 라는 변수를 보냄
 		List<MailVO> receiveMailList = mailService.getMailList(paramMap); // receiveMailList 리스트에 DB에서 뽑아온 리스트를 넣음
 		

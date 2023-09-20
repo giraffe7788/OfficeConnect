@@ -81,7 +81,7 @@
 
                <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">김영남님 환영합니다!</h1>
+                        <h1 class="h3 mb-0 text-gray-800"><%= info.getEmpVO((String)session.getAttribute("empNo")).getEmpName() %>님 환영합니다!</h1>
                     </div>
 
                     <!-- Content Row -->
@@ -290,7 +290,7 @@
                                     <%for (MailVO mailVO : mailList) { %>
                                         <tr>
                                             <td><a href="<%=request.getContextPath()%>/mail/detail.do?mailNo=<%=mailVO.getMailNo() %>"><%=mailVO.getMailTitle() %></a></td>
-                                            <td><%=mailVO.getMailSenderPosit() %>&nbsp;<%=mailVO.getMailSenderName() %></td>
+                                            <td><%=info.getEmpVO(mailVO.getMailSender()).getEmpName() %></td>
                                            <td><%=simpleDateFormat.format(mailVO.getMailSenddate()) %></td>
                                         </tr>
                                     <%} %>
