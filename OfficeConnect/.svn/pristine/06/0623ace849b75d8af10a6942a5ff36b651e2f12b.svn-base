@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="review">
+
+	<select id="selectOne" resultMap="reviewMap" parameterType="reviewvo">
+		select * from review
+		where emp_no = #{empNo}
+	</select>
+	
+	<select id="selectList" resultMap="reviewMap" parameterType="reviewvo">
+		select * from review
+		where emp_no = #{empNo}
+	</select>
+	
+	<insert id="insertScore" parameterType="reviewvo">
+		insert into review(emp_no, rev_empno, rev_date, res_score, scr_score, cop_score, cre_score)
+		values(#{empNo}, #{revEmpNo}, sysdate, #{resScore}, #{scrScore}, #{copScore}, #{creScore})
+	</insert>
+	
+	<resultMap type="vo.ReviewVO" id="reviewMap">
+		<result column="emp_no" property="empNo" />
+		<result column="rev_empno" property="revEmpNo" />
+		<result column="rev_date" property="revDate" />
+		<result column="res_score" property="resScore" />
+		<result column="scr_score" property="scrScore" />
+		<result column="cop_score" property="copScore" />
+		<result column="cre_score" property="creScore" />
+	</resultMap>
+</mapper>

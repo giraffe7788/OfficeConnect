@@ -1,0 +1,9 @@
+.rounded-border {
+    border: 1px solid #a9d9f5;
+    margin-top : 5px; /* 글자 윗 간격 */
+    border-radius: 15px;
+    padding: 5px; /* 테두리와 내용 사이의 간격 설정 */
+    display: inline-block; /* 인라인 요소로 표시하여 텍스트와 같은 줄에 표시 */
+    background-color: #d2ecfd;
+    color: black;
+}

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="employee"> 
+
+	<select id="loginCheck" resultMap="empMap" parameterType="empvo">
+		select
+		* from employee
+		where emp_no = #{empNo}
+		and emp_pw = #{empPw}
+	</select>
+
+	<select id="adminCheck" resultMap="empMap" parameterType="empvo">
+		select * from employee
+		where emp_no = #{empNo}
+		and emp_pw = #{empPw}
+		and admin_code = 1
+	</select>
+
+	<insert id="joinEmployee" parameterType="empvo">
+		insert into
+		employee(emp_no, emp_pw, emp_addr, emp_tel, emp_email, emp_name,
+		emp_posit, admin_code, dept_code)
+		values
+		(#{empNo}, #{empPw},
+		#{empAddr}, #{empTel}, #{empEmail},
+		#{empName}, #{empPosit},
+		#{adminCode}, #{deptCode})
+	</insert>
+	
+	<update id="updateEmployeeAdmin" parameterType="empvo">
+		update employee
+		set
+		emp_pw = #{empPw},
+		emp_addr = #{empAddr},
+		emp_tel = #{empTel},
+		emp_email = #{empEmail},
+		emp_name = #{empName},
+		emp_posit = #{empPosit},
+		state_Code = #{stateCode},
+		admin_code = #{adminCode},
+		dept_code = #{deptCode}
+		where emp_no = #{empNo}
+	</update>
+	
+	<update id="updateEmployee" parameterType="empvo">
+		update employee
+		set
+		emp_name = #{empName},
+		emp_email = #{empEmail},
+		emp_tel = #{empTel},
+		emp_addr = #{empAddr}
+		where emp_no = #{empNo}
+	</update>
+	
+	<update id="updateState" parameterType="empvo">
+		update employee
+		set state_code = #{stateCode}
+		where emp_no = #{empNo}
+	</update>
+
+	<delete id="deleteEmployee" parameterType="String">
+		delete from EMPLOYEE
+		where emp_no = #{empNo}
+	</delete>
+
+	<select id="checkEmployee" parameterType="String"
+		resultType="int">
+		select count(*) as cnt
+		from EMPLOYEE
+		where emp_no = #{empNo}
+	</select>
+
+	<select id="selectOne" resultMap="empMap">
+		select * from employee
+		where
+		emp_no = #{empNo}
+	</select>
+
+	<select id="selectAll" resultMap="empMap">
+		select AA.*,
+		decode(BB.img_path, null, 'N','Y') as imgYn, CC.dept_name
+		from
+		EMPLOYEE AA
+		left outer join IMAGE BB
+		on AA.emp_no = BB.emp_no
+		left outer join DEPT CC
+		on AA.dept_code =
+		CC.dept_code
+		order by AA.emp_no
+	</select>
+
+	<select id="forgotPw" parameterType="empvo" resultType="String">
+		select
+		emp_pw from employee
+		where emp_no = #{empNo}
+		and emp_email = #{empEmail}
+	</select>
+	
+	<!-- 사원정보에 저장된 이메일 출력을 위한 쿼리 -->
+	<select id="mailSelect" resultType="String"  parameterType="String">
+		select emp_email as email 
+		from employee where emp_no = #{empNo}
+	</select>
+	
+	<select id="getInferiorList" resultMap="empMap" parameterType="empvo">
+		SELECT *
+		FROM employee
+		WHERE 
+		  CASE
+		    WHEN emp_posit = '사원' THEN 1
+		    WHEN emp_posit = '대리' THEN 2
+		    WHEN emp_posit = '과장' THEN 3
+		    WHEN emp_posit = '차장' THEN 4
+		    WHEN emp_posit = '부장' THEN 5
+		    ELSE 6  
+		  END
+		  &lt;
+		  CASE
+		    WHEN (SELECT emp_posit FROM employee WHERE emp_no = #{empNo}) = '사원' THEN 1
+		    WHEN (SELECT emp_posit FROM employee WHERE emp_no = #{empNo}) = '대리' THEN 2
+		    WHEN (SELECT emp_posit FROM employee WHERE emp_no = #{empNo}) = '과장' THEN 3
+		    WHEN (SELECT emp_posit FROM employee WHERE emp_no = #{empNo}) = '차장' THEN 4
+		    WHEN (SELECT emp_posit FROM employee WHERE emp_no = #{empNo}) = '부장' THEN 5
+		    ELSE 6
+		  END
+		  AND DEPT_CODE = #{deptCode}
+		ORDER BY
+		  CASE
+		    WHEN emp_posit = '사원' THEN 1
+		    WHEN emp_posit = '대리' THEN 2
+		    WHEN emp_posit = '과장' THEN 3
+		    WHEN emp_posit = '차장' THEN 4
+		    WHEN emp_posit = '부장' THEN 5
+		    ELSE 6  
+		  END desc
+	</select>
+	
+	<select id="getAllSuperior" parameterType="vo.EmpVO" resultMap="empMap">
+		SELECT *
+		FROM employee
+		WHERE
+		CASE
+		WHEN emp_posit = '사원' THEN 1
+		WHEN emp_posit = '대리' THEN 2
+		WHEN emp_posit = '과장' THEN 3
+		WHEN emp_posit = '차장' THEN 4
+		WHEN emp_posit = '부장' THEN 5
+		ELSE 6
+		END
+		>
+		CASE
+		WHEN (SELECT emp_posit FROM employee WHERE emp_no = #{empNo}) = '사원' THEN 1
+		WHEN (SELECT emp_posit FROM employee WHERE emp_no = #{empNo}) = '대리' THEN 2
+		WHEN (SELECT emp_posit FROM employee WHERE emp_no = #{empNo}) = '과장' THEN 3
+		WHEN (SELECT emp_posit FROM employee WHERE emp_no = #{empNo}) = '차장' THEN 4
+		WHEN (SELECT emp_posit FROM employee WHERE emp_no = #{empNo}) = '부장' THEN 5
+		ELSE 6
+		END
+		AND DEPT_CODE = #{deptCode}
+		OR EMP_POSIT = '대표'
+		ORDER BY
+		CASE
+		WHEN emp_posit = '사원' THEN 1
+		WHEN emp_posit = '대리' THEN 2
+		WHEN emp_posit = '과장' THEN 3
+		WHEN emp_posit = '차장' THEN 4
+		WHEN emp_posit = '부장' THEN 5
+		ELSE 6
+		END DESC
+	</select>
+
+	<resultMap type="vo.EmpVO" id="empMap">
+		<result column="emp_no" property="empNo" />
+		<result column="emp_pw" property="empPw" />
+		<result column="emp_addr" property="empAddr" />
+		<result column="emp_tel" property="empTel" />
+		<result column="emp_email" property="empEmail" />
+		<result column="emp_name" property="empName" />
+		<result column="emp_posit" property="empPosit" />
+		<result column="state_code" property="stateCode" />
+		<result column="admin_code" property="adminCode" />
+		<result column="dept_code" property="deptCode" />
+	</resultMap>
+</mapper>

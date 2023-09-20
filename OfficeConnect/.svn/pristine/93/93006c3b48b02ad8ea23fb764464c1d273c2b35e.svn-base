@@ -6,7 +6,7 @@
 <%@ page import="java.util.*"%>
 <%
 	ArrayList<BoardVO> list = (ArrayList<BoardVO>) request.getAttribute("boardList");
-	String empNo = (String)session.getAttribute("empNo");
+	String empNo = (String) request.getAttribute("empNo");
 	EmpVO sessionVO = SessionEmpInfo.getInstance().getEmpVO(empNo);
 	TransEmpInfo transfer = TransEmpInfo.getInstance();
 %>
@@ -22,7 +22,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>자유게시판</title>
+<title>게시판</title>
 
 <!-- 아이콘 설정 -->
 <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -59,7 +59,7 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">&nbsp;&nbsp;자유게시판</h1>
+					<h1 class="h3 mb-2 text-gray-800">&nbsp;&nbsp;<%=sessionVO.getEmpName() %>님의 게시판</h1>
 
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
@@ -106,7 +106,7 @@
 											<td><a
 												href="<%=request.getContextPath()%>/board/detail.do?brdNo=<%=vo.getBrdNo()%>"><%=vo.getBrdTitle()%></a></td>	
 											<td>
-											<a href="<%=request.getContextPath()%>/board/selectOne.do?empNo=<%=vo.getEmpNo()%>"><%=transfer.transformDeptCode(vo.getDeptCode())%>&nbsp;&nbsp;<%=vo.getEmpPosit()%>&nbsp;&nbsp;<%=vo.getEmpName()%></a>
+											<%=transfer.transformDeptCode(vo.getDeptCode())%>&nbsp;&nbsp;<%=vo.getEmpPosit()%>&nbsp;&nbsp;<%=vo.getEmpName()%>
 											 
 											</td>
 											
@@ -121,12 +121,7 @@
 										%>
 									</tbody>
 								</table>
-								<a href="#" class="btn btn-primary btn-icon-split"
-									style="position: absolute; margin-left: 89%; margin-top: -3%">
-									<span class="icon text-white-50"> <i
-										class="fa-solid fa-pen"></i>
-								</span> <span class="text"  onclick="location.href='<%=request.getContextPath()%>/board/insert.do'">글작성</span>
-								</a>
+								
 							</div>
 						</div>
 					</div>
